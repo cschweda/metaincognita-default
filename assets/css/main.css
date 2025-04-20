@@ -1,0 +1,37 @@
+:root {
+  --special-elite: 'Special Elite', cursive;
+}
+
+body {
+  margin: 0;
+  font-family: 'Special Elite', cursive;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.fade-enter-active, 
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter-from, 
+.fade-leave-to {
+  opacity: 0;
+}
+
+.text-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
