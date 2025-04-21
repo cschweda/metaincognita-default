@@ -4,7 +4,7 @@ module.exports = {
         name: 'metaincognita-default',
         port: '5150',
         exec_mode: 'fork',
-        interpreter : 'node@22.14.0',
+        interpreter : 'node',
         script: './.output/server/index.mjs'
       }
     ]
