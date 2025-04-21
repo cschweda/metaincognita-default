@@ -9,9 +9,7 @@ export default defineNuxtConfig({
     '~/assets/css/main.css',
   ],
   
-  modules: [
-    '@nuxtjs/google-fonts',
-  ],
+  modules: ['@nuxtjs/google-fonts', '@nuxtjs/plausible'],
   
   googleFonts: {
     families: {
@@ -24,6 +22,10 @@ export default defineNuxtConfig({
   
   build: {
     transpile: ['vuetify'],
+  },
+  plausible: {
+    // Prevent tracking on localhost
+    ignoredHostnames: ['localhost'],
   },
   
   app: {

@@ -234,6 +234,11 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
+"@barbapapazes/plausible-tracker@^0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@barbapapazes/plausible-tracker/-/plausible-tracker-0.5.6.tgz#36c2cf3354326282b9a3315538dbec2744acb997"
+  integrity sha512-GRZxn3ZngYQ1+QbdP8d66D/lQg+T2oEevG8kBGfNwVbt9VZB67sgMx/gkRo/Ww2lH7QelgjUNzvOeG+DsJX2HQ==
+
 "@cloudflare/kv-asset-handler@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@cloudflare/kv-asset-handler/-/kv-asset-handler-0.4.0.tgz#a8588c6a2e89bb3e87fb449295a901c9f6d3e1bf"
@@ -872,7 +877,7 @@
     which "^5.0.0"
     ws "^8.18.1"
 
-"@nuxt/kit@3.16.2", "@nuxt/kit@^3.10.3", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.16.2":
+"@nuxt/kit@3.16.2", "@nuxt/kit@^3.10.3", "@nuxt/kit@^3.14.1592", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.16.2":
   version "3.16.2"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.16.2.tgz#9fbb2ef3bd9ebeb499b4cc5215e2f857c54b75d7"
   integrity sha512-K1SAUo2vweTfudKZzjKsZ5YJoxPLTspR5qz5+G61xtZreLpsdpDYfBseqsIAl5VFLJuszeRpWQ01jP9LfQ6Ksw==
@@ -975,6 +980,16 @@
     "@nuxt/kit" "^3.10.3"
     google-fonts-helper "^3.5.0"
     pathe "^1.1.2"
+
+"@nuxtjs/plausible@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/plausible/-/plausible-1.2.0.tgz#0b7fc89308619ea1b520d5f40ed426ff2303153e"
+  integrity sha512-pjfps32fFN77BhjqHmq2Jx4XCNso9TcYnB+S4IR2qH/c26WDfYB5mQxN5pOEiWRlMkiKq+Y45mBBFtSOVKClCA==
+  dependencies:
+    "@barbapapazes/plausible-tracker" "^0.5.6"
+    "@nuxt/kit" "^3.14.1592"
+    defu "^6.1.4"
+    ufo "^1.5.4"
 
 "@oxc-parser/binding-darwin-arm64@0.56.5":
   version "0.56.5"
@@ -3137,6 +3152,11 @@ get-stream@^8.0.1:
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-8.0.1.tgz#def9dfd71742cd7754a7761ed43749a27d02eca2"
   integrity sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==
 
+get-them-args@1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/get-them-args/-/get-them-args-1.3.2.tgz#74a20ba8a4abece5ae199ad03f2bcc68fdfc9ba5"
+  integrity sha512-LRn8Jlk+DwZE4GTlDbT3Hikd1wSHgLMme/+7ddlqKd7ldwR6LjJgTVWzBnR01wnYGe4KgrXjg287RaI22UHmAw==
+
 giget@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/giget/-/giget-2.0.0.tgz#395fc934a43f9a7a29a29d55b99f23e30c14f195"
@@ -3662,6 +3682,14 @@ jwt-decode@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-4.0.0.tgz#2270352425fd413785b2faf11f6e755c5151bd4b"
   integrity sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==
+
+kill-port@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/kill-port/-/kill-port-2.0.1.tgz#e5e18e2706b13d54320938be42cb7d40609b15cf"
+  integrity sha512-e0SVOV5jFo0mx8r7bS29maVWp17qGqLBZ5ricNSajON6//kmb7qqqNnml4twNE8Dtj97UQD+gNFOaipS/q1zzQ==
+  dependencies:
+    get-them-args "1.3.2"
+    shell-exec "1.0.2"
 
 kleur@^3.0.3:
   version "3.0.3"
@@ -5256,6 +5284,11 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
+shell-exec@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/shell-exec/-/shell-exec-1.0.2.tgz#2e9361b0fde1d73f476c4b6671fa17785f696756"
+  integrity sha512-jyVd+kU2X+mWKMmGhx4fpWbPsjvD53k9ivqetutVW/BQ+WIZoDoP4d8vUMGezV6saZsiNoW2f9GIhg9Dondohg==
+
 shell-quote@^1.8.1:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.8.2.tgz#d2d83e057959d53ec261311e9e9b8f51dcb2934a"
@@ -5976,9 +6009,9 @@ vite-hot-client@^2.0.4:
   integrity sha512-W9LOGAyGMrbGArYJN4LBCdOC5+Zwh7dHvOHC0KmGKkJhsOzaKbpo/jEjpPKVHIW0/jBWj8RZG0NUxfgA8BxgAg==
 
 vite-node@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/vite-node/-/vite-node-3.1.1.tgz#ad186c07859a6e5fca7c7f563e55fb11b16557bc"
-  integrity sha512-V+IxPAE2FvXpTCHXyNem0M+gWm6J7eRyWPR6vYoG/Gl+IscNOjXzztUhimQgTxaAoUoj40Qqimaa0NLIOOAH4w==
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/vite-node/-/vite-node-3.1.2.tgz#b17869a12307f5260b20ba4b58cf493afee70aa7"
+  integrity sha512-/8iMryv46J3aK13iUXsei5G/A3CUlW4665THCPS+K8xAaqrVWiGB4RfXMQXCLjpK9P2eK//BczrVkn5JLAk6DA==
   dependencies:
     cac "^6.7.14"
     debug "^4.4.0"

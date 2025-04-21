@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "@nuxtjs/plausible": "1.2.0",
+    "kill-port": "^2.0.1",
     "nuxt": "^3.16.2",
     "vuetify": "^3.8.2"
   },
