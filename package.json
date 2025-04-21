@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "serve": "NITRO_PORT=8081 node .output/server/index.mjs"
+    "serve": "NITRO_PORT=5150 node .output/server/index.mjs"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
