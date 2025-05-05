@@ -15,5 +15,12 @@
   font-family: 'Special Elite', cursive;
   letter-spacing: 2px;
   padding: 24px;
+  font-size: min(10vw, 3rem);
+  max-width: 100%;
+  display: block;
+  text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  box-sizing: border-box;
 }
 </style>
