@@ -18,7 +18,7 @@
         rel="noopener noreferrer"
       >
         <UIcon name="i-lucide-github" class="text-[0.95em]" />
-        github.com/cschweda
+        GitHub
       </a>
 
       <span class="meta hidden sm:inline">MIT · free to use · fork · self-host</span>

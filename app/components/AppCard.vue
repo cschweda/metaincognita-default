@@ -29,7 +29,6 @@ function onMove(e: MouseEvent) {
     target="_blank"
     rel="noopener noreferrer"
     :style="{ '--accent': item.accent }"
-    :aria-label="`${item.title} — opens ${item.domain} in a new tab`"
     class="card group"
     @mousemove="onMove"
   >
@@ -37,9 +36,9 @@ function onMove(e: MouseEvent) {
 
     <div class="flex items-start justify-between">
       <span class="icon-tile">
-        <UIcon :name="`i-lucide-${item.icon}`" />
+        <UIcon :name="`i-lucide-${item.icon}`" aria-hidden="true" />
       </span>
-      <span class="index">{{ num }}</span>
+      <span class="index" aria-hidden="true">{{ num }}</span>
     </div>
 
     <div class="mt-6 flex-1">
@@ -53,8 +52,9 @@ function onMove(e: MouseEvent) {
 
     <div class="domain">
       <span class="truncate">{{ item.domain }}</span>
-      <UIcon name="i-lucide-arrow-up-right" class="arrow shrink-0" />
+      <UIcon name="i-lucide-arrow-up-right" class="arrow shrink-0" aria-hidden="true" />
     </div>
+    <span class="sr-only"> — opens in a new tab</span>
   </a>
 </template>
 

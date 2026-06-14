@@ -9,6 +9,9 @@ export default defineNuxtConfig({
 
   ssr: true,
 
+  // inline critical CSS into the prerendered HTML, dropping the render-blocking stylesheet
+  features: { inlineStyles: true },
+
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],
@@ -36,12 +39,16 @@ export default defineNuxtConfig({
         { property: 'og:description', content: DESCRIPTION },
         { property: 'og:url', content: SITE_URL },
         { property: 'og:image', content: `${SITE_URL}/og-image.png` },
+        { property: 'og:image:type', content: 'image/png' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: 'metaincognita — open-source casino simulation suite' },
+        { property: 'og:locale', content: 'en_US' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: TITLE },
         { name: 'twitter:description', content: DESCRIPTION },
-        { name: 'twitter:image', content: `${SITE_URL}/og-image.png` }
+        { name: 'twitter:image', content: `${SITE_URL}/og-image.png` },
+        { name: 'twitter:image:alt', content: 'metaincognita — open-source casino simulation suite' }
       ],
       // Fonts (Fraunces / Hanken Grotesk / Space Mono) are self-hosted at build
       // time by @nuxt/fonts — see app/assets/css/main.css @theme — so there is
