@@ -1,0 +1,22 @@
+# Netlify configuration for the metaincognita landing page.
+# Static Nuxt build (nitro `netlify_static` preset) emits to ./dist.
+
+[build]
+  command = "pnpm generate"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Routing and asset caching are handled by the files the `netlify_static`
+# preset generates: dist/_redirects (unknown paths -> prerendered 404) and
+# dist/_headers (immutable caching for /_nuxt/* and /_fonts/*). We only add
+# the security headers nitro does not emit.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://plausible.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
