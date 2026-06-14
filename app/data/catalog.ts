@@ -51,7 +51,7 @@ export const simulations: CatalogItem[] = [
   {
     title: 'Video Poker Trainer',
     description: 'Optimal play, pay-table literacy and bankroll management — taught one hand at a time.',
-    domain: 'video-poker.metaincognita.com',
+    domain: 'videopoker.metaincognita.com',
     icon: 'diamond',
     accent: '#b18cff'
   },

@@ -24,7 +24,7 @@ simply links out to them.
 | Roulette Trainer | `roulette.metaincognita.com` | A real forward-physics wheel, proven fair by simulation. |
 | Slots Simulator | `slots.metaincognita.com` | Reel strips, virtual-reel weights and exact house edge across eight archetypes. |
 | Craps Simulator | `craps.metaincognita.com` | Learn the line, the odds bets and where the edge hides. |
-| Video Poker Trainer | `video-poker.metaincognita.com` | Optimal play, pay-table literacy and bankroll management. |
+| Video Poker Trainer | `videopoker.metaincognita.com` | Optimal play, pay-table literacy and bankroll management. |
 | Flameout | `flameout.metaincognita.com` | A crash-game simulator: climb, cash out, then see why the house always wins. |
 | Pachinko Parlor | `pachinko.metaincognita.com` | Ball-drop physics and payout pockets, with the odds laid bare. |
 
