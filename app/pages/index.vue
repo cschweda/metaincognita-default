@@ -11,7 +11,7 @@ const cardDelay = (i: number, base = 0) => `${(base + i * 0.06).toFixed(2)}s`
 
     <main class="relative z-10 mx-auto max-w-6xl px-6">
       <!-- Simulations -->
-      <section id="simulations" class="scroll-mt-16 py-20 sm:py-28">
+      <section id="simulations" class="scroll-mt-16 pt-6 pb-20 sm:pt-10 sm:pb-28">
         <SectionHeading
           kicker="01"
           label="Simulations"

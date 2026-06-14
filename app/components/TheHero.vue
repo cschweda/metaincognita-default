@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <section class="relative flex min-h-[92vh] flex-col items-center justify-center px-6 py-28 text-center">
+  <section class="relative flex min-h-[78vh] flex-col items-center justify-center px-6 pt-24 pb-12 text-center">
     <!-- kicker -->
     <div class="reveal flex items-center gap-4" style="animation-delay: 0.05s">
       <span class="hidden h-px w-10 bg-gradient-to-r from-transparent to-gold-600/60 sm:block" />
