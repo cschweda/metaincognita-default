@@ -4,7 +4,10 @@ import type { CatalogItem } from '~/data/catalog'
 const props = defineProps<{ item: CatalogItem }>()
 
 const href = computed(() => `https://${props.item.domain}`)
-const isFeature = computed(() => props.item.span === 'feature')
+
+// The oversized watermark glyph. Only the big tiles have room for it — on a `std`
+// cabinet it would just crowd the copy.
+const hasMark = computed(() => props.item.span === 'feature' || props.item.span === 'banner')
 
 // Cursor-following glow. Skipped for users who prefer reduced motion.
 let allowSpotlight = true
@@ -32,7 +35,7 @@ function onMove(e: MouseEvent) {
   >
     <span class="spotlight" aria-hidden="true" />
     <UIcon
-      v-if="isFeature"
+      v-if="hasMark"
       :name="`i-lucide-${item.icon}`"
       class="mark"
       aria-hidden="true"
@@ -165,9 +168,11 @@ function onMove(e: MouseEvent) {
     0 0 22px color-mix(in srgb, var(--ac) 55%, transparent);
 }
 
-.badge { flex: none; text-align: right; max-width: 9.5rem; }
+.badge { flex: none; text-align: right; max-width: 12rem; }
 .badge b {
   display: inline-block;
+  /* the chip is a physical label — never let it break across two lines */
+  white-space: nowrap;
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 0.68rem;
@@ -223,23 +228,31 @@ function onMove(e: MouseEvent) {
 .arrow { font-size: 0.95rem; transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .cab:hover .arrow { transform: translate(3px, -3px); }
 
-/* the feature cabinet — bigger type, and a watermark of its own glyph */
+/* the feature cabinet — bigger type, and a watermark of its own glyph.
+   It spans two grid rows, so with our short one-line copy it has slack to spare.
+   Rather than let the description stretch and leave a dead gap above the domain,
+   sink the whole text block to the floor: emblem up top, information at the base,
+   and the negative space in the middle where the watermark can own it. */
 .cab-feature { min-height: 22rem; padding: 2rem 1.8rem 1.5rem; }
 .cab-feature .ico { width: 4rem; height: 4rem; font-size: 2.1rem; border-radius: 14px; }
-.cab-feature .cab-title { margin-top: 1.6rem; font-size: 1.85rem; }
-.cab-feature .cab-desc { margin-top: 0.8rem; font-size: 0.95rem; max-width: 30rem; }
+.cab-feature .cab-title { margin-top: auto; padding-top: 2rem; font-size: 1.85rem; }
+.cab-feature .cab-desc { margin-top: 0.8rem; flex: none; font-size: 0.95rem; max-width: 32rem; }
 .cab-feature .badge b { font-size: 0.8rem; padding: 0.34rem 0.7rem; }
 
+/* The watermark bleeds off the right edge into the space the sunken text block
+   opens up — it fills the void rather than hiding behind the copy. */
 .mark {
   position: absolute;
-  right: -1.5rem;
-  bottom: -2.5rem;
+  right: -2.5rem;
+  top: 2.5rem;
   z-index: -1;
-  font-size: 13rem;
+  font-size: 14rem;
   line-height: 1;
-  color: color-mix(in srgb, var(--ac) 12%, transparent);
+  color: color-mix(in srgb, var(--ac) 14%, transparent);
   pointer-events: none;
 }
 
+/* the banner is short and wide — keep its glyph tucked to the right, not overhead */
 .cab-banner { min-height: 11rem; }
+.cab-banner .mark { top: auto; bottom: -3rem; right: 1.5rem; font-size: 11rem; }
 </style>

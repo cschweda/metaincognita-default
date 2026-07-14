@@ -48,13 +48,21 @@ describe('GameCabinet', () => {
     expect(w.find('h3').text()).toBe('Blackjack Trainer')
   })
 
-  it('renders the watermark glyph when span is feature', async () => {
+  // The watermark only belongs on tiles big enough to carry it.
+  it('renders the watermark glyph on a feature cabinet', async () => {
     const w = await mountSuspended(GameCabinet, { props: { item } })
     expect(w.find('.mark').exists()).toBe(true)
   })
 
-  it('does not render the watermark glyph when span is std', async () => {
-    const std = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'std' } } })
-    expect(std.find('.mark').exists()).toBe(false)
+  it('renders the watermark glyph on a banner cabinet', async () => {
+    const b = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'banner' } } })
+    expect(b.find('.mark').exists()).toBe(true)
+  })
+
+  it('does NOT render the watermark on the small cabinets — it would crowd the copy', async () => {
+    for (const span of ['std', 'wide'] as const) {
+      const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span } } })
+      expect(w.find('.mark').exists(), span).toBe(false)
+    }
   })
 })
