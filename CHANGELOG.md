@@ -5,9 +5,39 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-07-14
+
+Sound is now off. Always.
+
+### Changed
+- **Floor audio is off on every page load, without exception.** It was on by default,
+  behind an arrival curtain. That turned out to be far more annoying in practice than it
+  looked on paper.
+- **Nothing is persisted.** There is deliberately no stored audio preference now. If we
+  remembered an "on" choice, a reload would leave the switch reading *on* over a silent
+  page — browsers won't start audio without a gesture — and one stray click would bring
+  the noise back unannounced. Nothing stored means nothing to be surprised by. Reload,
+  revisit, come back tomorrow: silence.
+- The equaliser bars on the switch read from whether the floor is *actually audible*
+  rather than from the setting, so the control can never claim to be playing over a
+  silent page.
+
+### Removed
+- **The Doors** — the arrival curtain. Its only job was supplying the user gesture that
+  browsers require before audio may play. With sound off by default it had no job left,
+  and a curtain that says "click anywhere" and then does nothing is just a click tax on
+  every visit. The status-bar switch is the gesture now.
+
+### Unchanged
+- `play()` is still never called outside a user-gesture handler, and `preload="none"`
+  still means zero audio bytes are fetched until the switch is actually flipped.
+
 ## [2.0.0] - 2026-07-13
 
 A ground-up visual rebuild: from restrained "casino noir" to a modern casino floor.
+
+> **Superseded in 2.1.0:** the audio behaviour described below (on by default, behind
+> The Doors) is gone. Sound is off on every load and The Doors were removed.
 
 ### Added
 - **Neon Palace design language** — violet-black canvas, cyan architecture, magenta

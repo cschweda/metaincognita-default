@@ -54,11 +54,26 @@ simply links out to them.
 
 ## Floor audio
 
-The landing page plays an optional ambient casino loop. It is **opt-in by gesture**:
-browsers reject `play()` until the user has interacted with the page, so `TheDoors`
-supplies that interaction. The preference defaults to on, persists in `localStorage`
-(`mi-floor-audio`), and is toggleable from the status bar. Nothing is downloaded
-until sound is actually enabled (`preload="none"`).
+The landing page can play an ambient casino loop. **It is off on every page load,
+without exception, and nothing is remembered.** A landing page does not get to make
+noise at someone who never asked for it.
+
+Sound is turned on only by the switch in the status bar. Reload, revisit, or come back
+tomorrow and you are back to silence. There is deliberately **no persisted preference**:
+if we stored an "on" choice, a reload would leave the switch reading *on* over a silent
+page (browsers won't start audio without a gesture), and one stray click would bring the
+noise back unannounced. Nothing stored means nothing to be surprised by.
+
+Nothing is downloaded until the switch is actually flipped — `preload="none"`, and the
+`<audio>` element isn't even constructed until then — so first paint is byte-for-byte
+identical whether a visitor ever turns sound on or not.
+
+`play()` is never called outside a user-gesture handler. Browsers reject audible autoplay
+anyway, but it is also a WCAG 1.4.2 (Audio Control) failure and a dark pattern besides.
+The switch **is** the gesture.
+
+The equaliser bars on the switch read from whether the floor is *actually audible*, not
+from the setting — so the control can never claim to be playing over a silent page.
 
 **Shipped assets** (in `public/audio/`):
 

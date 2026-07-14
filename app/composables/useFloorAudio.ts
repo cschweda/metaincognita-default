@@ -1,4 +1,3 @@
-const STORAGE_KEY = 'mi-floor-audio'
 const TARGET_VOLUME = 0.45
 const FADE_IN_MS = 1600
 const FADE_OUT_MS = 500
@@ -6,8 +5,8 @@ const FADE_TICK_MS = 40
 
 /**
  * Client-side singletons. One <audio> for the whole app no matter how many
- * components call this composable — otherwise TheDoors and SoundSwitch would
- * each build their own element and we'd hear the floor twice.
+ * components call this composable — otherwise every caller would build its own
+ * element and we'd hear the floor twice.
  */
 let el: HTMLAudioElement | null = null
 let fadeTimer: ReturnType<typeof setInterval> | null = null
@@ -23,21 +22,31 @@ export function __resetFloorAudioForTests() {
   fadeTimer = null
   if (el) el.remove()
   el = null
+  // `enabled`/`playing` are Nuxt useState, which is shared across mounts in the
+  // test environment — reset them too, or one test's playback leaks into the next.
+  useState('floor-audio-enabled', () => false).value = false
+  useState('floor-audio-playing', () => false).value = false
 }
 
+/**
+ * The floor ambience.
+ *
+ * **Sound is OFF on every single page load, with no exceptions and nothing
+ * remembered.** There is deliberately no persisted preference: if we stored an
+ * "on" choice, a reload would leave the switch reading *on* while the page sat
+ * silent (browsers won't start audio without a gesture), and one stray click
+ * would bring the noise back unannounced. Nothing to store means nothing to be
+ * surprised by. If you want the floor, you turn it on — every time.
+ *
+ * `play()` is therefore only ever reachable from the switch's click handler.
+ * That is not merely a convention: browsers reject audible autoplay outright,
+ * it is a WCAG 1.4.2 (Audio Control) failure, and it is a dark pattern besides.
+ */
 export function useFloorAudio() {
-  /**
-   * The *preference*. This says nothing about whether sound is currently
-   * audible: browsers reject play() until a user gesture has occurred, which
-   * is exactly what TheDoors exists to supply.
-   */
-  const enabled = useState('floor-audio-enabled', () => true)
+  /** Has the visitor asked for sound on THIS page load? Starts false, always. */
+  const enabled = useState('floor-audio-enabled', () => false)
+  /** Is the floor actually audible right now? The switch's bars read from this. */
   const playing = useState('floor-audio-playing', () => false)
-
-  function persist(on: boolean) {
-    if (!import.meta.client) return
-    window.localStorage.setItem(STORAGE_KEY, on ? 'on' : 'off')
-  }
 
   function ensureEl(): HTMLAudioElement {
     if (el) {
@@ -48,7 +57,8 @@ export function useFloorAudio() {
     }
     el = document.createElement('audio')
     el.loop = true
-    // Nothing is fetched until we actually play — first paint is untouched.
+    // Nothing is fetched until we actually play — first paint is byte-for-byte
+    // identical whether or not the visitor ever turns sound on.
     el.preload = 'none'
     el.volume = 0
 
@@ -93,26 +103,19 @@ export function useFloorAudio() {
         fadeTo(TARGET_VOLUME, FADE_IN_MS)
       })
       .catch(() => {
-        // The autoplay policy said no. Stay silent and wait for the next gesture.
+        // The autoplay policy said no. Stay silent.
         playing.value = false
       })
   }
 
-  /** TheDoors: the gesture that lets the floor come alive. */
-  function enter(withSound: boolean) {
-    enabled.value = withSound
-    persist(withSound)
-    if (withSound) play()
-  }
-
-  /** SoundSwitch: always inside a click handler, so a gesture is present. */
+  /** The switch. Always runs inside a click handler, so a gesture is present. */
   function toggle() {
     enabled.value = !enabled.value
-    persist(enabled.value)
     if (enabled.value) play()
     else if (el) fadeTo(0, FADE_OUT_MS) // nothing to fade if nothing was ever built
   }
 
+  /** Don't keep playing to an empty room. */
   function onVisibility() {
     if (!el) return
     if (document.hidden) {
@@ -123,53 +126,15 @@ export function useFloorAudio() {
     }
   }
 
-  // Set (per component instance) while a one-shot resume listener is armed,
-  // so onBeforeUnmount can remove it if the component goes away before any
-  // gesture fires. Cleared as soon as the listener fires or is torn down.
-  let resumeGo: (() => void) | null = null
-
-  /**
-   * A reload inside the same session skips The Doors (see TheDoors' session
-   * gate), so no gesture has ever happened — yet the preference still says
-   * ON, and the floor is silent. Arm a one-shot listener so the very first
-   * interaction anywhere on the page brings it back. This IS a genuine user
-   * gesture, so the no-autoplay guarantee holds; it just doesn't require the
-   * curtain specifically.
-   */
-  function armResume() {
-    const go = () => {
-      document.removeEventListener('pointerdown', go)
-      document.removeEventListener('keydown', go)
-      resumeGo = null
-      if (enabled.value && !playing.value) play()
-    }
-    resumeGo = go
-    document.addEventListener('pointerdown', go, { once: true })
-    document.addEventListener('keydown', go, { once: true })
-  }
-
   onMounted(() => {
-    // Read the stored preference. Note: we do NOT start playing here — that
-    // would be an autoplay attempt, and the browser would reject it anyway.
-    enabled.value = window.localStorage.getItem(STORAGE_KEY) !== 'off'
+    // Note what is NOT here: no stored preference is read, and play() is never
+    // called. The page always starts silent.
     document.addEventListener('visibilitychange', onVisibility)
-
-    // A reload inside the same session skips The Doors, so no gesture has happened and the
-    // floor is silent — yet the preference still says ON. Arm a one-shot listener so the very
-    // first interaction brings it back. Still a real user gesture: the no-autoplay guarantee
-    // is untouched. (Same session key TheDoors uses.)
-    const alreadyEntered = window.sessionStorage.getItem('mi-entered') === '1'
-    if (alreadyEntered && enabled.value) armResume()
   })
 
   onBeforeUnmount(() => {
     document.removeEventListener('visibilitychange', onVisibility)
-    if (resumeGo) {
-      document.removeEventListener('pointerdown', resumeGo)
-      document.removeEventListener('keydown', resumeGo)
-      resumeGo = null
-    }
   })
 
-  return { enabled, playing, enter, toggle }
+  return { enabled, playing, toggle }
 }

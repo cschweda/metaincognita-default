@@ -4,6 +4,16 @@
 **Status:** Approved
 **Supersedes:** the "casino noir" design shipped in v1.0.0
 
+> ## ⚠ Superseded on 2026-07-14
+>
+> **The Doors have been removed and floor audio is now OFF on every page load, with no
+> persisted preference.** The "sound on by default, behind an arrival curtain" design
+> described below shipped, was lived with, and proved far more annoying than it looked on
+> paper. With sound off by default the curtain had no remaining purpose — its only job was
+> supplying the user gesture browsers require before audio may play — so it went too.
+>
+> Everything else in this spec still describes what shipped. See CHANGELOG 2.1.0.
+
 ## The concept
 
 **Loud eyes, quiet voice.**

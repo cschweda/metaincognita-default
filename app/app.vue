@@ -6,6 +6,5 @@
       <NuxtPage />
     </div>
     <TheStatusBar />
-    <TheDoors />
   </UApp>
 </template>
