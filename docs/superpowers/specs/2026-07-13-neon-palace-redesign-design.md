@@ -324,10 +324,22 @@ axe/contrast/Lighthouse tooling on hand.
 
 ## Performance
 
-- **Animate only `opacity` and `transform`.** Every animation in the design already
-  complies: ticker (`transform`), bulbs (`opacity`), flicker (`opacity`), sweep
-  (`transform`), suits (`transform`), sign breathe (`opacity`). No animated `box-shadow`
-  or `filter` on repeated elements.
+- **Animate only `opacity` and `transform`.** All nine animations, audited:
+  ticker (`transform`), bulbs (`opacity`), flicker (`opacity`), sweep (`transform`),
+  suits (`transform`), sign breathe (`opacity`), reveal (`opacity` + `transform`),
+  equaliser bars (`transform: scaleY`), status pulse (`transform` + `opacity`).
+
+  > The last two were originally drafted as `height` and `box-shadow` respectively — both
+  > banned, and both on always-visible, infinitely-looping elements in the status bar.
+  > `height` is worse than the rule even contemplates: it triggers layout every frame.
+  > The equaliser now scales a full-height bar from `transform-origin: bottom`; the status
+  > pulse is an expanding ring on a pseudo-element, leaving the dot's glow static.
+  > A shadow that never animates costs nothing per frame — only an animated one does.
+
+- **Reduced motion uses `animation: none`, not the `0.01ms` idiom.** `0.01ms` runs each
+  animation once and lands it on its *end* keyframe — which for `chase` is `opacity: 0.3`,
+  i.e. dark bulbs. `none` reverts to the static value instead, leaving them lit.
+  Transitions do use `transition-duration: 0.01ms` so any `transitionend` listener fires.
 - Zero new fonts, zero images — all decoration is CSS or inline SVG (`img-src 'self' data:`).
 - Audio is `preload="none"` and fetched only on opt-in; it never touches first paint.
 - Site stays a static prerender (`nitro.preset = 'netlify_static'`).

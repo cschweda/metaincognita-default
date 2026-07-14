@@ -25,13 +25,13 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: { lang: 'en' },
       // inline so the first paint is dark even before any stylesheet arrives
-      bodyAttrs: { style: 'background-color:#08080a' },
+      bodyAttrs: { style: 'background-color:#06050c' },
       title: TITLE,
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: DESCRIPTION },
-        { name: 'theme-color', content: '#08080a' },
+        { name: 'theme-color', content: '#06050c' },
         { name: 'author', content: 'metaincognita' },
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: 'metaincognita' },
@@ -50,9 +50,9 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: `${SITE_URL}/og-image.png` },
         { name: 'twitter:image:alt', content: 'metaincognita — open-source casino simulation suite' }
       ],
-      // Fonts (Fraunces / Hanken Grotesk / Space Mono) are self-hosted at build
-      // time by @nuxt/fonts — see app/assets/css/main.css @theme — so there is
-      // no external stylesheet to link here.
+      // Fonts (Sora / Geist Mono) are self-hosted at build time by @nuxt/fonts —
+      // see app/assets/css/main.css @theme — so there is no external
+      // stylesheet to link here.
       link: [
         { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
         { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },

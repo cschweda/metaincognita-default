@@ -2,37 +2,46 @@
 @import "@nuxt/ui";
 
 /* ----------------------------------------------------------------------------
-   metaincognita — casino noir
-   Near-black canvas · champagne gold · felt-green undertone.
-   Type: Sora (geometric, infographic-style sans — display + body) · Geist Mono (labels)
+   metaincognita — neon palace
+   Violet-black canvas · cyan architecture · magenta energy · gold money.
+   Loud eyes, quiet voice: the design screams, the copy stays mathematical.
+   Type: Sora (display + body) · Geist Mono (labels). No new fonts.
 ---------------------------------------------------------------------------- */
 @theme static {
   --font-sans: "Sora", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", monospace;
 
-  /* ink — the dark */
-  --color-ink-950: #08080a;
-  --color-ink-900: #0b0b0e;
-  --color-ink-850: #101015;
-  --color-ink-800: #16161c;
-  --color-ink-700: #1f1f27;
-  --color-ink-600: #2a2a34;
+  /* ink — the dark, tinted violet */
+  --color-ink-950: #06050c;
+  --color-ink-900: #0a0813;
+  --color-ink-850: #0d0b17;
+  --color-ink-800: #131020;
+  --color-ink-700: #1c1830;
 
-  /* gold — the reveal */
-  --color-gold-100: #f8eecf;
-  --color-gold-200: #efdcaa;
-  --color-gold-300: #e4c982;
-  --color-gold-400: #d4af37;
-  --color-gold-500: #bd982f;
-  --color-gold-600: #9c7c26;
+  /* cyan — the architecture: zone signs, structural rules, ghost CTA */
+  --color-cyan-300: #7fe9ff;
+  --color-cyan-400: #00d6ff;
+  --color-cyan-500: #00a8cc;
 
-  /* felt — the table */
-  --color-felt-500: #1f8f63;
+  /* magenta — the energy: the wordmark, The Machines */
+  --color-magenta-300: #ff8ad8;
+  --color-magenta-400: #ff1ba6;
+  --color-magenta-500: #cc1585;
 
-  /* bone — the type */
-  --color-bone-100: #f3f0e8;
-  --color-bone-300: #cfcabe;
-  --color-bone-500: #8c8779;
+  /* gold — the money: ticker, badges, primary CTA */
+  --color-gold-100: #ffe9a8;
+  --color-gold-200: #ffd98a;
+  --color-gold-300: #ffcf4d;
+  --color-gold-400: #ffb92e;
+  --color-gold-500: #e59a10;
+  --color-gold-600: #b8790a;
+
+  /* bone — the type, cooled to sit under neon */
+  --color-bone-100: #eef1fa;
+  --color-bone-300: #b9c0d4;
+  /* 5.29:1 even against the hero's worst-case magenta wash — the mono captions
+     (badge sub-labels, domains, counts) run as small as 0.56rem, so headroom matters. */
+  --color-bone-500: #949db5;
 }
 
 :root {
@@ -55,11 +64,10 @@ body {
 }
 
 ::selection {
-  background: rgba(212, 175, 55, 0.26);
+  background: rgba(255, 27, 166, 0.32);
   color: #fff;
 }
 
-/* thin gold-tinted scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-ink-950); }
 ::-webkit-scrollbar-thumb {
@@ -67,7 +75,7 @@ body {
   border-radius: 999px;
   border: 2px solid var(--color-ink-950);
 }
-::-webkit-scrollbar-thumb:hover { background: var(--color-gold-600); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold-500); }
 
 /* ---- type helpers ---------------------------------------------------------- */
 .font-display {
@@ -75,27 +83,62 @@ body {
   letter-spacing: -0.015em;
 }
 
-.text-gold {
-  background: linear-gradient(176deg, #f8eecf 0%, #e4c982 38%, #c79a3a 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-gold-300);
+  color: var(--color-cyan-400);
+  text-shadow: 0 0 12px rgba(0, 214, 255, 0.7);
 }
 
-/* ---- hairlines & rules ----------------------------------------------------- */
-.rule-gold {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.55), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 7s linear infinite;
+/* the two neon inks, as text */
+.text-neon-cyan {
+  color: #f2fbff;
+  text-shadow: 0 0 4px #fff, 0 0 14px #7fe9ff, 0 0 40px #00d6ff, 0 0 90px rgba(0, 150, 255, 0.75);
+}
+.text-neon-magenta {
+  color: #ffe4f6;
+  text-shadow: 0 0 4px #fff, 0 0 14px #ff8ad8, 0 0 42px #ff1ba6, 0 0 96px rgba(255, 0, 127, 0.7);
+}
+
+/* ---- the mosaic ------------------------------------------------------------
+   Parent-driven grid placement. GameCabinet supplies `.cab` + `.cab-<span>`;
+   the zone supplies `.floor-<id>`. The feature tile mirrors between zones so
+   the eye never settles.
+---------------------------------------------------------------------------- */
+.floor {
+  margin-top: 2.2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.floor-pit .cab-feature { grid-column: span 2; grid-row: span 2; }
+.floor-pit .cab-wide { grid-column: span 2; }
+.floor-machines .cab-feature { grid-column: 3 / span 2; grid-row: 1 / span 2; }
+.floor-machines .cab-wide { grid-column: 1 / span 2; }
+.floor-mind .cab-banner { grid-column: span 4; }
+
+@media (max-width: 980px) {
+  .floor { grid-template-columns: repeat(2, 1fr); }
+  .floor-pit .cab-feature,
+  .floor-machines .cab-feature,
+  .floor-pit .cab-wide,
+  .floor-machines .cab-wide,
+  .floor-mind .cab-banner {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+}
+@media (max-width: 620px) {
+  .floor { grid-template-columns: 1fr; }
+  .floor-pit .cab-feature,
+  .floor-machines .cab-feature,
+  .floor-pit .cab-wide,
+  .floor-machines .cab-wide,
+  .floor-mind .cab-banner {
+    grid-column: span 1;
+  }
 }
 
 /* ---- atmosphere: film grain ------------------------------------------------ */
@@ -105,35 +148,81 @@ body {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.045;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ---- motion ---------------------------------------------------------------- */
+/* ---- motion — opacity and transform only, so it all stays on the compositor - */
 @keyframes reveal {
-  from { opacity: 0; transform: translateY(22px); filter: blur(8px); }
-  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 .reveal {
-  opacity: 0;
-  animation: reveal 1s cubic-bezier(0.22, 0.68, 0.18, 1) forwards;
+  /* `backwards`, not `forwards`. A forwards-filled animation's end keyframe becomes an
+     animation-origin declaration, which outranks EVERY normal author rule at any
+     specificity — it silently killed .reflect's scaleY(-1) and every cabinet's :hover lift.
+     `backwards` covers the delay, then hands control back to the authored values. */
+  animation: reveal 0.9s cubic-bezier(0.22, 0.68, 0.18, 1) backwards;
 }
 
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+/* the ticker tape: the tape holds two copies of the list, so -50% loops seamlessly */
+@keyframes tape {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
+
+/* the bulb chase: a 1Hz alternation, far below WCAG 2.3.1's three-flashes threshold */
+@keyframes chase {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.3; }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.86; }
+}
+
+@keyframes flick {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.5; }
+  97% { opacity: 1; }
+  98% { opacity: 0.72; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
 
 @keyframes drift {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -16px, 0); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
 }
 
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes livepulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  70%, 100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* ---- the one place motion is switched off ---------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { animation: none; opacity: 1; }
-  .rule-gold { animation: none; }
-  .drift { animation: none !important; }
+  *,
+  *::before,
+  *::after {
+    /* `animation: none` (not the 0.01ms idiom) is deliberate: 0.01ms would run
+       each animation once and land on its END keyframe, which for `chase` is
+       opacity 0.3 — dark bulbs. `none` reverts to the static value instead. */
+    animation: none !important;
+    /* 0.01ms rather than `none` so any transitionend listener still fires. */
+    transition-duration: 0.01ms !important;
+  }
+  /* bulbs stop chasing but stay lit — the cabinet must not look broken */
+  .cab::before { opacity: 1 !important; }
+  /* the pulse ring collapses to nothing; the dot's static glow carries it */
+  .live-dot::after { opacity: 0 !important; }
 }

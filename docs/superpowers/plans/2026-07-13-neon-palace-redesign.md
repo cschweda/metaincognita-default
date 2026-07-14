@@ -16,7 +16,10 @@ Every task's requirements implicitly include this section.
 
 - **Never call `HTMLAudioElement.play()` outside a user-gesture handler.** Browsers reject it; it is also a WCAG 1.4.2 failure. Audio starts only from `TheDoors` or `SoundSwitch` click handlers.
 - **Audio is `preload="none"`.** Nothing is fetched until sound is actually enabled. First paint must be identical whether audio is on or off.
-- **Animate only `opacity` and `transform`.** No animated `box-shadow` or `filter` on repeated elements.
+- **Never animate `box-shadow`, `filter`, or any layout property** (`height`, `width`, `top`, `margin`, …). This applies to **`transition:` lists exactly as much as to `@keyframes`** — a `transition: box-shadow .4s` paired with a different `:hover` value animates box-shadow just as hard as a keyframe does, and a 70px-blur shadow re-rasterises the whole card every frame. Nine cabinets render at once.
+  - **Movement and glow must ride on `transform` and `opacity`.** A shadow that never changes costs one paint; an animated one costs one per frame.
+  - Cheap paint-only transitions (`color`, `border-color`, `background-color`) **are** allowed — they don't trigger layout or blur, and the UI would feel dead without them.
+  - **Auditing this means grepping `transition:` too, not just `@keyframes`.** An audit that only looks inside keyframe blocks has a blind spot big enough to ship a bug through — it already did once here.
 - **No new fonts, no images.** Sora + Geist Mono only (already self-hosted by `@nuxt/fonts` inside Nuxt UI 4). CSP is `img-src 'self' data:` and `font-src 'self'`.
 - **Icons are lucide** (`i-lucide-<name>`), never emoji. Emoji render inconsistently and are noisy for screen readers.
 - **`prefers-reduced-motion: reduce` must kill:** wordmark flicker, bulb chase (bulbs stay lit), ticker scroll, zone-sign breathe, backdrop sweep + suit drift, status pulse, equaliser bars, door bob, smooth scroll, cursor spotlight.
@@ -579,15 +582,18 @@ body {
   50% { transform: translateY(-18px); }
 }
 
+/* scaleY, not height — height would trigger layout on every frame, forever,
+   on an always-visible element. transform-origin: bottom makes it grow upward. */
 @keyframes eq {
-  0%, 100% { height: 25%; }
-  50% { height: 100%; }
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
 }
 
+/* an expanding ring drawn on a pseudo-element, not an animated box-shadow.
+   The dot keeps a *static* glow; only the ring moves. */
 @keyframes livepulse {
-  0% { box-shadow: 0 0 0 0 rgba(47, 176, 122, 0.45); }
-  70% { box-shadow: 0 0 0 7px rgba(47, 176, 122, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(47, 176, 122, 0); }
+  0% { transform: scale(1); opacity: 0.5; }
+  70%, 100% { transform: scale(2.6); opacity: 0; }
 }
 
 /* ---- the one place motion is switched off ---------------------------------- */
@@ -597,11 +603,17 @@ body {
   *,
   *::before,
   *::after {
+    /* `animation: none` (not the 0.01ms idiom) is deliberate: 0.01ms would run
+       each animation once and land on its END keyframe, which for `chase` is
+       opacity 0.3 — dark bulbs. `none` reverts to the static value instead. */
     animation: none !important;
-    transition: none !important;
+    /* 0.01ms rather than `none` so any transitionend listener still fires. */
+    transition-duration: 0.01ms !important;
   }
   /* bulbs stop chasing but stay lit — the cabinet must not look broken */
   .cab::before { opacity: 1 !important; }
+  /* the pulse ring collapses to nothing; the dot's static glow carries it */
+  .live-dot::after { opacity: 0 !important; }
 }
 ```
 
@@ -780,7 +792,12 @@ export function useFloorAudio() {
   }
 
   function ensureEl(): HTMLAudioElement {
-    if (el) return el
+    if (el) {
+      // Re-attach if something detached it (and it keeps the tests honest —
+      // the element is a module singleton that outlives any one component).
+      if (!el.isConnected) document.body.appendChild(el)
+      return el
+    }
     el = document.createElement('audio')
     el.loop = true
     // Nothing is fetched until we actually play — first paint is untouched.
@@ -989,15 +1006,18 @@ const { enabled, toggle } = useFloorAudio()
 .eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 11px; }
 .eq i {
   width: 2px;
+  /* full height, scaled down — scaleY is composited; animating `height` is not */
+  height: 100%;
+  transform: scaleY(0.25);
+  transform-origin: bottom;
   background: currentColor;
   border-radius: 1px;
-  height: 30%;
   animation: eq 0.9s ease-in-out infinite;
 }
 .eq i:nth-child(2) { animation-delay: 0.15s; }
 .eq i:nth-child(3) { animation-delay: 0.3s; }
 .eq i:nth-child(4) { animation-delay: 0.45s; }
-.snd[aria-pressed="false"] .eq i { animation: none; height: 25%; }
+.snd[aria-pressed="false"] .eq i { animation: none; transform: scaleY(0.25); }
 </style>
 ```
 
@@ -1019,11 +1039,14 @@ const { enabled, toggle } = useFloorAudio()
 
       <a
         class="repo"
+        aria-label="GitHub"
         href="https://github.com/cschweda?tab=repositories&q=metaincognita&type=&language=&sort="
         target="_blank"
         rel="noopener noreferrer"
       >
-        <UIcon name="i-lucide-github" class="text-[0.95em]" />
+        <!-- the visible label hides below sm to make room for the sound switch,
+             so the anchor needs its own accessible name -->
+        <UIcon name="i-lucide-github" class="text-[0.95em]" aria-hidden="true" />
         <span class="hidden sm:inline">GitHub</span>
       </a>
 
@@ -1051,11 +1074,24 @@ const { enabled, toggle } = useFloorAudio()
 .label { color: var(--color-bone-300); }
 
 .live-dot {
+  position: relative;
   width: 7px;
   height: 7px;
   border-radius: 999px;
   background: #2fe58f;
+  /* static glow — a shadow that never animates costs nothing per frame */
   box-shadow: 0 0 10px #2fe58f;
+}
+
+/* the pulse is an expanding ring on a pseudo-element: transform + opacity only.
+   Animating the dot's own box-shadow spread would repaint it every frame, forever. */
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #2fe58f;
+  opacity: 0;
   animation: livepulse 2.6s ease-out infinite;
 }
 
@@ -2439,10 +2475,47 @@ git commit -m "feat: assemble the floor — zones, mosaic, ticker, doors"
 - Consumes: the whole built site.
 - Produces: evidence. Do **not** claim this task complete without pasting the actual tool output.
 
+- [ ] **Step 0: Audit every animated property — keyframes AND transitions**
+
+The earlier audit only looked inside `@keyframes` blocks, which let a
+`transition: box-shadow .4s` slip through on nine cabinets. Check both surfaces:
+
+```bash
+# (a) keyframe bodies
+awk '/@keyframes/,/^}/' app/assets/css/main.css \
+  | grep -nE 'box-shadow|filter|height|width|top:|left:|margin|padding'
+
+# (b) transition lists — the blind spot
+grep -rn -A5 'transition:' app/components/*.vue app/assets/css/main.css \
+  | grep -E 'box-shadow|filter|height|width|margin|padding'
+```
+
+Expected: **no output from either.** `color`, `border-color` and `background-color`
+in a transition list are fine; `box-shadow`, `filter` and any layout property are not.
+
 - [ ] **Step 1: Start the dev server and note the port**
 
 Run: `pnpm dev`
 Ports 3000/3001 are frequently taken on this machine — read the actual port from the output. Call it `$PORT`.
+
+> ### ⚠ Scan the page with the doors DISMISSED
+>
+> `TheDoors` sets native `inert` on every other child of `<body>` while it is open. That
+> removes the `<h1>` and all nine cabinets from the accessibility tree. **A Lighthouse or
+> axe run against the curtain-up state audits a document that is 95% inert — the score is
+> meaningless, and `page-has-heading-one` will fire spuriously.**
+>
+> Before every a11y/perf scan, dismiss the doors by pre-seeding the session flag:
+>
+> ```js
+> // via chrome-devtools evaluate_script, BEFORE the audit run
+> () => { sessionStorage.setItem('mi-entered', '1'); location.reload() }
+> ```
+>
+> For tools that can't run script first (lightcap/axecap take a URL), the doors' own
+> accessibility is already covered by the 11 unit tests in `test/TheDoors.spec.ts`
+> (labelled dialog, focus trap both directions, Escape from anywhere, background inert).
+> Audit the *site* with the curtain down; trust those tests for the curtain itself.
 
 - [ ] **Step 2: Screenshot the full page**
 
