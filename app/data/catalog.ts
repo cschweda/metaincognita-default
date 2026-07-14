@@ -1,6 +1,9 @@
 /** Footprint on a zone's mosaic grid. DOM order matters — see main.css. */
 export type Span = 'std' | 'wide' | 'feature' | 'banner'
 
+/** Selects a cabinet's bespoke line-art scene. See CabinetArt.vue. */
+export type ArtKey = 'blackjack' | 'flameout' | 'pao'
+
 export interface CatalogItem {
   /** Display name shown on the cabinet. */
   title: string
@@ -21,6 +24,12 @@ export interface CatalogItem {
   /** Caption beneath the chip. */
   badgeNote: string
   span: Span
+  /**
+   * The bespoke scene that fills the tile's dead band. Only the big spans get
+   * one — a `std` cabinet has no room, and would just be crowded. Where it is
+   * set it replaces the watermark glyph; the two must never both render.
+   */
+  art?: ArtKey
 }
 
 export interface Zone {
@@ -54,7 +63,8 @@ export const zones: Zone[] = [
         accent: '#2fe58f',
         badge: 'Basic strategy',
         badgeNote: 'plus the hi-lo count',
-        span: 'feature'
+        span: 'feature',
+        art: 'blackjack'
       },
       {
         title: 'No-Limit Hold’em',
@@ -134,7 +144,8 @@ export const zones: Zone[] = [
         accent: '#ff7a3d',
         badge: 'The crash curve',
         badgeNote: 'why the house wins',
-        span: 'feature'
+        span: 'feature',
+        art: 'flameout'
       }
     ]
   },
@@ -154,7 +165,8 @@ export const zones: Zone[] = [
         accent: '#2ff0d8',
         badge: 'All fifty-two cards',
         badgeNote: 'no edge — it’s a tool',
-        span: 'banner'
+        span: 'banner',
+        art: 'pao'
       }
     ]
   }

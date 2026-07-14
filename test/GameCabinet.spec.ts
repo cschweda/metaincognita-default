@@ -54,6 +54,29 @@ describe('GameCabinet', () => {
     expect(w.find('.mark').exists()).toBe(true)
   })
 
+  // A bespoke scene supersedes the watermark. Both at once would stack an oversized
+  // glyph on top of the artwork drawn to replace it.
+  it('swaps the watermark for the bespoke scene when the item has one', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, art: 'blackjack' } } })
+    expect(w.find('.art').exists()).toBe(true)
+    expect(w.find('.mark').exists()).toBe(false)
+  })
+
+  it('keeps the watermark on a big cabinet that has no scene yet', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item } })
+    expect(w.find('.art').exists()).toBe(false)
+    expect(w.find('.mark').exists()).toBe(true)
+  })
+
+  // `art` is only ever set on the big spans, but nothing in the type stops a std item
+  // carrying one — and a scene on a std tile would bury the copy.
+  it('never draws a scene on the small cabinets', async () => {
+    for (const span of ['std', 'wide'] as const) {
+      const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span, art: 'blackjack' } } })
+      expect(w.find('.art').exists(), span).toBe(false)
+    }
+  })
+
   it('renders the watermark glyph on a banner cabinet', async () => {
     const b = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'banner' } } })
     expect(b.find('.mark').exists()).toBe(true)

@@ -44,6 +44,14 @@ describe('catalog', () => {
     expect(zones[2]!.items.map(i => i.span)).toEqual(['banner'])
   })
 
+  // The big tiles are the ones with a dead band to fill; the small ones have no room.
+  it('gives every big cabinet a scene, and no small one', () => {
+    for (const item of allItems) {
+      const big = item.span === 'feature' || item.span === 'banner'
+      expect(Boolean(item.art), `${item.domain} (${item.span})`).toBe(big)
+    }
+  })
+
   it('uses unique domains', () => {
     const domains = allItems.map(i => i.domain)
     expect(new Set(domains).size).toBe(domains.length)

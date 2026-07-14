@@ -5,9 +5,11 @@ const props = defineProps<{ item: CatalogItem }>()
 
 const href = computed(() => `https://${props.item.domain}`)
 
-// The oversized watermark glyph. Only the big tiles have room for it — on a `std`
-// cabinet it would just crowd the copy.
-const hasMark = computed(() => props.item.span === 'feature' || props.item.span === 'banner')
+// Only the big tiles have room to fill — on a `std` cabinet either would just crowd
+// the copy. Where a bespoke scene exists it supersedes the watermark glyph, which
+// stays as the fallback for a big cabinet that has not been drawn yet.
+const isBig = computed(() => props.item.span === 'feature' || props.item.span === 'banner')
+const hasMark = computed(() => isBig.value && !props.item.art)
 
 // Cursor-following glow. Skipped for users who prefer reduced motion.
 let allowSpotlight = true
@@ -34,6 +36,7 @@ function onMove(e: MouseEvent) {
     @mousemove="onMove"
   >
     <span class="spotlight" aria-hidden="true" />
+    <CabinetArt v-if="isBig && item.art" :art="item.art" />
     <UIcon
       v-if="hasMark"
       :name="`i-lucide-${item.icon}`"
@@ -255,4 +258,10 @@ function onMove(e: MouseEvent) {
 /* the banner is short and wide — keep its glyph tucked to the right, not overhead */
 .cab-banner { min-height: 11rem; }
 .cab-banner .mark { top: auto; bottom: -3rem; right: 1.5rem; font-size: 11rem; }
+
+/* The banner spans the whole floor, so an uncapped copy box runs ~1100px — a measure
+   no one should read, and one that reaches right across the art on the right-hand side.
+   Cap it at the art's edge. (`.cab-feature .cab-desc` is capped for the same reason.) */
+.cab-banner .cab-title,
+.cab-banner .cab-desc { max-width: 44rem; }
 </style>

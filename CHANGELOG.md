@@ -5,6 +5,52 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-07-14
+
+The big cabinets get artwork, not a watermark.
+
+### Added
+- **Bespoke line-art scenes on the three big cabinets.** Blackjack gets a felt-arc table
+  with two fanned cards and a chip stack; Flameout gets its crash curve with a rocket
+  riding it and multiplier ticks up the axis; PAO gets a 52-card lattice with one
+  Person–Action–Object triplet firing across it. All three stand on the same perspective
+  floor, receding to a vanishing point.
+- `CabinetArt.vue`, and an optional `art` key on `CatalogItem`. Where a cabinet has a
+  scene it supersedes the watermark glyph; the glyph stays as the fallback for a big
+  cabinet nobody has drawn yet.
+
+### Changed
+- **No scene names a colour.** Every stroke resolves through `currentColor`, which each
+  cabinet sets to its own accent — so Blackjack renders green, Flameout orange and PAO
+  teal with no per-scene decision, and the three cannot drift apart. A future cabinet gets
+  coherent art by setting one hex value in `catalog.ts`.
+- The banner's title and description are capped at 44rem. Uncapped they ran ~1100px — a
+  measure no one should have to read, and one that reached across the artwork.
+
+### Not done: reusing each app's `og:image`
+The obvious idea, investigated and rejected on four counts, recorded so nobody has to
+re-litigate it:
+- **They already contain the cabinet's own text.** Flameout's reads *"Watch the multiplier
+  climb. Cash out before the crash. Then see why the house always wins"* — word for word
+  the description the cabinet renders as live text. Every feature tile would state itself
+  twice, once as unselectable, untranslatable pixels.
+- **The CSP forbids them.** `img-src 'self' data:`, and a subdomain is a separate origin.
+  The 2.0.0 spec locked that down on purpose: all decoration is CSS or inline SVG.
+- **They don't cohere.** Blackjack is green felt on a blueprint grid, Flameout a purple
+  starfield. Three tiles would read as three brands.
+- **They don't all exist.** Craps, Video Poker and PAO ship none — and PAO is one of the
+  three tiles that needed one. Hold'em declares one that 404s to the SPA shell.
+
+### Accessibility
+- Scenes are `aria-hidden` and contribute nothing to the accessible name. Each fades out
+  before the copy begins rather than sitting behind it at low alpha.
+- Below 980px the artwork scales with the tile but the copy does not, so a scene slides
+  under the description as the viewport narrows — bone-300 on a full-strength stroke
+  measures 1.03:1, which is not low contrast but invisible. The art is held to ambient
+  strength there. No new contrast failures against the pre-change baseline.
+- Reduced motion needs no new code: the global rule already stops every animation, and the
+  scenes are composed to read correctly standing still.
+
 ## [2.1.0] - 2026-07-14
 
 Sound is now off. Always.

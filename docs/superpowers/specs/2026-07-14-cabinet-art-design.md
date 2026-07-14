@@ -97,6 +97,34 @@ The fade mask exists to protect the copy. Verify with the `contrastcap` MCP agai
 rendered page — do not assume. Floors: the `feature` title runs 1.85rem bold (large text,
 **3:1**); `.cab-desc` runs 0.95rem (**4.5:1**).
 
+Measure against the **ink**, not the element box. `.cab-desc` on a banner is a block: its
+box runs the full 1132px while its text stops at 693px, so an automated check samples the
+art through the empty right-hand half of the box and reports a failure that no reader can
+see. Cap the copy box instead (`.cab-banner .cab-title/.cab-desc { max-width: 44rem }`) —
+which a 1100px measure deserved anyway.
+
+### Responsive
+
+The scene is composed against the cabinet's *measured* geometry, so it has to be re-aimed
+wherever the grid changes that geometry. Three regimes:
+
+| Width | Cabinet | Treatment |
+|---|---|---|
+| > 980px | 558×556, near-square | As composed. `slice` fits ~1:1; fade upward off the title. |
+| 620–980px | ~852×352, landscape | The tile is now shaped like a banner. Pull the art box to the right 56% (keeping it near-square, so `slice` barely crops) and fade sideways off the copy. |
+| < 620px | near-square, copy-dense | No clean band left — the only gap is the one the badge caption sits in. Lift the scene (translate, never scale) and hold it at `opacity: 0.3`. |
+
+Two traps, both load-bearing:
+
+- **The banner must not `slice`.** It is 5:1 at 1280 and ~4.5:1 at 1024, so a fixed viewBox
+  under `slice` crops a different amount at every width — which lopped the right-hand
+  columns off the lattice. Use `xMaxYMid meet`: fits the whole scene, pins it to the
+  dead space.
+- **The art scales with the tile; the copy does not.** As the banner narrows, the lattice
+  slides left under the description while the text stays put. bone-300 on a full-strength
+  chevron stroke is **1.03:1** — not low contrast, invisible. No fade fixes it, because the
+  thing that moves is the art. Hold it to ambient strength (0.3) below 980px instead.
+
 ## Testing
 
 - Existing `catalog.spec.ts` and `GameCabinet.spec.ts` pass unchanged — `art` is optional
