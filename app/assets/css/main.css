@@ -40,7 +40,7 @@
   --color-bone-100: #eef1fa;
   --color-bone-300: #b9c0d4;
   /* 5.29:1 even against the hero's worst-case magenta wash — the mono captions
-     (badge sub-labels, domains, counts) run as small as 0.56rem, so headroom matters. */
+     (badge sub-labels, domains, counts) run as small as 0.66rem, so headroom matters. */
   --color-bone-500: #949db5;
 }
 
@@ -158,12 +158,30 @@ body {
   from { opacity: 0; transform: translateY(22px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.reveal {
+.reveal,
+.reveal-view {
   /* `backwards`, not `forwards`. A forwards-filled animation's end keyframe becomes an
      animation-origin declaration, which outranks EVERY normal author rule at any
      specificity — it silently killed .reflect's scaleY(-1) and every cabinet's :hover lift.
      `backwards` covers the delay, then hands control back to the authored values. */
   animation: reveal 0.9s cubic-bezier(0.22, 0.68, 0.18, 1) backwards;
+}
+
+/* Scroll-triggered reveals. A load-time reveal below the fold finishes unwatched — by
+   the time anyone scrolls to The Machines, its entrance has already happened. Where the
+   browser can drive the same keyframes off viewport entry, do that; anywhere else
+   `.reveal-view` is exactly `.reveal` and behaves as it always did. The hero keeps plain
+   `.reveal` on purpose: its load-time stagger IS its entrance. */
+@supports (animation-timeline: view()) {
+  .reveal-view {
+    animation-timeline: view();
+    /* done by 40% of entry — settled before it's read, never scrubbing mid-screen */
+    animation-range: entry 0% entry 40%;
+    /* The inline cabinet stagger is a load-time idea; on a view timeline, entry order
+       IS the stagger. `!important` because the fallback delay is set inline. */
+    animation-delay: 0s !important;
+    /* fill stays `backwards` — the `forwards` trap above applies to view timelines too */
+  }
 }
 
 /* the ticker tape: the tape holds two copies of the list, so -50% loops seamlessly */
@@ -205,6 +223,13 @@ body {
 @keyframes livepulse {
   0% { transform: scale(1); opacity: 0.5; }
   70%, 100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* A view timeline never advances in print (or any non-scrolling rendering), which
+   would leave every below-fold reveal at opacity 0 — blank paper. Show everything. */
+@media print {
+  .reveal,
+  .reveal-view { animation: none; }
 }
 
 /* ---- the one place motion is switched off ---------------------------------- */

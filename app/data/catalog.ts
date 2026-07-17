@@ -2,7 +2,7 @@
 export type Span = 'std' | 'wide' | 'feature' | 'banner'
 
 /** Selects a cabinet's bespoke line-art scene. See CabinetArt.vue. */
-export type ArtKey = 'blackjack' | 'flameout' | 'pao'
+export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao'
 
 export interface CatalogItem {
   /** Display name shown on the cabinet. */
@@ -25,9 +25,9 @@ export interface CatalogItem {
   badgeNote: string
   span: Span
   /**
-   * The bespoke scene that fills the tile's dead band. Only the big spans get
-   * one — a `std` cabinet has no room, and would just be crowded. Where it is
-   * set it replaces the watermark glyph; the two must never both render.
+   * The bespoke scene that fills the tile's dead band. Every roomy span gets
+   * one — only a `std` cabinet has no room, and would just be crowded. Where it
+   * is set it replaces the watermark glyph; the two must never both render.
    */
   art?: ArtKey
 }
@@ -83,7 +83,7 @@ export const zones: Zone[] = [
         icon: 'dice-5',
         accent: '#35baff',
         badge: 'True odds',
-        badgeNote: 'where the edge hides',
+        badgeNote: 'the zero-edge bet',
         span: 'std'
       },
       {
@@ -93,8 +93,9 @@ export const zones: Zone[] = [
         icon: 'disc-3',
         accent: '#ff4d63',
         badge: 'Real physics',
-        badgeNote: 'proven fair',
-        span: 'wide'
+        badgeNote: 'no rigging required',
+        span: 'wide',
+        art: 'roulette'
       }
     ]
   },
@@ -123,7 +124,7 @@ export const zones: Zone[] = [
         icon: 'diamond',
         accent: '#c46bff',
         badge: 'Optimal play',
-        badgeNote: 'pay-table literacy',
+        badgeNote: 'ranked by expected value',
         span: 'std'
       },
       {
@@ -133,8 +134,9 @@ export const zones: Zone[] = [
         icon: 'circle-dot',
         accent: '#ff5bb0',
         badge: 'Ball physics',
-        badgeNote: 'the odds behind the pins',
-        span: 'wide'
+        badgeNote: 'the house sets the pins',
+        span: 'wide',
+        art: 'pachinko'
       },
       {
         title: 'Flameout',
@@ -143,7 +145,7 @@ export const zones: Zone[] = [
         icon: 'flame',
         accent: '#ff7a3d',
         badge: 'The crash curve',
-        badgeNote: 'why the house wins',
+        badgeNote: 'cash out or burn',
         span: 'feature',
         art: 'flameout'
       }

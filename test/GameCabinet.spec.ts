@@ -68,13 +68,11 @@ describe('GameCabinet', () => {
     expect(w.find('.mark').exists()).toBe(true)
   })
 
-  // `art` is only ever set on the big spans, but nothing in the type stops a std item
+  // `art` is only ever set on the roomy spans, but nothing in the type stops a std item
   // carrying one — and a scene on a std tile would bury the copy.
-  it('never draws a scene on the small cabinets', async () => {
-    for (const span of ['std', 'wide'] as const) {
-      const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span, art: 'blackjack' } } })
-      expect(w.find('.art').exists(), span).toBe(false)
-    }
+  it('never draws a scene on a std cabinet, even if one is set', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'std', art: 'blackjack' } } })
+    expect(w.find('.art').exists()).toBe(false)
   })
 
   it('renders the watermark glyph on a banner cabinet', async () => {
@@ -82,10 +80,21 @@ describe('GameCabinet', () => {
     expect(b.find('.mark').exists()).toBe(true)
   })
 
-  it('does NOT render the watermark on the small cabinets — it would crowd the copy', async () => {
-    for (const span of ['std', 'wide'] as const) {
-      const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span } } })
-      expect(w.find('.mark').exists(), span).toBe(false)
-    }
+  // A wide has a dead half to fill — it takes a scene like the big spans do,
+  // and falls back to the watermark until one is drawn.
+  it('draws the scene on a wide cabinet, superseding its watermark', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'wide', art: 'roulette' } } })
+    expect(w.find('.art').exists()).toBe(true)
+    expect(w.find('.mark').exists()).toBe(false)
+  })
+
+  it('keeps the watermark on a wide cabinet that has no scene yet', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'wide' } } })
+    expect(w.find('.mark').exists()).toBe(true)
+  })
+
+  it('does NOT render the watermark on a std cabinet — it would crowd the copy', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'std' } } })
+    expect(w.find('.mark').exists()).toBe(false)
   })
 })

@@ -62,7 +62,7 @@ const countLabel = computed(() => {
 
 .count {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-bone-500);

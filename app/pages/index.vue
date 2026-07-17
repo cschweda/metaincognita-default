@@ -2,7 +2,9 @@
 import { zones, allItems } from '~/data/catalog'
 import { buildJsonLd } from '~/utils/jsonLd'
 
-// Stagger the cabinet reveals a touch past the hero's entrance.
+// Fallback stagger for browsers without view timelines, where the cabinets still
+// reveal at load. With `animation-timeline: view()` the delay is neutralised and
+// viewport-entry order does the staggering instead — see .reveal-view in main.css.
 const cabDelay = (i: number) => `${(i * 0.06).toFixed(2)}s`
 
 useHead({
@@ -23,6 +25,7 @@ useHead({
         class="scroll-mt-16 pt-16 pb-6 sm:pt-20"
       >
         <ZoneSign
+          class="reveal-view"
           :sign="zone.sign"
           :color="zone.color"
           :title="zone.title"
@@ -35,7 +38,7 @@ useHead({
           <GameCabinet
             v-for="(item, i) in zone.items"
             :key="item.domain"
-            class="reveal"
+            class="reveal-view"
             :style="{ animationDelay: cabDelay(i) }"
             :item="item"
           />

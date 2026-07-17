@@ -5,11 +5,11 @@ const props = defineProps<{ item: CatalogItem }>()
 
 const href = computed(() => `https://${props.item.domain}`)
 
-// Only the big tiles have room to fill — on a `std` cabinet either would just crowd
+// Every span but `std` has room to fill — on a std cabinet either would just crowd
 // the copy. Where a bespoke scene exists it supersedes the watermark glyph, which
-// stays as the fallback for a big cabinet that has not been drawn yet.
-const isBig = computed(() => props.item.span === 'feature' || props.item.span === 'banner')
-const hasMark = computed(() => isBig.value && !props.item.art)
+// stays as the fallback for a roomy cabinet that has not been drawn yet.
+const hasRoom = computed(() => props.item.span !== 'std')
+const hasMark = computed(() => hasRoom.value && !props.item.art)
 
 // Cursor-following glow. Skipped for users who prefer reduced motion.
 let allowSpotlight = true
@@ -36,7 +36,7 @@ function onMove(e: MouseEvent) {
     @mousemove="onMove"
   >
     <span class="spotlight" aria-hidden="true" />
-    <CabinetArt v-if="isBig && item.art" :art="item.art" />
+    <CabinetArt v-if="hasRoom && item.art" :art="item.art" />
     <UIcon
       v-if="hasMark"
       :name="`i-lucide-${item.icon}`"
@@ -178,7 +178,7 @@ function onMove(e: MouseEvent) {
   white-space: nowrap;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #170f02;
@@ -191,8 +191,9 @@ function onMove(e: MouseEvent) {
   display: block;
   margin-top: 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.56rem;
-  letter-spacing: 0.1em;
+  /* the caption tier's floor: nothing on the page renders below 0.66rem */
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-bone-500);
 }
@@ -222,7 +223,7 @@ function onMove(e: MouseEvent) {
   padding-top: 0.9rem;
   border-top: 1px solid color-mix(in srgb, var(--ac) 20%, rgba(255, 255, 255, 0.06));
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   color: var(--color-bone-500);
   transition: color 0.4s ease;
 }
@@ -264,4 +265,12 @@ function onMove(e: MouseEvent) {
    Cap it at the art's edge. (`.cab-feature .cab-desc` is capped for the same reason.) */
 .cab-banner .cab-title,
 .cab-banner .cab-desc { max-width: 44rem; }
+
+/* The wide reads like a short banner: copy capped left, scene owning the right.
+   Same reasoning, same mechanism — measured so the fade in CabinetArt.vue clears it. */
+.cab-wide .cab-title,
+.cab-wide .cab-desc { max-width: 21rem; }
+
+/* watermark fallback for a wide that has no scene yet — tucked right, like the banner */
+.cab-wide .mark { top: auto; bottom: -2.5rem; right: 0.5rem; font-size: 10rem; }
 </style>

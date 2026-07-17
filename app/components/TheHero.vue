@@ -41,13 +41,13 @@
         Take the floor
         <UIcon name="i-lucide-arrow-down" class="text-[0.95em]" aria-hidden="true" />
       </a>
-      <a href="#mind" class="btn-ghost">Tooling</a>
+      <!-- named for its destination: the sign says The Mind, the title says the rest -->
+      <a href="#mind" class="btn-ghost">Tools for the mind</a>
     </div>
 
     <ul class="reveal mt-9 flex flex-wrap items-center justify-center gap-2.5" style="animation-delay: 0.66s">
       <li class="chip">No real money</li>
       <li class="chip">No accounts</li>
-      <li class="chip">No login</li>
       <li class="chip">No AI</li>
       <li class="chip chip-gold">
         <UIcon name="i-lucide-git-fork" class="text-[0.9em]" aria-hidden="true" />
@@ -135,7 +135,7 @@
   border: 1px solid rgba(255, 255, 255, 0.13);
   background: rgba(255, 255, 255, 0.03);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-bone-300);

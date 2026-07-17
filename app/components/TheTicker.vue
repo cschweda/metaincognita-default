@@ -60,11 +60,12 @@ const paused = ref(false)
   padding: 0.62rem 0;
   font-family: var(--font-mono);
   font-weight: 500;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-gold-300);
-  text-shadow: 0 0 10px rgba(255, 170, 0, 0.9);
+  /* a soft halo, not a wash — 10px at 0.9 muddied the letterforms at this size */
+  text-shadow: 0 0 7px rgba(255, 170, 0, 0.55);
   animation: tape 40s linear infinite;
 }
 .ticker.paused .tape { animation-play-state: paused; }

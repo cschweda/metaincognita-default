@@ -25,8 +25,9 @@ interface Scene {
   vy: number
   /** Half-width of the floor plane where it reaches the viewer. */
   spread: number
-  /** Drives the fade: a feature tile fades upward off its title, a banner leftward off its copy. */
-  shape: 'feature' | 'banner'
+  /** Drives the fade: a feature tile fades upward off its title, a banner or a
+   *  wide leftward off its copy (a wide is structurally a short banner). */
+  shape: 'feature' | 'banner' | 'wide'
   /**
    * A feature tile stays near-square at every width, so it can `slice` (cover) safely.
    * The banner cannot: it is 5:1 on desktop and barely 4.5:1 at 1024, so a fixed viewBox
@@ -48,11 +49,15 @@ interface Scene {
 const SCENES: Record<ArtKey, Scene> = {
   blackjack: { w: 560, h: 558, vx: 330, vy: 120, spread: 760, shape: 'feature', par: 'xMidYMid slice' },
   flameout: { w: 560, h: 558, vx: 300, vy: 120, spread: 760, shape: 'feature', par: 'xMidYMid slice' },
+  /* A wide is 558×240 at 1180 and ~3.6:1 when it spans the row — the banner's trap
+     exactly, so the banner's answer exactly: `meet`, pinned to the dead right. */
+  roulette: { w: 558, h: 240, vx: 448, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
+  pachinko: { w: 558, h: 240, vx: 385, vy: 8, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
   pao: { w: 1100, h: 220, vx: 900, vy: 6, spread: 1000, shape: 'banner', par: 'xMaxYMid meet' }
 }
 
 /** Where the floor plane stops — short of the copy, not at the foot of the box. */
-const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, pao: 220 }
+const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220 }
 
 const scene = computed(() => SCENES[props.art])
 const floorEnd = computed(() => FLOOR_END[props.art])
@@ -105,6 +110,49 @@ const nodes = computed(() =>
   })
 )
 const link = computed(() => nodes.value.map((n, i) => `${i ? 'L' : 'M'} ${n.x} ${n.y}`).join(' '))
+
+/**
+ * The roulette wheel, squashed into the floor's perspective. The pegs — the frets
+ * between pockets — run between two concentric ellipses; everything right of the
+ * copy fade, so the wheel reads whole on desktop. The ball rides the outer track
+ * at the solid end of the mask, never in the fade ramp where it would ghost.
+ */
+const WHEEL = { cx: 448, cy: 128 }
+const PEGS = 20
+const wheelPegs = computed(() =>
+  Array.from({ length: PEGS }, (_, i) => {
+    const t = (i / PEGS) * Math.PI * 2
+    return {
+      x1: WHEEL.cx + 104 * Math.cos(t),
+      y1: WHEEL.cy + 42 * Math.sin(t),
+      x2: WHEEL.cx + 88 * Math.cos(t),
+      y2: WHEEL.cy + 36 * Math.sin(t)
+    }
+  })
+)
+
+/**
+ * The pachinko pin field: staggered rows, like the real board. The ball's bounce
+ * path kinks just above real pin positions — a polyline through empty space reads
+ * as a glitch, one that clips pin after pin reads as physics. Composed right of
+ * x≈417 so no bounce lands in the copy fade, and below y≈80 so nothing solid
+ * crosses the badge caption that owns the tile's top-right band.
+ */
+const PINFIELD = { x: 245, y: 88, dx: 38, dy: 32, cols: 8, rows: 4 }
+const pins = computed(() =>
+  Array.from({ length: PINFIELD.cols * PINFIELD.rows }, (_, i) => {
+    const col = i % PINFIELD.cols
+    const row = Math.floor(i / PINFIELD.cols)
+    return {
+      i,
+      x: PINFIELD.x + col * PINFIELD.dx + (row % 2 ? PINFIELD.dx / 2 : 0),
+      y: PINFIELD.y + row * PINFIELD.dy
+    }
+  })
+)
+/** Payout pockets along the base; the ball's pocket is the lit one. */
+const POCKETS = [240, 296, 352, 408, 464]
+const LIT_POCKET = 3
 </script>
 
 <template>
@@ -167,6 +215,41 @@ const link = computed(() => nodes.value.map((n, i) => `${i ? 'L' : 'M'} ${n.x} $
         </g>
       </g>
 
+      <!-- the wheel in perspective — and the scatter it was proven fair with -->
+      <g v-else-if="art === 'roulette'" class="hero">
+        <circle v-for="(d, i) in [[150, 192], [205, 206], [256, 194], [178, 220], [232, 176], [128, 208]]" :key="`o${i}`" class="star" :cx="d[0]" :cy="d[1]" r="2.4" />
+
+        <ellipse class="rail" cx="448" cy="128" rx="108" ry="45" />
+        <ellipse class="hair dash" cx="448" cy="128" rx="88" ry="36" />
+        <line v-for="(p, i) in wheelPegs" :key="`w${i}`" class="peg" :x1="p.x1" :y1="p.y1" :x2="p.x2" :y2="p.y2" />
+        <ellipse class="fill stroke" cx="448" cy="128" rx="36" ry="14" />
+        <ellipse class="fill stroke" cx="448" cy="117" rx="9.5" ry="4.2" />
+
+        <path class="hair" d="M 507 101 A 88 36 0 0 1 524 110" />
+        <circle class="node" cx="528" cy="113" r="5" />
+      </g>
+
+      <!-- the pin field, one ball's path through it, and the pocket that pays -->
+      <g v-else-if="art === 'pachinko'" class="hero">
+        <circle v-for="(s, i) in [[150, 58], [185, 112], [128, 152], [210, 88]]" :key="`f${i}`" class="star" :cx="s[0]" :cy="s[1]" r="2.4" />
+
+        <circle v-for="p in pins" :key="`p${p.i}`" class="peg" :cx="p.x" :cy="p.y" r="3.2" />
+        <circle class="hair" cx="473" cy="86" r="6.5" />
+        <circle class="hair" cx="435" cy="150" r="6.5" />
+        <path class="curve" d="M 473 84 L 454 118 L 435 150 L 417 182 L 420 202" />
+        <rect
+          v-for="(x, i) in POCKETS"
+          :key="`k${i}`"
+          :class="i === LIT_POCKET ? 'fill stroke' : 'hair'"
+          :x="x"
+          y="206"
+          width="34"
+          height="24"
+          rx="5"
+        />
+        <circle class="node" cx="420" cy="202" r="5.5" />
+      </g>
+
       <!-- fifty-two cards; one triplet fires -->
       <g v-else class="hero">
         <rect
@@ -204,6 +287,13 @@ const link = computed(() => nodes.value.map((n, i) => `${i ? 'L' : 'M'} ${n.x} $
   /* the banner's copy runs along the left, so this one fades sideways */
   --fade: linear-gradient(90deg, transparent 0%, transparent 60%, #000 74%);
 }
+.art-wide {
+  /* same sideways fade — the wide's copy is capped at 21rem (GameCabinet.vue), which
+     is exactly the transparent 60% of a 558px tile. Solid elements sit right of the
+     ramp; only the band-mode ambience (the outcome dots, the left pins) lives under
+     the copy, and the mask removes it here. */
+  --fade: linear-gradient(90deg, transparent 0%, transparent 60%, #000 74%);
+}
 
 /* Between 620 and 980 the feature tile stops being a 2×2 square and flattens into a
    wide, short strip — structurally a banner, not the near-square the scene is composed
@@ -228,30 +318,39 @@ const link = computed(() => nodes.value.map((n, i) => `${i ? 'L' : 'M'} ${n.x} $
   }
 }
 
-/* One column: the tile is near-square again, but the copy wraps to fill most of it, so
-   the band left to draw in is short and high up. Fade early to protect the copy — and
-   pull the scene back rather than let the fade slice through it, which cropped the cards
-   off at the waist and read as a clipping bug instead of a composition. A small tile
-   should zoom out, not crop. */
+/* One column: stop treating the scene as backdrop at all. Every band of the tile has
+   copy in it, and the 07-14 answer — hold the art at 0.3 under the text — reduced the
+   floor's best asset to a smudge on the viewport most visitors use. So the scene leaves
+   the backdrop layer and becomes the cabinet's marquee screen: an in-flow, hairline-
+   bordered panel under the bulb strip. No copy ever sits on it, so it runs at full
+   strength and the whole contrast argument dissolves rather than being re-balanced.
+   (The banner stays a backdrop: 52 lattice cells in a ~340px panel is mud.) */
 @media (max-width: 620px) {
-  .art-feature {
-    left: 0;
+  .art-feature,
+  .art-wide {
+    /* in flow — but still positioned, or the bloom's `inset: 0` would escape the
+       panel and fill the whole cabinet */
+    position: relative;
+    inset: auto;
+    z-index: auto;
     width: auto;
-    --fade: linear-gradient(180deg, #000 0%, #000 30%, transparent 46%);
-    /* One column leaves no clean band: the tile is copy-dense, and the only gap left is
-       the one the badge's caption sits in. Lifting the scene into it puts "plus the hi-lo
-       count" straight onto a chip stroke — and on Flameout, onto the crash curve, whose
-       3.5px stroke at 0.9 measures ~4.0:1 against bone-500, under the 4.5 floor. Holding
-       the whole scene at 0.3 takes the worst case to ~4.7:1, and at this size the art
-       wants to read as ambient texture anyway. */
-    opacity: 0.3;
+    /* Under the feature scenes' `slice`, 8/5 shows viewBox y≈104–454 — precisely the
+       composed hero band (y105–355) plus floor foreground — at every phone width. */
+    aspect-ratio: 8 / 5;
+    border-radius: 10px;
+    border: 1px solid color-mix(in srgb, var(--ac) 30%, transparent);
+    overflow: hidden;
+    opacity: 1;
+    /* the panel's edges are intentional — nothing to fade behind */
+    --fade: none;
   }
-  /* Lift, don't shrink. Scaling the svg down exposed its own box edge as a hard-lit
-     rectangle (the felt bleeds to the viewBox edge, so that edge becomes visible the
-     moment the svg stops covering the tile). A translate has no such seam: the strip it
-     uncovers at the foot of the tile lies inside the part the fade has already killed. */
+  .art-wide {
+    /* the wide scenes' own ratio, so `meet` fits them exactly — no letterbox */
+    aspect-ratio: 558 / 240;
+  }
+  /* the backdrop lift has nothing to dodge now */
   .art-feature svg {
-    transform: translateY(-45px);
+    transform: none;
   }
 }
 
@@ -274,6 +373,13 @@ const link = computed(() => nodes.value.map((n, i) => `${i ? 'L' : 'M'} ${n.x} $
 .art-banner .bloom {
   background: radial-gradient(
     40% 92% at 84% 50%,
+    color-mix(in srgb, var(--ac) 20%, transparent),
+    transparent 70%
+  );
+}
+.art-wide .bloom {
+  background: radial-gradient(
+    46% 78% at 76% 46%,
     color-mix(in srgb, var(--ac) 20%, transparent),
     transparent 70%
   );
@@ -320,6 +426,13 @@ const link = computed(() => nodes.value.map((n, i) => `${i ? 'L' : 'M'} ${n.x} $
 }
 .dash {
   stroke-dasharray: 7 9;
+}
+/* pegs: pachinko's pins and the frets between roulette pockets — same hardware */
+.peg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  opacity: 0.45;
 }
 .glyph {
   fill: currentColor;

@@ -44,11 +44,10 @@ describe('catalog', () => {
     expect(zones[2]!.items.map(i => i.span)).toEqual(['banner'])
   })
 
-  // The big tiles are the ones with a dead band to fill; the small ones have no room.
-  it('gives every big cabinet a scene, and no small one', () => {
+  // Anything with slack to fill carries a scene; a std tile has no room for one.
+  it('gives every roomy cabinet a scene, and no std one', () => {
     for (const item of allItems) {
-      const big = item.span === 'feature' || item.span === 'banner'
-      expect(Boolean(item.art), `${item.domain} (${item.span})`).toBe(big)
+      expect(Boolean(item.art), `${item.domain} (${item.span})`).toBe(item.span !== 'std')
     }
   })
 

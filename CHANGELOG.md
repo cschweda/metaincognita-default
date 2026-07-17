@@ -5,6 +5,45 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-07-17
+
+Floor polish: the wides get scenes, mobile gets a marquee, the small type gets a notch.
+
+### Added
+- **Scenes on the two wide cabinets.** Roulette gets its wheel in perspective — rim, dashed
+  ball track, the pegs between pockets, a ball riding the outer track — with a scatter of
+  simulated outcomes on the floor beside it. Pachinko gets its staggered pin field, one
+  ball's bounce path kinking pin to pin, and five payout pockets with exactly one lit.
+  The 2.2.0 spec scoped the wides out as "already dense"; filling the big tiles falsified
+  that — they had become the only tiles on the floor with a dead half.
+- **The cabinet art survives phones now.** Below 620px a feature or wide scene stops being
+  a 0.3-opacity backdrop smudge and becomes the cabinet's marquee screen: an in-flow,
+  hairline-bordered panel under the bulb strip. No copy ever sits on it, so it runs at
+  full strength — the contrast argument that forced 0.3 dissolves instead of being
+  re-balanced. (The banner stays a backdrop: 52 lattice cells in a ~340px panel is mud.)
+- **Reveals now happen where you can see them.** Cabinets and zone signs animate on
+  viewport entry (`animation-timeline: view()`) instead of all firing at page load and
+  finishing unwatched below the fold. Browsers without view timelines get the load-time
+  behaviour unchanged; reduced motion kills it like everything else.
+- `apple-touch-icon.png` — iOS share sheets and home screens got a page screenshot before.
+
+### Changed
+- **Nothing on the page renders below 0.66rem any more.** The caption tier came up one
+  notch across the board: badge captions 0.56→0.66rem, domains 0.62→0.7rem, status bar
+  0.64→0.7rem, hero chips 0.66→0.7rem, badge chips 0.68→0.72rem, zone counts
+  0.68→0.72rem, ticker 0.72→0.76rem. Contrast was always engineered; size now is too.
+- The ticker's glow dropped from a 10px/0.9 wash to a 7px/0.55 halo — at 12px the old
+  bloom muddied the letterforms it was supposed to flatter.
+- **Copy pass.** The "No login" chip is gone ("No accounts" said it already). The hero's
+  ghost CTA says "Tools for the mind" — button, sign and zone title now share one name.
+  Five badge captions rewritten so no caption repeats its own description, shadows a
+  zone headline, or shares a formula with its neighbours: craps "the zero-edge bet",
+  roulette "no rigging required", flameout "cash out or burn", pachinko "the house sets
+  the pins", video poker "ranked by expected value". Descriptions stay verbatim — they
+  are lifted from each app's own metadata.
+- A wide's copy box is capped at 21rem, same mechanism and reasoning as the banner's
+  44rem cap: the fade needs an edge it can clear.
+
 ## [2.2.0] - 2026-07-14
 
 The big cabinets get artwork, not a watermark.

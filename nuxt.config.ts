@@ -56,6 +56,9 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
         { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
+        // full-bleed square — iOS masks its own corners; without this, share
+        // sheets and home screens fall back to a page screenshot
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'canonical', href: SITE_URL }
       ]
     }

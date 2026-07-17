@@ -125,12 +125,12 @@ Ambient casino beds by the **freesound_community** on
 
 ```
 app/
-  app.vue              # UApp wrapper + global backdrop + grain + status bar + doors
+  app.vue              # UApp wrapper + global backdrop + grain + status bar
   app.config.ts        # Nuxt UI theme (gold primary, warm neutrals)
   assets/css/main.css  # design tokens, palette, grain, reveal animations
   components/
     GameCabinet.vue    # the neon game cabinet (chasing bulb, glow, badge)
-    TheDoors.vue       # the arrival curtain dialog (focus-managed, Escape-dismissible)
+    CabinetArt.vue     # bespoke line-art scenes for the roomy cabinets, accent-tinted
     TheBackdrop.vue    # magenta/cyan/violet room glow, drifting suit glyphs
     TheHero.vue        # wordmark, tagline, CTAs, "not gambling" chips
     TheStatusBar.vue   # fixed open-source / GitHub status bar + audio switch
@@ -147,6 +147,7 @@ app/
 public/
   audio/               # seamless casino-floor loops (WebM + M4A)
   og-image.png         # branded social share card
+  apple-touch-icon.png # 180×180, full-bleed — iOS masks its own corners
   favicon.svg
 nuxt.config.ts         # SEO/OG head, netlify_static preset, modules
 netlify.toml           # security headers + CSP
@@ -155,7 +156,7 @@ netlify.toml           # security headers + CSP
 ## Adding a simulation or tool
 
 Everything on the page is data-driven. Edit [`app/data/catalog.ts`](app/data/catalog.ts)
-and append to the `simulations` or `tools` array:
+and append an item to a zone's `items` array:
 
 ```ts
 {
@@ -163,11 +164,18 @@ and append to the `simulations` or `tools` array:
   description: 'One honest line about what it teaches.',
   domain: 'new-game.metaincognita.com', // shown as the live-link label
   icon: 'dice-6',                        // any lucide name -> i-lucide-dice-6
-  accent: '#e0a92e'                      // hex driving the card's glow + icon tint
+  accent: '#e0a92e',                     // hex driving the glow, bulbs, ring + icon tint
+  badge: 'True odds',                    // the gold chip: the method, never a number
+  badgeNote: 'one quiet caption',        // the caption beneath it
+  span: 'std'                            // footprint on the zone's mosaic grid
 }
 ```
 
-No template changes are needed — the cards, counts and grid update automatically.
+No template changes are needed — the cards, counts and grid update automatically. One
+rule of the floor: a roomy span (`wide`, `feature`, `banner`) carries a bespoke
+`CabinetArt` scene named by an `art` key — every stroke inherits the cabinet's accent,
+so a new scene needs no colour decisions — and falls back to a watermark glyph until one
+is drawn. A `std` cabinet has no room and carries neither. The tests enforce all of it.
 
 ## Develop
 

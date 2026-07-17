@@ -3,7 +3,7 @@ import { mountSuspended } from '@nuxt/test-utils/runtime'
 import CabinetArt from '~/components/CabinetArt.vue'
 import type { ArtKey } from '~/data/catalog'
 
-const KEYS: ArtKey[] = ['blackjack', 'flameout', 'pao']
+const KEYS: ArtKey[] = ['blackjack', 'flameout', 'roulette', 'pachinko', 'pao']
 
 describe('CabinetArt', () => {
   it('draws the scene the key asks for, and only that one', async () => {
@@ -39,6 +39,10 @@ describe('CabinetArt', () => {
     // A banner's copy runs along its left, not above its foot, so it fades the other way.
     const banner = await mountSuspended(CabinetArt, { props: { art: 'pao' } })
     expect(banner.find('.art').classes()).toContain('art-banner')
+
+    // A wide reads like a short banner: copy left, scene right, sideways fade.
+    const wide = await mountSuspended(CabinetArt, { props: { art: 'roulette' } })
+    expect(wide.find('.art').classes()).toContain('art-wide')
   })
 
   /**
@@ -53,6 +57,32 @@ describe('CabinetArt', () => {
 
     const feature = await mountSuspended(CabinetArt, { props: { art: 'flameout' } })
     expect(feature.find('svg').attributes('preserveAspectRatio')).toBe('xMidYMid slice')
+  })
+
+  // A wide shares the banner's trap: 2.3:1 at 1180 and ~3.6:1 when it spans the row,
+  // so `slice` would crop a different amount at every width. `meet`, pinned right.
+  it('never crops a wide either', async () => {
+    for (const art of ['roulette', 'pachinko'] as const) {
+      const w = await mountSuspended(CabinetArt, { props: { art } })
+      expect(w.find('svg').attributes('preserveAspectRatio'), art).toBe('xMaxYMid meet')
+    }
+  })
+
+  it('drops one pachinko ball into exactly one lit pocket', async () => {
+    const w = await mountSuspended(CabinetArt, { props: { art: 'pachinko' } })
+    // five payout pockets at the base — the only rects in the scene
+    expect(w.findAll('.hero rect')).toHaveLength(5)
+    // one pocket lit, in the lattice's own lit-vs-unlit language
+    expect(w.findAll('.hero rect.fill.stroke')).toHaveLength(1)
+    // one ball, resting where the path ends
+    expect(w.findAll('.hero circle.node')).toHaveLength(1)
+  })
+
+  it('gives the roulette wheel its rim, track and hub', async () => {
+    const w = await mountSuspended(CabinetArt, { props: { art: 'roulette' } })
+    // rim + track + hub + turret at minimum; all drawn as perspective ellipses
+    expect(w.findAll('.hero ellipse').length).toBeGreaterThanOrEqual(4)
+    expect(w.findAll('.hero circle.node')).toHaveLength(1)
   })
 
   it('deals all fifty-two cards, and fires exactly one triplet', async () => {

@@ -37,7 +37,7 @@
   background: color-mix(in srgb, var(--color-ink-950) 86%, transparent);
   backdrop-filter: blur(10px) saturate(140%);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-bone-500);
