@@ -4,13 +4,13 @@ import { zones, allItems, type Span } from '~/data/catalog'
 const SPANS: Span[] = ['std', 'wide', 'feature', 'banner']
 
 describe('catalog', () => {
-  it('has exactly three zones in floor order', () => {
-    expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'mind'])
+  it('has exactly four zones in floor order', () => {
+    expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'mind', 'arcade'])
   })
 
-  it('carries all nine apps', () => {
-    expect(allItems).toHaveLength(9)
-    expect(zones.map(z => z.items.length)).toEqual([4, 4, 1])
+  it('carries all ten apps', () => {
+    expect(allItems).toHaveLength(10)
+    expect(zones.map(z => z.items.length)).toEqual([4, 4, 1, 1])
   })
 
   it('gives every item a complete, non-empty record', () => {
@@ -22,7 +22,9 @@ describe('catalog', () => {
       expect(item.badgeNote, item.domain).toBeTruthy()
       expect(SPANS, item.domain).toContain(item.span)
       expect(item.accent, item.domain).toMatch(/^#[0-9a-f]{6}$/i)
-      expect(item.domain).toMatch(/^[a-z]+\.metaincognita\.com$/)
+      // A bare hostname — no scheme, no path (GameCabinet prepends https://). Usually a
+      // metaincognita.com subdomain, but a project can live anywhere (slotcar.netlify.app).
+      expect(item.domain, item.domain).toMatch(/^[a-z0-9-]+(\.[a-z0-9-]+)+$/)
     }
   })
 
@@ -41,7 +43,9 @@ describe('catalog', () => {
     // DOM order matters — the grid placement rules in main.css assume it.
     expect(pit).toEqual(['feature', 'std', 'std', 'wide'])
     expect(machines).toEqual(['std', 'std', 'wide', 'feature'])
+    // The Mind and The Arcade each run a single full-width banner.
     expect(zones[2]!.items.map(i => i.span)).toEqual(['banner'])
+    expect(zones[3]!.items.map(i => i.span)).toEqual(['banner'])
   })
 
   // Anything with slack to fill carries a scene; a std tile has no room for one.

@@ -7,7 +7,7 @@
   <section class="relative flex min-h-[74vh] flex-col items-center justify-center px-6 pt-24 pb-10 text-center">
     <div class="reveal flex items-center gap-4" style="animation-delay: 0.05s">
       <span class="hidden h-px w-10 bg-gradient-to-r from-transparent to-cyan-400/60 sm:block" />
-      <span class="eyebrow">simulations · not gambling</span>
+      <span class="eyebrow">a collection · not gambling</span>
       <span class="hidden h-px w-10 bg-gradient-to-l from-transparent to-cyan-400/60 sm:block" />
     </div>
 
@@ -25,15 +25,16 @@
       class="font-display reveal mt-7 text-[clamp(1.3rem,3vw,2.1rem)] font-normal leading-snug tracking-tight text-bone-100"
       style="animation-delay: 0.36s"
     >
-      The house edge, revealed.
+      Every machine on this floor tells the truth.
     </p>
 
     <p
       class="reveal mt-5 max-w-2xl text-base leading-relaxed text-bone-300 sm:text-lg"
       style="animation-delay: 0.46s"
     >
-      Open-source casino simulations that reveal the math the floor never shows —
-      no money, no accounts, no AI. Plus a tool or two for the mind that plays them.
+      Open-source casino simulations that expose the real math, memory trainers that
+      sharpen recall, and now games built for nothing but the fun of it. No real money,
+      no accounts.
     </p>
 
     <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 0.56s">
@@ -41,14 +42,15 @@
         Take the floor
         <UIcon name="i-lucide-arrow-down" class="text-[0.95em]" aria-hidden="true" />
       </a>
-      <!-- named for its destination: the sign says The Mind, the title says the rest -->
+      <!-- named for their destinations: the signs say The Mind / The Arcade, the titles say the rest -->
       <a href="#mind" class="btn-ghost">Tools for the mind</a>
+      <a href="#arcade" class="btn-ghost">Tools for fun</a>
     </div>
 
     <ul class="reveal mt-9 flex flex-wrap items-center justify-center gap-2.5" style="animation-delay: 0.66s">
       <li class="chip">No real money</li>
       <li class="chip">No accounts</li>
-      <li class="chip">No AI</li>
+      <li class="chip">No generative AI</li>
       <li class="chip chip-gold">
         <UIcon name="i-lucide-git-fork" class="text-[0.9em]" aria-hidden="true" />
         Open source

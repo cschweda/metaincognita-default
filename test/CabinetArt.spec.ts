@@ -3,7 +3,7 @@ import { mountSuspended } from '@nuxt/test-utils/runtime'
 import CabinetArt from '~/components/CabinetArt.vue'
 import type { ArtKey } from '~/data/catalog'
 
-const KEYS: ArtKey[] = ['blackjack', 'flameout', 'roulette', 'pachinko', 'pao']
+const KEYS: ArtKey[] = ['blackjack', 'flameout', 'roulette', 'pachinko', 'pao', 'slotcar']
 
 describe('CabinetArt', () => {
   it('draws the scene the key asks for, and only that one', async () => {
@@ -82,6 +82,17 @@ describe('CabinetArt', () => {
     const w = await mountSuspended(CabinetArt, { props: { art: 'roulette' } })
     // rim + track + hub + turret at minimum; all drawn as perspective ellipses
     expect(w.findAll('.hero ellipse').length).toBeGreaterThanOrEqual(4)
+    expect(w.findAll('.hero circle.node')).toHaveLength(1)
+  })
+
+  it('lays down a two-lane oval with one car mid-corner', async () => {
+    const w = await mountSuspended(CabinetArt, { props: { art: 'slotcar' } })
+    // a banner: pinned to the dead right, never cropped — the same treatment as PAO
+    expect(w.find('.art').classes()).toContain('art-banner')
+    expect(w.find('svg').attributes('preserveAspectRatio')).toBe('xMaxYMid meet')
+    // outer rail, two dashed lanes and the inner apron — the oval, in perspective
+    expect(w.findAll('.hero ellipse').length).toBeGreaterThanOrEqual(4)
+    // exactly one car on the track (its headlight is the lit node)
     expect(w.findAll('.hero circle.node')).toHaveLength(1)
   })
 

@@ -10,11 +10,13 @@
 ![metaincognita — open-source casino simulation suite](public/og-image.png)
 
 The landing page for **metaincognita** — a collection of casino games rebuilt as
-honest, open-source **simulations** that expose the math the floor never shows, plus a
-growing set of **tools** for a sharper mind.
+honest, open-source **simulations** that expose the math the floor never shows, **memory
+trainers** for a sharper mind, and now **games** built for nothing but fun.
 
-> **Not a gambling site.** No real money, no accounts, no logins, no AI — just
-> simulations you run in your browser. Everything is open source and free to fork.
+> **Not a gambling site.** No real money, no accounts, no logins, no generative AI —
+> just open-source apps you run in your browser, free to fork. (Some games ship a
+> scripted AI opponent — poker bots, a rival slot car — but there is no LLM or
+> generative model anywhere.)
 
 **Live:** https://metaincognita.com
 
@@ -42,6 +44,12 @@ simply links out to them.
 | Tool | Live | What it is |
 | --- | --- | --- |
 | PAO Speed Trainer | `pao.metaincognita.com` | Drill the Person–Action–Object system across all 52 cards until each triplet fires as one reflex. |
+
+### The Arcade — just for fun
+
+| Game | Live | What it is |
+| --- | --- | --- |
+| AFX Slot Car Racing | `slotcar.netlify.app` | Photorealistic 1970s Aurora AFX HO slot cars — analog trigger throttle, real deslot physics, oval and figure-eight, race a fallible AI or practice solo. Open source. |
 
 ## Tech stack
 
@@ -162,7 +170,7 @@ and append an item to a zone's `items` array:
 {
   title: 'New Game',
   description: 'One honest line about what it teaches.',
-  domain: 'new-game.metaincognita.com', // shown as the live-link label
+  domain: 'new-game.metaincognita.com', // any bare hostname (the slot car lives on netlify.app); the live-link label
   icon: 'dice-6',                        // any lucide name -> i-lucide-dice-6
   accent: '#e0a92e',                     // hex driving the glow, bulbs, ring + icon tint
   badge: 'True odds',                    // the gold chip: the method, never a number

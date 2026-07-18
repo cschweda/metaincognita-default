@@ -9,11 +9,11 @@ const year = new Date().getFullYear()
         <a href="#top" class="font-display foot-wm">
           <span class="m">meta</span><span class="i">incognita</span>
         </a>
-        <p class="eyebrow mt-3">the house edge, revealed</p>
+        <p class="eyebrow mt-3">an honest floor</p>
       </div>
 
       <div class="font-mono text-xs leading-relaxed text-bone-500 sm:text-right">
-        <p>Open-source simulations · no real money, no accounts, no AI.</p>
+        <p>Open-source · no real money, no accounts, no generative AI.</p>
         <p class="mt-1.5">© {{ year }} metaincognita</p>
       </div>
     </div>

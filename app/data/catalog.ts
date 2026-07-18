@@ -2,14 +2,18 @@
 export type Span = 'std' | 'wide' | 'feature' | 'banner'
 
 /** Selects a cabinet's bespoke line-art scene. See CabinetArt.vue. */
-export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao'
+export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar'
 
 export interface CatalogItem {
   /** Display name shown on the cabinet. */
   title: string
   /** One-line description, lifted from each app's own metadata. */
   description: string
-  /** Bare hostname; the cabinet's live-link affordance. */
+  /**
+   * Bare hostname; the cabinet's live-link affordance. Usually a
+   * `<name>.metaincognita.com` subdomain, but a project can live anywhere it
+   * likes (The Arcade's slot car sim ships on `slotcar.netlify.app`).
+   */
   domain: string
   /** lucide icon name (rendered as `i-lucide-<icon>`). Never an emoji. */
   icon: string
@@ -34,7 +38,7 @@ export interface CatalogItem {
 
 export interface Zone {
   /** Scroll anchor and grid modifier (`.floor-<id>`). */
-  id: 'pit' | 'machines' | 'mind'
+  id: 'pit' | 'machines' | 'mind' | 'arcade'
   /** Text inside the neon tube sign. */
   sign: string
   /** Zone neon colour. */
@@ -169,6 +173,27 @@ export const zones: Zone[] = [
         badgeNote: 'no edge — it’s a tool',
         span: 'banner',
         art: 'pao'
+      }
+    ]
+  },
+  {
+    id: 'arcade',
+    sign: 'The Arcade',
+    color: '#ff6a2b',
+    title: 'Tools for fun.',
+    sub: 'No edge to reveal here, nothing to beat — just games built for the joy of it. Starting with a slot car track from 1971; more on the way.',
+    unit: 'game',
+    items: [
+      {
+        title: 'AFX Slot Car Racing',
+        description: 'Photoreal 1970s HO slot cars — squeeze the trigger, brake into the corner, or fly off into the shag carpet.',
+        domain: 'slotcar.netlify.app',
+        icon: 'car-front',
+        accent: '#ff6a2b',
+        badge: 'Analog throttle',
+        badgeNote: 'no house, just the track',
+        span: 'banner',
+        art: 'slotcar'
       }
     ]
   }

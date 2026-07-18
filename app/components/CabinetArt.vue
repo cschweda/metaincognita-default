@@ -53,11 +53,14 @@ const SCENES: Record<ArtKey, Scene> = {
      exactly, so the banner's answer exactly: `meet`, pinned to the dead right. */
   roulette: { w: 558, h: 240, vx: 448, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
   pachinko: { w: 558, h: 240, vx: 385, vy: 8, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
-  pao: { w: 1100, h: 220, vx: 900, vy: 6, spread: 1000, shape: 'banner', par: 'xMaxYMid meet' }
+  pao: { w: 1100, h: 220, vx: 900, vy: 6, spread: 1000, shape: 'banner', par: 'xMaxYMid meet' },
+  /* The slot-car oval is a banner too — same 1100×220 substrate as PAO, same rightward
+     fade — so the two big banners stand on an identical floor. */
+  slotcar: { w: 1100, h: 220, vx: 900, vy: 6, spread: 1000, shape: 'banner', par: 'xMaxYMid meet' }
 }
 
 /** Where the floor plane stops — short of the copy, not at the foot of the box. */
-const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220 }
+const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220, slotcar: 220 }
 
 const scene = computed(() => SCENES[props.art])
 const floorEnd = computed(() => FLOOR_END[props.art])
@@ -153,6 +156,27 @@ const pins = computed(() =>
 /** Payout pockets along the base; the ball's pocket is the lit one. */
 const POCKETS = [240, 296, 352, 408, 464]
 const LIT_POCKET = 3
+
+/**
+ * The slot-car oval — the roulette wheel's exact construction, re-themed: concentric
+ * ellipses squashed into the floor's perspective (outer rail, two dashed lanes, inner
+ * apron) with short rumble ticks around the outer rail, same radial hand as the wheel's
+ * frets. A car sits mid-corner on the near stretch with its tail hung out; motion streaks
+ * trail it. Composed on the right, out past the copy fade, exactly like PAO's lattice.
+ */
+const OVAL = { cx: 902, cy: 110 }
+const TIES = 26
+const trackTies = computed(() =>
+  Array.from({ length: TIES }, (_, i) => {
+    const t = (i / TIES) * Math.PI * 2
+    return {
+      x1: OVAL.cx + 190 * Math.cos(t),
+      y1: OVAL.cy + 73 * Math.sin(t),
+      x2: OVAL.cx + 176 * Math.cos(t),
+      y2: OVAL.cy + 67 * Math.sin(t)
+    }
+  })
+)
 </script>
 
 <template>
@@ -248,6 +272,26 @@ const LIT_POCKET = 3
           rx="5"
         />
         <circle class="node" cx="420" cy="202" r="5.5" />
+      </g>
+
+      <!-- a two-lane oval in perspective, and a car with its tail hung out -->
+      <g v-else-if="art === 'slotcar'" class="hero">
+        <circle v-for="(s, i) in [[904, 104], [872, 118], [936, 120], [900, 92]]" :key="`g${i}`" class="star" :cx="s[0]" :cy="s[1]" r="2.4" />
+
+        <ellipse class="rail" :cx="OVAL.cx" :cy="OVAL.cy" rx="190" ry="73" />
+        <line v-for="(t, i) in trackTies" :key="`t${i}`" class="peg" :x1="t.x1" :y1="t.y1" :x2="t.x2" :y2="t.y2" />
+        <ellipse class="hair dash" :cx="OVAL.cx" :cy="OVAL.cy" rx="172" ry="65" />
+        <ellipse class="hair dash" :cx="OVAL.cx" :cy="OVAL.cy" rx="140" ry="53" />
+        <ellipse class="hair" :cx="OVAL.cx" :cy="OVAL.cy" rx="120" ry="46" />
+
+        <!-- the car, mid-corner on the near stretch: nose to the left, tail kicked out -->
+        <g transform="translate(872 172) rotate(-15)">
+          <path class="hair" d="M 26 -6 L 52 -9 M 29 0 L 60 0 M 26 6 L 52 9" />
+          <rect class="fill stroke" x="-21" y="-11" width="42" height="22" rx="8" />
+          <path class="hair" d="M 18 -12 L 18 12" />
+          <rect class="fill stroke" x="-4" y="-6" width="13" height="12" rx="3" />
+          <circle class="node" cx="-20" cy="0" r="4" />
+        </g>
       </g>
 
       <!-- fifty-two cards; one triplet fires -->

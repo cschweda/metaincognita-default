@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 const SITE_URL = 'https://metaincognita.com'
-const TITLE = 'metaincognita — casino simulators, trainers & tools'
+const TITLE = 'metaincognita — casino simulators, trainers & games'
 const DESCRIPTION
-  = 'A collection of casino simulators and trainers that expose the math behind every game — blackjack, craps, hold’em, roulette, slots, video poker and more — plus tools for a sharper mind.'
+  = 'A collection of open-source casino simulators that expose the math behind blackjack, craps, hold’em, roulette, slots and more — plus memory trainers for a sharper mind, and games built for nothing but fun.'
 
 export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxtjs/plausible'],

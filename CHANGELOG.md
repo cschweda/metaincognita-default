@@ -5,6 +5,44 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-07-18
+
+The Arcade opens — and the floor stops being all about the edge.
+
+### Added
+- **A fourth zone: The Arcade.** The floor was three rooms about the house edge and one
+  about memory; it is a collection now. The Arcade is where nothing is rigged because
+  nothing is at stake — games built for the joy of it, under an AFX-orange sign. First
+  cabinet in: **AFX Slot Car Racing** (`slotcar.netlify.app`), a photoreal 1970s Aurora
+  HO sim — analog trigger throttle, real deslot physics, race a fallible AI or practice
+  solo. Its badge names the hook, not a number: *Analog throttle · no house, just the track*.
+- **A slot-car scene for the banner.** It is the roulette wheel's own construction,
+  re-themed: concentric ellipses squashed into the floor's perspective — outer rail, two
+  dashed lanes, an inner apron, rumble ticks around the rim — with a car mid-corner on the
+  near stretch, tail hung out and motion streaking off it. Like every scene it names no
+  colour; the whole oval inherits the cabinet's AFX orange from one hex in `catalog.ts`.
+- A cabinet can now live anywhere. The slot car ships on `slotcar.netlify.app`, so the
+  catalog no longer assumes every app is a `metaincognita.com` subdomain — any bare
+  hostname works, and the tests check for one rather than for the old suffix.
+
+### Changed
+- **The hero is about the collection now, not the edge alone.** The tagline moves from
+  *"The house edge, revealed."* to **"Every machine on this floor tells the truth."** The
+  edge-revealing identity is not gone — it stays down in the Pit and Machines intros, where
+  it is literally true, rather than stretched across memory trainers and slot cars. The
+  sub-paragraph names all three families plainly, the eyebrow reads *a collection · not
+  gambling* (the not-gambling disclaimer is load-bearing and stays), and a third hero link,
+  *Tools for fun*, reaches The Arcade. The footer's old *the house edge, revealed* becomes
+  *an honest floor*.
+- **"No AI" is now "No generative AI" — everywhere it appears** (hero chip, ticker thesis,
+  footer, JSON-LD). The site has always had scripted opponents — Hold'em's bots, and now
+  the slot car's rival driver — which are game AI, not a language model. The bare "No AI"
+  chip was a lie waiting for anyone who had just raced that car; the precise claim is the
+  kind of honesty the rest of the site is built on. There is no generative model anywhere,
+  and the copy now says exactly that.
+- Title, meta description, JSON-LD and the README reposition to the collection — casino
+  simulators, memory trainers, and games built for fun.
+
 ## [2.3.0] - 2026-07-17
 
 Floor polish: the wides get scenes, mobile gets a marquee, the small type gets a notch.

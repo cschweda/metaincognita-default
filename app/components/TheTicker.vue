@@ -8,7 +8,7 @@ const LINES = [
   'Every edge is published',
   'No real money',
   'No accounts',
-  'No AI',
+  'No generative AI',
   'Read the source',
   'The math is the point',
   "Nothing here is rigged — it doesn’t need to be"
