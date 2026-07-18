@@ -5,6 +5,18 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.1] - 2026-07-18
+
+The last cabinet joins the open floor.
+
+### Changed
+- **The hold'em cabinet shows its source too.** 2.5.0 shipped with one deliberate gap —
+  the hold'em repository was private, so its cabinet showed no source link rather than a
+  dead one. The repo is `metaincognita-holdem`; its link is in, and the catalog test now
+  expects *every* cabinet to name its repository (a future not-yet-public app must be
+  excepted deliberately, never forgotten). Note: the link stays dead to visitors until
+  the repository itself is flipped public on GitHub.
+
 ## [2.5.0] - 2026-07-18
 
 The AmToy wing opens, and every cabinet shows its source.

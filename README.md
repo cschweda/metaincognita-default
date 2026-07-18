@@ -33,7 +33,7 @@ simply links out to them.
 | Simulation | Live | Source | What it is |
 | --- | --- | --- | --- |
 | Blackjack Trainer | `blackjack.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-blackjack) | Basic-strategy coaching and Hi-Lo card counting on official-rulebook rules. |
-| No-Limit Hold’em | `holdem.metaincognita.com` | *private, for now* | Texas Hold’em vs. intelligent bots, with live equity, outs, pot odds and ranges. |
+| No-Limit Hold’em | `holdem.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-holdem) | Texas Hold’em vs. intelligent bots, with live equity, outs, pot odds and ranges. |
 | Roulette Trainer | `roulette.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-roulette) | A real forward-physics wheel, proven fair by simulation. |
 | Slots Simulator | `slots.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-slots) | Reel strips, virtual-reel weights and exact house edge across eight archetypes. |
 | Craps Simulator | `craps.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-craps) | Learn the line, the odds bets and where the edge hides. |

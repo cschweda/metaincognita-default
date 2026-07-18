@@ -21,7 +21,8 @@ export interface CatalogItem {
   domain: string
   /**
    * Full GitHub URL; the cabinet's view-source affordance. Every app is open
-   * source — this is only optional because one repo (hold'em) is still private.
+   * source — optional only so a cabinet whose repo has not gone public yet
+   * shows no link rather than a dead one.
    */
   repo?: string
   /** lucide icon name (rendered as `i-lucide-<icon>`). Never an emoji. */
@@ -84,7 +85,7 @@ export const zones: Zone[] = [
         title: 'No-Limit Hold’em',
         description: 'Texas Hold’em against intelligent bots, with live equity, outs, pot odds and hand ranges as you play.',
         domain: 'holdem.metaincognita.com',
-        // no repo yet — the hold'em source is still in a private repository
+        repo: 'https://github.com/cschweda/metaincognita-holdem',
         icon: 'club',
         accent: '#8a8cff',
         badge: 'Live equity',

@@ -34,9 +34,10 @@ describe('catalog', () => {
         expect(item.repo, item.domain).toMatch(/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/)
       }
     }
-    // The one gap is deliberate and known: the hold'em repo is private, for now.
-    // The moment it goes public, its URL goes in and this list goes empty.
-    expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual(['holdem.metaincognita.com'])
+    // Every cabinet links its source. A new app whose repo is not public yet may
+    // ship without one (the link affordance just stays off) — but it must be
+    // named here deliberately, never forgotten.
+    expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual([])
 
     const repos = allItems.map(i => i.repo).filter(Boolean)
     expect(new Set(repos).size).toBe(repos.length)
