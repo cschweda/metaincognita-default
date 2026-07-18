@@ -7,6 +7,7 @@ const item: CatalogItem = {
   title: 'Blackjack Trainer',
   description: 'Basic-strategy coaching and Hi-Lo card counting.',
   domain: 'blackjack.metaincognita.com',
+  repo: 'https://github.com/cschweda/metaincognita-blackjack',
   icon: 'spade',
   accent: '#2fe58f',
   badge: 'Basic strategy',
@@ -15,26 +16,55 @@ const item: CatalogItem = {
 }
 
 describe('GameCabinet', () => {
+  // Two links per cabinet means the cabinet itself cannot be an anchor —
+  // nested anchors are invalid HTML and split by the parser.
+  it('is an article carrying two real links: play and source', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item } })
+    expect(w.find('article.cab').exists()).toBe(true)
+    expect(w.findAll('a')).toHaveLength(2)
+  })
+
   it('links out safely, in a new tab, and says so to screen readers', async () => {
     const w = await mountSuspended(GameCabinet, { props: { item } })
-    const a = w.find('a')
+    const a = w.find('a.live')
     expect(a.attributes('href')).toBe('https://blackjack.metaincognita.com')
     expect(a.attributes('target')).toBe('_blank')
     expect(a.attributes('rel')).toBe('noopener noreferrer')
-    expect(w.find('.sr-only').text()).toContain('opens in a new tab')
+    // the stretched link is the whole card, so its hidden text names the app too
+    expect(a.find('.sr-only').text()).toContain('Blackjack Trainer')
+    expect(a.find('.sr-only').text()).toContain('opens in a new tab')
+  })
+
+  it('links the source code straight to the repository', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item } })
+    const src = w.find('a.src')
+    expect(src.attributes('href')).toBe('https://github.com/cschweda/metaincognita-blackjack')
+    expect(src.attributes('target')).toBe('_blank')
+    expect(src.attributes('rel')).toBe('noopener noreferrer')
+    // twelve cabinets, twelve "source" links — the hidden text keeps each unique
+    expect(src.text()).toContain('source')
+    expect(src.find('.sr-only').text()).toContain('Blackjack Trainer')
+  })
+
+  // The one private repo (hold'em) gets no dead link — the affordance just stays off.
+  it('shows no source link when the item has no public repo', async () => {
+    const { repo: _repo, ...rest } = item
+    const w = await mountSuspended(GameCabinet, { props: { item: rest } })
+    expect(w.find('a.src').exists()).toBe(false)
+    expect(w.findAll('a')).toHaveLength(1)
   })
 
   it('carries its span class so the mosaic can place it', async () => {
     const w = await mountSuspended(GameCabinet, { props: { item } })
-    expect(w.find('a').classes()).toContain('cab-feature')
+    expect(w.find('.cab').classes()).toContain('cab-feature')
 
     const std = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'std' } } })
-    expect(std.find('a').classes()).toContain('cab-std')
+    expect(std.find('.cab').classes()).toContain('cab-std')
   })
 
   it('publishes its accent as the --ac custom property', async () => {
     const w = await mountSuspended(GameCabinet, { props: { item } })
-    expect(w.find('a').attributes('style')).toContain('--ac: #2fe58f')
+    expect(w.find('.cab').attributes('style')).toContain('--ac: #2fe58f')
   })
 
   it('shows the badge and its caption', async () => {

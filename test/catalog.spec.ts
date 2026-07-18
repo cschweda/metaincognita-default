@@ -5,12 +5,12 @@ const SPANS: Span[] = ['std', 'wide', 'feature', 'banner']
 
 describe('catalog', () => {
   it('has exactly four zones in floor order', () => {
-    expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'mind', 'arcade'])
+    expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'arcade', 'amtoy'])
   })
 
-  it('carries all ten apps', () => {
-    expect(allItems).toHaveLength(10)
-    expect(zones.map(z => z.items.length)).toEqual([4, 4, 1, 1])
+  it('carries all eleven apps', () => {
+    expect(allItems).toHaveLength(11)
+    expect(zones.map(z => z.items.length)).toEqual([4, 4, 1, 2])
   })
 
   it('gives every item a complete, non-empty record', () => {
@@ -28,6 +28,20 @@ describe('catalog', () => {
     }
   })
 
+  it('points every app at its GitHub repository', () => {
+    for (const item of allItems) {
+      if (item.repo) {
+        expect(item.repo, item.domain).toMatch(/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/)
+      }
+    }
+    // The one gap is deliberate and known: the hold'em repo is private, for now.
+    // The moment it goes public, its URL goes in and this list goes empty.
+    expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual(['holdem.metaincognita.com'])
+
+    const repos = allItems.map(i => i.repo).filter(Boolean)
+    expect(new Set(repos).size).toBe(repos.length)
+  })
+
   it('never prints a house-edge percentage on a badge', () => {
     // The whole point: we do not ship numbers we cannot source from the apps.
     for (const item of allItems) {
@@ -43,9 +57,9 @@ describe('catalog', () => {
     // DOM order matters — the grid placement rules in main.css assume it.
     expect(pit).toEqual(['feature', 'std', 'std', 'wide'])
     expect(machines).toEqual(['std', 'std', 'wide', 'feature'])
-    // The Mind and The Arcade each run a single full-width banner.
+    // The Arcade runs a single full-width banner; AmToy runs two wides shoulder to shoulder.
     expect(zones[2]!.items.map(i => i.span)).toEqual(['banner'])
-    expect(zones[3]!.items.map(i => i.span)).toEqual(['banner'])
+    expect(zones[3]!.items.map(i => i.span)).toEqual(['wide', 'wide'])
   })
 
   // Anything with slack to fill carries a scene; a std tile has no room for one.

@@ -1,9 +1,9 @@
 {
   "name": "metaincognita",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "private": true,
   "type": "module",
-  "description": "Landing page for the metaincognita collection of casino simulators, trainers, and games.",
+  "description": "Landing page for the metaincognita collection of casino simulators, games, and AmToy retro-toy homages.",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",

@@ -31,7 +31,7 @@ describe('structured data (JSON-LD)', () => {
     const itemList = jsonLd['@graph'].find((node: any) => node['@type'] === 'ItemList')
     expect(itemList).toBeDefined()
     expect(itemList).toHaveProperty('numberOfItems', allItems.length)
-    expect(itemList.numberOfItems).toBe(10)
+    expect(itemList.numberOfItems).toBe(11)
   })
 
   it('has itemListElement with one entry per app', () => {
@@ -102,6 +102,21 @@ describe('structured data (JSON-LD)', () => {
       const listItem = itemList.itemListElement[i]
       const catalogItem = allItems[i]
       expect(listItem.item.name).toBe(catalogItem.title)
+    }
+  })
+
+  it('carries each app’s repository as sameAs exactly when it has one', () => {
+    const itemList = jsonLd['@graph'].find((node: any) => node['@type'] === 'ItemList')
+
+    for (let i = 0; i < itemList.itemListElement.length; i++) {
+      const app = itemList.itemListElement[i].item
+      const catalogItem = allItems[i]!
+      if (catalogItem.repo) {
+        expect(app.sameAs, catalogItem.domain).toEqual([catalogItem.repo])
+      } else {
+        // the private repo gets no phantom URL in the structured data either
+        expect(app.sameAs, catalogItem.domain).toBeUndefined()
+      }
     }
   })
 

@@ -11,7 +11,9 @@
 
 The landing page for **metaincognita** — a small, curated collection of open-source
 projects built out of curiosity: casino games rebuilt as **simulations** that show their
-math, **memory trainers** for a sharper mind, and now **games** built for nothing but fun.
+math, **games** built for nothing but fun, and playable homages to **AmToy**, a completely
+fictional American toy company invented so the retro-toy recreations step on no one's
+trademarks.
 
 > **Not a gambling site.** No real money, no accounts, no logins, no generative AI —
 > just open-source apps you run in your browser, free to fork. (Some games ship a
@@ -28,28 +30,36 @@ simply links out to them.
 
 ### Simulations — casino games
 
-| Simulation | Live | What it is |
-| --- | --- | --- |
-| Blackjack Trainer | `blackjack.metaincognita.com` | Basic-strategy coaching and Hi-Lo card counting on official-rulebook rules. |
-| No-Limit Hold’em | `holdem.metaincognita.com` | Texas Hold’em vs. intelligent bots, with live equity, outs, pot odds and ranges. |
-| Roulette Trainer | `roulette.metaincognita.com` | A real forward-physics wheel, proven fair by simulation. |
-| Slots Simulator | `slots.metaincognita.com` | Reel strips, virtual-reel weights and exact house edge across eight archetypes. |
-| Craps Simulator | `craps.metaincognita.com` | Learn the line, the odds bets and where the edge hides. |
-| Video Poker Trainer | `videopoker.metaincognita.com` | Optimal play, pay-table literacy and bankroll management. |
-| Flameout | `flameout.metaincognita.com` | A crash-game simulator: climb, cash out, then see why the house always wins. |
-| Pachinko Parlor | `pachinko.metaincognita.com` | Ball-drop physics and payout pockets, with the odds laid bare. |
-
-### Tooling
-
-| Tool | Live | What it is |
-| --- | --- | --- |
-| PAO Speed Trainer | `pao.metaincognita.com` | Drill the Person–Action–Object system across all 52 cards until each triplet fires as one reflex. |
+| Simulation | Live | Source | What it is |
+| --- | --- | --- | --- |
+| Blackjack Trainer | `blackjack.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-blackjack) | Basic-strategy coaching and Hi-Lo card counting on official-rulebook rules. |
+| No-Limit Hold’em | `holdem.metaincognita.com` | *private, for now* | Texas Hold’em vs. intelligent bots, with live equity, outs, pot odds and ranges. |
+| Roulette Trainer | `roulette.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-roulette) | A real forward-physics wheel, proven fair by simulation. |
+| Slots Simulator | `slots.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-slots) | Reel strips, virtual-reel weights and exact house edge across eight archetypes. |
+| Craps Simulator | `craps.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-craps) | Learn the line, the odds bets and where the edge hides. |
+| Video Poker Trainer | `videopoker.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-video-poker) | Optimal play, pay-table literacy and bankroll management. |
+| Flameout | `flameout.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-flameout) | A crash-game simulator: climb, cash out, then see why the house always wins. |
+| Pachinko Parlor | `pachinko.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-pachinko) | Ball-drop physics and payout pockets, with the odds laid bare. |
 
 ### The Arcade — just for fun
 
-| Game | Live | What it is |
-| --- | --- | --- |
-| AFX Slot Car Racing | `slotcar.netlify.app` | Photorealistic 1970s Aurora AFX HO slot cars — analog trigger throttle, real deslot physics, oval and figure-eight, race a fallible AI or practice solo. Open source. |
+| Game | Live | Source | What it is |
+| --- | --- | --- | --- |
+| AFX Slot Car Racing | `slotcar.netlify.app` | [source](https://github.com/cschweda/slotcarsim) | Photorealistic 1970s Aurora AFX HO slot cars — analog trigger throttle, real deslot physics, oval and figure-eight, race a fallible AI or practice solo. Open source. |
+
+### AmToy — Games That Think!
+
+Playable homages to **AmToy**, a completely fictional American toy company
+(1961–1983) invented from scratch — founder, catalog, logos and all — so these
+recreations owe nothing to Hasbro, Mattel, Milton Bradley or anyone else's
+trademarks. The [corporate history](https://amtoy.netlify.app) is the shared lore;
+this wing grows next, starting with a full simulation of **Rovacon**, the flagship
+programmable rover.
+
+| Exhibit | Live | Source | What it is |
+| --- | --- | --- | --- |
+| AmToy: The Whole Story | `amtoy.netlify.app` | [source](https://github.com/cschweda/amtoy-history) | The magazine-style corporate history, era by era, 1961 to the 1983 crash. |
+| Rovacon Voice Bench | `rovacon-voice.netlify.app` | [source](https://github.com/cschweda/rovacon-voice) | Votrax SC-01-class formant speech synthesis in TypeScript — type a phrase, hear 1980 arcade speech, export WAV. |
 
 ## Tech stack
 
@@ -171,6 +181,7 @@ and append an item to a zone's `items` array:
   title: 'New Game',
   description: 'One plain line about what it teaches.',
   domain: 'new-game.metaincognita.com', // any bare hostname (the slot car lives on netlify.app); the live-link label
+  repo: 'https://github.com/cschweda/new-game', // the cabinet's "source" link (omit only while a repo is private)
   icon: 'dice-6',                        // any lucide name -> i-lucide-dice-6
   accent: '#e0a92e',                     // hex driving the glow, bulbs, ring + icon tint
   badge: 'True odds',                    // the gold chip: the method, never a number

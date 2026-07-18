@@ -26,10 +26,11 @@ function onMove(e: MouseEvent) {
 </script>
 
 <template>
-  <a
-    :href="href"
-    target="_blank"
-    rel="noopener noreferrer"
+  <!-- An article, not one big anchor: the cabinet carries TWO links (play + source),
+       and nested anchors are invalid HTML. The live link stretches itself over the
+       whole tile via ::after, so the card still plays like a single button; the
+       source link floats above that overlay on its own z-index. -->
+  <article
     class="cab"
     :class="`cab-${item.span}`"
     :style="{ '--ac': item.accent }"
@@ -58,11 +59,29 @@ function onMove(e: MouseEvent) {
     <p class="cab-desc">{{ item.description }}</p>
 
     <div class="dom">
-      <span class="truncate">{{ item.domain }}</span>
-      <UIcon name="i-lucide-arrow-up-right" class="arrow shrink-0" aria-hidden="true" />
+      <a
+        class="live"
+        :href="href"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="truncate">{{ item.domain }}</span>
+        <UIcon name="i-lucide-arrow-up-right" class="arrow shrink-0" aria-hidden="true" />
+        <span class="sr-only">{{ item.title }} — opens in a new tab</span>
+      </a>
+      <a
+        v-if="item.repo"
+        class="src"
+        :href="item.repo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <UIcon name="i-lucide-github" aria-hidden="true" />
+        <span>source</span>
+        <span class="sr-only">code for {{ item.title }} on GitHub — opens in a new tab</span>
+      </a>
     </div>
-    <span class="sr-only"> — opens in a new tab</span>
-  </a>
+  </article>
 </template>
 
 <style scoped>
@@ -93,9 +112,16 @@ function onMove(e: MouseEvent) {
   border-color: color-mix(in srgb, var(--ac) 60%, transparent);
 }
 
-.cab:focus-visible {
+/* The live link IS the card, so its focus ring belongs on the card — drawn via
+   :has() because the ring must outline the tile, not the little domain row. */
+.live:focus-visible { outline: none; }
+.cab:has(.live:focus-visible) {
   outline: 2px solid color-mix(in srgb, var(--ac) 85%, transparent);
   outline-offset: 3px;
+}
+.src:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--ac) 85%, transparent);
+  outline-offset: 2px;
 }
 
 /* the bulb strip — the one dose of kitsch. 1Hz, well under WCAG 2.3.1. */
@@ -228,6 +254,37 @@ function onMove(e: MouseEvent) {
   transition: color 0.4s ease;
 }
 .cab:hover .dom { color: color-mix(in srgb, var(--ac) 65%, var(--color-bone-300)); }
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+/* the stretch: one pseudo-element makes the whole cabinet this link's hit area */
+.live::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.src {
+  position: relative;
+  z-index: 2; /* above the live link's overlay, or it could never be clicked */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: none;
+  /* the visual stays a quiet caption; the padding buys a real tap target */
+  padding: 0.4rem 0.5rem;
+  margin: -0.4rem -0.5rem;
+  border-radius: 6px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.4s ease;
+}
+.src:hover { color: color-mix(in srgb, var(--ac) 70%, #fff); }
 
 .arrow { font-size: 0.95rem; transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .cab:hover .arrow { transform: translate(3px, -3px); }

@@ -1,8 +1,12 @@
 /** Footprint on a zone's mosaic grid. DOM order matters — see main.css. */
 export type Span = 'std' | 'wide' | 'feature' | 'banner'
 
-/** Selects a cabinet's bespoke line-art scene. See CabinetArt.vue. */
-export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar'
+/**
+ * Selects a cabinet's bespoke line-art scene. See CabinetArt.vue.
+ * `pao` currently has no cabinet: The Mind is off the floor while its zone is
+ * rethought, and the scene waits in CabinetArt.vue for its return.
+ */
+export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar' | 'amtoy' | 'rovacon'
 
 export interface CatalogItem {
   /** Display name shown on the cabinet. */
@@ -15,6 +19,11 @@ export interface CatalogItem {
    * likes (The Arcade's slot car sim ships on `slotcar.netlify.app`).
    */
   domain: string
+  /**
+   * Full GitHub URL; the cabinet's view-source affordance. Every app is open
+   * source — this is only optional because one repo (hold'em) is still private.
+   */
+  repo?: string
   /** lucide icon name (rendered as `i-lucide-<icon>`). Never an emoji. */
   icon: string
   /** Per-item neon accent driving the glow, bulb strip, ring and icon tint. */
@@ -38,7 +47,7 @@ export interface CatalogItem {
 
 export interface Zone {
   /** Scroll anchor and grid modifier (`.floor-<id>`). */
-  id: 'pit' | 'machines' | 'mind' | 'arcade'
+  id: 'pit' | 'machines' | 'arcade' | 'amtoy'
   /** Text inside the neon tube sign. */
   sign: string
   /** Zone neon colour. */
@@ -63,6 +72,7 @@ export const zones: Zone[] = [
         title: 'Blackjack Trainer',
         description: 'Basic-strategy coaching and Hi-Lo card counting on rules taken straight from official casino documents.',
         domain: 'blackjack.metaincognita.com',
+        repo: 'https://github.com/cschweda/metaincognita-blackjack',
         icon: 'spade',
         accent: '#2fe58f',
         badge: 'Basic strategy',
@@ -74,6 +84,7 @@ export const zones: Zone[] = [
         title: 'No-Limit Hold’em',
         description: 'Texas Hold’em against intelligent bots, with live equity, outs, pot odds and hand ranges as you play.',
         domain: 'holdem.metaincognita.com',
+        // no repo yet — the hold'em source is still in a private repository
         icon: 'club',
         accent: '#8a8cff',
         badge: 'Live equity',
@@ -84,6 +95,7 @@ export const zones: Zone[] = [
         title: 'Craps Simulator',
         description: 'A browser craps table for learning the line, the odds bets and where the edge really hides.',
         domain: 'craps.metaincognita.com',
+        repo: 'https://github.com/cschweda/metaincognita-craps',
         icon: 'dice-5',
         accent: '#35baff',
         badge: 'True odds',
@@ -94,6 +106,7 @@ export const zones: Zone[] = [
         title: 'Roulette Trainer',
         description: 'A real forward-physics wheel, proven fair by simulation — see exactly why you can’t beat it.',
         domain: 'roulette.metaincognita.com',
+        repo: 'https://github.com/cschweda/metaincognita-roulette',
         icon: 'disc-3',
         accent: '#ff4d63',
         badge: 'Real physics',
@@ -115,6 +128,7 @@ export const zones: Zone[] = [
         title: 'Slots Simulator',
         description: 'Reel strips, virtual-reel weights and the exact-enumeration house edge across eight machine archetypes.',
         domain: 'slots.metaincognita.com',
+        repo: 'https://github.com/cschweda/metaincognita-slots',
         icon: 'cherry',
         accent: '#ffb62e',
         badge: 'Exact odds',
@@ -125,6 +139,7 @@ export const zones: Zone[] = [
         title: 'Video Poker Trainer',
         description: 'Optimal play, pay-table literacy and bankroll management — taught one hand at a time.',
         domain: 'videopoker.metaincognita.com',
+        repo: 'https://github.com/cschweda/metaincognita-video-poker',
         icon: 'diamond',
         accent: '#c46bff',
         badge: 'Optimal play',
@@ -135,6 +150,7 @@ export const zones: Zone[] = [
         title: 'Pachinko Parlor',
         description: 'Ball-drop physics and payout pockets, with the odds behind the pins laid bare.',
         domain: 'pachinko.metaincognita.com',
+        repo: 'https://github.com/cschweda/metaincognita-pachinko',
         icon: 'circle-dot',
         accent: '#ff5bb0',
         badge: 'Ball physics',
@@ -146,33 +162,13 @@ export const zones: Zone[] = [
         title: 'Flameout',
         description: 'Watch the multiplier climb, cash out before the crash — then see why the house always wins.',
         domain: 'flameout.metaincognita.com',
+        repo: 'https://github.com/cschweda/metaincognita-flameout',
         icon: 'flame',
         accent: '#ff7a3d',
         badge: 'The crash curve',
         badgeNote: 'cash out or burn',
         span: 'feature',
         art: 'flameout'
-      }
-    ]
-  },
-  {
-    id: 'mind',
-    sign: 'The Mind',
-    color: '#2ff0d8',
-    title: 'Tools for the mind.',
-    sub: 'Utilities that sharpen memory and recall — open source, like everything here. Starting with one; more on the way.',
-    unit: 'tool',
-    items: [
-      {
-        title: 'PAO Speed Trainer',
-        description: 'Drill the Person–Action–Object system across all 52 cards until each triplet fires as a single reflex.',
-        domain: 'pao.metaincognita.com',
-        icon: 'brain',
-        accent: '#2ff0d8',
-        badge: 'All fifty-two cards',
-        badgeNote: 'no edge — it’s a tool',
-        span: 'banner',
-        art: 'pao'
       }
     ]
   },
@@ -188,12 +184,47 @@ export const zones: Zone[] = [
         title: 'AFX Slot Car Racing',
         description: 'Photoreal 1970s HO slot cars — squeeze the trigger, brake into the corner, or fly off into the shag carpet.',
         domain: 'slotcar.netlify.app',
+        repo: 'https://github.com/cschweda/slotcarsim',
         icon: 'car-front',
         accent: '#ff6a2b',
         badge: 'Analog throttle',
         badgeNote: 'no house, just the track',
         span: 'banner',
         art: 'slotcar'
+      }
+    ]
+  },
+  {
+    id: 'amtoy',
+    sign: 'AmToy',
+    color: '#ff4436',
+    title: 'Games That Think!',
+    sub: 'Homages to AmToy — a completely fictional American toy company (1961–1983), invented from scratch so these recreations step on no one’s trademarks. The history and the flagship’s voice first; the toys themselves are on the way.',
+    unit: 'exhibit',
+    items: [
+      {
+        title: 'AmToy: The Whole Story',
+        description: 'The magazine-style corporate history — Elk Grove Village, 1961, to the crash of 1983, forever in the wrong place at the wrong time.',
+        domain: 'amtoy.netlify.app',
+        repo: 'https://github.com/cschweda/amtoy-history',
+        icon: 'factory',
+        accent: '#ff4436',
+        badge: 'Games that think!',
+        badgeNote: 'the whole sad story',
+        span: 'wide',
+        art: 'amtoy'
+      },
+      {
+        title: 'Rovacon Voice Bench',
+        description: 'The flagship’s voice chip, rebuilt — Votrax-class formant speech synthesis in the browser: type a phrase, hear 1980 arcade speech.',
+        domain: 'rovacon-voice.netlify.app',
+        repo: 'https://github.com/cschweda/rovacon-voice',
+        icon: 'audio-waveform',
+        accent: '#f4efe6',
+        badge: 'Formant synthesis',
+        badgeNote: 'the voice that shouldn’t exist',
+        span: 'wide',
+        art: 'rovacon'
       }
     ]
   }

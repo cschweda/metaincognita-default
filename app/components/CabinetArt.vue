@@ -53,14 +53,19 @@ const SCENES: Record<ArtKey, Scene> = {
      exactly, so the banner's answer exactly: `meet`, pinned to the dead right. */
   roulette: { w: 558, h: 240, vx: 448, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
   pachinko: { w: 558, h: 240, vx: 385, vy: 8, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
+  /* PAO's cabinet is off the floor while The Mind is rethought; the scene stays
+     drawn so its return is a one-line catalog edit. */
   pao: { w: 1100, h: 220, vx: 900, vy: 6, spread: 1000, shape: 'banner', par: 'xMaxYMid meet' },
   /* The slot-car oval is a banner too — same 1100×220 substrate as PAO, same rightward
      fade — so the two big banners stand on an identical floor. */
-  slotcar: { w: 1100, h: 220, vx: 900, vy: 6, spread: 1000, shape: 'banner', par: 'xMaxYMid meet' }
+  slotcar: { w: 1100, h: 220, vx: 900, vy: 6, spread: 1000, shape: 'banner', par: 'xMaxYMid meet' },
+  /* The AmToy exhibits are wides — the roulette/pachinko substrate exactly. */
+  amtoy: { w: 558, h: 240, vx: 430, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
+  rovacon: { w: 558, h: 240, vx: 448, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' }
 }
 
 /** Where the floor plane stops — short of the copy, not at the foot of the box. */
-const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220, slotcar: 220 }
+const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220, slotcar: 220, amtoy: 236, rovacon: 236 }
 
 const scene = computed(() => SCENES[props.art])
 const floorEnd = computed(() => FLOOR_END[props.art])
@@ -177,6 +182,60 @@ const trackTies = computed(() =>
     }
   })
 )
+
+/**
+ * The AmToy sunburst — gaudy box-art rays crowning the company's flagship rover.
+ * Thirteen rays fan the upper semicircle, alternating long and short exactly like
+ * the 1979 packaging the history page lovingly fakes. Composed right of the copy
+ * fade, like every wide; the left-hand stars exist for the mobile panel, where
+ * the mask lifts and the whole scene shows.
+ */
+/* The sun floats clear of the rover — flush against the body it read as a canopy,
+   not a crown. Ray tips stop at y≈86, under the badge caption's band. */
+const SUN = { cx: 500, cy: 140, r: 26 }
+const sunRays = computed(() =>
+  Array.from({ length: 13 }, (_, i) => {
+    const t = Math.PI + (i / 12) * Math.PI
+    const inner = SUN.r + 8
+    const outer = inner + (i % 2 ? 12 : 20)
+    return {
+      x1: SUN.cx + inner * Math.cos(t),
+      y1: SUN.cy + inner * Math.sin(t),
+      x2: SUN.cx + outer * Math.cos(t),
+      y2: SUN.cy + outer * Math.sin(t)
+    }
+  })
+)
+/** The rover's programmable keypad — 3×2 on the flank, one key lit mid-command. */
+const KEYPAD = { x: 498, y: 168, kw: 9, kh: 8, gx: 4, gy: 4 }
+const keypadKeys = computed(() =>
+  Array.from({ length: 6 }, (_, i) => ({
+    i,
+    x: KEYPAD.x + (i % 3) * (KEYPAD.kw + KEYPAD.gx),
+    y: KEYPAD.y + Math.floor(i / 3) * (KEYPAD.kh + KEYPAD.gy)
+  }))
+)
+const LIT_KEY = 1
+
+/**
+ * The Rovacon voice chip: a DIP package with the formant burst stepping out of its
+ * output pin — quantized, because the synthesis is — and decaying leftward into the
+ * copy fade, the way a voice dies into a room. Legs and sunburst rays draw at full
+ * `stroke` weight — at `peg` strength both vanished into the substrate.
+ */
+const CHIP = { x: 452, y: 118, w: 94, h: 52 }
+const chipLegs = computed(() =>
+  Array.from({ length: 10 }, (_, i) => {
+    const x = CHIP.x + 14 + (i % 5) * 17
+    const edge = i < 5 ? CHIP.y : CHIP.y + CHIP.h
+    return { x1: x, y1: edge, x2: x, y2: edge + (i < 5 ? -12 : 12) }
+  })
+)
+/** Seven ticks for seven phonemes — R OH: V AH K AA: N, as the bench's og-image annotates it. */
+const PHONEMES = [418, 437, 456, 475, 494, 513, 532]
+const LIT_PHONEME = 2
+/** The burst itself, hand-quantized: full amplitude beside the pin, flatline by mid-tile. */
+const WAVE = 'M 452 144 H 440 V 124 H 430 V 162 H 420 V 118 H 410 V 168 H 400 V 130 H 388 V 156 H 376 V 136 H 362 V 150 H 346 V 140 H 328 V 148 H 306 V 144 H 252'
 </script>
 
 <template>
@@ -292,6 +351,50 @@ const trackTies = computed(() =>
           <rect class="fill stroke" x="-4" y="-6" width="13" height="12" rx="3" />
           <circle class="node" cx="-20" cy="0" r="4" />
         </g>
+      </g>
+
+      <!-- the sunburst, the flagship rover, and one key of a command half-entered -->
+      <g v-else-if="art === 'amtoy'" class="hero">
+        <circle v-for="(s, i) in [[420, 70], [540, 84], [446, 118], [120, 80], [210, 140], [80, 180], [260, 60]]" :key="`a${i}`" class="star" :cx="s[0]" :cy="s[1]" r="2.4" />
+
+        <path class="fill stroke" d="M 474 140 A 26 26 0 0 1 526 140 Z" />
+        <line v-for="(r, i) in sunRays" :key="`sb${i}`" class="stroke" :x1="r.x1" :y1="r.y1" :x2="r.x2" :y2="r.y2" />
+
+        <path class="fill stroke" d="M 452 196 L 452 180 L 466 162 L 534 162 L 546 176 L 546 196 Z" />
+        <circle class="stroke" cx="474" cy="197" r="11" />
+        <circle class="stroke" cx="524" cy="197" r="11" />
+        <rect
+          v-for="k in keypadKeys"
+          :key="`kk${k.i}`"
+          :class="k.i === LIT_KEY ? 'fill stroke' : 'hair'"
+          :x="k.x"
+          :y="k.y"
+          :width="KEYPAD.kw"
+          :height="KEYPAD.kh"
+          rx="2"
+        />
+        <circle class="node" cx="462" cy="174" r="4.5" />
+      </g>
+
+      <!-- the DIP that speaks: a quantized burst out of the output pin, seven phonemes -->
+      <g v-else-if="art === 'rovacon'" class="hero">
+        <circle v-for="(s, i) in [[430, 86], [552, 100], [482, 92], [140, 70], [90, 150], [200, 110], [250, 170]]" :key="`v${i}`" class="star" :cx="s[0]" :cy="s[1]" r="2.4" />
+
+        <line v-for="(l, i) in chipLegs" :key="`cl${i}`" class="stroke" :x1="l.x1" :y1="l.y1" :x2="l.x2" :y2="l.y2" />
+        <rect class="fill stroke" :x="CHIP.x" :y="CHIP.y" :width="CHIP.w" :height="CHIP.h" rx="5" />
+        <circle class="hair" cx="462" cy="144" r="4.5" />
+        <path class="curve" :d="WAVE" />
+        <rect
+          v-for="(x, i) in PHONEMES"
+          :key="`ph${i}`"
+          :class="i === LIT_PHONEME ? 'fill stroke' : 'hair'"
+          :x="x"
+          y="198"
+          width="12"
+          height="8"
+          rx="2"
+        />
+        <circle class="node" cx="452" cy="144" r="5" />
       </g>
 
       <!-- fifty-two cards; one triplet fires -->

@@ -3,7 +3,9 @@ import { mountSuspended } from '@nuxt/test-utils/runtime'
 import CabinetArt from '~/components/CabinetArt.vue'
 import type { ArtKey } from '~/data/catalog'
 
-const KEYS: ArtKey[] = ['blackjack', 'flameout', 'roulette', 'pachinko', 'pao', 'slotcar']
+// `pao` stays in the roster while its cabinet is off the floor — the scene is
+// drawn and waiting, and these tests keep it working for its return.
+const KEYS: ArtKey[] = ['blackjack', 'flameout', 'roulette', 'pachinko', 'pao', 'slotcar', 'amtoy', 'rovacon']
 
 describe('CabinetArt', () => {
   it('draws the scene the key asks for, and only that one', async () => {
@@ -62,7 +64,7 @@ describe('CabinetArt', () => {
   // A wide shares the banner's trap: 2.3:1 at 1180 and ~3.6:1 when it spans the row,
   // so `slice` would crop a different amount at every width. `meet`, pinned right.
   it('never crops a wide either', async () => {
-    for (const art of ['roulette', 'pachinko'] as const) {
+    for (const art of ['roulette', 'pachinko', 'amtoy', 'rovacon'] as const) {
       const w = await mountSuspended(CabinetArt, { props: { art } })
       expect(w.find('svg').attributes('preserveAspectRatio'), art).toBe('xMaxYMid meet')
     }
@@ -101,6 +103,30 @@ describe('CabinetArt', () => {
     const cards = w.findAll('.hero rect')
     expect(cards).toHaveLength(52)
     expect(w.findAll('.hero circle.node')).toHaveLength(3)
+  })
+
+  it('crowns the flagship rover with a thirteen-ray sunburst, one key lit', async () => {
+    const w = await mountSuspended(CabinetArt, { props: { art: 'amtoy' } })
+    // the sunburst — the only lines in the scene beyond the substrate
+    expect(w.findAll('.hero line')).toHaveLength(13)
+    // the 3×2 keypad on the rover's flank; exactly one key mid-command
+    expect(w.findAll('.hero rect')).toHaveLength(6)
+    expect(w.findAll('.hero rect.fill.stroke')).toHaveLength(1)
+    // one photo-eye on the nose
+    expect(w.findAll('.hero circle.node')).toHaveLength(1)
+  })
+
+  it('steps one quantized burst out of the voice chip, across seven phonemes', async () => {
+    const w = await mountSuspended(CabinetArt, { props: { art: 'rovacon' } })
+    // the DIP package plus seven phoneme ticks — R OH: V AH K AA: N
+    expect(w.findAll('.hero rect')).toHaveLength(8)
+    // the chip and exactly one lit phoneme share the lit language
+    expect(w.findAll('.hero rect.fill.stroke')).toHaveLength(2)
+    // ten legs — five off each long edge of the package
+    expect(w.findAll('.hero line.stroke')).toHaveLength(10)
+    // the burst itself, and the live output pin it leaves from
+    expect(w.findAll('.hero path.curve')).toHaveLength(1)
+    expect(w.findAll('.hero circle.node')).toHaveLength(1)
   })
 
   /**

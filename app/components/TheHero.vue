@@ -33,8 +33,8 @@
       style="animation-delay: 0.46s"
     >
       A small, curated collection of open-source projects, built out of pure curiosity —
-      casino simulations that show their math, memory trainers, and games just for fun.
-      No real money, no accounts.
+      casino simulations that show their math, games just for fun, and the reborn catalog
+      of AmToy, an American toy company that never existed. No real money, no accounts.
     </p>
 
     <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 0.56s">
@@ -42,9 +42,9 @@
         Take the floor
         <UIcon name="i-lucide-arrow-down" class="text-[0.95em]" aria-hidden="true" />
       </a>
-      <!-- named for their destinations: the signs say The Mind / The Arcade, the titles say the rest -->
-      <a href="#mind" class="btn-ghost">Tools for the mind</a>
+      <!-- named for their destinations: the signs say The Arcade / AmToy, the titles say the rest -->
       <a href="#arcade" class="btn-ghost">Tools for fun</a>
+      <a href="#amtoy" class="btn-ghost">AmToy games</a>
     </div>
 
     <ul class="reveal mt-9 flex flex-wrap items-center justify-center gap-2.5" style="animation-delay: 0.66s">

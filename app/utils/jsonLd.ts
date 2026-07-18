@@ -12,7 +12,7 @@ export function buildJsonLd(items: CatalogItem[]) {
         '@id': `${SITE}/#website`,
         name: 'metaincognita',
         url: SITE,
-        description: 'A small, curated collection of open-source projects, built out of curiosity — casino simulations that show their math, memory trainers, and games for fun. No real money, no accounts, no generative AI.',
+        description: 'A small, curated collection of open-source projects, built out of curiosity — casino simulations that show their math, games for fun, and playable homages to AmToy, a toy company that never existed. No real money, no accounts, no generative AI.',
         inLanguage: 'en'
       },
       {
@@ -30,7 +30,9 @@ export function buildJsonLd(items: CatalogItem[]) {
             applicationCategory: 'GameApplication',
             operatingSystem: 'Web',
             isAccessibleForFree: true,
-            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+            // every app is open source; the repository is the same work, elsewhere
+            ...(item.repo ? { sameAs: [item.repo] } : {})
           }
         }))
       }

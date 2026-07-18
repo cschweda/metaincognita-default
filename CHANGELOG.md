@@ -5,6 +5,49 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2026-07-18
+
+The AmToy wing opens, and every cabinet shows its source.
+
+### Added
+- **A new zone: AmToy.** *Games That Think!* — playable homages to a completely fictional
+  American toy company (1961–1983), invented from scratch so the retro-toy recreations
+  step on no one's trademarks. Two wide cabinets stand shoulder to shoulder under a sign
+  in the logo's own LED red: **AmToy: The Whole Story** (`amtoy.netlify.app`), the
+  magazine-style corporate history, and the **Rovacon Voice Bench**
+  (`rovacon-voice.netlify.app`), the flagship's Votrax-class voice chip rebuilt in the
+  browser. Its badge caption is lifted straight from the lore: *the voice that shouldn't
+  exist*. The wing grows next — a full Rovacon toy simulation is in the works.
+- **Two new wide scenes.** The history cabinet gets a gaudy box-art sunburst — thirteen
+  rays, long-short-long — crowning the flagship rover, photo-eye lit and one keypad key
+  glowing mid-command. The voice bench gets the DIP package itself, a quantized formant
+  burst stepping out of its output pin and decaying into the copy fade, over seven
+  phoneme ticks: R OH: V AH K AA: N. Both stand on the roulette/pachinko substrate and,
+  like every scene, name no colour of their own.
+- **The cream cabinet.** The voice bench's accent is VoxAm cream (`#f4efe6`) — red beside
+  cream is the AmToy logo's own two-tone, and the first white-neon cabinet on the floor.
+- **Every cabinet now links its source.** A quiet mono `source` link with the GitHub mark
+  sits in each cabinet's footer row, straight to the app's repository — every app on the
+  floor is open source, so the floor now says so, per cabinet. The one gap is the
+  hold'em repo, private for now; its cabinet simply shows no source link rather than a
+  dead one. The JSON-LD carries each repository as `sameAs`, and the README tables grew
+  a Source column.
+
+### Changed
+- **The cabinet is an `article` now, not one big anchor.** Two links per cabinet means
+  nested anchors — invalid HTML — so the live link stretches itself over the tile via a
+  `::after` overlay (the card still plays like a single button, ring and lift intact via
+  `:has()`), and the source link floats above the overlay on its own z-index. Both links
+  name their app to screen readers, so eleven "source" links stay distinguishable.
+- The hero's sub-paragraph and ghost links follow the floor: *Tools for fun* (#arcade)
+  and *AmToy games* (#amtoy). Meta description, JSON-LD and README all now name the
+  toy company that never existed.
+
+### Removed
+- **The Mind is off the floor — for now.** The PAO Speed Trainer's zone is parked while
+  it is rethought, not retired: the 52-card lattice scene stays drawn and tested in
+  `CabinetArt.vue`, so its return is a one-line catalog edit.
+
 ## [2.4.1] - 2026-07-18
 
 The floor stops preaching, and admits it was curious the whole time.
