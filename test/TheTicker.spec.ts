@@ -12,7 +12,7 @@ describe('TheTicker', () => {
     const w = await mountSuspended(TheTicker)
     const text = w.text()
     expect(text).toContain('The house always wins')
-    expect(text).toContain('Every edge is published')
+    expect(text).toContain('The math is the point')
     expect(text).not.toMatch(/\d+(\.\d+)?%/)
   })
 

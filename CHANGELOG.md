@@ -5,6 +5,32 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.1] - 2026-07-18
+
+The floor stops preaching, and admits it was curious the whole time.
+
+### Changed
+- **Retoned the landing copy off the honesty-crusade and onto the mathematics — and the
+  curiosity behind it.** The 2.4.0 hero read like a slogan (*"Every machine on this floor
+  tells the truth."*); it now reads **"Nothing at stake. Everything simulated."** The
+  sub-paragraph reframes the site as what it actually is — *a small, curated collection of
+  open-source projects, built out of pure curiosity* — casino simulations that show their
+  math, memory trainers, and games just for fun. No "truth", no "honest", no "expose/reveal"
+  left doing moral work anywhere on the page.
+- **An origin line in the footer.** This stuff has been rolling around one head for a long
+  time: *"In the works, one way or another, since a video poker game I wrote on a TRS-80
+  Model III — sometime in the 1980s, in BASIC."* The Video Poker trainer on the floor is its direct
+  descendant.
+- Footer eyebrow *an honest floor* → *all simulation, all source*.
+- **Ticker:** the two lines that had drifted toward sermon are retoned to the register of the
+  one everyone liked (*"The math is the point"*): *"Every edge is published"* →
+  **"The edge is just arithmetic"**, and *"Nothing here is rigged — it doesn't need to be"* →
+  **"Fake chips, real math"**. The factual joke (*"The house always wins"*) stays.
+- Meta description, JSON-LD and the README swept for the same vocabulary and reframed as a
+  curated, curiosity-driven collection whose sims show their math. The Arcade sub drops a
+  stray "reveal"; the Pit and Machines keep their edge-facts (they are, genuinely, about the
+  math).
+
 ## [2.4.0] - 2026-07-18
 
 The Arcade opens — and the floor stops being all about the edge.

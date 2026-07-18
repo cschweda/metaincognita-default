@@ -25,16 +25,16 @@
       class="font-display reveal mt-7 text-[clamp(1.3rem,3vw,2.1rem)] font-normal leading-snug tracking-tight text-bone-100"
       style="animation-delay: 0.36s"
     >
-      Every machine on this floor tells the truth.
+      Nothing at stake. Everything simulated.
     </p>
 
     <p
       class="reveal mt-5 max-w-2xl text-base leading-relaxed text-bone-300 sm:text-lg"
       style="animation-delay: 0.46s"
     >
-      Open-source casino simulations that expose the real math, memory trainers that
-      sharpen recall, and now games built for nothing but the fun of it. No real money,
-      no accounts.
+      A small, curated collection of open-source projects, built out of pure curiosity —
+      casino simulations that show their math, memory trainers, and games just for fun.
+      No real money, no accounts.
     </p>
 
     <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 0.56s">

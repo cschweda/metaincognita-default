@@ -12,7 +12,7 @@ export function buildJsonLd(items: CatalogItem[]) {
         '@id': `${SITE}/#website`,
         name: 'metaincognita',
         url: SITE,
-        description: 'A collection of open-source casino simulations, memory trainers, and games for fun — the casino sims reveal the math the floor never shows. No real money, no accounts, no generative AI.',
+        description: 'A small, curated collection of open-source projects, built out of curiosity — casino simulations that show their math, memory trainers, and games for fun. No real money, no accounts, no generative AI.',
         inLanguage: 'en'
       },
       {

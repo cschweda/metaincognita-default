@@ -181,7 +181,7 @@ export const zones: Zone[] = [
     sign: 'The Arcade',
     color: '#ff6a2b',
     title: 'Tools for fun.',
-    sub: 'No edge to reveal here, nothing to beat — just games built for the joy of it. Starting with a slot car track from 1971; more on the way.',
+    sub: 'No edge here, nothing to beat — just games built for the joy of it. Starting with a slot car track from 1971; more on the way.',
     unit: 'game',
     items: [
       {

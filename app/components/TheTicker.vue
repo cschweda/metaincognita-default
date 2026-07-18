@@ -5,13 +5,13 @@
  */
 const LINES = [
   'The house always wins',
-  'Every edge is published',
+  'The edge is just arithmetic',
   'No real money',
   'No accounts',
   'No generative AI',
   'Read the source',
   'The math is the point',
-  "Nothing here is rigged — it doesn’t need to be"
+  'Fake chips, real math'
 ]
 
 // Two copies, so translateX(-50%) wraps with no seam.

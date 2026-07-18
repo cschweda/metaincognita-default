@@ -9,9 +9,9 @@
 
 ![metaincognita — open-source casino simulation suite](public/og-image.png)
 
-The landing page for **metaincognita** — a collection of casino games rebuilt as
-honest, open-source **simulations** that expose the math the floor never shows, **memory
-trainers** for a sharper mind, and now **games** built for nothing but fun.
+The landing page for **metaincognita** — a small, curated collection of open-source
+projects built out of curiosity: casino games rebuilt as **simulations** that show their
+math, **memory trainers** for a sharper mind, and now **games** built for nothing but fun.
 
 > **Not a gambling site.** No real money, no accounts, no logins, no generative AI —
 > just open-source apps you run in your browser, free to fork. (Some games ship a
@@ -169,7 +169,7 @@ and append an item to a zone's `items` array:
 ```ts
 {
   title: 'New Game',
-  description: 'One honest line about what it teaches.',
+  description: 'One plain line about what it teaches.',
   domain: 'new-game.metaincognita.com', // any bare hostname (the slot car lives on netlify.app); the live-link label
   icon: 'dice-6',                        // any lucide name -> i-lucide-dice-6
   accent: '#e0a92e',                     // hex driving the glow, bulbs, ring + icon tint

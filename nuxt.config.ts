@@ -2,7 +2,7 @@
 const SITE_URL = 'https://metaincognita.com'
 const TITLE = 'metaincognita — casino simulators, trainers & games'
 const DESCRIPTION
-  = 'A collection of open-source casino simulators that expose the math behind blackjack, craps, hold’em, roulette, slots and more — plus memory trainers for a sharper mind, and games built for nothing but fun.'
+  = 'A small, curated collection of open-source projects, built out of curiosity — casino simulators that show the math behind blackjack, craps, hold’em, roulette and slots, memory trainers for a sharper mind, and games built for fun.'
 
 export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxtjs/plausible'],
