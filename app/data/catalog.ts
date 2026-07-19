@@ -6,7 +6,7 @@ export type Span = 'std' | 'wide' | 'feature' | 'banner'
  * `pao` currently has no cabinet: The Mind is off the floor while its zone is
  * rethought, and the scene waits in CabinetArt.vue for its return.
  */
-export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar' | 'amtoy' | 'rovacon'
+export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar' | 'vogeltronics' | 'rovacon'
 
 export interface CatalogItem {
   /** Display name shown on the cabinet. */
@@ -48,7 +48,7 @@ export interface CatalogItem {
 
 export interface Zone {
   /** Scroll anchor and grid modifier (`.floor-<id>`). */
-  id: 'pit' | 'machines' | 'arcade' | 'amtoy'
+  id: 'pit' | 'machines' | 'arcade' | 'vogeltronics'
   /** Text inside the neon tube sign. */
   sign: string
   /** Zone neon colour. */
@@ -196,24 +196,24 @@ export const zones: Zone[] = [
     ]
   },
   {
-    id: 'amtoy',
-    sign: 'AmToy',
+    id: 'vogeltronics',
+    sign: 'VogelTronics',
     color: '#ff4436',
     title: 'Games That Think!',
-    sub: 'Homages to AmToy — a completely fictional American toy company (1961–1983), invented from scratch so these recreations step on no one’s trademarks. The history and the flagship’s voice first; the toys themselves are on the way.',
+    sub: 'Homages to VogelTronics — a completely fictional Illinois toy company (1961–1983), invented from scratch so these recreations step on no one’s trademarks. The history and the flagship’s voice first; the toys themselves are on the way.',
     unit: 'exhibit',
     items: [
       {
-        title: 'AmToy: The Whole Story',
+        title: 'VogelTronics: The Whole Story',
         description: 'The magazine-style corporate history — Elk Grove Village, 1961, to the crash of 1983, forever in the wrong place at the wrong time.',
-        domain: 'amtoy.netlify.app',
-        repo: 'https://github.com/cschweda/amtoy-history',
+        domain: 'vogeltronics.metaincognita.com',
+        repo: 'https://github.com/cschweda/vogeltronics-history',
         icon: 'factory',
         accent: '#ff4436',
         badge: 'Games that think!',
         badgeNote: 'the whole sad story',
         span: 'wide',
-        art: 'amtoy'
+        art: 'vogeltronics'
       },
       {
         title: 'Rovacon Voice Bench',

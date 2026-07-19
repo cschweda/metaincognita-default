@@ -12,7 +12,7 @@ export function buildJsonLd(items: CatalogItem[]) {
         '@id': `${SITE}/#website`,
         name: 'metaincognita',
         url: SITE,
-        description: 'A small, curated collection of open-source projects, built out of curiosity — casino simulations that show their math, games for fun, and playable homages to AmToy, a toy company that never existed. No real money, no accounts, no generative AI.',
+        description: 'A small, curated collection of open-source projects, built out of curiosity — casino simulations that show their math, games for fun, and playable homages to VogelTronics, a toy company that never existed. No real money, no accounts, no generative AI.',
         inLanguage: 'en'
       },
       {

@@ -118,8 +118,8 @@ body {
 .floor-machines .cab-feature { grid-column: 3 / span 2; grid-row: 1 / span 2; }
 .floor-machines .cab-wide { grid-column: 1 / span 2; }
 .floor-arcade .cab-banner { grid-column: span 4; }
-/* AmToy runs two wides shoulder to shoulder — one row, red beside cream */
-.floor-amtoy .cab-wide { grid-column: span 2; }
+/* VogelTronics runs two wides shoulder to shoulder — one row, red beside cream */
+.floor-vogeltronics .cab-wide { grid-column: span 2; }
 
 @media (max-width: 980px) {
   .floor { grid-template-columns: repeat(2, 1fr); }
@@ -127,7 +127,7 @@ body {
   .floor-machines .cab-feature,
   .floor-pit .cab-wide,
   .floor-machines .cab-wide,
-  .floor-amtoy .cab-wide,
+  .floor-vogeltronics .cab-wide,
   .floor-arcade .cab-banner {
     grid-column: span 2;
     grid-row: auto;
@@ -139,7 +139,7 @@ body {
   .floor-machines .cab-feature,
   .floor-pit .cab-wide,
   .floor-machines .cab-wide,
-  .floor-amtoy .cab-wide,
+  .floor-vogeltronics .cab-wide,
   .floor-arcade .cab-banner {
     grid-column: span 1;
   }

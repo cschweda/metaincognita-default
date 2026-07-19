@@ -11,8 +11,8 @@
 
 The landing page for **metaincognita** — a small, curated collection of open-source
 projects built out of curiosity: casino games rebuilt as **simulations** that show their
-math, **games** built for nothing but fun, and playable homages to **AmToy**, a completely
-fictional American toy company invented so the retro-toy recreations step on no one's
+math, **games** built for nothing but fun, and playable homages to **VogelTronics**, a completely
+fictional Illinois toy company invented so the retro-toy recreations step on no one's
 trademarks.
 
 > **Not a gambling site.** No real money, no accounts, no logins, no generative AI —
@@ -47,18 +47,18 @@ simply links out to them.
 | --- | --- | --- | --- |
 | AFX Slot Car Racing | `slotcar.netlify.app` | [source](https://github.com/cschweda/slotcarsim) | Photorealistic 1970s Aurora AFX HO slot cars — analog trigger throttle, real deslot physics, oval and figure-eight, race a fallible AI or practice solo. Open source. |
 
-### AmToy — Games That Think!
+### VogelTronics — Games That Think!
 
-Playable homages to **AmToy**, a completely fictional American toy company
+Playable homages to **VogelTronics**, a completely fictional Illinois toy company
 (1961–1983) invented from scratch — founder, catalog, logos and all — so these
 recreations owe nothing to Hasbro, Mattel, Milton Bradley or anyone else's
-trademarks. The [corporate history](https://amtoy.netlify.app) is the shared lore;
+trademarks. The [corporate history](https://vogeltronics.metaincognita.com/) is the shared lore;
 this wing grows next, starting with a full simulation of **Rovacon**, the flagship
 programmable rover.
 
 | Exhibit | Live | Source | What it is |
 | --- | --- | --- | --- |
-| AmToy: The Whole Story | `amtoy.netlify.app` | [source](https://github.com/cschweda/amtoy-history) | The magazine-style corporate history, era by era, 1961 to the 1983 crash. |
+| VogelTronics: The Whole Story | `vogeltronics.metaincognita.com` | [source](https://github.com/cschweda/vogeltronics-history) | The magazine-style corporate history, era by era, 1961 to the 1983 crash. |
 | Rovacon Voice Bench | `rovacon-voice.netlify.app` | [source](https://github.com/cschweda/rovacon-voice) | Votrax SC-01-class formant speech synthesis in TypeScript — type a phrase, hear 1980 arcade speech, export WAV. |
 
 ## Tech stack

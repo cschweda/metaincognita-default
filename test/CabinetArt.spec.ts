@@ -5,7 +5,7 @@ import type { ArtKey } from '~/data/catalog'
 
 // `pao` stays in the roster while its cabinet is off the floor — the scene is
 // drawn and waiting, and these tests keep it working for its return.
-const KEYS: ArtKey[] = ['blackjack', 'flameout', 'roulette', 'pachinko', 'pao', 'slotcar', 'amtoy', 'rovacon']
+const KEYS: ArtKey[] = ['blackjack', 'flameout', 'roulette', 'pachinko', 'pao', 'slotcar', 'vogeltronics', 'rovacon']
 
 describe('CabinetArt', () => {
   it('draws the scene the key asks for, and only that one', async () => {
@@ -64,7 +64,7 @@ describe('CabinetArt', () => {
   // A wide shares the banner's trap: 2.3:1 at 1180 and ~3.6:1 when it spans the row,
   // so `slice` would crop a different amount at every width. `meet`, pinned right.
   it('never crops a wide either', async () => {
-    for (const art of ['roulette', 'pachinko', 'amtoy', 'rovacon'] as const) {
+    for (const art of ['roulette', 'pachinko', 'vogeltronics', 'rovacon'] as const) {
       const w = await mountSuspended(CabinetArt, { props: { art } })
       expect(w.find('svg').attributes('preserveAspectRatio'), art).toBe('xMaxYMid meet')
     }
@@ -106,7 +106,7 @@ describe('CabinetArt', () => {
   })
 
   it('crowns the flagship rover with a thirteen-ray sunburst, one key lit', async () => {
-    const w = await mountSuspended(CabinetArt, { props: { art: 'amtoy' } })
+    const w = await mountSuspended(CabinetArt, { props: { art: 'vogeltronics' } })
     // the sunburst — the only lines in the scene beyond the substrate
     expect(w.findAll('.hero line')).toHaveLength(13)
     // the 3×2 keypad on the rover's flank; exactly one key mid-command

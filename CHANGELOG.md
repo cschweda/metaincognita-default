@@ -5,6 +5,21 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2026-07-19
+
+The fictional toymaker gets a name no real company answers to.
+
+### Changed
+- **The toy company is VogelTronics now — everywhere.** The invented company's previous
+  name turned out to collide with a real toymaker, so the fiction is renamed to stay
+  unmistakably fiction: founded 1961 in Elk Grove Village, Illinois as the Vogel Novelty
+  Company by Walter T. Vogel, renamed VogelTronics in the electronics craze of 1977, dead
+  by 1983. Same lore, same tagline (*Games That Think!*), same games. The zone sign, hero
+  link and copy, meta description, JSON-LD, README and tests all follow; the zone anchor
+  is `#vogeltronics`; the voice bench's cream accent is VogelVox cream; and the history
+  cabinet points at its new canonical home, `vogeltronics.metaincognita.com`. Entries
+  below are rewritten to the new name so the record reads as one company.
+
 ## [2.5.1] - 2026-07-18
 
 The last cabinet joins the open floor.
@@ -19,13 +34,13 @@ The last cabinet joins the open floor.
 
 ## [2.5.0] - 2026-07-18
 
-The AmToy wing opens, and every cabinet shows its source.
+The VogelTronics wing opens, and every cabinet shows its source.
 
 ### Added
-- **A new zone: AmToy.** *Games That Think!* — playable homages to a completely fictional
-  American toy company (1961–1983), invented from scratch so the retro-toy recreations
+- **A new zone: VogelTronics.** *Games That Think!* — playable homages to a completely fictional
+  Illinois toy company (1961–1983), invented from scratch so the retro-toy recreations
   step on no one's trademarks. Two wide cabinets stand shoulder to shoulder under a sign
-  in the logo's own LED red: **AmToy: The Whole Story** (`amtoy.netlify.app`), the
+  in the logo's own LED red: **VogelTronics: The Whole Story** (`vogeltronics.metaincognita.com`), the
   magazine-style corporate history, and the **Rovacon Voice Bench**
   (`rovacon-voice.netlify.app`), the flagship's Votrax-class voice chip rebuilt in the
   browser. Its badge caption is lifted straight from the lore: *the voice that shouldn't
@@ -36,8 +51,8 @@ The AmToy wing opens, and every cabinet shows its source.
   burst stepping out of its output pin and decaying into the copy fade, over seven
   phoneme ticks: R OH: V AH K AA: N. Both stand on the roulette/pachinko substrate and,
   like every scene, name no colour of their own.
-- **The cream cabinet.** The voice bench's accent is VoxAm cream (`#f4efe6`) — red beside
-  cream is the AmToy logo's own two-tone, and the first white-neon cabinet on the floor.
+- **The cream cabinet.** The voice bench's accent is VogelVox cream (`#f4efe6`) — red beside
+  cream is the VogelTronics logo's own two-tone, and the first white-neon cabinet on the floor.
 - **Every cabinet now links its source.** A quiet mono `source` link with the GitHub mark
   sits in each cabinet's footer row, straight to the app's repository — every app on the
   floor is open source, so the floor now says so, per cabinet. The one gap is the
@@ -52,7 +67,7 @@ The AmToy wing opens, and every cabinet shows its source.
   `:has()`), and the source link floats above the overlay on its own z-index. Both links
   name their app to screen readers, so eleven "source" links stay distinguishable.
 - The hero's sub-paragraph and ghost links follow the floor: *Tools for fun* (#arcade)
-  and *AmToy games* (#amtoy). Meta description, JSON-LD and README all now name the
+  and *VogelTronics games* (#vogeltronics). Meta description, JSON-LD and README all now name the
   toy company that never existed.
 
 ### Removed

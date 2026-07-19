@@ -5,7 +5,7 @@ const SPANS: Span[] = ['std', 'wide', 'feature', 'banner']
 
 describe('catalog', () => {
   it('has exactly four zones in floor order', () => {
-    expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'arcade', 'amtoy'])
+    expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'arcade', 'vogeltronics'])
   })
 
   it('carries all eleven apps', () => {
@@ -58,7 +58,7 @@ describe('catalog', () => {
     // DOM order matters — the grid placement rules in main.css assume it.
     expect(pit).toEqual(['feature', 'std', 'std', 'wide'])
     expect(machines).toEqual(['std', 'std', 'wide', 'feature'])
-    // The Arcade runs a single full-width banner; AmToy runs two wides shoulder to shoulder.
+    // The Arcade runs a single full-width banner; VogelTronics runs two wides shoulder to shoulder.
     expect(zones[2]!.items.map(i => i.span)).toEqual(['banner'])
     expect(zones[3]!.items.map(i => i.span)).toEqual(['wide', 'wide'])
   })

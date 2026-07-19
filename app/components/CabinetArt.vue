@@ -59,13 +59,13 @@ const SCENES: Record<ArtKey, Scene> = {
   /* The slot-car oval is a banner too — same 1100×220 substrate as PAO, same rightward
      fade — so the two big banners stand on an identical floor. */
   slotcar: { w: 1100, h: 220, vx: 900, vy: 6, spread: 1000, shape: 'banner', par: 'xMaxYMid meet' },
-  /* The AmToy exhibits are wides — the roulette/pachinko substrate exactly. */
-  amtoy: { w: 558, h: 240, vx: 430, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
+  /* The VogelTronics exhibits are wides — the roulette/pachinko substrate exactly. */
+  vogeltronics: { w: 558, h: 240, vx: 430, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
   rovacon: { w: 558, h: 240, vx: 448, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' }
 }
 
 /** Where the floor plane stops — short of the copy, not at the foot of the box. */
-const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220, slotcar: 220, amtoy: 236, rovacon: 236 }
+const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220, slotcar: 220, vogeltronics: 236, rovacon: 236 }
 
 const scene = computed(() => SCENES[props.art])
 const floorEnd = computed(() => FLOOR_END[props.art])
@@ -184,7 +184,7 @@ const trackTies = computed(() =>
 )
 
 /**
- * The AmToy sunburst — gaudy box-art rays crowning the company's flagship rover.
+ * The VogelTronics sunburst — gaudy box-art rays crowning the company's flagship rover.
  * Thirteen rays fan the upper semicircle, alternating long and short exactly like
  * the 1979 packaging the history page lovingly fakes. Composed right of the copy
  * fade, like every wide; the left-hand stars exist for the mobile panel, where
@@ -354,7 +354,7 @@ const WAVE = 'M 452 144 H 440 V 124 H 430 V 162 H 420 V 118 H 410 V 168 H 400 V 
       </g>
 
       <!-- the sunburst, the flagship rover, and one key of a command half-entered -->
-      <g v-else-if="art === 'amtoy'" class="hero">
+      <g v-else-if="art === 'vogeltronics'" class="hero">
         <circle v-for="(s, i) in [[420, 70], [540, 84], [446, 118], [120, 80], [210, 140], [80, 180], [260, 60]]" :key="`a${i}`" class="star" :cx="s[0]" :cy="s[1]" r="2.4" />
 
         <path class="fill stroke" d="M 474 140 A 26 26 0 0 1 526 140 Z" />
