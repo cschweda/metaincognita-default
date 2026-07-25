@@ -6,7 +6,7 @@ export type Span = 'std' | 'wide' | 'feature' | 'banner'
  * `pao` currently has no cabinet: The Mind is off the floor while its zone is
  * rethought, and the scene waits in CabinetArt.vue for its return.
  */
-export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar' | 'vogeltronics' | 'rovacon'
+export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar' | 'vogeltronics' | 'rovacon' | 'gridiron'
 
 export interface CatalogItem {
   /** Display name shown on the cabinet. */
@@ -226,6 +226,18 @@ export const zones: Zone[] = [
         badgeNote: 'the voice that shouldn’t exist',
         span: 'wide',
         art: 'rovacon'
+      },
+      {
+        title: 'Gridiron',
+        description: 'The 1977 LED football handheld, rebuilt for solo play — one bright blip against five tacklers, four downs to move the chains, and a kick on fourth. Keyboard-first.',
+        domain: 'gridiron.vogeltronics.com',
+        repo: 'https://github.com/cschweda/vogeltronics-gridiron-i',
+        icon: 'gamepad-2',
+        accent: '#ff2a1a',
+        badge: 'Nine yards of LED',
+        badgeNote: 'it thinks two plays ahead',
+        span: 'wide',
+        art: 'gridiron'
       }
     ]
   }

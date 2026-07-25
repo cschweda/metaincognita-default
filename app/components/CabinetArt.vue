@@ -61,11 +61,12 @@ const SCENES: Record<ArtKey, Scene> = {
   slotcar: { w: 1100, h: 220, vx: 900, vy: 6, spread: 1000, shape: 'banner', par: 'xMaxYMid meet' },
   /* The VogelTronics exhibits are wides — the roulette/pachinko substrate exactly. */
   vogeltronics: { w: 558, h: 240, vx: 430, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
-  rovacon: { w: 558, h: 240, vx: 448, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' }
+  rovacon: { w: 558, h: 240, vx: 448, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' },
+  gridiron: { w: 558, h: 240, vx: 430, vy: 10, spread: 700, shape: 'wide', par: 'xMaxYMid meet' }
 }
 
 /** Where the floor plane stops — short of the copy, not at the foot of the box. */
-const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220, slotcar: 220, vogeltronics: 236, rovacon: 236 }
+const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220, slotcar: 220, vogeltronics: 236, rovacon: 236, gridiron: 236 }
 
 const scene = computed(() => SCENES[props.art])
 const floorEnd = computed(() => FLOOR_END[props.art])
@@ -234,6 +235,28 @@ const chipLegs = computed(() =>
 /** Seven ticks for seven phonemes — R OH: V AH K AA: N, as the bench's og-image annotates it. */
 const PHONEMES = [418, 437, 456, 475, 494, 513, 532]
 const LIT_PHONEME = 2
+
+/**
+ * Gridiron's display, to scale: three lanes by nine yards. The three intensities
+ * are the game's own — one bright runner, five dim tacklers, the rest unlit —
+ * which is the whole of what that screen ever shows you.
+ */
+const FIELD = { x: 434, y: 152, gx: 13, gy: 20, cols: 9, rows: 3 }
+const fieldBlips = computed(() =>
+  Array.from({ length: FIELD.rows * FIELD.cols }, (_, i) => ({
+    i,
+    cx: FIELD.x + (i % FIELD.cols) * FIELD.gx,
+    cy: FIELD.y + Math.floor(i / FIELD.cols) * FIELD.gy
+  }))
+)
+/** Middle lane, two yards in — mid-run, not the snap. */
+const RUNNER = 11
+/**
+ * A legal pre-snap scatter by the game's own rules: five distinct cells in
+ * columns 2-8, at least one deep man back in 6-8 (index 17 is the safety).
+ */
+const TACKLERS = new Set([4, 7, 14, 17, 21])
+const runnerBlip = computed(() => fieldBlips.value[RUNNER]!)
 /** The burst itself, hand-quantized: full amplitude beside the pin, flatline by mid-tile. */
 const WAVE = 'M 452 144 H 440 V 124 H 430 V 162 H 420 V 118 H 410 V 168 H 400 V 130 H 388 V 156 H 376 V 136 H 362 V 150 H 346 V 140 H 328 V 148 H 306 V 144 H 252'
 </script>
@@ -395,6 +418,22 @@ const WAVE = 'M 452 144 H 440 V 124 H 430 V 162 H 420 V 118 H 410 V 168 H 400 V 
           rx="2"
         />
         <circle class="node" cx="452" cy="144" r="5" />
+      </g>
+
+      <!-- nine yards of red LED: five tacklers closing, one blip still running -->
+      <g v-else-if="art === 'gridiron'" class="hero">
+        <circle v-for="(s, i) in [[400, 74], [530, 94], [462, 64], [128, 82], [94, 156], [232, 116], [268, 60]]" :key="`g${i}`" class="star" :cx="s[0]" :cy="s[1]" r="2.4" />
+
+        <rect class="stroke" x="418" y="134" width="136" height="86" rx="7" />
+        <circle
+          v-for="b in fieldBlips"
+          :key="`gb${b.i}`"
+          :class="b.i === RUNNER ? 'fill stroke' : TACKLERS.has(b.i) ? 'stroke' : 'hair'"
+          :cx="b.cx"
+          :cy="b.cy"
+          :r="b.i === RUNNER ? 4.5 : 3"
+        />
+        <circle class="node" :cx="runnerBlip.cx" :cy="runnerBlip.cy" r="5" />
       </g>
 
       <!-- fifty-two cards; one triplet fires -->
