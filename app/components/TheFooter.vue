@@ -16,6 +16,13 @@ const year = new Date().getFullYear()
         <p>Open-source · no real money, no accounts, no generative AI.</p>
         <p class="mt-1.5">© {{ year }} metaincognita</p>
         <p class="mt-1.5">In the works, one way or another, since a video poker game I wrote on a TRS-80 Model III — sometime in the 1980s, in BASIC.</p>
+        <!--
+          The frame-break. It moved off the hero so the VogelTronics copy can be read
+          straight, but it does not get to disappear: the homages point at real products,
+          so exactly one plain statement has to live somewhere a visitor can reach.
+          Smallest type, last line — the same place the Owner's Manual puts it.
+        -->
+        <p class="mt-4 text-[0.62rem] leading-snug text-bone-600">VogelTronics, its catalog and its history are an original invention, created for a set of retro-toy homage projects. No Hasbro, Mattel, Milton Bradley, Parker Brothers or Fidelity trademarks, logos or trade dress are used.</p>
       </div>
     </div>
   </footer>

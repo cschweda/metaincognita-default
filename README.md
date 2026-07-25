@@ -52,14 +52,19 @@ simply links out to them.
 Playable homages to **VogelTronics**, a completely fictional Illinois toy company
 (1961–1983) invented from scratch — founder, catalog, logos and all — so these
 recreations owe nothing to Hasbro, Mattel, Milton Bradley or anyone else's
-trademarks. The [corporate history](https://history.vogeltronics.com/) is the shared lore;
-this wing grows next, starting with a full simulation of **Rovacon**, the flagship
-programmable rover.
+trademarks. The [corporate history](https://history.vogeltronics.com/) is the shared lore.
+**Gridiron** is the first playable cabinet; **Rovacon**, the flagship programmable rover,
+comes next.
+
+The on-site copy deliberately does **not** call the company fictional — it reads straight,
+and the one plain statement lives in the site footer's fine print. This README is the
+unambiguous version.
 
 | Exhibit | Live | Source | What it is |
 | --- | --- | --- | --- |
 | VogelTronics: The Whole Story | `history.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-history) | The magazine-style corporate history, era by era, 1961 to the 1983 crash. |
-| Rovacon Voice Bench | `rovacon-voice.netlify.app` | [source](https://github.com/cschweda/rovacon-voice) | Votrax SC-01-class formant speech synthesis in TypeScript — type a phrase, hear 1980 arcade speech, export WAV. |
+| Rovacon Voice Bench | `vogelvox.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-vogel-vox) | Votrax SC-01-class formant speech synthesis in TypeScript — type a phrase, hear 1980 arcade speech, export WAV. |
+| Gridiron | `gridiron.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-gridiron-i) | The 1977 LED football handheld, solo — one bright blip against five tacklers, four downs, a kick on fourth. Keyboard-first. |
 
 ## Tech stack
 

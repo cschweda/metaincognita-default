@@ -34,7 +34,7 @@
     >
       A small, curated collection of open-source projects, built out of pure curiosity —
       casino simulations that show their math, games just for fun, and the reborn catalog
-      of VogelTronics, an Illinois toy company that never existed. No real money, no accounts.
+      of VogelTronics, out of Elk Grove Village, Illinois. No real money, no accounts.
     </p>
 
     <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 0.56s">

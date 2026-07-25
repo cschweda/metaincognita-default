@@ -218,8 +218,8 @@ export const zones: Zone[] = [
       {
         title: 'Rovacon Voice Bench',
         description: 'The flagship’s voice chip, rebuilt — Votrax-class formant speech synthesis in the browser: type a phrase, hear 1980 arcade speech.',
-        domain: 'rovacon-voice.netlify.app',
-        repo: 'https://github.com/cschweda/rovacon-voice',
+        domain: 'vogelvox.vogeltronics.com',
+        repo: 'https://github.com/cschweda/vogeltronics-vogel-vox',
         icon: 'audio-waveform',
         accent: '#f4efe6',
         badge: 'Formant synthesis',
