@@ -200,7 +200,7 @@ export const zones: Zone[] = [
     sign: 'VogelTronics',
     color: '#ff4436',
     title: 'Games That Think!',
-    sub: 'Homages to VogelTronics — a completely fictional Illinois toy company (1961–1983), invented from scratch so these recreations step on no one’s trademarks. The history and the flagship’s voice first; the toys themselves are on the way.',
+    sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted. Gridiron plays now; the rest of the shelf is on its way.',
     unit: 'exhibit',
     items: [
       {
