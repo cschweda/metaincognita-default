@@ -5,6 +5,17 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.1] - 2026-07-25
+
+The VogelTronics wing moves onto its own domain.
+
+### Changed
+- **The Whole Story cabinet now points at `history.vogeltronics.com`.** The universe
+  has its own domain: every VogelTronics property lives under `vogeltronics.com`, with
+  each game on its own subdomain. Updating `domain` in the catalog fixes the cabinet
+  link and the JSON-LD `url` together, since both derive from that one field. Earlier
+  entries below record the previous address and are left as written.
+
 ## [2.6.0] - 2026-07-19
 
 The fictional toymaker gets a name no real company answers to.
