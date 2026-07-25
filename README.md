@@ -52,7 +52,7 @@ simply links out to them.
 Playable homages to **VogelTronics**, a completely fictional Illinois toy company
 (1961–1983) invented from scratch — founder, catalog, logos and all — so these
 recreations owe nothing to Hasbro, Mattel, Milton Bradley or anyone else's
-trademarks. The [corporate history](https://history.vogeltronics.com/) is the shared lore.
+trademarks. The [corporate history](https://vogeltronics.com/) is the shared lore.
 **Gridiron** is the first playable cabinet; **Rovacon**, the flagship programmable rover,
 comes next.
 
@@ -62,7 +62,7 @@ unambiguous version.
 
 | Exhibit | Live | Source | What it is |
 | --- | --- | --- | --- |
-| VogelTronics: The Whole Story | `history.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-history) | The magazine-style corporate history, era by era, 1961 to the 1983 crash. |
+| VogelTronics: The Whole Story | `vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-history) | The magazine-style corporate history, era by era, 1961 to the 1983 crash. |
 | Rovacon Voice Bench | `vogelvox.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-vogel-vox) | Votrax SC-01-class formant speech synthesis in TypeScript — type a phrase, hear 1980 arcade speech, export WAV. |
 | Gridiron | `gridiron.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-gridiron-i) | The 1977 LED football handheld, solo — one bright blip against five tacklers, four downs, a kick on fourth. Keyboard-first. |
 

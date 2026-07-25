@@ -206,7 +206,7 @@ export const zones: Zone[] = [
       {
         title: 'VogelTronics: The Whole Story',
         description: 'The magazine-style corporate history — Elk Grove Village, 1961, to the crash of 1983, forever in the wrong place at the wrong time.',
-        domain: 'history.vogeltronics.com',
+        domain: 'vogeltronics.com',
         repo: 'https://github.com/cschweda/vogeltronics-history',
         icon: 'factory',
         accent: '#ff4436',
