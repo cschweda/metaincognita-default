@@ -13,7 +13,7 @@ const LINES = [
   'No sign-ups',
   'Read the source',
   'Fly off into the shag carpet',
-  'Games that think'
+  'A fictional history'
 ]
 
 // Two copies, so translateX(-50%) wraps with no seam.
