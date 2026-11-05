@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 const SITE_URL = 'https://metaincognita.com'
-const TITLE = 'metaincognita — casino simulators, trainers & games'
+const TITLE = 'metaincognita — casino simulations, tools & games, all open source'
 const DESCRIPTION
-  = 'A small, curated collection of open-source projects, built out of curiosity — casino simulators that show the math behind blackjack, craps, hold’em, roulette and slots, games built for fun, and playable homages to the VogelTronics catalog, out of Elk Grove Village, Illinois.'
+  = 'Open-source projects built out of curiosity: casino simulations that show the math behind blackjack, craps, hold’em, roulette and slots; tools for writing screenplays and interactive fiction, taking apart TRS-80 programs, and self-hosting a picture frame; a 1970s slot car track; and the VogelTronics catalog, rebuilt.'
 
 export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxtjs/plausible'],
@@ -42,13 +42,13 @@ export default defineNuxtConfig({
         { property: 'og:image:type', content: 'image/png' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: 'metaincognita — open-source casino simulation suite' },
+        { property: 'og:image:alt', content: 'metaincognita — open-source simulations, tools and games' },
         { property: 'og:locale', content: 'en_US' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: TITLE },
         { name: 'twitter:description', content: DESCRIPTION },
         { name: 'twitter:image', content: `${SITE_URL}/og-image.png` },
-        { name: 'twitter:image:alt', content: 'metaincognita — open-source casino simulation suite' }
+        { name: 'twitter:image:alt', content: 'metaincognita — open-source simulations, tools and games' }
       ],
       // Fonts (Sora / Geist Mono) are self-hosted at build time by @nuxt/fonts —
       // see app/assets/css/main.css @theme — so there is no external

@@ -117,12 +117,15 @@ body {
 .floor-pit .cab-wide { grid-column: span 2; }
 .floor-machines .cab-feature { grid-column: 3 / span 2; grid-row: 1 / span 2; }
 .floor-machines .cab-wide { grid-column: 1 / span 2; }
+.floor-workshop .cab-shot { grid-column: span 2; }
 .floor-arcade .cab-banner { grid-column: span 4; }
 /* VogelTronics runs two wides shoulder to shoulder — one row, red beside cream */
 .floor-vogeltronics .cab-wide { grid-column: span 2; }
 
 @media (max-width: 980px) {
   .floor { grid-template-columns: repeat(2, 1fr); }
+  /* the workshop stays two-up on a tablet: a half-width screenshot still reads */
+  .floor-workshop .cab-shot { grid-column: span 1; }
   .floor-pit .cab-feature,
   .floor-machines .cab-feature,
   .floor-pit .cab-wide,

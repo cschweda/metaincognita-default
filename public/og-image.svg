@@ -1,7 +1,7 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <!-- metaincognita hub og-image — Metaincognita branded background system (guidelines §6/§8):
        navy diagonal gradient, fine + major grids, dot overlay, vignette, corner registration
-       marks, accent (gold) title with glow, mono stat chips, a card-suits content layer, and
+       marks, accent (gold) title with glow, mono stat chips, a four-rooms content layer, and
        the bottom METAINCOGNITA rule. textPath-free so librsvg (rsvg-convert) matches the SVG. -->
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -34,52 +34,53 @@
   <rect width="1200" height="630" fill="url(#dots)"/>
   <rect width="1200" height="630" fill="url(#vignette)"/>
 
-  <!-- ============ content layer: a hand of card suits (the suite) ============ -->
-  <g font-family="Arial, 'Helvetica Neue', sans-serif">
-    <!-- spade (gold) -->
+  <!-- ============ content layer: the four rooms of the collection ============ -->
+  <g font-family="'Fira Code', Menlo, monospace" font-size="13" letter-spacing="2" text-anchor="middle">
+    <!-- the casino: a spade (gold) -->
     <g>
-      <rect x="760" y="132" width="148" height="186" rx="12" fill="#0e1428" stroke="#d4a847" stroke-opacity="0.4" stroke-width="1.5"/>
-      <text x="776" y="166" font-size="24" font-weight="700" fill="#d4a847">A</text>
-      <text x="777" y="188" font-size="17" fill="#d4a847">&#9824;</text>
-      <text x="834" y="258" font-size="86" fill="#d4a847" text-anchor="middle">&#9824;</text>
+      <rect x="760" y="132" width="148" height="186" rx="12" fill="#0e1428" stroke="#d4a847" stroke-opacity="0.45" stroke-width="1.5"/>
+      <text x="834" y="252" font-family="Arial, 'Helvetica Neue', sans-serif" font-size="86" letter-spacing="0" fill="#d4a847">&#9824;</text>
+      <text x="834" y="298" fill="#d4a847">CASINO</text>
     </g>
-    <!-- heart (red) -->
+    <!-- the workshop: a prompt (cyan) -->
     <g>
-      <rect x="928" y="132" width="148" height="186" rx="12" fill="#0e1428" stroke="#e23744" stroke-opacity="0.4" stroke-width="1.5"/>
-      <text x="944" y="166" font-size="24" font-weight="700" fill="#e23744">K</text>
-      <text x="945" y="188" font-size="17" fill="#e23744">&#9829;</text>
-      <text x="1002" y="258" font-size="86" fill="#e23744" text-anchor="middle">&#9829;</text>
+      <rect x="928" y="132" width="148" height="186" rx="12" fill="#0e1428" stroke="#5fe3c9" stroke-opacity="0.45" stroke-width="1.5"/>
+      <text x="1002" y="238" font-size="54" letter-spacing="0" fill="#5fe3c9">&gt;_</text>
+      <text x="1002" y="298" fill="#5fe3c9">WORKSHOP</text>
     </g>
-    <!-- diamond (red) -->
+    <!-- the arcade: an oval slot-car track (orange) -->
     <g>
-      <rect x="760" y="332" width="148" height="186" rx="12" fill="#0e1428" stroke="#e23744" stroke-opacity="0.4" stroke-width="1.5"/>
-      <text x="776" y="366" font-size="24" font-weight="700" fill="#e23744">Q</text>
-      <text x="777" y="388" font-size="17" fill="#e23744">&#9830;</text>
-      <text x="834" y="458" font-size="86" fill="#e23744" text-anchor="middle">&#9830;</text>
+      <rect x="760" y="332" width="148" height="186" rx="12" fill="#0e1428" stroke="#ff7a3d" stroke-opacity="0.45" stroke-width="1.5"/>
+      <rect x="784" y="372" width="100" height="62" rx="31" fill="none" stroke="#ff7a3d" stroke-width="3"/>
+      <rect x="796" y="384" width="76" height="38" rx="19" fill="none" stroke="#ff7a3d" stroke-width="2" stroke-opacity="0.6"/>
+      <rect x="828" y="370" width="8" height="5" fill="#f5f0e1"/>
+      <text x="834" y="498" fill="#ff7a3d">ARCADE</text>
     </g>
-    <!-- club (gold) -->
+    <!-- vogeltronics: a block of LED blips (red) -->
     <g>
-      <rect x="928" y="332" width="148" height="186" rx="12" fill="#0e1428" stroke="#d4a847" stroke-opacity="0.4" stroke-width="1.5"/>
-      <text x="944" y="366" font-size="24" font-weight="700" fill="#d4a847">J</text>
-      <text x="945" y="388" font-size="17" fill="#d4a847">&#9827;</text>
-      <text x="1002" y="458" font-size="86" fill="#d4a847" text-anchor="middle">&#9827;</text>
+      <rect x="928" y="332" width="148" height="186" rx="12" fill="#0e1428" stroke="#e23744" stroke-opacity="0.45" stroke-width="1.5"/>
+      <g fill="#e23744">
+        <circle cx="972" cy="380" r="6"/><circle cx="1002" cy="380" r="6" opacity="0.3"/><circle cx="1032" cy="380" r="6" opacity="0.3"/>
+        <circle cx="972" cy="408" r="6" opacity="0.3"/><circle cx="1002" cy="408" r="6"/><circle cx="1032" cy="408" r="6" opacity="0.3"/>
+        <circle cx="972" cy="436" r="6" opacity="0.3"/><circle cx="1002" cy="436" r="6" opacity="0.3"/><circle cx="1032" cy="436" r="6"/>
+      </g>
+      <text x="1002" y="498" font-size="12" letter-spacing="1" fill="#e23744">VOGELTRONICS</text>
     </g>
   </g>
-
   <!-- ============ title block (left) ============ -->
   <text x="64" y="232" font-family="'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="800" letter-spacing="-2" filter="url(#glow)"><tspan fill="#f5f0e1">meta</tspan><tspan fill="#d4a847">incognita</tspan></text>
-  <text x="66" y="284" font-family="'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="7" fill="#f5f0e1">CASINO SIMULATION SUITE</text>
-  <text x="66" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#9aa6c2">Casino games rebuilt as honest, open-source simulations</text>
-  <text x="66" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#9aa6c2">that reveal the math the floor never shows.</text>
+  <text x="66" y="284" font-family="'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="7" fill="#f5f0e1">SIMULATIONS · TOOLS · GAMES</text>
+  <text x="66" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#9aa6c2">Casino simulations that show their math, tools for</text>
+  <text x="66" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#9aa6c2">writing and old machines, games for the fun of it.</text>
 
   <!-- stat chips -->
   <g font-family="'Fira Code', Menlo, monospace" font-size="15">
     <rect x="64" y="390" width="151" height="34" rx="8" fill="#10182e" stroke="#d4a847" stroke-opacity="0.6"/>
     <text x="77" y="413" fill="#d4a847">8 SIMULATIONS</text>
-    <rect x="229" y="390" width="84" height="34" rx="8" fill="#10182e" stroke="#f5f0e1" stroke-opacity="0.6"/>
-    <text x="242" y="413" fill="#f5f0e1">1 TOOL</text>
-    <rect x="327" y="390" width="132" height="34" rx="8" fill="#10182e" stroke="#7ee0a6" stroke-opacity="0.6"/>
-    <text x="340" y="413" fill="#7ee0a6">OPEN SOURCE</text>
+    <rect x="229" y="390" width="94" height="34" rx="8" fill="#10182e" stroke="#5fe3c9" stroke-opacity="0.6"/>
+    <text x="242" y="413" fill="#5fe3c9">4 TOOLS</text>
+    <rect x="337" y="390" width="132" height="34" rx="8" fill="#10182e" stroke="#7ee0a6" stroke-opacity="0.6"/>
+    <text x="350" y="413" fill="#7ee0a6">OPEN SOURCE</text>
   </g>
 
   <!-- corner registration marks -->

@@ -5,6 +5,47 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.7.0] - 2026-11-05
+
+The landing page stops being only a casino. The casino floor still opens the page;
+behind it is a workshop.
+
+### Added
+- **The Workshop**, a new zone between The Machines and The Arcade, with four tools:
+  **Drafter** (screenplays in Fountain), **Frotzsmith** (an interactive fiction IDE),
+  **Fugløy** (a TRS-80 reverse-engineering toolkit) and **OpenMantel** (a self-hosted
+  picture frame). It lays out two by two on desktop and tablet, one per row on a phone.
+- **A `shot` span** for cabinets that lead with the app's own og:image. The images are
+  copied into `public/workshop/` as WebP (about 20–35 KB each), lazy-loaded, set in a
+  bezel lit by the card's accent, and kept out of the accessibility tree because they
+  repeat the card's own text.
+- Optional `category` on catalog items, so the JSON-LD calls a tool a
+  `DeveloperApplication` (or similar) rather than a `GameApplication`.
+
+### Changed
+- **The hero speaks for the whole collection.** New eyebrow ("a collection · all open
+  source"), tagline ("Built out of curiosity. Given away."), and copy covering every
+  room. The CTAs are now: The casino floor, The workshop, Games for fun, VogelTronics games.
+- **"No generative AI" is gone** from the hero chips, ticker, footer and JSON-LD.
+  No app uses generative AI, but the apps themselves are built with Claude, so the claim
+  read as broader than it is. The chips are now Free · No sign-ups · No real money.
+- The ticker carries a line for every room, not only the casino.
+- The Arcade's title is "Games for fun." ("Tools for fun" would blur into The Workshop.)
+- The page title, meta description, og:image alt text and **og:image** cover the whole
+  collection: four tiles (casino, workshop, arcade, VogelTronics) replace the card hand.
+- The status bar's GitHub link lists every repository, not only the `metaincognita-*` ones.
+
+### Revisited: reusing each app's `og:image`
+2.2.0 rejected og:images as cabinet art. For The Workshop they are used, and the four
+objections no longer hold there: the files are copied locally, so the CSP is untouched;
+each has its own bezel and accent rather than sharing a scene with drawn neighbours;
+all four exist. The repeated text is accepted: on a tool, the screenshot is the product.
+The casino and VogelTronics cabinets keep their line-art scenes.
+
+### Fixed
+- Three catalog and structured-data tests had gone stale when Gridiron joined
+  VogelTronics (they still expected eleven apps). They now count sixteen.
+
 ## [2.6.1] - 2026-07-25
 
 The VogelTronics wing moves onto its own domain.

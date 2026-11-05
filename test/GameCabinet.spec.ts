@@ -123,6 +123,27 @@ describe('GameCabinet', () => {
     expect(w.find('.mark').exists()).toBe(true)
   })
 
+  // The Workshop's tile leads with the app's own og:image — decorative, because the
+  // card already says everything it says as live text.
+  it('renders a shot cabinet with its screenshot and no scene or watermark', async () => {
+    const w = await mountSuspended(GameCabinet, {
+      props: { item: { ...item, span: 'shot', shot: '/workshop/drafter.webp', art: 'blackjack' } }
+    })
+    const img = w.find('.shot img')
+    expect(img.attributes('src')).toBe('/workshop/drafter.webp')
+    expect(img.attributes('alt')).toBe('')
+    expect(img.attributes('width')).toBeTruthy()
+    expect(img.attributes('height')).toBeTruthy()
+    expect(w.find('.art').exists()).toBe(false)
+    expect(w.find('.mark').exists()).toBe(false)
+    expect(w.findAll('a')).toHaveLength(2)
+  })
+
+  it('draws no screenshot on a cabinet that is not a shot', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, shot: '/workshop/drafter.webp' } } })
+    expect(w.find('.shot').exists()).toBe(false)
+  })
+
   it('does NOT render the watermark on a std cabinet — it would crowd the copy', async () => {
     const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'std' } } })
     expect(w.find('.mark').exists()).toBe(false)

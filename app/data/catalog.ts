@@ -1,5 +1,9 @@
-/** Footprint on a zone's mosaic grid. DOM order matters — see main.css. */
-export type Span = 'std' | 'wide' | 'feature' | 'banner'
+/**
+ * Footprint on a zone's mosaic grid. DOM order matters — see main.css.
+ * `shot` is The Workshop's tile: half the floor wide, led by the app's own
+ * og:image instead of a drawn scene.
+ */
+export type Span = 'std' | 'wide' | 'feature' | 'banner' | 'shot'
 
 /**
  * Selects a cabinet's bespoke line-art scene. See CabinetArt.vue.
@@ -44,11 +48,19 @@ export interface CatalogItem {
    * is set it replaces the watermark glyph; the two must never both render.
    */
   art?: ArtKey
+  /**
+   * A `shot` cabinet's picture: the app's own og:image, copied into
+   * `public/workshop/` (the CSP is `img-src 'self'`, so it must be same-origin).
+   * Root-relative path, e.g. `/workshop/drafter.webp`.
+   */
+  shot?: string
+  /** schema.org applicationCategory. Defaults to `GameApplication`. */
+  category?: string
 }
 
 export interface Zone {
   /** Scroll anchor and grid modifier (`.floor-<id>`). */
-  id: 'pit' | 'machines' | 'arcade' | 'vogeltronics'
+  id: 'pit' | 'machines' | 'workshop' | 'arcade' | 'vogeltronics'
   /** Text inside the neon tube sign. */
   sign: string
   /** Zone neon colour. */
@@ -174,10 +186,72 @@ export const zones: Zone[] = [
     ]
   },
   {
+    id: 'workshop',
+    sign: 'The Workshop',
+    color: '#00d6ff',
+    title: 'Tools I build, and use.',
+    sub: 'Software for writing scripts and stories, taking old machines apart, and putting photos on the wall. Free, open source, no sign-ups, and your files stay yours.',
+    unit: 'tool',
+    items: [
+      {
+        title: 'Drafter',
+        description: 'Write screenplays and stage plays in plain-text Fountain and watch the formatted pages build as you type, or draft a novel in Markdown.',
+        domain: 'drafter.dev',
+        repo: 'https://github.com/cschweda/drafter',
+        icon: 'clapperboard',
+        accent: '#8fb8ff',
+        badge: 'Plain-text Fountain',
+        badgeNote: 'or classic enter and tab',
+        span: 'shot',
+        shot: '/workshop/drafter.webp',
+        category: 'DesignApplication'
+      },
+      {
+        title: 'Frotzsmith',
+        description: 'An interactive fiction IDE in the browser: write Inform 6 or ZIL, compile to the Z-machine on your own machine, and play it inline.',
+        domain: 'frotzsmith.com',
+        repo: 'https://github.com/cschweda/frotzsmith',
+        icon: 'hammer',
+        accent: '#ffb627',
+        badge: 'Compiles in-browser',
+        badgeNote: 'no backend, works offline',
+        span: 'shot',
+        shot: '/workshop/frotzsmith.webp',
+        category: 'DeveloperApplication'
+      },
+      {
+        title: 'Fugløy',
+        description: 'Take TRS-80 Model I and III programs apart: a disassembler whose output rebuilds the original byte for byte, a workbench that explains every line, and an emulator.',
+        domain: 'fugloy.dev',
+        repo: 'https://github.com/cschweda/fugloy',
+        icon: 'cpu',
+        accent: '#5fe3c9',
+        badge: 'Byte-exact round trip',
+        badgeNote: 'read faithfully',
+        span: 'shot',
+        shot: '/workshop/fugloy.webp',
+        category: 'DeveloperApplication'
+      },
+      {
+        title: 'OpenMantel',
+        description: 'A digital picture frame you host yourself: a small computer behind a monitor, and your photos on every screen in the house. No subscription, no one else’s cloud.',
+        domain: 'openmantel.com',
+        repo: 'https://github.com/cschweda/openmantel',
+        icon: 'image',
+        accent: '#ff8a5c',
+        badge: 'Self-hosted',
+        badgeNote: 'your photos, your server',
+        span: 'shot',
+        shot: '/workshop/openmantel.webp',
+        category: 'MultimediaApplication'
+      }
+    ]
+  },
+  {
     id: 'arcade',
     sign: 'The Arcade',
     color: '#ff6a2b',
-    title: 'Tools for fun.',
+    title: 'Games for fun.',
     sub: 'No edge here, nothing to beat — just games built for the joy of it. Starting with a slot car track from 1971; more on the way.',
     unit: 'game',
     items: [

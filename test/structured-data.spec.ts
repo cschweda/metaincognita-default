@@ -31,7 +31,7 @@ describe('structured data (JSON-LD)', () => {
     const itemList = jsonLd['@graph'].find((node: any) => node['@type'] === 'ItemList')
     expect(itemList).toBeDefined()
     expect(itemList).toHaveProperty('numberOfItems', allItems.length)
-    expect(itemList.numberOfItems).toBe(11)
+    expect(itemList.numberOfItems).toBe(16)
   })
 
   it('has itemListElement with one entry per app', () => {
@@ -133,8 +133,11 @@ describe('structured data (JSON-LD)', () => {
   it('ensures all apps have consistent application category and operating system', () => {
     const itemList = jsonLd['@graph'].find((node: any) => node['@type'] === 'ItemList')
 
-    for (const listItem of itemList.itemListElement) {
-      expect(listItem.item.applicationCategory).toBe('GameApplication')
+    for (let i = 0; i < itemList.itemListElement.length; i++) {
+      const listItem = itemList.itemListElement[i]
+      // games default to GameApplication; a workshop tool names its own category
+      expect(listItem.item.applicationCategory).toBe(allItems[i]!.category ?? 'GameApplication')
+      expect(listItem.item.applicationCategory).toMatch(/Application$/)
       expect(listItem.item.operatingSystem).toBe('Web')
       expect(listItem.item.isAccessibleForFree).toBe(true)
     }

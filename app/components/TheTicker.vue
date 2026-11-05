@@ -1,17 +1,19 @@
 <script setup lang="ts">
 /**
  * The LED marquee — the threshold between the hero and the floor.
- * It carries the thesis, never a house-edge number we cannot source.
+ * It carries the thesis of every room, never a number we cannot source.
  */
 const LINES = [
   'The house always wins',
-  'The edge is just arithmetic',
-  'No real money',
-  'No accounts',
-  'No generative AI',
-  'Read the source',
   'The math is the point',
-  'Fake chips, real math'
+  'Plain text outlives every app',
+  'Your files stay yours',
+  'Byte for byte',
+  'No real money',
+  'No sign-ups',
+  'Read the source',
+  'Fly off into the shag carpet',
+  'Games that think'
 ]
 
 // Two copies, so translateX(-50%) wraps with no seam.

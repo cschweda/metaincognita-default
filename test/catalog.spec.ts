@@ -1,16 +1,18 @@
 import { describe, it, expect } from 'vitest'
+import { existsSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { zones, allItems, type Span } from '~/data/catalog'
 
-const SPANS: Span[] = ['std', 'wide', 'feature', 'banner']
+const SPANS: Span[] = ['std', 'wide', 'feature', 'banner', 'shot']
 
 describe('catalog', () => {
-  it('has exactly four zones in floor order', () => {
-    expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'arcade', 'vogeltronics'])
+  it('has exactly five zones in floor order — the casino first', () => {
+    expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'workshop', 'arcade', 'vogeltronics'])
   })
 
-  it('carries all eleven apps', () => {
-    expect(allItems).toHaveLength(11)
-    expect(zones.map(z => z.items.length)).toEqual([4, 4, 1, 2])
+  it('carries all sixteen apps', () => {
+    expect(allItems).toHaveLength(16)
+    expect(zones.map(z => z.items.length)).toEqual([4, 4, 4, 1, 3])
   })
 
   it('gives every item a complete, non-empty record', () => {
@@ -58,15 +60,30 @@ describe('catalog', () => {
     // DOM order matters — the grid placement rules in main.css assume it.
     expect(pit).toEqual(['feature', 'std', 'std', 'wide'])
     expect(machines).toEqual(['std', 'std', 'wide', 'feature'])
-    // The Arcade runs a single full-width banner; VogelTronics runs two wides shoulder to shoulder.
-    expect(zones[2]!.items.map(i => i.span)).toEqual(['banner'])
-    expect(zones[3]!.items.map(i => i.span)).toEqual(['wide', 'wide'])
+    // The Workshop runs a two-by-two of screenshots; The Arcade a single full-width
+    // banner; VogelTronics its wides, two to a row.
+    expect(zones[2]!.items.map(i => i.span)).toEqual(['shot', 'shot', 'shot', 'shot'])
+    expect(zones[3]!.items.map(i => i.span)).toEqual(['banner'])
+    expect(zones[4]!.items.map(i => i.span)).toEqual(['wide', 'wide', 'wide'])
   })
 
-  // Anything with slack to fill carries a scene; a std tile has no room for one.
-  it('gives every roomy cabinet a scene, and no std one', () => {
+  // Anything with slack to fill carries a scene; a std tile has no room for one, and a
+  // shot tile is filled by its screenshot instead.
+  it('gives every roomy cabinet a scene, and no std or shot one', () => {
     for (const item of allItems) {
-      expect(Boolean(item.art), `${item.domain} (${item.span})`).toBe(item.span !== 'std')
+      const roomy = item.span !== 'std' && item.span !== 'shot'
+      expect(Boolean(item.art), `${item.domain} (${item.span})`).toBe(roomy)
+    }
+  })
+
+  // The CSP is img-src 'self': a shot must be a local file, never the app's own URL.
+  it('gives every shot cabinet a same-origin screenshot that exists', () => {
+    for (const item of allItems) {
+      expect(Boolean(item.shot), item.domain).toBe(item.span === 'shot')
+      if (item.shot) {
+        expect(item.shot, item.domain).toMatch(/^\/workshop\/[a-z0-9-]+\.webp$/)
+        expect(existsSync(resolve(__dirname, '../public', item.shot.slice(1))), item.domain).toBe(true)
+      }
     }
   })
 

@@ -8,7 +8,9 @@ const href = computed(() => `https://${props.item.domain}`)
 // Every span but `std` has room to fill — on a std cabinet either would just crowd
 // the copy. Where a bespoke scene exists it supersedes the watermark glyph, which
 // stays as the fallback for a roomy cabinet that has not been drawn yet.
-const hasRoom = computed(() => props.item.span !== 'std')
+// A `shot` cabinet is filled by its screenshot instead, so it takes neither.
+const isShot = computed(() => props.item.span === 'shot')
+const hasRoom = computed(() => props.item.span !== 'std' && !isShot.value)
 const hasMark = computed(() => hasRoom.value && !props.item.art)
 
 // Cursor-following glow. Skipped for users who prefer reduced motion.
@@ -53,6 +55,19 @@ function onMove(e: MouseEvent) {
         <b>{{ item.badge }}</b>
         <span>{{ item.badgeNote }}</span>
       </span>
+    </div>
+
+    <!-- The app's own og:image. Decorative: it restates the title and description the
+         card already gives as live text, so it stays out of the accessibility tree. -->
+    <div v-if="isShot && item.shot" class="shot">
+      <img
+        :src="item.shot"
+        alt=""
+        width="1120"
+        height="588"
+        loading="lazy"
+        decoding="async"
+      >
     </div>
 
     <h3 class="cab-title">{{ item.title }}</h3>
@@ -327,6 +342,29 @@ function onMove(e: MouseEvent) {
    Same reasoning, same mechanism — measured so the fade in CabinetArt.vue clears it. */
 .cab-wide .cab-title,
 .cab-wide .cab-desc { max-width: 21rem; }
+
+/* The Workshop's tile: the app's og:image, set in a screen bezel lit by the accent.
+   The images bring their own palettes; the bezel and glow are what tie the four
+   to the floor. */
+.shot {
+  position: relative;
+  margin-top: 1.1rem;
+  aspect-ratio: 1200 / 630;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--ac) 45%, transparent);
+  background: var(--color-ink-950);
+  box-shadow: 0 0 28px -6px color-mix(in srgb, var(--ac) 55%, transparent);
+}
+.shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.cab:hover .shot img { transform: scale(1.025); }
+.cab-shot .cab-title { margin-top: 1.1rem; }
 
 /* watermark fallback for a wide that has no scene yet — tucked right, like the banner */
 .cab-wide .mark { top: auto; bottom: -2.5rem; right: 0.5rem; font-size: 10rem; }

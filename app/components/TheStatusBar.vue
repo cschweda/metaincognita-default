@@ -14,7 +14,7 @@
       <a
         class="repo"
         aria-label="GitHub"
-        href="https://github.com/cschweda?tab=repositories&q=metaincognita&type=&language=&sort="
+        href="https://github.com/cschweda?tab=repositories"
         target="_blank"
         rel="noopener noreferrer"
       >

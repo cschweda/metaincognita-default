@@ -12,12 +12,12 @@ export function buildJsonLd(items: CatalogItem[]) {
         '@id': `${SITE}/#website`,
         name: 'metaincognita',
         url: SITE,
-        description: 'A small, curated collection of open-source projects, built out of curiosity — casino simulations that show their math, games for fun, and playable homages to the VogelTronics catalog, out of Elk Grove Village, Illinois. No real money, no accounts, no generative AI.',
+        description: 'A collection of open-source projects, built out of curiosity: casino simulations that show their math, tools for writing screenplays and interactive fiction, a TRS-80 reverse-engineering toolkit, a self-hosted picture frame, games for fun, and playable homages to the VogelTronics catalog. Free, with no sign-ups.',
         inLanguage: 'en'
       },
       {
         '@type': 'ItemList',
-        name: 'metaincognita simulations & tools',
+        name: 'metaincognita simulations, tools & games',
         numberOfItems: items.length,
         itemListElement: items.map((item, i) => ({
           '@type': 'ListItem',
@@ -27,7 +27,7 @@ export function buildJsonLd(items: CatalogItem[]) {
             name: item.title,
             url: `https://${item.domain}`,
             description: item.description,
-            applicationCategory: 'GameApplication',
+            applicationCategory: item.category ?? 'GameApplication',
             operatingSystem: 'Web',
             isAccessibleForFree: true,
             offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

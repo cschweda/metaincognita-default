@@ -1,13 +1,13 @@
 <script setup lang="ts">
 // Presentational. The wordmark gets a polished-floor reflection beneath it —
-// the cheapest possible way to say "casino lobby".
+// the casino floor is still the first room you walk into.
 </script>
 
 <template>
   <section class="relative flex min-h-[74vh] flex-col items-center justify-center px-6 pt-24 pb-10 text-center">
     <div class="reveal flex items-center gap-4" style="animation-delay: 0.05s">
       <span class="hidden h-px w-10 bg-gradient-to-r from-transparent to-cyan-400/60 sm:block" />
-      <span class="eyebrow">a collection · not gambling</span>
+      <span class="eyebrow">a collection · all open source</span>
       <span class="hidden h-px w-10 bg-gradient-to-l from-transparent to-cyan-400/60 sm:block" />
     </div>
 
@@ -25,32 +25,34 @@
       class="font-display reveal mt-7 text-[clamp(1.3rem,3vw,2.1rem)] font-normal leading-snug tracking-tight text-bone-100"
       style="animation-delay: 0.36s"
     >
-      Nothing at stake. Everything simulated.
+      Built out of curiosity. Given away.
     </p>
 
     <p
       class="reveal mt-5 max-w-2xl text-base leading-relaxed text-bone-300 sm:text-lg"
       style="animation-delay: 0.46s"
     >
-      A small, curated collection of open-source projects, built out of pure curiosity —
-      casino simulations that show their math, games just for fun, and the reborn catalog
-      of VogelTronics, out of Elk Grove Village, Illinois. No real money, no accounts.
+      Casino simulations that show their math. Tools for writing scripts and interactive
+      fiction, for taking apart TRS-80 programs, and for putting your photos on the wall.
+      A 1971 slot car track, and the reborn catalog of VogelTronics, out of Elk Grove
+      Village, Illinois.
     </p>
 
     <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 0.56s">
       <a href="#pit" class="btn-gold">
-        Take the floor
+        The casino floor
         <UIcon name="i-lucide-arrow-down" class="text-[0.95em]" aria-hidden="true" />
       </a>
-      <!-- named for their destinations: the signs say The Arcade / VogelTronics, the titles say the rest -->
-      <a href="#arcade" class="btn-ghost">Tools for fun</a>
+      <!-- named for their destinations: the signs and titles say the rest -->
+      <a href="#workshop" class="btn-ghost">The workshop</a>
+      <a href="#arcade" class="btn-ghost">Games for fun</a>
       <a href="#vogeltronics" class="btn-ghost">VogelTronics games</a>
     </div>
 
     <ul class="reveal mt-9 flex flex-wrap items-center justify-center gap-2.5" style="animation-delay: 0.66s">
+      <li class="chip">Free</li>
+      <li class="chip">No sign-ups</li>
       <li class="chip">No real money</li>
-      <li class="chip">No accounts</li>
-      <li class="chip">No generative AI</li>
       <li class="chip chip-gold">
         <UIcon name="i-lucide-git-fork" class="text-[0.9em]" aria-hidden="true" />
         Open source

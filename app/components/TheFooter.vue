@@ -9,11 +9,11 @@ const year = new Date().getFullYear()
         <a href="#top" class="font-display foot-wm">
           <span class="m">meta</span><span class="i">incognita</span>
         </a>
-        <p class="eyebrow mt-3">all simulation, all source</p>
+        <p class="eyebrow mt-3">all of it, all source</p>
       </div>
 
       <div class="font-mono text-xs leading-relaxed text-bone-500 sm:text-right">
-        <p>Open-source · no real money, no accounts, no generative AI.</p>
+        <p>Open source · free · no sign-ups · no real money.</p>
         <p class="mt-1.5">© {{ year }} metaincognita</p>
         <p class="mt-1.5">In the works, one way or another, since a video poker game I wrote on a TRS-80 Model III — sometime in the 1980s, in BASIC.</p>
         <!--

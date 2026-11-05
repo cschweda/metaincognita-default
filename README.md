@@ -7,18 +7,18 @@
 &nbsp;![pnpm](https://img.shields.io/badge/pnpm-10-F69220?logo=pnpm&logoColor=white)
 &nbsp;[![Deployed on Netlify](https://img.shields.io/badge/Netlify-deployed-00C7B7?logo=netlify&logoColor=white)](https://metaincognita.com)
 
-![metaincognita — open-source casino simulation suite](public/og-image.png)
+![metaincognita — open-source simulations, tools and games](public/og-image.png)
 
 The landing page for **metaincognita** — a small, curated collection of open-source
 projects built out of curiosity: casino games rebuilt as **simulations** that show their
-math, **games** built for nothing but fun, and playable homages to **VogelTronics**, a completely
+math, **workshop** tools for writing, retro computing and the home, **games** built for
+nothing but fun, and playable homages to **VogelTronics**, a completely
 fictional Illinois toy company invented so the retro-toy recreations step on no one's
 trademarks.
 
-> **Not a gambling site.** No real money, no accounts, no logins, no generative AI —
-> just open-source apps you run in your browser, free to fork. (Some games ship a
-> scripted AI opponent — poker bots, a rival slot car — but there is no LLM or
-> generative model anywhere.)
+> **Not a gambling site.** No real money, no sign-ups — just open-source apps, free to
+> use and free to fork. (Some games ship a scripted AI opponent — poker bots, a rival
+> slot car — but no app calls an LLM or other generative model.)
 
 **Live:** https://metaincognita.com
 
@@ -40,6 +40,19 @@ simply links out to them.
 | Video Poker Trainer | `videopoker.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-video-poker) | Optimal play, pay-table literacy and bankroll management. |
 | Flameout | `flameout.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-flameout) | A crash-game simulator: climb, cash out, then see why the house always wins. |
 | Pachinko Parlor | `pachinko.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-pachinko) | Ball-drop physics and payout pockets, with the odds laid bare. |
+
+### The Workshop — tools
+
+| Tool | Live | Source | What it is |
+| --- | --- | --- | --- |
+| Drafter | `drafter.dev` | [source](https://github.com/cschweda/drafter) | Screenplays and stage plays in plain-text Fountain, with the formatted pages building as you type; novels in Markdown. |
+| Frotzsmith | `frotzsmith.com` | [source](https://github.com/cschweda/frotzsmith) | A browser IDE for interactive fiction: Inform 6 or ZIL, compiled to the Z-machine client-side and played inline. |
+| Fugløy | `fugloy.dev` | [source](https://github.com/cschweda/fugloy) | A TRS-80 Model I/III reverse-engineering toolkit: byte-exact disassembler, explaining workbench, emulator. |
+| OpenMantel | `openmantel.com` | [source](https://github.com/cschweda/openmantel) | A self-hosted digital picture frame for every screen in the house. |
+
+The Workshop's cabinets lead with each app's own og:image, copied into
+`public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
+another origin's image).
 
 ### The Arcade — just for fun
 
@@ -169,7 +182,8 @@ app/
   pages/index.vue      # composes hero + zones + footer
 public/
   audio/               # seamless casino-floor loops (WebM + M4A)
-  og-image.png         # branded social share card
+  og-image.png         # branded social share card (rendered from og-image.svg)
+  workshop/            # the Workshop apps' og:images, as WebP card art
   apple-touch-icon.png # 180×180, full-bleed — iOS masks its own corners
   favicon.svg
 nuxt.config.ts         # SEO/OG head, netlify_static preset, modules
@@ -199,7 +213,9 @@ No template changes are needed — the cards, counts and grid update automatical
 rule of the floor: a roomy span (`wide`, `feature`, `banner`) carries a bespoke
 `CabinetArt` scene named by an `art` key — every stroke inherits the cabinet's accent,
 so a new scene needs no colour decisions — and falls back to a watermark glyph until one
-is drawn. A `std` cabinet has no room and carries neither. The tests enforce all of it.
+is drawn. A `std` cabinet has no room and carries neither. A `shot` cabinet (The
+Workshop) carries a `shot` path instead: the app's og:image, saved as WebP under
+`public/workshop/`. The tests enforce all of it.
 
 ## Develop
 
@@ -230,7 +246,8 @@ Content-Security-Policy scoped to self-hosted assets, inline styles/scripts Nuxt
 and Plausible.
 
 The social share card is `public/og-image.png` (1200×630), referenced by the OG/Twitter
-meta tags in `nuxt.config.ts`.
+meta tags in `nuxt.config.ts`. Edit `public/og-image.svg` and re-render it with
+`rsvg-convert -w 1200 -h 630 public/og-image.svg -o public/og-image.png`.
 
 ## Quality metrics
 
