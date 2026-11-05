@@ -1,11 +1,12 @@
 <script setup lang="ts">
 // Purely decorative. Fixed behind all content; no interactivity.
-// The suits are now glowing outlines rather than near-invisible fills.
-const suits = [
-  { glyph: '♠', top: '8%', left: '5%', size: '15rem', stroke: 'rgba(0,214,255,0.09)', delay: '0s' },
-  { glyph: '♥', top: '54%', left: '86%', size: '15rem', stroke: 'rgba(255,27,166,0.09)', delay: '-4s' },
-  { glyph: '♦', top: '80%', left: '10%', size: '11rem', stroke: 'rgba(255,185,46,0.07)', delay: '-8s' },
-  { glyph: '♣', top: '26%', left: '74%', size: '12rem', stroke: 'rgba(124,60,255,0.10)', delay: '-11s' }
+// Graph paper, not card suits: the collection is a workshop now, and the casino is
+// one room in it. Drafting crosshairs mark a few intersections, like a layout sheet.
+const marks = [
+  { top: '12%', left: '8%' },
+  { top: '30%', left: '88%' },
+  { top: '68%', left: '6%' },
+  { top: '84%', left: '80%' }
 ]
 </script>
 
@@ -23,18 +24,15 @@ const suits = [
     <!-- a slow rotating floor light -->
     <div class="sweep" />
 
+    <!-- the graph paper: fine squares, a heavier rule every fifth line -->
+    <div class="paper" />
+
     <span
-      v-for="s in suits"
-      :key="s.glyph"
-      class="suit"
-      :style="{
-        top: s.top,
-        left: s.left,
-        fontSize: s.size,
-        '-webkit-text-stroke-color': s.stroke,
-        animationDelay: s.delay
-      }"
-    >{{ s.glyph }}</span>
+      v-for="(m, i) in marks"
+      :key="i"
+      class="cross"
+      :style="{ top: m.top, left: m.left }"
+    />
 
     <!-- vignette, to seat everything in the dark -->
     <div
@@ -61,13 +59,30 @@ const suits = [
   animation: spin 44s linear infinite;
 }
 
-.suit {
+.paper {
   position: absolute;
-  line-height: 1;
-  font-weight: 800;
-  user-select: none;
-  color: transparent;
-  -webkit-text-stroke-width: 2px;
-  animation: drift 14s ease-in-out infinite;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 214, 255, 0.085) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 214, 255, 0.085) 1px, transparent 1px),
+    linear-gradient(rgba(0, 214, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 214, 255, 0.035) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  background-position: -1px -1px;
+  /* strongest across the middle of the sheet, falling away toward the edges */
+  mask-image: radial-gradient(120% 90% at 50% 40%, #000 30%, transparent 85%);
+}
+
+/* a drafting crosshair: two hairlines and a ring, centred on its point */
+.cross {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 214, 255, 0.14);
+  background:
+    linear-gradient(rgba(0, 214, 255, 0.2), rgba(0, 214, 255, 0.2)) center / 1px 100% no-repeat,
+    linear-gradient(rgba(0, 214, 255, 0.2), rgba(0, 214, 255, 0.2)) center / 100% 1px no-repeat;
 }
 </style>

@@ -32,6 +32,9 @@ behind it is a workshop.
 - **"No generative AI" is gone** from the hero chips, ticker, footer and JSON-LD.
   No app uses generative AI, but the apps themselves are built with Claude, so the claim
   read as broader than it is. The chips are now Free · No sign-ups · No real money.
+- **The backdrop is graph paper**, not drifting card suits: a fine cyan grid with a
+  heavier rule every fifth line, a few drafting crosshairs, and the same coloured room
+  light as before.
 - The ticker carries a line for every room, not only the casino.
 - The Arcade's title is "Games for fun." ("Tools for fun" would blur into The Workshop.)
 - The page title, meta description, og:image alt text and **og:image** cover the whole

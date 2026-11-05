@@ -217,11 +217,6 @@ body {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-@keyframes drift {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-18px); }
-}
-
 @keyframes eq {
   0%, 100% { transform: scaleY(0.25); }
   50% { transform: scaleY(1); }
