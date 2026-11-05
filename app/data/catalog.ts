@@ -10,7 +10,7 @@ export type Span = 'std' | 'wide' | 'feature' | 'banner' | 'shot'
  * `pao` currently has no cabinet: The Mind is off the floor while its zone is
  * rethought, and the scene waits in CabinetArt.vue for its return.
  */
-export type ArtKey = 'blackjack' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar' | 'vogeltronics' | 'rovacon' | 'gridiron'
+export type ArtKey = 'blackjack' | 'holdem' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar' | 'vogeltronics' | 'rovacon' | 'gridiron'
 
 export interface CatalogItem {
   /** Display name shown on the cabinet. */
@@ -82,6 +82,18 @@ export const zones: Zone[] = [
     unit: 'table',
     items: [
       {
+        title: 'No-Limit Hold’em',
+        description: 'No-Limit Texas Hold’em against 27 bots, with live equity, outs, pot odds and hand ranges as you play, and every hand there to replay and study.',
+        domain: 'holdem.metaincognita.com',
+        repo: 'https://github.com/cschweda/metaincognita-holdem',
+        icon: 'club',
+        accent: '#8a8cff',
+        badge: 'Live equity',
+        badgeNote: 'odds as you play',
+        span: 'feature',
+        art: 'holdem'
+      },
+      {
         title: 'Blackjack Trainer',
         description: 'Basic-strategy coaching and Hi-Lo card counting on rules taken straight from official casino documents.',
         domain: 'blackjack.metaincognita.com',
@@ -90,18 +102,6 @@ export const zones: Zone[] = [
         accent: '#2fe58f',
         badge: 'Basic strategy',
         badgeNote: 'plus the hi-lo count',
-        span: 'feature',
-        art: 'blackjack'
-      },
-      {
-        title: 'No-Limit Hold’em',
-        description: 'Texas Hold’em against intelligent bots, with live equity, outs, pot odds and hand ranges as you play.',
-        domain: 'holdem.metaincognita.com',
-        repo: 'https://github.com/cschweda/metaincognita-holdem',
-        icon: 'club',
-        accent: '#8a8cff',
-        badge: 'Live equity',
-        badgeNote: 'odds as you play',
         span: 'std'
       },
       {

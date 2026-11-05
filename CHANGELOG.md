@@ -23,6 +23,9 @@ behind it is a workshop.
   `DeveloperApplication` (or similar) rather than a `GameApplication`.
 
 ### Changed
+- **Hold’em leads the casino floor.** It takes The Pit’s feature cabinet, with a new
+  line-art scene (the board, the hero’s two cards, the pot); Blackjack moves to a
+  standard cabinet. Hold’em is the most-worked-on app here and the one in daily use.
 - **The hero speaks for the whole collection.** New eyebrow ("a collection · all open
   source"), tagline ("Built out of curiosity. Given away."), and copy covering every
   room. The CTAs are now: The casino floor, The workshop, Games for fun, VogelTronics games.

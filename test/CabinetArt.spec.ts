@@ -5,7 +5,7 @@ import type { ArtKey } from '~/data/catalog'
 
 // `pao` stays in the roster while its cabinet is off the floor — the scene is
 // drawn and waiting, and these tests keep it working for its return.
-const KEYS: ArtKey[] = ['blackjack', 'flameout', 'roulette', 'pachinko', 'pao', 'slotcar', 'vogeltronics', 'rovacon']
+const KEYS: ArtKey[] = ['blackjack', 'holdem', 'flameout', 'roulette', 'pachinko', 'pao', 'slotcar', 'vogeltronics', 'rovacon']
 
 describe('CabinetArt', () => {
   it('draws the scene the key asks for, and only that one', async () => {

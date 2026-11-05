@@ -48,6 +48,7 @@ interface Scene {
  */
 const SCENES: Record<ArtKey, Scene> = {
   blackjack: { w: 560, h: 558, vx: 330, vy: 120, spread: 760, shape: 'feature', par: 'xMidYMid slice' },
+  holdem: { w: 560, h: 558, vx: 280, vy: 120, spread: 760, shape: 'feature', par: 'xMidYMid slice' },
   flameout: { w: 560, h: 558, vx: 300, vy: 120, spread: 760, shape: 'feature', par: 'xMidYMid slice' },
   /* A wide is 558×240 at 1180 and ~3.6:1 when it spans the row — the banner's trap
      exactly, so the banner's answer exactly: `meet`, pinned to the dead right. */
@@ -66,7 +67,7 @@ const SCENES: Record<ArtKey, Scene> = {
 }
 
 /** Where the floor plane stops — short of the copy, not at the foot of the box. */
-const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220, slotcar: 220, vogeltronics: 236, rovacon: 236, gridiron: 236 }
+const FLOOR_END: Record<ArtKey, number> = { blackjack: 350, holdem: 350, flameout: 350, roulette: 236, pachinko: 236, pao: 220, slotcar: 220, vogeltronics: 236, rovacon: 236, gridiron: 236 }
 
 const scene = computed(() => SCENES[props.art])
 const floorEnd = computed(() => FLOOR_END[props.art])
@@ -272,8 +273,44 @@ const WAVE = 'M 452 144 H 440 V 124 H 430 V 162 H 420 V 118 H 410 V 168 H 400 V 
         <line v-for="(y, i) in depths" :key="`d${i}`" :x1="-120" :y1="y" :x2="scene.w + 120" :y2="y" />
       </g>
 
+      <!-- the felt, the board, the hero's two cards and the pot -->
+      <g v-if="art === 'holdem'" class="hero">
+        <path class="fill" d="M -20 275 A 300 100 0 0 1 580 275 L 580 558 L -20 558 Z" />
+        <path class="rail" d="M -20 275 A 300 100 0 0 1 580 275" />
+        <path class="hair dash" d="M 30 275 A 250 84 0 0 1 530 275" />
+
+        <g>
+          <rect class="fill stroke" x="150" y="186" width="44" height="62" rx="6" />
+          <path class="glyph" transform="translate(172 217) scale(0.72)" d="M 0 11 C -9 4 -13 0 -13 -6 C -13 -11 -8 -13 -5 -13 C -2 -13 0 -11 0 -9 C 0 -11 2 -13 5 -13 C 8 -13 13 -11 13 -6 C 13 0 9 4 0 11 Z" />
+          <rect class="fill stroke" x="204" y="186" width="44" height="62" rx="6" />
+          <path class="glyph" transform="translate(226 217) scale(0.72)" d="M 0 -13 C 0 -13 -13 -4 -13 3 C -13 8 -9 10 -6 10 C -4 10 -2 9 -1 8 L -3 14 L 3 14 L 1 8 C 2 9 4 10 6 10 C 9 10 13 8 13 3 C 13 -4 0 -13 0 -13 Z" />
+          <rect class="fill stroke" x="258" y="186" width="44" height="62" rx="6" />
+          <path class="glyph" transform="translate(280 217) scale(0.72)" d="M 0 -13 L 10 0 L 0 13 L -10 0 Z" />
+          <rect class="fill stroke" x="312" y="186" width="44" height="62" rx="6" />
+          <path class="glyph" transform="translate(334 217) scale(0.72)" d="M 0 -14 A 5.5 5.5 0 1 1 0 -3 A 5.5 5.5 0 1 1 -1 7 L -3 14 L 3 14 L 1 7 A 5.5 5.5 0 1 1 0 -3 A 5.5 5.5 0 1 1 0 -14 Z" />
+          <rect class="fill stroke" x="366" y="186" width="44" height="62" rx="6" />
+          <path class="glyph" transform="translate(388 217) scale(0.72)" d="M 0 11 C -9 4 -13 0 -13 -6 C -13 -11 -8 -13 -5 -13 C -2 -13 0 -11 0 -9 C 0 -11 2 -13 5 -13 C 8 -13 13 -11 13 -6 C 13 0 9 4 0 11 Z" />
+        </g>
+
+        <g transform="rotate(-9 276 300)">
+          <rect class="fill stroke" x="246" y="262" width="58" height="80" rx="7" />
+          <path class="glyph" transform="translate(275 302)" d="M 0 -13 C 0 -13 -13 -4 -13 3 C -13 8 -9 10 -6 10 C -4 10 -2 9 -1 8 L -3 14 L 3 14 L 1 8 C 2 9 4 10 6 10 C 9 10 13 8 13 3 C 13 -4 0 -13 0 -13 Z" />
+        </g>
+        <g transform="rotate(8 330 296)">
+          <rect class="fill stroke" x="300" y="258" width="58" height="80" rx="7" />
+          <path class="glyph" transform="translate(329 298)" d="M 0 11 C -9 4 -13 0 -13 -6 C -13 -11 -8 -13 -5 -13 C -2 -13 0 -11 0 -9 C 0 -11 2 -13 5 -13 C 8 -13 13 -11 13 -6 C 13 0 9 4 0 11 Z" />
+        </g>
+
+        <g class="chips">
+          <ellipse class="fill stroke" cx="470" cy="300" rx="34" ry="10" />
+          <ellipse class="fill stroke" cx="470" cy="288" rx="34" ry="10" />
+          <ellipse class="fill stroke" cx="470" cy="276" rx="34" ry="10" />
+          <ellipse class="hair dash" cx="470" cy="276" rx="22" ry="6" />
+        </g>
+      </g>
+
       <!-- the felt, two cards and a chip stack -->
-      <g v-if="art === 'blackjack'" class="hero">
+      <g v-else-if="art === 'blackjack'" class="hero">
         <path class="fill" d="M -20 275 A 300 100 0 0 1 580 275 L 580 558 L -20 558 Z" />
         <path class="rail" d="M -20 275 A 300 100 0 0 1 580 275" />
         <path class="hair dash" d="M 30 275 A 250 84 0 0 1 530 275" />
