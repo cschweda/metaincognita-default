@@ -167,7 +167,7 @@ app/
   components/
     GameCabinet.vue    # the neon game cabinet (chasing bulb, glow, badge)
     CabinetArt.vue     # bespoke line-art scenes for the roomy cabinets, accent-tinted
-    TheBackdrop.vue    # magenta/cyan/violet room glow, drifting suit glyphs
+    TheBackdrop.vue    # magenta/cyan/violet room glow over graph paper
     TheHero.vue        # wordmark, tagline, CTAs, "not gambling" chips
     TheStatusBar.vue   # fixed open-source / GitHub status bar + audio switch
     SoundSwitch.vue    # the floor-audio toggle, used inside TheStatusBar
