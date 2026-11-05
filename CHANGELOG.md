@@ -37,6 +37,9 @@ behind it is a workshop.
   light as before.
 - The ticker carries a line for every room, not only the casino.
 - The Arcade's title is "Games for fun." ("Tools for fun" would blur into The Workshop.)
+- **The page is titled "Metaincognita Workshop"**: the `<title>`, `og:title`,
+  `twitter:title`, `og:site_name` and the JSON-LD site name all say so, and the meta
+  descriptions open with it.
 - The page title, meta description, og:image alt text and **og:image** cover the whole
   collection: four tiles (casino, workshop, arcade, VogelTronics) replace the card hand.
 - The status bar's GitHub link lists every repository, not only the `metaincognita-*` ones.

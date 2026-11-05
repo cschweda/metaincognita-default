@@ -10,14 +10,14 @@ export function buildJsonLd(items: CatalogItem[]) {
       {
         '@type': 'WebSite',
         '@id': `${SITE}/#website`,
-        name: 'metaincognita',
+        name: 'Metaincognita Workshop',
         url: SITE,
-        description: 'A collection of open-source projects, built out of curiosity: casino simulations that show their math, tools for writing screenplays and interactive fiction, a TRS-80 reverse-engineering toolkit, a self-hosted picture frame, games for fun, and playable homages to the VogelTronics catalog. Free, with no sign-ups.',
+        description: 'The Metaincognita Workshop: open-source projects, built out of curiosity: casino simulations that show their math, tools for writing screenplays and interactive fiction, a TRS-80 reverse-engineering toolkit, a self-hosted picture frame, games for fun, and playable homages to the VogelTronics catalog. Free, with no sign-ups.',
         inLanguage: 'en'
       },
       {
         '@type': 'ItemList',
-        name: 'metaincognita simulations, tools & games',
+        name: 'Metaincognita Workshop: simulations, tools & games',
         numberOfItems: items.length,
         itemListElement: items.map((item, i) => ({
           '@type': 'ListItem',

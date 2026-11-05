@@ -20,7 +20,7 @@ describe('structured data (JSON-LD)', () => {
     const webSite = jsonLd['@graph'].find((node: any) => node['@type'] === 'WebSite')
     expect(webSite).toBeDefined()
     expect(webSite).toHaveProperty('@id', 'https://metaincognita.com/#website')
-    expect(webSite).toHaveProperty('name', 'metaincognita')
+    expect(webSite).toHaveProperty('name', 'Metaincognita Workshop')
     expect(webSite).toHaveProperty('url', 'https://metaincognita.com')
     expect(webSite).toHaveProperty('inLanguage', 'en')
     expect(webSite).toHaveProperty('description')
