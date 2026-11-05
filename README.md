@@ -60,7 +60,7 @@ another origin's image).
 | --- | --- | --- | --- |
 | AFX Slot Car Simulator | `slotcar.netlify.app` | [source](https://github.com/cschweda/slotcarsim) | Photorealistic 1970s Aurora AFX HO slot cars — analog trigger throttle, real deslot physics, oval and figure-eight, race a fallible AI or practice solo. Open source. |
 
-### VogelTronics — Games That Think!
+### VogelTronics — A Fictional History
 
 Playable homages to **VogelTronics**, a completely fictional Illinois toy company
 (1961–1983) invented from scratch — founder, catalog, logos and all — so these
@@ -69,9 +69,9 @@ trademarks. The [corporate history](https://vogeltronics.com/) is the shared lor
 **Gridiron** is the first playable cabinet; **Rovacon**, the flagship programmable rover,
 comes next.
 
-The on-site copy deliberately does **not** call the company fictional — it reads straight,
-and the one plain statement lives in the site footer's fine print. This README is the
-unambiguous version.
+The section is titled **VogelTronics: A Fictional History**, so the page says plainly
+that the company is invented; the copy beneath the title reads straight, and the footer's
+fine print says which real trademarks are not used.
 
 | Exhibit | Live | Source | What it is |
 | --- | --- | --- | --- |

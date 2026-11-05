@@ -37,6 +37,8 @@ behind it is a workshop.
 - The page title, meta description, og:image alt text and **og:image** cover the whole
   collection: four tiles (casino, workshop, arcade, VogelTronics) replace the card hand.
 - The status bar's GitHub link lists every repository, not only the `metaincognita-*` ones.
+- The VogelTronics section is titled **VogelTronics: A Fictional History** (was
+  *Games That Think!*, which stays on the history cabinet's badge).
 - The slot car cabinet is titled **AFX Slot Car Simulator**, the name the app uses for
   itself and on its new share image.
 

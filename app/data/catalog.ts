@@ -273,7 +273,7 @@ export const zones: Zone[] = [
     id: 'vogeltronics',
     sign: 'VogelTronics',
     color: '#ff4436',
-    title: 'Games That Think!',
+    title: 'VogelTronics: A Fictional History',
     sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted. Gridiron plays now; the rest of the shelf is on its way.',
     unit: 'exhibit',
     items: [
