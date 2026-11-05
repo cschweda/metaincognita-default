@@ -256,7 +256,7 @@ export const zones: Zone[] = [
     unit: 'game',
     items: [
       {
-        title: 'AFX Slot Car Racing',
+        title: 'AFX Slot Car Simulator',
         description: 'Photoreal 1970s HO slot cars — squeeze the trigger, brake into the corner, or fly off into the shag carpet.',
         domain: 'slotcar.netlify.app',
         repo: 'https://github.com/cschweda/slotcarsim',

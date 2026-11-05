@@ -58,7 +58,7 @@ another origin's image).
 
 | Game | Live | Source | What it is |
 | --- | --- | --- | --- |
-| AFX Slot Car Racing | `slotcar.netlify.app` | [source](https://github.com/cschweda/slotcarsim) | Photorealistic 1970s Aurora AFX HO slot cars — analog trigger throttle, real deslot physics, oval and figure-eight, race a fallible AI or practice solo. Open source. |
+| AFX Slot Car Simulator | `slotcar.netlify.app` | [source](https://github.com/cschweda/slotcarsim) | Photorealistic 1970s Aurora AFX HO slot cars — analog trigger throttle, real deslot physics, oval and figure-eight, race a fallible AI or practice solo. Open source. |
 
 ### VogelTronics — Games That Think!
 

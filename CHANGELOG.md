@@ -34,6 +34,8 @@ behind it is a workshop.
 - The page title, meta description, og:image alt text and **og:image** cover the whole
   collection: four tiles (casino, workshop, arcade, VogelTronics) replace the card hand.
 - The status bar's GitHub link lists every repository, not only the `metaincognita-*` ones.
+- The slot car cabinet is titled **AFX Slot Car Simulator**, the name the app uses for
+  itself and on its new share image.
 
 ### Revisited: reusing each app's `og:image`
 2.2.0 rejected og:images as cabinet art. For The Workshop they are used, and the four
