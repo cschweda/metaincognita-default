@@ -189,7 +189,7 @@ export const zones: Zone[] = [
     id: 'workshop',
     sign: 'The Workshop',
     color: '#00d6ff',
-    title: 'Tools I build, and use.',
+    title: 'Tools I build and use.',
     sub: 'Software for writing scripts and stories, taking old machines apart, and putting photos on the wall. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
