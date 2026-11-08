@@ -8,8 +8,8 @@ const href = computed(() => `https://${props.item.domain}`)
 // Every span but `std` has room to fill — on a std cabinet either would just crowd
 // the copy. Where a bespoke scene exists it supersedes the watermark glyph, which
 // stays as the fallback for a roomy cabinet that has not been drawn yet.
-// A `shot` cabinet is filled by its screenshot instead, so it takes neither.
-const isShot = computed(() => props.item.span === 'shot')
+// A `shot` or `showcase` cabinet is filled by its picture instead, so it takes neither.
+const isShot = computed(() => props.item.span === 'shot' || props.item.span === 'showcase')
 const hasRoom = computed(() => props.item.span !== 'std' && !isShot.value)
 const hasMark = computed(() => hasRoom.value && !props.item.art)
 
@@ -72,6 +72,16 @@ function onMove(e: MouseEvent) {
 
     <h3 class="cab-title">{{ item.title }}</h3>
     <p class="cab-desc">{{ item.description }}</p>
+
+    <!-- An umbrella project's tools. Plain text, not links: the suite lives on the
+         project's own site, which the card already links. -->
+    <ul v-if="item.suite?.length" class="suite">
+      <li v-for="tool in item.suite" :key="tool.name">
+        <b>{{ tool.name }}</b>
+        <span>{{ tool.note }}</span>
+      </li>
+    </ul>
+    <p v-if="item.suiteMore" class="suite-more">{{ item.suiteMore }}</p>
 
     <div class="dom">
       <a
@@ -365,6 +375,51 @@ function onMove(e: MouseEvent) {
 }
 .cab:hover .shot img { transform: scale(1.025); }
 .cab-shot .cab-title { margin-top: 1.1rem; }
+
+/* The showcase: one umbrella project across the whole floor. The picture holds the
+   left column, the copy and its suite list the right; below a tablet it stacks like
+   any shot. */
+.cab-showcase { padding: 1.8rem 1.8rem 1.4rem; }
+@media (min-width: 981px) {
+  .cab-showcase {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    column-gap: 2rem;
+    align-content: start;
+  }
+  .cab-showcase > :not(.shot, .spotlight) { grid-column: 2; }
+  .cab-showcase > .shot { grid-column: 1; grid-row: 1 / span 6; margin-top: 0.5rem; align-self: start; }
+  .cab-showcase .cab-desc { flex: none; }
+}
+.cab-showcase .cab-title { margin-top: 1.1rem; font-size: 1.6rem; }
+.cab-showcase .cab-desc { font-size: 0.92rem; }
+
+.suite {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+.suite li {
+  padding-left: 0.85rem;
+  border-left: 2px solid color-mix(in srgb, var(--ac) 55%, transparent);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--color-bone-300);
+}
+.suite b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--ac) 80%, #fff);
+}
+.suite-more {
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-bone-300);
+}
 
 /* watermark fallback for a wide that has no scene yet — tucked right, like the banner */
 .cab-wide .mark { top: auto; bottom: -2.5rem; right: 0.5rem; font-size: 10rem; }

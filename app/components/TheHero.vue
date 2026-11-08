@@ -32,10 +32,10 @@
       class="reveal mt-5 max-w-2xl text-base leading-relaxed text-bone-300 sm:text-lg"
       style="animation-delay: 0.46s"
     >
-      Casino simulations that show their math. Tools for writing scripts and interactive
-      fiction, for taking apart TRS-80 programs, and for putting your photos on the wall.
-      A 1971 slot car track, and the reborn catalog of VogelTronics, out of Elk Grove
-      Village, Illinois.
+      Casino simulations that show their math. Tools for writing scripts, for taking
+      apart TRS-80 programs, and for putting your photos on the wall. frotz, Inc., for
+      writing and playing 1980s-style text adventures on the Z-machine. A 1971 slot car
+      track, and the reborn catalog of VogelTronics, out of Elk Grove Village, Illinois.
     </p>
 
     <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 0.56s">
@@ -45,6 +45,7 @@
       </a>
       <!-- named for their destinations: the signs and titles say the rest -->
       <a href="#workshop" class="btn-ghost">The workshop</a>
+      <a href="#fiction" class="btn-ghost">Interactive fiction</a>
       <a href="#arcade" class="btn-ghost">Games for fun</a>
       <a href="#vogeltronics" class="btn-ghost">VogelTronics games</a>
     </div>

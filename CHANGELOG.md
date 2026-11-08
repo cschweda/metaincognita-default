@@ -5,6 +5,24 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.0] - 2026-11-08
+
+### Added
+- **Interactive Fiction**, a new zone between The Workshop and The Arcade, for
+  **frotz, Inc.** (`frotzinc.com`), the umbrella for the Z-machine tools. The zone copy
+  explains the Z-machine; the cabinet lists the suite (**frotzsmith**, **frotzplay**,
+  **frotzlens**) and says what is still to come.
+- **A `showcase` span**: one cabinet across the whole floor, the project's og:image
+  on the left and the copy with its suite list on the right; it stacks below a tablet.
+  New optional `suite` and `suiteMore` fields on catalog items carry the list.
+- A hero button for Interactive fiction, and a ticker line: "Games you play by typing".
+
+### Changed
+- **Frotzsmith leaves The Workshop**; it is one of the frotz, Inc. tools now. The
+  Workshop runs its three remaining tools three abreast on desktop.
+- The site description (meta, Open Graph, JSON-LD), hero copy and README name frotz,
+  Inc. and 1980s Infocom-style interactive fiction.
+
 ## [2.7.0] - 2026-11-05
 
 The landing page stops being only a casino. The casino floor still opens the page;

@@ -11,7 +11,8 @@
 
 The landing page for **metaincognita** — a small, curated collection of open-source
 projects built out of curiosity: casino games rebuilt as **simulations** that show their
-math, **workshop** tools for writing, retro computing and the home, **games** built for
+math, **workshop** tools for writing, retro computing and the home, **frotz, Inc.** — a suite
+of browser tools for 1980s Infocom-style interactive fiction — **games** built for
 nothing but fun, and playable homages to **VogelTronics**, a completely
 fictional Illinois toy company invented so the retro-toy recreations step on no one's
 trademarks.
@@ -46,13 +47,34 @@ simply links out to them.
 | Tool | Live | Source | What it is |
 | --- | --- | --- | --- |
 | Drafter | `drafter.dev` | [source](https://github.com/cschweda/drafter) | Screenplays and stage plays in plain-text Fountain, with the formatted pages building as you type; novels in Markdown. |
-| Frotzsmith | `frotzsmith.com` | [source](https://github.com/cschweda/frotzsmith) | A browser IDE for interactive fiction: Inform 6 or ZIL, compiled to the Z-machine client-side and played inline. |
 | Fugløy | `fugloy.dev` | [source](https://github.com/cschweda/fugloy) | A TRS-80 Model I/III reverse-engineering toolkit: byte-exact disassembler, explaining workbench, emulator. |
 | OpenMantel | `openmantel.com` | [source](https://github.com/cschweda/openmantel) | A self-hosted digital picture frame for every screen in the house. |
 
 The Workshop's cabinets lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
 another origin's image).
+
+### Interactive Fiction — frotz, Inc.
+
+Infocom wrote its 1980s text adventures for the **Z-machine**, an imaginary computer, so
+one story file could run on every home computer of the day: you type commands and the game
+answers in prose. **[frotz, Inc.](https://frotzinc.com)** is the umbrella for the Z-machine
+tools — one project with many tools, so it gets a zone of its own and a single full-width
+*showcase* cabinet (its og:image beside the copy, with the suite listed).
+
+| Project | Live | Source | What it is |
+| --- | --- | --- | --- |
+| frotz, Inc. | `frotzinc.com` | [source](https://github.com/cschweda/frotzinc) | Instruments for the Z-machine: write, build, play, inspect and ship Infocom-style text adventures in the browser. |
+
+The suite today:
+
+- **frotzsmith** — a browser IDE for Inform 6 and ZIL; the real compilers run as WebAssembly, building Z-machine or Glulx story files client-side, with inline play and a skein test runner.
+- **frotzplay** — a Z-machine player built for screen readers and strict security policies; story files are never uploaded.
+- **frotzlens** — a story-file inspector: header, object tree, dictionary, grammar, strings and cross-referenced disassembly.
+
+Still to come: a debugger (frotztrace), a release packager (frotzpack), a linter
+(frotzlint) and a regression tester (frotzcheck). They join the frotz, Inc. cabinet's
+suite list, not the floor.
 
 ### The Arcade — just for fun
 

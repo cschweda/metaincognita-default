@@ -9,6 +9,7 @@ const LINES = [
   'Plain text outlives every app',
   'Your files stay yours',
   'Byte for byte',
+  'Games you play by typing',
   'No real money',
   'No sign-ups',
   'Read the source',

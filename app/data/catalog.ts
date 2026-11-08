@@ -1,9 +1,10 @@
 /**
  * Footprint on a zone's mosaic grid. DOM order matters — see main.css.
  * `shot` is The Workshop's tile: half the floor wide, led by the app's own
- * og:image instead of a drawn scene.
+ * og:image instead of a drawn scene. `showcase` is the same picture across the
+ * whole floor, set beside the copy — for an umbrella project with a suite to list.
  */
-export type Span = 'std' | 'wide' | 'feature' | 'banner' | 'shot'
+export type Span = 'std' | 'wide' | 'feature' | 'banner' | 'shot' | 'showcase'
 
 /**
  * Selects a cabinet's bespoke line-art scene. See CabinetArt.vue.
@@ -54,13 +55,20 @@ export interface CatalogItem {
    * Root-relative path, e.g. `/workshop/drafter.webp`.
    */
   shot?: string
+  /**
+   * An umbrella project's member tools, each a name and a one-line note, listed
+   * under the description. Only a `showcase` cabinet has room for it.
+   */
+  suite?: { name: string, note: string }[]
+  /** One closing line after the suite: what is still to come. */
+  suiteMore?: string
   /** schema.org applicationCategory. Defaults to `GameApplication`. */
   category?: string
 }
 
 export interface Zone {
   /** Scroll anchor and grid modifier (`.floor-<id>`). */
-  id: 'pit' | 'machines' | 'workshop' | 'arcade' | 'vogeltronics'
+  id: 'pit' | 'machines' | 'workshop' | 'fiction' | 'arcade' | 'vogeltronics'
   /** Text inside the neon tube sign. */
   sign: string
   /** Zone neon colour. */
@@ -207,19 +215,6 @@ export const zones: Zone[] = [
         category: 'DesignApplication'
       },
       {
-        title: 'Frotzsmith',
-        description: 'An interactive fiction IDE in the browser: write Inform 6 or ZIL, compile to the Z-machine on your own machine, and play it inline.',
-        domain: 'frotzsmith.com',
-        repo: 'https://github.com/cschweda/frotzsmith',
-        icon: 'hammer',
-        accent: '#ffb627',
-        badge: 'Compiles in-browser',
-        badgeNote: 'no backend, works offline',
-        span: 'shot',
-        shot: '/workshop/frotzsmith.webp',
-        category: 'DeveloperApplication'
-      },
-      {
         title: 'Fugløy',
         description: 'Take TRS-80 Model I and III programs apart: a disassembler whose output rebuilds the original byte for byte, a workbench that explains every line, and an emulator.',
         domain: 'fugloy.dev',
@@ -244,6 +239,44 @@ export const zones: Zone[] = [
         span: 'shot',
         shot: '/workshop/openmantel.webp',
         category: 'MultimediaApplication'
+      }
+    ]
+  },
+  {
+    id: 'fiction',
+    sign: 'Interactive Fiction',
+    color: '#ffb627',
+    title: 'Games you play by typing.',
+    sub: 'In 1979 Infocom wrote its adventures for an imaginary computer, the Z-machine, so one story file could run on every home computer of the day: you type GO NORTH or OPEN MAILBOX, and the game answers in prose. The format outlived the company, and people still write for it. frotz, Inc. is the umbrella for my Z-machine tools, which run in the browser and are open source.',
+    unit: 'suite',
+    items: [
+      {
+        title: 'frotz, Inc.',
+        description: 'Instruments for the Z-machine: everything that used to come in the box, and a few things that didn’t. Write, build, play, inspect and ship Infocom-style text adventures, all in the browser.',
+        domain: 'frotzinc.com',
+        repo: 'https://github.com/cschweda/frotzinc',
+        icon: 'scroll-text',
+        accent: '#ffb627',
+        badge: 'One suite',
+        badgeNote: 'write, play, inspect, ship',
+        span: 'showcase',
+        shot: '/workshop/frotzinc.webp',
+        suite: [
+          {
+            name: 'frotzsmith',
+            note: 'A browser IDE for Inform 6 and ZIL. The real compilers run as WebAssembly and build Z-machine or Glulx story files on your own machine; play them inline and test them with a skein.'
+          },
+          {
+            name: 'frotzplay',
+            note: 'A Z-machine player built for screen readers and strict security policies. Your story files are never uploaded.'
+          },
+          {
+            name: 'frotzlens',
+            note: 'Opens a story file and shows what is inside: header, object tree, dictionary, grammar, strings and cross-referenced disassembly. Fully symbolic with Inform’s debug output.'
+          }
+        ],
+        suiteMore: 'Still to come: a debugger, a release packager, a linter and a regression tester.',
+        category: 'DeveloperApplication'
       }
     ]
   },
