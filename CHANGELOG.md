@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **The footer tagline** is "All open source / No sign-ups / Always free", three stacked
   lines, in place of "all of it, all source". The line beside it that said the same
   thing is now "No real money, ever."
+- **The share card shows five rooms**: Fiction (an amber open book) joins Casino, Workshop,
+  Arcade and VogelTronics, and its line reads "tools, text adventures, and games".
 
 ## [2.8.0] - 2026-11-08
 

@@ -1,7 +1,7 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <!-- metaincognita hub og-image — Metaincognita branded background system (guidelines §6/§8):
        navy diagonal gradient, fine + major grids, dot overlay, vignette, corner registration
-       marks, accent (gold) title with glow, mono stat chips, a four-rooms content layer, and
+       marks, accent (gold) title with glow, mono stat chips, a five-rooms content layer, and
        the bottom METAINCOGNITA rule. textPath-free so librsvg (rsvg-convert) matches the SVG. -->
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -34,44 +34,58 @@
   <rect width="1200" height="630" fill="url(#dots)"/>
   <rect width="1200" height="630" fill="url(#vignette)"/>
 
-  <!-- ============ content layer: the four rooms of the collection ============ -->
+  <!-- ============ content layer: the five rooms of the collection ============ -->
+  <!-- three across, two beneath and centred under them: casino, workshop, fiction / arcade, vogeltronics -->
   <g font-family="'Fira Code', Menlo, monospace" font-size="13" letter-spacing="2" text-anchor="middle">
     <!-- the casino: a spade (gold) -->
     <g>
-      <rect x="760" y="132" width="148" height="186" rx="12" fill="#0e1428" stroke="#d4a847" stroke-opacity="0.45" stroke-width="1.5"/>
-      <text x="834" y="252" font-family="Arial, 'Helvetica Neue', sans-serif" font-size="86" letter-spacing="0" fill="#d4a847">&#9824;</text>
-      <text x="834" y="298" fill="#d4a847">CASINO</text>
+      <rect x="748" y="132" width="120" height="176" rx="12" fill="#0e1428" stroke="#d4a847" stroke-opacity="0.45" stroke-width="1.5"/>
+      <text x="808" y="244" font-family="Arial, 'Helvetica Neue', sans-serif" font-size="76" letter-spacing="0" fill="#d4a847">&#9824;</text>
+      <text x="808" y="290" fill="#d4a847">CASINO</text>
     </g>
     <!-- the workshop: a prompt (cyan) -->
     <g>
-      <rect x="928" y="132" width="148" height="186" rx="12" fill="#0e1428" stroke="#5fe3c9" stroke-opacity="0.45" stroke-width="1.5"/>
-      <text x="1002" y="238" font-size="54" letter-spacing="0" fill="#5fe3c9">&gt;_</text>
-      <text x="1002" y="298" fill="#5fe3c9">WORKSHOP</text>
+      <rect x="882" y="132" width="120" height="176" rx="12" fill="#0e1428" stroke="#5fe3c9" stroke-opacity="0.45" stroke-width="1.5"/>
+      <text x="942" y="232" font-size="48" letter-spacing="0" fill="#5fe3c9">&gt;_</text>
+      <text x="942" y="290" fill="#5fe3c9">WORKSHOP</text>
+    </g>
+    <!-- interactive fiction: an open book (amber) -->
+    <g>
+      <rect x="1016" y="132" width="120" height="176" rx="12" fill="#0e1428" stroke="#ffb627" stroke-opacity="0.45" stroke-width="1.5"/>
+      <g fill="none" stroke="#ffb627" stroke-width="2.5" stroke-linejoin="round">
+        <path d="M 1076 190 Q 1058 178 1036 182 L 1036 238 Q 1058 234 1076 246 Z"/>
+        <path d="M 1076 190 Q 1094 178 1116 182 L 1116 238 Q 1094 234 1076 246 Z"/>
+      </g>
+      <g stroke="#ffb627" stroke-width="1.6" stroke-opacity="0.6">
+        <line x1="1044" y1="198" x2="1068" y2="202"/><line x1="1044" y1="210" x2="1068" y2="214"/><line x1="1044" y1="222" x2="1062" y2="225"/>
+        <line x1="1084" y1="202" x2="1108" y2="198"/><line x1="1084" y1="214" x2="1108" y2="210"/><line x1="1084" y1="226" x2="1100" y2="223"/>
+      </g>
+      <text x="1076" y="290" fill="#ffb627">FICTION</text>
     </g>
     <!-- the arcade: an oval slot-car track (orange) -->
     <g>
-      <rect x="760" y="332" width="148" height="186" rx="12" fill="#0e1428" stroke="#ff7a3d" stroke-opacity="0.45" stroke-width="1.5"/>
-      <rect x="784" y="372" width="100" height="62" rx="31" fill="none" stroke="#ff7a3d" stroke-width="3"/>
-      <rect x="796" y="384" width="76" height="38" rx="19" fill="none" stroke="#ff7a3d" stroke-width="2" stroke-opacity="0.6"/>
-      <rect x="828" y="370" width="8" height="5" fill="#f5f0e1"/>
-      <text x="834" y="498" fill="#ff7a3d">ARCADE</text>
+      <rect x="815" y="322" width="120" height="176" rx="12" fill="#0e1428" stroke="#ff7a3d" stroke-opacity="0.45" stroke-width="1.5"/>
+      <rect x="829" y="368" width="92" height="58" rx="29" fill="none" stroke="#ff7a3d" stroke-width="3"/>
+      <rect x="840" y="379" width="70" height="36" rx="18" fill="none" stroke="#ff7a3d" stroke-width="2" stroke-opacity="0.6"/>
+      <rect x="871" y="366" width="8" height="5" fill="#f5f0e1"/>
+      <text x="875" y="480" fill="#ff7a3d">ARCADE</text>
     </g>
     <!-- vogeltronics: a block of LED blips (red) -->
     <g>
-      <rect x="928" y="332" width="148" height="186" rx="12" fill="#0e1428" stroke="#e23744" stroke-opacity="0.45" stroke-width="1.5"/>
+      <rect x="949" y="322" width="120" height="176" rx="12" fill="#0e1428" stroke="#e23744" stroke-opacity="0.45" stroke-width="1.5"/>
       <g fill="#e23744">
-        <circle cx="972" cy="380" r="6"/><circle cx="1002" cy="380" r="6" opacity="0.3"/><circle cx="1032" cy="380" r="6" opacity="0.3"/>
-        <circle cx="972" cy="408" r="6" opacity="0.3"/><circle cx="1002" cy="408" r="6"/><circle cx="1032" cy="408" r="6" opacity="0.3"/>
-        <circle cx="972" cy="436" r="6" opacity="0.3"/><circle cx="1002" cy="436" r="6" opacity="0.3"/><circle cx="1032" cy="436" r="6"/>
+        <circle cx="979" cy="370" r="6"/><circle cx="1009" cy="370" r="6" opacity="0.3"/><circle cx="1039" cy="370" r="6" opacity="0.3"/>
+        <circle cx="979" cy="398" r="6" opacity="0.3"/><circle cx="1009" cy="398" r="6"/><circle cx="1039" cy="398" r="6" opacity="0.3"/>
+        <circle cx="979" cy="426" r="6" opacity="0.3"/><circle cx="1009" cy="426" r="6" opacity="0.3"/><circle cx="1039" cy="426" r="6"/>
       </g>
-      <text x="1002" y="498" font-size="12" letter-spacing="1" fill="#e23744">VOGELTRONICS</text>
+      <text x="1009" y="480" font-size="11" letter-spacing="1" fill="#e23744">VOGELTRONICS</text>
     </g>
   </g>
   <!-- ============ title block (left) ============ -->
   <text x="64" y="232" font-family="'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="800" letter-spacing="-2" filter="url(#glow)"><tspan fill="#f5f0e1">meta</tspan><tspan fill="#d4a847">incognita</tspan></text>
   <text x="66" y="284" font-family="'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="7" fill="#f5f0e1">SIMULATIONS · TOOLS · GAMES</text>
-  <text x="66" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#9aa6c2">Casino simulations that show their math, tools for</text>
-  <text x="66" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#9aa6c2">writing and old machines, games for the fun of it.</text>
+  <text x="66" y="332" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#9aa6c2">Casino simulations that show their math, tools,</text>
+  <text x="66" y="362" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#9aa6c2">text adventures, and games for the fun of it.</text>
 
   <!-- stat chips -->
   <g font-family="'Fira Code', Menlo, monospace" font-size="15">
