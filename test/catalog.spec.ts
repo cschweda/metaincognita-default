@@ -10,9 +10,9 @@ describe('catalog', () => {
     expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'workshop', 'fiction', 'arcade', 'vogeltronics'])
   })
 
-  it('carries all sixteen apps', () => {
-    expect(allItems).toHaveLength(16)
-    expect(zones.map(z => z.items.length)).toEqual([4, 4, 3, 1, 1, 3])
+  it('carries all seventeen apps', () => {
+    expect(allItems).toHaveLength(17)
+    expect(zones.map(z => z.items.length)).toEqual([4, 4, 4, 1, 1, 3])
   })
 
   it('gives every item a complete, non-empty record', () => {
@@ -60,9 +60,9 @@ describe('catalog', () => {
     // DOM order matters — the grid placement rules in main.css assume it.
     expect(pit).toEqual(['feature', 'std', 'std', 'wide'])
     expect(machines).toEqual(['std', 'std', 'wide', 'feature'])
-    // The Workshop runs three screenshots abreast; Interactive Fiction one full-width
+    // The Workshop runs a two-by-two of screenshots; Interactive Fiction one full-width
     // showcase; The Arcade a single full-width banner; VogelTronics its wides, two to a row.
-    expect(zones[2]!.items.map(i => i.span)).toEqual(['shot', 'shot', 'shot'])
+    expect(zones[2]!.items.map(i => i.span)).toEqual(['shot', 'shot', 'shot', 'shot'])
     expect(zones[3]!.items.map(i => i.span)).toEqual(['showcase'])
     expect(zones[4]!.items.map(i => i.span)).toEqual(['banner'])
     expect(zones[5]!.items.map(i => i.span)).toEqual(['wide', 'wide', 'wide'])

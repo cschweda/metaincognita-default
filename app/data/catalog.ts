@@ -199,7 +199,7 @@ export const zones: Zone[] = [
     sign: 'The Workshop',
     color: '#00d6ff',
     title: 'Tools I build and use.',
-    sub: 'Software for writing scripts and stories, taking old machines apart, and putting photos on the wall. Free, open source, no sign-ups, and your files stay yours.',
+    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, and keeping an eye on the coffee. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
       {
@@ -240,6 +240,19 @@ export const zones: Zone[] = [
         span: 'shot',
         shot: '/workshop/openmantel.webp',
         category: 'MultimediaApplication'
+      },
+      {
+        title: 'aiden-portal',
+        description: 'A dashboard for my Fellow Aiden coffee brewer: a live trace of every brew, profiles and schedules, a brew log and a descale tally. It runs on my own machine and is reachable only over Tailscale; the demo runs on invented data.',
+        domain: 'aiden-portal.netlify.app',
+        repo: 'https://github.com/cschweda/aiden-portal',
+        icon: 'coffee',
+        accent: '#fbbf24',
+        badge: 'Tailscale only',
+        badgeNote: 'no public address',
+        span: 'shot',
+        shot: '/workshop/aiden-portal.webp',
+        category: 'UtilitiesApplication'
       }
     ]
   },

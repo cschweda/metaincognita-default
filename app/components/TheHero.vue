@@ -33,7 +33,8 @@
       style="animation-delay: 0.46s"
     >
       Casino simulations that show their math. Tools for writing scripts, for taking
-      apart TRS-80 programs, and for putting your photos on the wall. frotz, Inc., for
+      apart TRS-80 programs, for putting your photos on the wall, and for watching the
+      coffee brew. frotz, Inc., for
       writing and playing 1980s-style text adventures on the Z-machine. A 1971 slot car
       track, and the reborn catalog of VogelTronics, out of Elk Grove Village, Illinois.
     </p>

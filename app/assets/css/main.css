@@ -117,7 +117,7 @@ body {
 .floor-pit .cab-wide { grid-column: span 2; }
 .floor-machines .cab-feature { grid-column: 3 / span 2; grid-row: 1 / span 2; }
 .floor-machines .cab-wide { grid-column: 1 / span 2; }
-.floor-workshop { grid-template-columns: repeat(3, 1fr); }
+.floor-workshop .cab-shot { grid-column: span 2; }
 .floor-fiction .cab-showcase { grid-column: span 4; }
 .floor-arcade .cab-banner { grid-column: span 4; }
 /* VogelTronics runs two wides shoulder to shoulder — one row, red beside cream */

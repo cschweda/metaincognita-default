@@ -5,6 +5,15 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.9.0] - 2026-11-08
+
+### Added
+- **aiden-portal** joins The Workshop: a dashboard for a Fellow Aiden coffee brewer,
+  reachable only over Tailscale. The card links the public demo (invented data) and
+  carries a purpose-made og:image, since the app has none of its own. The Workshop is
+  two-by-two again.
+- The site description, JSON-LD and hero copy mention it.
+
 ## [2.8.0] - 2026-11-08
 
 ### Added

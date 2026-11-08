@@ -2,7 +2,7 @@
 const SITE_URL = 'https://metaincognita.com'
 const TITLE = 'Metaincognita Workshop'
 const DESCRIPTION
-  = 'The Metaincognita Workshop: open-source projects built out of curiosity. Casino simulations that show the math behind blackjack, craps, hold’em, roulette and slots; tools for writing screenplays, taking apart TRS-80 programs, and self-hosting a picture frame; frotz, Inc., a suite of browser tools for writing, playing and inspecting 1980s Infocom-style interactive fiction on the Z-machine; a 1970s slot car track; and the VogelTronics catalog, rebuilt.'
+  = 'The Metaincognita Workshop: open-source projects built out of curiosity. Casino simulations that show the math behind blackjack, craps, hold’em, roulette and slots; tools for writing screenplays, taking apart TRS-80 programs, self-hosting a picture frame, and watching a coffee brewer over Tailscale; frotz, Inc., a suite of browser tools for writing, playing and inspecting 1980s Infocom-style interactive fiction on the Z-machine; a 1970s slot car track; and the VogelTronics catalog, rebuilt.'
 
 export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxtjs/plausible'],

@@ -49,10 +49,12 @@ simply links out to them.
 | Drafter | `drafter.dev` | [source](https://github.com/cschweda/drafter) | Screenplays and stage plays in plain-text Fountain, with the formatted pages building as you type; novels in Markdown. |
 | Fugløy | `fugloy.dev` | [source](https://github.com/cschweda/fugloy) | A TRS-80 Model I/III reverse-engineering toolkit: byte-exact disassembler, explaining workbench, emulator. |
 | OpenMantel | `openmantel.com` | [source](https://github.com/cschweda/openmantel) | A self-hosted digital picture frame for every screen in the house. |
+| aiden-portal | `aiden-portal.netlify.app` (demo) | [source](https://github.com/cschweda/aiden-portal) | A dashboard for a Fellow Aiden coffee brewer — live brew trace, profiles, schedules, brew log, descale tally — reachable only over Tailscale. The link is the demo, on invented data. |
 
 The Workshop's cabinets lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
-another origin's image).
+another origin's image). aiden-portal has no og:image of its own (it is not a public
+site), so its picture was made for this page.
 
 ### Interactive Fiction — frotz, Inc.
 
