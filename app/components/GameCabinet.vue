@@ -73,11 +73,24 @@ function onMove(e: MouseEvent) {
     <h3 class="cab-title">{{ item.title }}</h3>
     <p class="cab-desc">{{ item.description }}</p>
 
-    <!-- An umbrella project's tools. Plain text, not links: the suite lives on the
-         project's own site, which the card already links. -->
+    <!-- An umbrella project's tools. The card itself plays the umbrella site; each
+         tool carries only its own source link, raised above the card's overlay. -->
     <ul v-if="item.suite?.length" class="suite">
       <li v-for="tool in item.suite" :key="tool.name">
-        <b>{{ tool.name }}</b>
+        <span class="suite-head">
+          <b>{{ tool.name }}</b>
+          <a
+            v-if="tool.repo"
+            class="src"
+            :href="tool.repo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <UIcon name="i-lucide-github" aria-hidden="true" />
+            <span>source</span>
+            <span class="sr-only">code for {{ tool.name }} on GitHub — opens in a new tab</span>
+          </a>
+        </span>
         <span>{{ tool.note }}</span>
       </li>
     </ul>
@@ -404,6 +417,16 @@ function onMove(e: MouseEvent) {
   border-left: 2px solid color-mix(in srgb, var(--ac) 55%, transparent);
   font-size: 0.84rem;
   line-height: 1.5;
+  color: var(--color-bone-300);
+}
+.suite-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.suite-head .src {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
   color: var(--color-bone-300);
 }
 .suite b {

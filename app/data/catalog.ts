@@ -56,10 +56,11 @@ export interface CatalogItem {
    */
   shot?: string
   /**
-   * An umbrella project's member tools, each a name and a one-line note, listed
-   * under the description. Only a `showcase` cabinet has room for it.
+   * An umbrella project's member tools, each a name, a one-line note and its
+   * source repo (two tools may share one), listed under the description. Only a
+   * `showcase` cabinet has room for it.
    */
-  suite?: { name: string, note: string }[]
+  suite?: { name: string, note: string, repo?: string }[]
   /** One closing line after the suite: what is still to come. */
   suiteMore?: string
   /** schema.org applicationCategory. Defaults to `GameApplication`. */
@@ -264,15 +265,18 @@ export const zones: Zone[] = [
         suite: [
           {
             name: 'frotzsmith',
-            note: 'A browser IDE for Inform 6 and ZIL. The real compilers run as WebAssembly and build Z-machine or Glulx story files on your own machine; play them inline and test them with a skein.'
+            note: 'A browser IDE for Inform 6 and ZIL. The real compilers run as WebAssembly and build Z-machine or Glulx story files on your own machine; play them inline and test them with a skein.',
+            repo: 'https://github.com/cschweda/frotzsmith'
           },
           {
             name: 'frotzplay',
-            note: 'A Z-machine player built for screen readers and strict security policies. Your story files are never uploaded.'
+            note: 'A Z-machine player built for screen readers and strict security policies. Your story files are never uploaded. Ships as part of frotzlens.',
+            repo: 'https://github.com/cschweda/frotzlens'
           },
           {
             name: 'frotzlens',
-            note: 'Opens a story file and shows what is inside: header, object tree, dictionary, grammar, strings and cross-referenced disassembly. Fully symbolic with Inform’s debug output.'
+            note: 'Opens a story file and shows what is inside: header, object tree, dictionary, grammar, strings and cross-referenced disassembly. Fully symbolic with Inform’s debug output.',
+            repo: 'https://github.com/cschweda/frotzlens'
           }
         ],
         suiteMore: 'Still to come: a debugger, a release packager, a linter and a regression tester.',

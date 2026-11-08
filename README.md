@@ -68,9 +68,9 @@ tools — one project with many tools, so it gets a zone of its own and a single
 
 The suite today:
 
-- **frotzsmith** — a browser IDE for Inform 6 and ZIL; the real compilers run as WebAssembly, building Z-machine or Glulx story files client-side, with inline play and a skein test runner.
-- **frotzplay** — a Z-machine player built for screen readers and strict security policies; story files are never uploaded.
-- **frotzlens** — a story-file inspector: header, object tree, dictionary, grammar, strings and cross-referenced disassembly.
+- **frotzsmith** ([source](https://github.com/cschweda/frotzsmith)) — a browser IDE for Inform 6 and ZIL; the real compilers run as WebAssembly, building Z-machine or Glulx story files client-side, with inline play and a skein test runner.
+- **frotzplay** — a Z-machine player built for screen readers and strict security policies; story files are never uploaded. It ships as part of frotzlens.
+- **frotzlens** ([source](https://github.com/cschweda/frotzlens)) — a story-file inspector: header, object tree, dictionary, grammar, strings and cross-referenced disassembly.
 
 Still to come: a debugger (frotztrace), a release packager (frotzpack), a linter
 (frotzlint) and a regression tester (frotzcheck). They join the frotz, Inc. cabinet's

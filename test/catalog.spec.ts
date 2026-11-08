@@ -92,6 +92,9 @@ describe('catalog', () => {
   it('lists a suite only on a showcase cabinet', () => {
     for (const item of allItems) {
       if (item.suite || item.suiteMore) expect(item.span, item.domain).toBe('showcase')
+      for (const tool of item.suite ?? []) {
+        expect(tool.repo, tool.name).toMatch(/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/)
+      }
     }
   })
 
