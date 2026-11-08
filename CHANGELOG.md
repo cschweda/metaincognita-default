@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   carries a purpose-made og:image, since the app has none of its own. The Workshop is
   two-by-two again.
 - The site description, JSON-LD and hero copy mention it.
+- **The footer tagline** is "All open source / No sign-ups / Always free", three stacked
+  lines, in place of "all of it, all source". The line beside it that said the same
+  thing is now "No real money, ever."
 
 ## [2.8.0] - 2026-11-08
 
