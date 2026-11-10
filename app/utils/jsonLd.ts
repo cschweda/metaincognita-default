@@ -12,7 +12,7 @@ export function buildJsonLd(items: CatalogItem[]) {
         '@id': `${SITE}/#website`,
         name: 'Metaincognita Workshop',
         url: SITE,
-        description: 'The Metaincognita Workshop: open-source projects, built out of curiosity: casino simulations that show their math, tools for writing screenplays, a TRS-80 reverse-engineering toolkit, a self-hosted picture frame, a coffee-brewer dashboard reachable only over Tailscale, frotz, Inc. (browser tools for 1980s Infocom-style interactive fiction on the Z-machine), games for fun, and playable homages to the VogelTronics catalog. Free, with no sign-ups.',
+        description: 'The Metaincognita Workshop: open-source projects, built out of curiosity: casino simulations that show their math, tools for writing screenplays, a TRS-80 reverse-engineering toolkit, a self-hosted picture frame, a coffee-brewer dashboard reachable only over Tailscale, a Markdown editor, a lorem ipsum generator, an image compressor, a document accessibility checker, frotz, Inc. (browser tools for 1980s Infocom-style interactive fiction on the Z-machine), games for fun, and playable homages to the VogelTronics catalog. Free, with no sign-ups.',
         inLanguage: 'en'
       },
       {
