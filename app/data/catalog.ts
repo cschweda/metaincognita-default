@@ -199,7 +199,7 @@ export const zones: Zone[] = [
     sign: 'The Workshop',
     color: '#00d6ff',
     title: 'Tools I build and use.',
-    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, and keeping an eye on the coffee. Free, open source, no sign-ups, and your files stay yours.',
+    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, and keeping an eye on the coffee — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
       {
@@ -252,6 +252,58 @@ export const zones: Zone[] = [
         badgeNote: 'no public address',
         span: 'shot',
         shot: '/workshop/aiden-portal.webp',
+        category: 'UtilitiesApplication'
+      },
+      {
+        title: 'ICJIA Markdown Editor 2.0',
+        description: 'Accessible markdown editor for ICJIA researchers. Write, preview, and export markdown documents.',
+        domain: 'markdown.icjia.cloud',
+        repo: 'https://github.com/ICJIA/icjia-markdown-editor-2026',
+        icon: 'file-pen-line',
+        accent: '#a98bff',
+        badge: 'Accessible editor',
+        badgeNote: 'write, preview, export',
+        span: 'shot',
+        shot: '/workshop/markdown-editor.webp',
+        category: 'DesignApplication'
+      },
+      {
+        title: 'Ipsumify',
+        description: 'Generate beautiful lorem ipsum placeholder text with markdown support, themed variants, and a free public API — no signup required.',
+        domain: 'ipsumify.com',
+        repo: 'https://github.com/ICJIA/ipsumify-next-2026',
+        icon: 'pilcrow',
+        accent: '#2ee6a8',
+        badge: 'Free public API',
+        badgeNote: 'no signup required',
+        span: 'shot',
+        shot: '/workshop/ipsumify.webp',
+        category: 'UtilitiesApplication'
+      },
+      {
+        title: 'Squish',
+        description: 'Privacy-focused image compression for writers and developers. Compress images instantly in your browser with real-time preview. No uploads required.',
+        domain: 'squish.icjia.app',
+        repo: 'https://github.com/ICJIA/icjia-squish-2026',
+        icon: 'shrink',
+        accent: '#8be36a',
+        badge: 'In your browser',
+        badgeNote: 'no uploads required',
+        span: 'shot',
+        shot: '/workshop/squish.webp',
+        category: 'MultimediaApplication'
+      },
+      {
+        title: 'ICJIA Accessibility Audit',
+        description: 'Free accessibility checker for PDF, Word, PowerPoint, and Excel: an instant WCAG 2.1 AA score with fix-it guidance for ADA Title II and Illinois IITAA.',
+        domain: 'audit.icjia.app',
+        repo: 'https://github.com/ICJIA/file-accessibility-audit',
+        icon: 'scan-search',
+        accent: '#19c9b4',
+        badge: 'Instant score',
+        badgeNote: 'with fix-it guidance',
+        span: 'shot',
+        shot: '/workshop/accessibility-audit.webp',
         category: 'UtilitiesApplication'
       }
     ]

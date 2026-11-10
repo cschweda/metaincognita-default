@@ -5,6 +5,17 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.10.0] - 2026-11-10
+
+### Added
+- **Four more tools in The Workshop**, written for work at ICJIA and for my own use:
+  the **ICJIA Markdown Editor 2.0** (`markdown.icjia.cloud`), **Ipsumify**
+  (`ipsumify.com`), **Squish** (`squish.icjia.app`) and the **ICJIA Accessibility
+  Audit** (`audit.icjia.app`). Each card carries the app's own SEO description and
+  og:image (as local WebP), and links its source under the ICJIA organisation. The
+  Workshop now runs eight tools, two to a row.
+- The zone copy, site description, JSON-LD, hero and README mention them.
+
 ## [2.9.0] - 2026-11-08
 
 ### Added

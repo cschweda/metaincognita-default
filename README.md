@@ -50,6 +50,13 @@ simply links out to them.
 | Fugløy | `fugloy.dev` | [source](https://github.com/cschweda/fugloy) | A TRS-80 Model I/III reverse-engineering toolkit: byte-exact disassembler, explaining workbench, emulator. |
 | OpenMantel | `openmantel.com` | [source](https://github.com/cschweda/openmantel) | A self-hosted digital picture frame for every screen in the house. |
 | aiden-portal | `aiden-portal.netlify.app` (demo) | [source](https://github.com/cschweda/aiden-portal) | A dashboard for a Fellow Aiden coffee brewer — live brew trace, profiles, schedules, brew log, descale tally — reachable only over Tailscale. The link is the demo, on invented data. |
+| ICJIA Markdown Editor 2.0 | `markdown.icjia.cloud` | [source](https://github.com/ICJIA/icjia-markdown-editor-2026) | An accessible Markdown editor for ICJIA researchers: write, preview and export. |
+| Ipsumify | `ipsumify.com` | [source](https://github.com/ICJIA/ipsumify-next-2026) | Lorem ipsum placeholder text with Markdown support, themed variants and a free public API. |
+| Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
+| ICJIA Accessibility Audit | `audit.icjia.app` | [source](https://github.com/ICJIA/file-accessibility-audit) | An accessibility checker for PDF, Word, PowerPoint and Excel: a WCAG 2.1 AA score with fix-it guidance. |
+
+The last four were written for work at ICJIA (and for my own use); their source lives
+under the ICJIA GitHub organisation.
 
 The Workshop's cabinets lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
