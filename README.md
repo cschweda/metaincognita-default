@@ -58,16 +58,17 @@ development have no repository yet.
 | Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
 | ICJIA Accessibility Audit | `audit.icjia.app` | [source](https://github.com/ICJIA/file-accessibility-audit) | An accessibility checker for PDF, Word, PowerPoint and Excel: a WCAG 2.1 AA score with fix-it guidance. |
 | Fotobogen | `fotobogen.com` (teaser) | no repo yet | Free, open-source software for running your own photo website. **In development**; the card wears a ribbon saying so. |
-| Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**; its picture carries the label itself. |
+| Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**, with the same ribbon. |
 
 The four ICJIA tools (the Markdown editor, Ipsumify, Squish and the Accessibility Audit)
 were written for work at ICJIA, and for my own use; their source lives under the ICJIA
 GitHub organisation.
 
 Fotobogen and Utenat are **in development**. Each links to a placeholder page announcing
-it, has no source link because there is no repository yet, and keeps its bulb strip
-unlit. Fotobogen wears an "In development" ribbon across the corner of its picture;
-Utenat's picture already prints that label, so it needs no ribbon.
+it, has no source link because there is no repository yet, wears an "In development"
+ribbon across the corner of its picture, and keeps its bulb strip unlit. (Utenat's
+og:image prints its own "In development" label in that corner; the copy in
+`public/workshop/` has it painted out so the ribbon does not collide with it.)
 
 The Workshop's cabinets lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
@@ -263,8 +264,7 @@ Two optional fields cover an app that is not finished. Leave out `repo` and the 
 shows no source link; the catalog test lists every such app by domain, so add it there
 deliberately. Set `status: 'In development'` on a `shot` cabinet and the card hangs that
 text as a ribbon across the top-right corner of its picture and switches off its bulb
-strip. If the picture already prints the status, add `statusInShot: true` and the ribbon
-is kept for screen readers only. To add a Workshop tool, convert its og:image first:
+strip. To add a Workshop tool, convert its og:image first:
 
 ```bash
 cwebp -q 82 -resize 1120 588 og.png -o public/workshop/new-tool.webp

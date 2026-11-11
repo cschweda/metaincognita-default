@@ -69,7 +69,7 @@ function onMove(e: MouseEvent) {
         decoding="async"
       >
       <!-- Real text, not decoration: it is the one place the card says so at a glance. -->
-      <span v-if="item.status" :class="item.statusInShot ? 'sr-only' : 'ribbon'">{{ item.status }}</span>
+      <span v-if="item.status" class="ribbon">{{ item.status }}</span>
     </div>
 
     <h3 class="cab-title">{{ item.title }}</h3>

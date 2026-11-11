@@ -69,12 +69,6 @@ export interface CatalogItem {
    * can carry one.
    */
   status?: string
-  /**
-   * Set when the picture already prints the status itself (Utenat's og:image carries
-   * its own "In development" label, right where the ribbon would hang). The ribbon is
-   * then kept for screen readers only, since the picture is decorative.
-   */
-  statusInShot?: boolean
   /** schema.org applicationCategory. Defaults to `GameApplication`. */
   category?: string
 }
@@ -335,7 +329,9 @@ export const zones: Zone[] = [
       },
       {
         // No repo yet: in development, and utenat.com is a placeholder page
-        // announcing it. Add `repo` when there is one.
+        // announcing it. Add `repo` when there is one. The og:image prints its own
+        // red "In development" label where the ribbon hangs; the card copy has that
+        // label painted out so the two do not collide.
         title: 'Utenat',
         description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart. In development.',
         domain: 'utenat.com',
@@ -346,7 +342,6 @@ export const zones: Zone[] = [
         span: 'shot',
         shot: '/workshop/utenat.webp',
         status: 'In development',
-        statusInShot: true,
         category: 'EducationalApplication'
       }
     ]

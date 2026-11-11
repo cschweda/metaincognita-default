@@ -145,11 +145,6 @@ describe('GameCabinet', () => {
     expect(plain.find('.ribbon').exists()).toBe(false)
     const flagged = await mountSuspended(GameCabinet, { props: { item: { ...shot, status: 'In development' } } })
     expect(flagged.find('.shot .ribbon').text()).toBe('In development')
-    // a picture that prints its own label keeps the status for screen readers only
-    const printed = await mountSuspended(GameCabinet, { props: { item: { ...shot, status: 'In development', statusInShot: true } } })
-    expect(printed.find('.ribbon').exists()).toBe(false)
-    expect(printed.find('.shot .sr-only').text()).toBe('In development')
-    expect(printed.find('.cab').classes()).toContain('cab-unlit')
     // not open yet, so the bulb strip stays dark
     expect(plain.find('.cab').classes()).not.toContain('cab-unlit')
     expect(flagged.find('.cab').classes()).toContain('cab-unlit')
