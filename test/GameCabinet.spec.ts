@@ -139,6 +139,14 @@ describe('GameCabinet', () => {
     expect(w.findAll('a')).toHaveLength(2)
   })
 
+  it('hangs a status ribbon on the picture only when the item has a status', async () => {
+    const shot = { ...item, span: 'shot' as const, shot: '/workshop/drafter.webp' }
+    const plain = await mountSuspended(GameCabinet, { props: { item: shot } })
+    expect(plain.find('.ribbon').exists()).toBe(false)
+    const flagged = await mountSuspended(GameCabinet, { props: { item: { ...shot, status: 'In development' } } })
+    expect(flagged.find('.shot .ribbon').text()).toBe('In development')
+  })
+
   it('draws no screenshot on a cabinet that is not a shot', async () => {
     const w = await mountSuspended(GameCabinet, { props: { item: { ...item, shot: '/workshop/drafter.webp' } } })
     expect(w.find('.shot').exists()).toBe(false)

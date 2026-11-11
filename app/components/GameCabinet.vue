@@ -68,6 +68,8 @@ function onMove(e: MouseEvent) {
         loading="lazy"
         decoding="async"
       >
+      <!-- Real text, not decoration: it is the one place the card says so at a glance. -->
+      <span v-if="item.status" class="ribbon">{{ item.status }}</span>
     </div>
 
     <h3 class="cab-title">{{ item.title }}</h3>
@@ -387,6 +389,29 @@ function onMove(e: MouseEvent) {
   transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .cab:hover .shot img { transform: scale(1.025); }
+
+/* A status ribbon, hung from the picture's top edge to its right edge. The band is
+   centred on a point in from the corner and turned 45 degrees; the bezel's
+   overflow clips its ends flush with both edges. */
+.ribbon {
+  position: absolute;
+  top: 2.6rem;
+  right: 2.6rem;
+  width: 16rem;
+  transform: translate(50%, -50%) rotate(45deg);
+  padding: 0.38rem 0;
+  text-align: center;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #170f02;
+  background: linear-gradient(180deg, #ffe9a8, #ffb92e 60%, #e59a10);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
 .cab-shot .cab-title { margin-top: 1.1rem; }
 
 /* The showcase: one umbrella project across the whole floor. The picture holds the

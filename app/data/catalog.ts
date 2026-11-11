@@ -63,6 +63,12 @@ export interface CatalogItem {
   suite?: { name: string, note: string, repo?: string }[]
   /** One closing line after the suite: what is still to come. */
   suiteMore?: string
+  /**
+   * A short state worth flagging, e.g. `In development`: drawn as a ribbon across
+   * the top-right corner of the picture, so only a `shot` or `showcase` cabinet
+   * can carry one.
+   */
+  status?: string
   /** schema.org applicationCategory. Defaults to `GameApplication`. */
   category?: string
 }
@@ -199,7 +205,7 @@ export const zones: Zone[] = [
     sign: 'The Workshop',
     color: '#00d6ff',
     title: 'Tools I build and use.',
-    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, and keeping an eye on the coffee — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Free, open source, no sign-ups, and your files stay yours.',
+    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, and keeping an eye on the coffee — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Next on the bench: Fotobogen, for publishing photographs. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
       {
@@ -305,6 +311,21 @@ export const zones: Zone[] = [
         span: 'shot',
         shot: '/workshop/accessibility-audit.webp',
         category: 'UtilitiesApplication'
+      },
+      {
+        // No repo yet: the source is not public while it is in development, and
+        // fotobogen.com is a teaser landing page.
+        title: 'Fotobogen',
+        description: 'Fotobogen is free, open-source software for running your own photo website. Install it, upload your pictures, and publish them at your own address. In development.',
+        domain: 'fotobogen.com',
+        icon: 'images',
+        accent: '#ff3b30',
+        badge: 'Your own address',
+        badgeNote: 'a photo site of your own',
+        span: 'shot',
+        shot: '/workshop/fotobogen.webp',
+        status: 'In development',
+        category: 'MultimediaApplication'
       }
     ]
   },
