@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fotobogen** joins The Workshop: free, open-source software for running your own
   photo website. It is still in development, so the card links the teaser page at
   `fotobogen.com`, has no source link (there is no repository yet), and wears an **In development** ribbon
-  across the top-right corner of its picture.
+  across the top-right corner of its picture. Its bulb strip stays unlit.
 - A cabinet can carry a `status`, drawn as that ribbon (new optional catalog field).
 - The Workshop holds nine tools, two to a row; the ninth sits alone until the next
   one arrives.

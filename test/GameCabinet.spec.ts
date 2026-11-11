@@ -145,6 +145,9 @@ describe('GameCabinet', () => {
     expect(plain.find('.ribbon').exists()).toBe(false)
     const flagged = await mountSuspended(GameCabinet, { props: { item: { ...shot, status: 'In development' } } })
     expect(flagged.find('.shot .ribbon').text()).toBe('In development')
+    // not open yet, so the bulb strip stays dark
+    expect(plain.find('.cab').classes()).not.toContain('cab-unlit')
+    expect(flagged.find('.cab').classes()).toContain('cab-unlit')
   })
 
   it('draws no screenshot on a cabinet that is not a shot', async () => {

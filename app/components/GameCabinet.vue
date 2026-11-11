@@ -34,7 +34,7 @@ function onMove(e: MouseEvent) {
        source link floats above that overlay on its own z-index. -->
   <article
     class="cab"
-    :class="`cab-${item.span}`"
+    :class="[`cab-${item.span}`, { 'cab-unlit': item.status }]"
     :style="{ '--ac': item.accent }"
     @mousemove="onMove"
   >
@@ -184,6 +184,10 @@ function onMove(e: MouseEvent) {
   animation: chase 1.1s steps(1) infinite;
 }
 .cab:nth-child(even)::before { animation-delay: 0.55s; }
+/* A cabinet flagged with a status is not open yet: its bulbs, and the hairline
+   under them, stay off. */
+.cab-unlit::before,
+.cab-unlit::after { content: none; }
 
 /* chrome hairline under the bulbs */
 .cab::after {
