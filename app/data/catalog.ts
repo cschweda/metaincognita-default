@@ -313,8 +313,8 @@ export const zones: Zone[] = [
         category: 'UtilitiesApplication'
       },
       {
-        // No repo yet: the source is not public while it is in development, and
-        // fotobogen.com is a teaser landing page.
+        // No repo yet: the app is planned but not started, and fotobogen.com is a
+        // one-page teaser. Add `repo` when there is one.
         title: 'Fotobogen',
         description: 'Fotobogen is free, open-source software for running your own photo website. Install it, upload your pictures, and publish them at your own address. In development.',
         domain: 'fotobogen.com',

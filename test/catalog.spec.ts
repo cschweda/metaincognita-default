@@ -39,7 +39,7 @@ describe('catalog', () => {
     // Every cabinet links its source. A new app whose repo is not public yet may
     // ship without one (the link affordance just stays off) — but it must be
     // named here deliberately, never forgotten.
-    // Fotobogen is in development; its source is not public yet.
+    // Fotobogen is planned but not started: there is no repository yet.
     expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual(['fotobogen.com'])
 
     const repos = allItems.map(i => i.repo).filter(Boolean)
