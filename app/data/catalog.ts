@@ -316,12 +316,12 @@ export const zones: Zone[] = [
         // No repo yet: the app is planned but not started, and fotobogen.com is a
         // one-page teaser. Add `repo` when there is one.
         title: 'Fotobogen',
-        description: 'Fotobogen is free, open-source software for running your own photo website. Install it, upload your pictures, and publish them at your own address. In development.',
+        description: 'A publishing platform for photographs. Install it, upload your pictures, and publish them on a website of your own. In development.',
         domain: 'fotobogen.com',
         icon: 'images',
         accent: '#ff3b30',
-        badge: 'Your own address',
-        badgeNote: 'a photo site of your own',
+        badge: 'Photo publishing',
+        badgeNote: 'free and open source',
         span: 'shot',
         shot: '/workshop/fotobogen.webp',
         status: 'In development',
