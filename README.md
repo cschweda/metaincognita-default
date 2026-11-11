@@ -11,7 +11,8 @@
 
 The landing page for **metaincognita** — a small, curated collection of open-source
 projects built out of curiosity: casino games rebuilt as **simulations** that show their
-math, **workshop** tools for writing, retro computing and the home, **frotz, Inc.** — a suite
+math, **workshop** tools for writing, retro computing, the home and everyday office
+work, **frotz, Inc.** — a suite
 of browser tools for 1980s Infocom-style interactive fiction — **games** built for
 nothing but fun, and playable homages to **VogelTronics**, a completely
 fictional Illinois toy company invented so the retro-toy recreations step on no one's
@@ -24,8 +25,10 @@ trademarks.
 **Live:** https://metaincognita.com
 
 This repository is *only* the landing page. Each project below is its own deployment and
-its own repository under [`github.com/cschweda`](https://github.com/cschweda); the page
-simply links out to them.
+its own repository; the page simply links out to them. Most live under
+[`github.com/cschweda`](https://github.com/cschweda); four tools written for work live
+under [`github.com/ICJIA`](https://github.com/ICJIA), and two that are still in
+development have no repository yet.
 
 ## The collection
 
@@ -55,14 +58,22 @@ simply links out to them.
 | Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
 | ICJIA Accessibility Audit | `audit.icjia.app` | [source](https://github.com/ICJIA/file-accessibility-audit) | An accessibility checker for PDF, Word, PowerPoint and Excel: a WCAG 2.1 AA score with fix-it guidance. |
 | Fotobogen | `fotobogen.com` (teaser) | no repo yet | Free, open-source software for running your own photo website. **In development**; the card wears a ribbon saying so. |
+| Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**, with the same ribbon. |
 
-The last four were written for work at ICJIA (and for my own use); their source lives
-under the ICJIA GitHub organisation.
+The four ICJIA tools (the Markdown editor, Ipsumify, Squish and the Accessibility Audit)
+were written for work at ICJIA, and for my own use; their source lives under the ICJIA
+GitHub organisation.
+
+Fotobogen and Utenat are **in development**. Each links to a placeholder page announcing
+it, has no source link because there is no repository yet, wears an "In development"
+ribbon across the corner of its picture, and keeps its bulb strip unlit. (Utenat's
+og:image prints its own "In development" label in that corner; the copy in
+`public/workshop/` has it painted out so the ribbon does not collide with it.)
 
 The Workshop's cabinets lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
 another origin's image). aiden-portal has no og:image of its own (it is not a public
-site), so its picture was made for this page.
+site), so its picture was made for this page. There are ten tools, two to a row.
 
 ### Interactive Fiction — frotz, Inc.
 
@@ -232,7 +243,7 @@ and append an item to a zone's `items` array:
   title: 'New Game',
   description: 'One plain line about what it teaches.',
   domain: 'new-game.metaincognita.com', // any bare hostname (the slot car lives on netlify.app); the live-link label
-  repo: 'https://github.com/cschweda/new-game', // the cabinet's "source" link (omit only while a repo is private)
+  repo: 'https://github.com/cschweda/new-game', // the cabinet's "source" link (omit only while there is no public repo)
   icon: 'dice-6',                        // any lucide name -> i-lucide-dice-6
   accent: '#e0a92e',                     // hex driving the glow, bulbs, ring + icon tint
   badge: 'True odds',                    // the gold chip: the method, never a number
@@ -248,6 +259,16 @@ so a new scene needs no colour decisions — and falls back to a watermark glyph
 is drawn. A `std` cabinet has no room and carries neither. A `shot` cabinet (The
 Workshop) carries a `shot` path instead: the app's og:image, saved as WebP under
 `public/workshop/`. The tests enforce all of it.
+
+Two optional fields cover an app that is not finished. Leave out `repo` and the card
+shows no source link; the catalog test lists every such app by domain, so add it there
+deliberately. Set `status: 'In development'` on a `shot` cabinet and the card hangs that
+text as a ribbon across the top-right corner of its picture and switches off its bulb
+strip. To add a Workshop tool, convert its og:image first:
+
+```bash
+cwebp -q 82 -resize 1120 588 og.png -o public/workshop/new-tool.webp
+```
 
 ## Develop
 
@@ -270,6 +291,11 @@ Configured in [`netlify.toml`](netlify.toml):
 - **Build command:** `pnpm generate`
 - **Publish directory:** `dist`
 - **Node version:** 22 (also pinned in `.nvmrc`)
+
+Netlify builds production from `main`, and each production build is billed, while PR
+Deploy Previews are free. So changes are batched: feature branches open PRs into the
+long-lived `staging` branch, and `staging` is merged into `main` (a merge commit, never
+a squash) only when a batch is ready to ship.
 
 The `netlify_static` nitro preset generates `dist/_redirects` (unknown paths → the
 prerendered 404) and `dist/_headers` (immutable caching for `/_nuxt/*` and `/_fonts/*`).
