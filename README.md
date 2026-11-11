@@ -54,6 +54,7 @@ simply links out to them.
 | Ipsumify | `ipsumify.com` | [source](https://github.com/ICJIA/ipsumify-next-2026) | Lorem ipsum placeholder text with Markdown support, themed variants and a free public API. |
 | Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
 | ICJIA Accessibility Audit | `audit.icjia.app` | [source](https://github.com/ICJIA/file-accessibility-audit) | An accessibility checker for PDF, Word, PowerPoint and Excel: a WCAG 2.1 AA score with fix-it guidance. |
+| Fotobogen | `fotobogen.com` (teaser) | no repo yet | Free, open-source software for running your own photo website. **In development**; the card wears a ribbon saying so. |
 
 The last four were written for work at ICJIA (and for my own use); their source lives
 under the ICJIA GitHub organisation.
