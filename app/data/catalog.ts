@@ -26,7 +26,7 @@ export interface CatalogItem {
   domain: string
   /**
    * Full GitHub URL; the cabinet's view-source affordance. Every app is open
-   * source — optional only so a cabinet whose repo has not gone public yet
+   * source — optional only so a cabinet whose repo is not public, or not started, yet
    * shows no link rather than a dead one.
    */
   repo?: string
@@ -69,6 +69,12 @@ export interface CatalogItem {
    * can carry one.
    */
   status?: string
+  /**
+   * Set when the picture already prints the status itself (Utenat's og:image carries
+   * its own "In development" label, right where the ribbon would hang). The ribbon is
+   * then kept for screen readers only, since the picture is decorative.
+   */
+  statusInShot?: boolean
   /** schema.org applicationCategory. Defaults to `GameApplication`. */
   category?: string
 }
@@ -205,7 +211,7 @@ export const zones: Zone[] = [
     sign: 'The Workshop',
     color: '#00d6ff',
     title: 'Tools I build and use.',
-    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, and keeping an eye on the coffee — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Next on the bench: Fotobogen, for publishing photographs. Free, open source, no sign-ups, and your files stay yours.',
+    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, and keeping an eye on the coffee — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Next on the bench: Fotobogen, for publishing photographs, and Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
       {
@@ -326,6 +332,22 @@ export const zones: Zone[] = [
         shot: '/workshop/fotobogen.webp',
         status: 'In development',
         category: 'MultimediaApplication'
+      },
+      {
+        // No repo yet: in development, and utenat.com is a placeholder page
+        // announcing it. Add `repo` when there is one.
+        title: 'Utenat',
+        description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart. In development.',
+        domain: 'utenat.com',
+        icon: 'drama',
+        accent: '#f2efe8',
+        badge: 'Learn it by heart',
+        badgeNote: 'speeches and lines',
+        span: 'shot',
+        shot: '/workshop/utenat.webp',
+        status: 'In development',
+        statusInShot: true,
+        category: 'EducationalApplication'
       }
     ]
   },

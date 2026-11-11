@@ -10,9 +10,9 @@ describe('catalog', () => {
     expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'workshop', 'fiction', 'arcade', 'vogeltronics'])
   })
 
-  it('carries all twenty-two apps', () => {
-    expect(allItems).toHaveLength(22)
-    expect(zones.map(z => z.items.length)).toEqual([4, 4, 9, 1, 1, 3])
+  it('carries all twenty-three apps', () => {
+    expect(allItems).toHaveLength(23)
+    expect(zones.map(z => z.items.length)).toEqual([4, 4, 10, 1, 1, 3])
   })
 
   it('gives every item a complete, non-empty record', () => {
@@ -39,8 +39,8 @@ describe('catalog', () => {
     // Every cabinet links its source. A new app whose repo is not public yet may
     // ship without one (the link affordance just stays off) — but it must be
     // named here deliberately, never forgotten.
-    // Fotobogen is planned but not started: there is no repository yet.
-    expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual(['fotobogen.com'])
+    // Fotobogen and Utenat are in development: neither has a repository yet.
+    expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual(['fotobogen.com', 'utenat.com'])
 
     const repos = allItems.map(i => i.repo).filter(Boolean)
     expect(new Set(repos).size).toBe(repos.length)
@@ -63,7 +63,7 @@ describe('catalog', () => {
     expect(machines).toEqual(['std', 'std', 'wide', 'feature'])
     // The Workshop runs its screenshots two to a row; Interactive Fiction one full-width
     // showcase; The Arcade a single full-width banner; VogelTronics its wides, two to a row.
-    expect(zones[2]!.items.map(i => i.span)).toEqual(Array(9).fill('shot'))
+    expect(zones[2]!.items.map(i => i.span)).toEqual(Array(10).fill('shot'))
     expect(zones[3]!.items.map(i => i.span)).toEqual(['showcase'])
     expect(zones[4]!.items.map(i => i.span)).toEqual(['banner'])
     expect(zones[5]!.items.map(i => i.span)).toEqual(['wide', 'wide', 'wide'])
@@ -104,7 +104,7 @@ describe('catalog', () => {
     for (const item of allItems) {
       if (item.status) expect(Boolean(item.shot), item.domain).toBe(true)
     }
-    expect(allItems.filter(i => i.status).map(i => [i.domain, i.status])).toEqual([['fotobogen.com', 'In development']])
+    expect(allItems.filter(i => i.status).map(i => [i.domain, i.status])).toEqual([['fotobogen.com', 'In development'], ['utenat.com', 'In development']])
   })
 
   it('uses unique domains', () => {

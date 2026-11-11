@@ -5,6 +5,19 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.0] - 2026-11-11
+
+### Added
+- **Utenat** joins The Workshop: free, open-source software for memorizing anything
+  you need to say aloud (the name is Norwegian for "by heart"). Like Fotobogen it is
+  in development: the card links the placeholder page at `utenat.com`, has no source
+  link (there is no repository yet) and keeps its bulb strip unlit. Its og:image
+  already prints an "In development" label where the ribbon would hang, so the ribbon
+  is kept for screen readers only (new optional catalog field `statusInShot`). The
+  Workshop holds ten tools, two to a row, with no gap.
+- README brought up to date: where the repositories live, the in-development cards,
+  the `status` field, and the staging-then-main deploy routine.
+
 ## [2.11.0] - 2026-11-11
 
 ### Added
