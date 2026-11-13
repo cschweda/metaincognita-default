@@ -10,6 +10,11 @@ const cabDelay = (i: number) => `${(i * 0.06).toFixed(2)}s`
 useHead({
   script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(buildJsonLd(allItems)) }]
 })
+
+// Pageviews are recorded here rather than automatically (autoPageviews is off in
+// nuxt.config.ts), so unknown URLs that land on the 404 page are never counted.
+const { $plausible } = useNuxtApp()
+onMounted(() => $plausible?.trackPageview())
 </script>
 
 <template>
