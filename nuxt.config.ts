@@ -73,7 +73,12 @@ export default defineNuxtConfig({
 
   plausible: {
     // don't record hits while developing
-    ignoredHostnames: ['localhost']
+    ignoredHostnames: ['localhost'],
+    // The module's automatic pageview fires on every URL that boots the app,
+    // including the 404 fallback — so vulnerability scanners probing paths like
+    // /mt/mt.cgi showed up as page views. The one real page records its own
+    // view instead (see app/pages/index.vue).
+    autoPageviews: false
   },
 
   nitro: {
