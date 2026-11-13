@@ -5,6 +5,17 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.13.0] - 2026-11-13
+
+### Added
+- **zoneblick** joins The Workshop: a self-hosted DNS zone watchdog that asks every
+  authoritative nameserver directly, checks the answers and keeps a history, so you
+  know when your DNS drifts. It is in development: the card links the landing page at
+  `zoneblick.com`, wears the **In development** ribbon and keeps its bulb strip unlit.
+  Unlike Fotobogen and Utenat it has a public repository, so the card links its source.
+  Its og:image prints a label where the ribbon hangs, so the card's copy of the picture
+  has that label painted out. The Workshop holds eleven tools.
+
 ## [2.12.0] - 2026-11-11
 
 ### Added
