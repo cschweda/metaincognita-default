@@ -5,6 +5,13 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.13.1] - 2026-11-13
+
+### Changed
+- The Workshop's cards are all the same size. The rows are equal, so the tallest card
+  (the longest description) sets the height for every other, at every breakpoint. An
+  odd last card no longer stretches across the whole row.
+
 ## [2.13.0] - 2026-11-13
 
 ### Added

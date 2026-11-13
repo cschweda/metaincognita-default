@@ -118,6 +118,9 @@ body {
 .floor-machines .cab-feature { grid-column: 3 / span 2; grid-row: 1 / span 2; }
 .floor-machines .cab-wide { grid-column: 1 / span 2; }
 .floor-workshop .cab-shot { grid-column: span 2; }
+/* every workshop card is the same size: equal rows, so the tallest card (the longest
+   description) sets the height for all of them, at every breakpoint */
+.floor-workshop { grid-auto-rows: 1fr; }
 .floor-fiction .cab-showcase { grid-column: span 4; }
 .floor-arcade .cab-banner { grid-column: span 4; }
 /* VogelTronics runs two wides shoulder to shoulder — one row, red beside cream */
@@ -125,10 +128,7 @@ body {
 
 @media (max-width: 980px) {
   .floor { grid-template-columns: repeat(2, 1fr); }
-  /* the workshop goes two-up on a tablet: a half-width screenshot still reads, and an
-     odd one out takes the whole row rather than leave a hole */
-  .floor-workshop { grid-template-columns: repeat(2, 1fr); }
-  .floor-workshop .cab-shot:last-child:nth-child(odd) { grid-column: span 2; }
+  /* the workshop's cards each span both columns here, so they run one to a row */
   .floor-pit .cab-feature,
   .floor-machines .cab-feature,
   .floor-pit .cab-wide,
@@ -143,7 +143,6 @@ body {
 @media (max-width: 620px) {
   .floor,
   .floor-workshop { grid-template-columns: 1fr; }
-  .floor-workshop .cab-shot:last-child:nth-child(odd),
   .floor-fiction .cab-showcase,
   .floor-pit .cab-feature,
   .floor-machines .cab-feature,

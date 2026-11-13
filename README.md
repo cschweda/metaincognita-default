@@ -76,7 +76,7 @@ collide with it.)
 The Workshop's cabinets lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
 another origin's image). aiden-portal has no og:image of its own (it is not a public
-site), so its picture was made for this page. There are eleven tools, two to a row; the eleventh sits alone.
+site), so its picture was made for this page. There are eleven tools, two to a row; the eleventh sits alone. Every card is the same size: the tallest sets the height for the rest.
 
 ### Interactive Fiction — frotz, Inc.
 
