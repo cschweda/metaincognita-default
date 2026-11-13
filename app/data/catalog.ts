@@ -205,7 +205,7 @@ export const zones: Zone[] = [
     sign: 'The Workshop',
     color: '#00d6ff',
     title: 'Tools I build and use.',
-    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, and keeping an eye on the coffee — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Next on the bench: Fotobogen, for publishing photographs, Utenat, for learning lines by heart, and zoneblick, for watching your DNS. Free, open source, no sign-ups, and your files stay yours.',
+    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, keeping an eye on the coffee, and watching your DNS — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Next on the bench: Fotobogen, for publishing photographs, and Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
       {
@@ -313,6 +313,23 @@ export const zones: Zone[] = [
         category: 'UtilitiesApplication'
       },
       {
+        // An early pre-release: the one-shot `zoneblick check` command works; the
+        // daemon, history and web UI are still to come. Not flagged "In development".
+        title: 'zoneblick',
+        description: 'A self-hosted DNS zone watchdog, written in Rust. It asks every authoritative nameserver directly and checks the answers, so you know the moment your DNS drifts. An early release: the one-shot check command works today.',
+        domain: 'zoneblick.com',
+        repo: 'https://github.com/cschweda/zoneblick',
+        icon: 'radar',
+        accent: '#ff4a33',
+        badge: 'DNS zone watchdog',
+        badgeNote: 'self-hosted, in Rust',
+        span: 'shot',
+        shot: '/workshop/zoneblick.webp',
+        category: 'DeveloperApplication'
+      },
+      // Cabinets flagged "In development" always go last in the zone, however many
+      // there are: a finished tool is added above this line, never below it.
+      {
         // No repo yet: the app is planned but not started, and fotobogen.com is a
         // one-page teaser. Add `repo` when there is one.
         title: 'Fotobogen',
@@ -343,24 +360,6 @@ export const zones: Zone[] = [
         shot: '/workshop/utenat.webp',
         status: 'In development',
         category: 'EducationalApplication'
-      },
-      {
-        // In development: the repository holds the design and the website, and
-        // zoneblick.com is the landing page. The og:image prints a "Self-hosted DNS
-        // zone watchdog" label where the ribbon hangs; the card copy has that label
-        // painted out so the two do not collide.
-        title: 'zoneblick',
-        description: 'A self-hosted DNS zone watchdog. It asks every authoritative nameserver directly, checks the answers, and keeps a history, so you know the moment your DNS drifts. In development.',
-        domain: 'zoneblick.com',
-        repo: 'https://github.com/cschweda/zoneblick',
-        icon: 'radar',
-        accent: '#ff4a33',
-        badge: 'DNS zone watchdog',
-        badgeNote: 'self-hosted',
-        span: 'shot',
-        shot: '/workshop/zoneblick.webp',
-        status: 'In development',
-        category: 'DeveloperApplication'
       }
     ]
   },

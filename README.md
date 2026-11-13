@@ -57,26 +57,27 @@ development have no repository yet.
 | Ipsumify | `ipsumify.com` | [source](https://github.com/ICJIA/ipsumify-next-2026) | Lorem ipsum placeholder text with Markdown support, themed variants and a free public API. |
 | Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
 | ICJIA Accessibility Audit | `audit.icjia.app` | [source](https://github.com/ICJIA/file-accessibility-audit) | An accessibility checker for PDF, Word, PowerPoint and Excel: a WCAG 2.1 AA score with fix-it guidance. |
+| zoneblick | `zoneblick.com` | [source](https://github.com/cschweda/zoneblick) | A self-hosted DNS zone watchdog, written in Rust: it asks every authoritative nameserver directly and checks the answers, so you know when your DNS drifts. An early release. |
 | Fotobogen | `fotobogen.com` (teaser) | no repo yet | Free, open-source software for running your own photo website. **In development**; the card wears a ribbon saying so. |
 | Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**, with the same ribbon. |
-| zoneblick | `zoneblick.com` (landing page) | [source](https://github.com/cschweda/zoneblick) | A self-hosted DNS zone watchdog: it asks every authoritative nameserver directly, checks the answers and keeps a history, so you know when your DNS drifts. **In development**, with the same ribbon. |
 
 The four ICJIA tools (the Markdown editor, Ipsumify, Squish and the Accessibility Audit)
 were written for work at ICJIA, and for my own use; their source lives under the ICJIA
 GitHub organisation.
 
-Fotobogen, Utenat and zoneblick are **in development**. Each links to a page announcing
-it, wears an "In development" ribbon across the corner of its picture, and keeps its
-bulb strip unlit. Fotobogen and Utenat have no source link because there is no
-repository yet; zoneblick's repository is public (design and website so far), so its
-card links it. (Utenat's and zoneblick's og:images each print a label in the ribbon's
-corner; the copies in `public/workshop/` have it painted out so the ribbon does not
-collide with it.)
+Fotobogen and Utenat are **in development**. Each links to a placeholder page announcing
+it, has no source link because there is no repository yet, wears an "In development"
+ribbon across the corner of its picture, and keeps its bulb strip unlit. (Utenat's
+og:image prints its own "In development" label in that corner; the copy in
+`public/workshop/` has it painted out so the ribbon does not collide with it.)
+
+**In-development tools always go at the bottom of The Workshop**, however many there
+are: a finished tool is added above them, never below. A test holds the catalog to it.
 
 The Workshop's cabinets lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
 another origin's image). aiden-portal has no og:image of its own (it is not a public
-site), so its picture was made for this page. There are eleven tools, two to a row; the eleventh sits alone. Every card is the same size: the tallest sets the height for the rest.
+site), so its picture was made for this page. There are eleven tools, two to a row; the eleventh (Utenat) sits alone. Every card is the same size: the tallest sets the height for the rest.
 
 ### Interactive Fiction — frotz, Inc.
 

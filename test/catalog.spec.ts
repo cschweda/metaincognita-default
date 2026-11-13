@@ -40,7 +40,6 @@ describe('catalog', () => {
     // ship without one (the link affordance just stays off) — but it must be
     // named here deliberately, never forgotten.
     // Fotobogen and Utenat are in development: neither has a repository yet.
-    // (zoneblick is in development too, but its repository is public.)
     expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual(['fotobogen.com', 'utenat.com'])
 
     const repos = allItems.map(i => i.repo).filter(Boolean)
@@ -105,7 +104,17 @@ describe('catalog', () => {
     for (const item of allItems) {
       if (item.status) expect(Boolean(item.shot), item.domain).toBe(true)
     }
-    expect(allItems.filter(i => i.status).map(i => [i.domain, i.status])).toEqual([['fotobogen.com', 'In development'], ['utenat.com', 'In development'], ['zoneblick.com', 'In development']])
+    expect(allItems.filter(i => i.status).map(i => [i.domain, i.status])).toEqual([['fotobogen.com', 'In development'], ['utenat.com', 'In development']])
+  })
+
+  // Standing rule: in-development cabinets sit at the bottom of their zone, however
+  // many there are. Nothing finished may follow one.
+  it('keeps in-development cabinets last in their zone', () => {
+    for (const zone of zones) {
+      const flags = zone.items.map(i => Boolean(i.status))
+      const first = flags.indexOf(true)
+      if (first !== -1) expect(flags.slice(first).every(Boolean), zone.id).toBe(true)
+    }
   })
 
   it('uses unique domains', () => {

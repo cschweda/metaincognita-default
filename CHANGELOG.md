@@ -5,6 +5,15 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.14.0] - 2026-11-13
+
+### Changed
+- **zoneblick** is no longer flagged in development: the ribbon is gone, its bulb strip
+  is lit, and the card carries the site's new og:image (unaltered, now that no ribbon
+  hangs over its corner). It moves up, above Fotobogen and Utenat.
+- In-development tools always sit at the bottom of The Workshop, however many there
+  are. A catalog test enforces it.
+
 ## [2.13.1] - 2026-11-13
 
 ### Changed
