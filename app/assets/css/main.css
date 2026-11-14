@@ -123,6 +123,29 @@ body {
 .floor-workshop { grid-auto-rows: 1fr; }
 .floor-fiction .cab-showcase { grid-column: span 4; }
 .floor-arcade .cab-banner { grid-column: span 4; }
+/* Cabinets that are not open yet (flagged with a status) stand apart from the live
+   ones: more air than a row gap, and a labelled hairline in the zone's colour. */
+.bench { margin-top: 2.75rem; }
+.bench-rule {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bone-500);
+}
+.bench-rule::before,
+.bench-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  min-width: 2rem;
+}
+.bench-rule::before { background: linear-gradient(270deg, color-mix(in srgb, var(--zc) 45%, transparent), transparent); }
+.bench-rule::after { background: linear-gradient(90deg, color-mix(in srgb, var(--zc) 45%, transparent), transparent); }
+.floor-pending { margin-top: 1.25rem; }
 /* VogelTronics runs two wides shoulder to shoulder — one row, red beside cream */
 .floor-vogeltronics .cab-wide { grid-column: span 2; }
 

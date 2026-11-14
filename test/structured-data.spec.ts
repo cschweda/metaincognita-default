@@ -31,7 +31,7 @@ describe('structured data (JSON-LD)', () => {
     const itemList = jsonLd['@graph'].find((node: any) => node['@type'] === 'ItemList')
     expect(itemList).toBeDefined()
     expect(itemList).toHaveProperty('numberOfItems', allItems.length)
-    expect(itemList.numberOfItems).toBe(24)
+    expect(itemList.numberOfItems).toBe(25)
   })
 
   it('has itemListElement with one entry per app', () => {
