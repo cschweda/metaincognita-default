@@ -10,9 +10,9 @@ describe('catalog', () => {
     expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'workshop', 'fiction', 'arcade', 'vogeltronics'])
   })
 
-  it('carries all twenty-four apps', () => {
-    expect(allItems).toHaveLength(24)
-    expect(zones.map(z => z.items.length)).toEqual([4, 4, 11, 1, 1, 3])
+  it('carries all twenty-five apps', () => {
+    expect(allItems).toHaveLength(25)
+    expect(zones.map(z => z.items.length)).toEqual([4, 4, 12, 1, 1, 3])
   })
 
   it('gives every item a complete, non-empty record', () => {
@@ -24,9 +24,10 @@ describe('catalog', () => {
       expect(item.badgeNote, item.domain).toBeTruthy()
       expect(SPANS, item.domain).toContain(item.span)
       expect(item.accent, item.domain).toMatch(/^#[0-9a-f]{6}$/i)
-      // A bare hostname — no scheme, no path (GameCabinet prepends https://). Usually a
-      // metaincognita.com subdomain, but a project can live anywhere (slotcar.netlify.app).
-      expect(item.domain, item.domain).toMatch(/^[a-z0-9-]+(\.[a-z0-9-]+)+$/)
+      // A hostname with no scheme (GameCabinet prepends https://). Usually a
+      // metaincognita.com subdomain, but a project can live anywhere (slotcar.netlify.app),
+      // and one on GitHub Pages carries its project path (cschweda.github.io/v6blick).
+      expect(item.domain, item.domain).toMatch(/^[a-z0-9-]+(\.[a-z0-9-]+)+(\/[a-z0-9-]+)*$/)
     }
   })
 
@@ -63,7 +64,7 @@ describe('catalog', () => {
     expect(machines).toEqual(['std', 'std', 'wide', 'feature'])
     // The Workshop runs its screenshots two to a row; Interactive Fiction one full-width
     // showcase; The Arcade a single full-width banner; VogelTronics its wides, two to a row.
-    expect(zones[2]!.items.map(i => i.span)).toEqual(Array(11).fill('shot'))
+    expect(zones[2]!.items.map(i => i.span)).toEqual(Array(12).fill('shot'))
     expect(zones[3]!.items.map(i => i.span)).toEqual(['showcase'])
     expect(zones[4]!.items.map(i => i.span)).toEqual(['banner'])
     expect(zones[5]!.items.map(i => i.span)).toEqual(['wide', 'wide', 'wide'])

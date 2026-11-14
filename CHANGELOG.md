@@ -5,6 +5,20 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.15.0] - 2026-11-14
+
+### Added
+- **v6blick** joins The Workshop: an IPv6 readiness test for websites, written in Rust.
+  It connects to a site over IPv4 and over IPv6 separately, compares the two, and says
+  what breaks for a visitor without IPv4. It has no domain of its own, so the card links
+  its GitHub Pages site (`cschweda.github.io/v6blick`); a catalog `domain` may now carry
+  a path.
+
+### Changed
+- In-development tools (Fotobogen and Utenat) are a group of their own in The Workshop,
+  set apart from the ten live tools under a hairline rule labelled "In development".
+  Any cabinet with a `status` joins that group.
+
 ## [2.14.0] - 2026-11-13
 
 ### Changed
