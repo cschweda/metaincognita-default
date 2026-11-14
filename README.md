@@ -1,3 +1,5 @@
+![metaincognita — open-source simulations, tools and games](public/og-image.png)
+
 # metaincognita
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-d4af37.svg)](LICENSE)
@@ -6,8 +8,6 @@
 &nbsp;![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-v4-38BDF8?logo=tailwindcss&logoColor=white)
 &nbsp;![pnpm](https://img.shields.io/badge/pnpm-10-F69220?logo=pnpm&logoColor=white)
 &nbsp;[![Deployed on Netlify](https://img.shields.io/badge/Netlify-deployed-00C7B7?logo=netlify&logoColor=white)](https://metaincognita.com)
-
-![metaincognita — open-source simulations, tools and games](public/og-image.png)
 
 The landing page for **metaincognita** — a small, curated collection of open-source
 projects built out of curiosity: casino games rebuilt as **simulations** that show their
