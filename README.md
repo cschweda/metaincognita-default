@@ -58,6 +58,7 @@ development have no repository yet.
 | Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
 | ICJIA Accessibility Audit | `audit.icjia.app` | [source](https://github.com/ICJIA/file-accessibility-audit) | An accessibility checker for PDF, Word, PowerPoint and Excel: a WCAG 2.1 AA score with fix-it guidance. |
 | zoneblick | `zoneblick.com` | [source](https://github.com/cschweda/zoneblick) | A self-hosted DNS zone watchdog, written in Rust: it asks every authoritative nameserver directly and checks the answers, so you know when your DNS drifts. An early release. |
+| v6blick | `cschweda.github.io/v6blick` | [source](https://github.com/cschweda/v6blick) | An IPv6 readiness test for websites, written in Rust: it connects to a site over IPv4 and over IPv6 separately, compares the two, and says what breaks for a visitor without IPv4 and how to fix it. An early build, with no domain of its own, so the card links its GitHub Pages site. |
 | Fotobogen | `fotobogen.com` (teaser) | no repo yet | Free, open-source software for running your own photo website. **In development**; the card wears a ribbon saying so. |
 | Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**, with the same ribbon. |
 
@@ -73,11 +74,14 @@ og:image prints its own "In development" label in that corner; the copy in
 
 **In-development tools always go at the bottom of The Workshop**, however many there
 are: a finished tool is added above them, never below. A test holds the catalog to it.
+The page draws them as a group of their own, set apart from the live tools under a
+hairline rule labelled "In development". Any cabinet with a `status` joins that group;
+nothing else is needed.
 
 The Workshop's cabinets lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
 another origin's image). aiden-portal has no og:image of its own (it is not a public
-site), so its picture was made for this page. There are eleven tools, two to a row; the eleventh (Utenat) sits alone. Every card is the same size: the tallest sets the height for the rest.
+site), so its picture was made for this page. There are twelve tools, two to a row: ten live, then the two in development. Within each group every card is the same size: the tallest sets the height for the rest.
 
 ### Interactive Fiction — frotz, Inc.
 

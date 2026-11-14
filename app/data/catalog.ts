@@ -19,9 +19,10 @@ export interface CatalogItem {
   /** One-line description, lifted from each app's own metadata. */
   description: string
   /**
-   * Bare hostname; the cabinet's live-link affordance. Usually a
+   * Hostname, no scheme; the cabinet's live-link affordance. Usually a
    * `<name>.metaincognita.com` subdomain, but a project can live anywhere it
-   * likes (The Arcade's slot car sim ships on `slotcar.netlify.app`).
+   * likes (The Arcade's slot car sim ships on `slotcar.netlify.app`), and one on
+   * GitHub Pages carries its project path (`cschweda.github.io/v6blick`).
    */
   domain: string
   /**
@@ -205,7 +206,7 @@ export const zones: Zone[] = [
     sign: 'The Workshop',
     color: '#00d6ff',
     title: 'Tools I build and use.',
-    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, keeping an eye on the coffee, and watching your DNS — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Next on the bench: Fotobogen, for publishing photographs, and Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
+    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, keeping an eye on the coffee, watching your DNS, and testing a site without IPv4 — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Next on the bench: Fotobogen, for publishing photographs, and Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
       {
@@ -327,8 +328,26 @@ export const zones: Zone[] = [
         shot: '/workshop/zoneblick.webp',
         category: 'DeveloperApplication'
       },
+      {
+        // An early build: `v6blick check` and `v6blick doctor` work; the whole-page
+        // test is designed and not built. No domain of its own, so the card links
+        // the project page on GitHub Pages. Not flagged "In development".
+        title: 'v6blick',
+        description: 'Does your site work for someone who has no IPv4? An IPv6 readiness test for websites, written in Rust. It connects over IPv4 and over IPv6 separately, compares the two, and says what breaks and how to fix it.',
+        domain: 'cschweda.github.io/v6blick',
+        repo: 'https://github.com/cschweda/v6blick',
+        icon: 'network',
+        accent: '#4fb3ff',
+        // The badge rule bans digits (no unsourced numbers), so "IPv6" goes in the note.
+        badge: 'Readiness test',
+        badgeNote: 'IPv4 against IPv6',
+        span: 'shot',
+        shot: '/workshop/v6blick.webp',
+        category: 'DeveloperApplication'
+      },
       // Cabinets flagged "In development" always go last in the zone, however many
-      // there are: a finished tool is added above this line, never below it.
+      // there are: a finished tool is added above this line, never below it. The page
+      // draws them as a group of their own, under an "In development" rule.
       {
         // No repo yet: the app is planned but not started, and fotobogen.com is a
         // one-page teaser. Add `repo` when there is one.
