@@ -333,7 +333,7 @@ export const zones: Zone[] = [
       },
       {
         title: 'Rovacon Voice Bench',
-        description: 'The flagship’s voice chip, rebuilt — Votrax-class formant speech synthesis in the browser: type a phrase, hear 1980 arcade speech.',
+        description: 'VogelTronics’ flagship voice chip, rebuilt — Votrax-class formant speech synthesis in the browser: type a phrase, hear 1980 arcade speech.',
         domain: 'vogelvox.vogeltronics.com',
         repo: 'https://github.com/cschweda/vogeltronics-vogel-vox',
         icon: 'audio-waveform',
