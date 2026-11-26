@@ -13,16 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Inter Tight). One accent, a muted signal green, used sparingly: "Given away." in
   the opening, the section numbers and the focus ring. Every card, every og:image and
   every line of copy carries over; only the presentation changes.
-- **Cards** lead with a plate: the app's og:image where it has one, its pictogram where
-  it does not. Badge and caption, title, description, live address and source link
-  follow. Three to a row on a wide screen, two on a tablet, one on a phone.
+- **Every card leads with its app's own og:image** — all 27, the casino tables and
+  machines, VogelTronics and the slot car included (they had drawn neon scenes before).
+  Badge and caption, title, description, live address and source link follow. Three to a row on a wide screen, two on a tablet, one on a phone.
 - **Top navigation**: a sticky bar with the six zones, numbered 01 to 06: Workshop,
   VogelTronics, Casino Table Games, Casino Machines, Interactive Fiction, Retro Games.
   Below 1200px it folds into a Menu button (closes on Escape or on a link).
 - Zone names follow the navigation: The Pit is now **Casino Table Games**, The Machines
   **Casino Machines**, The Arcade **Retro Games**.
-- The opening sets the thesis large, with the facts, the lede, an index of the six zones
-  and their counts, and the ticker's lines, now held still so they can be read.
+- The opening sets the thesis large, with the facts and the lede beside it. The top
+  navigation is the index to the six zones.
 - In-development tools stay full cards, in their own group under an "In development"
   rule, with the status set into the corner of the picture.
 - The footer carries the GitHub link and the floor-audio switch (the fixed status bar
@@ -30,10 +30,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **New og:image** for metaincognita.com in the same Swiss system.
 
 ### Removed
-- The neon decoration: room glow, film grain, bulb strips, the scrolling ticker (its
-  lines moved into the opening) and the fixed status bar (its contents moved into the
-  footer). `CabinetArt.vue` and the catalog's per-card accents are kept, and tested,
-  but not drawn.
+- The neon decoration: room glow, film grain, bulb strips, the scrolling ticker and the
+  fixed status bar (its GitHub link and floor-audio switch moved into the footer).
+  `CabinetArt.vue` and the catalog's per-card accents are kept, and tested, but not drawn.
 
 ## [2.16.0] - 2026-11-26
 

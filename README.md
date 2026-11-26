@@ -155,9 +155,9 @@ Swiss, and dark (v3.0.0; it replaced the neon casino-floor design).
   and captions, hairline rules, and **one accent, a muted signal green (`#5aa67d`)**,
   used sparingly: "Given away." in the opening, the section numbers, and the focus ring.
   All tokens live in the `@theme` block of `app/assets/css/main.css`.
-- **Cards:** every card leads with a plate. A Workshop or frotz, Inc. card shows the
-  app's own og:image; a card with no og:image shows its lucide pictogram. Under the
-  plate: the badge and its caption, the title, the description, then the live address
+- **Cards:** every card leads with its app's own og:image, copied into
+  `public/workshop/` as WebP (the CSP is `img-src 'self'`). A card without one would
+  show its lucide pictogram instead; none does today. Under the picture: the badge and its caption, the title, the description, then the live address
   and the source link. The whole card is one click target (the live link stretches
   over it); the source link sits above it.
 - **Navigation:** a sticky top bar with the six zones, numbered. Below 1200px wide it
@@ -168,7 +168,8 @@ Swiss, and dark (v3.0.0; it replaced the neon casino-floor design).
   under `prefers-reduced-motion`.
 
 The neon design's line-art scenes (`CabinetArt.vue`) and the catalog's per-card
-`accent` colours are not drawn by this design; both are kept, and tested, for reuse.
+`accent` colours are not drawn by this design; both are kept (the scenes still tested)
+for reuse.
 
 ## Tech stack
 
@@ -257,7 +258,7 @@ app/
   assets/css/main.css  # design tokens, the 12-column grid, focus ring
   components/
     TheHeader.vue      # wordmark + numbered zone nav; folds into a Menu button
-    TheHero.vue        # the thesis, the facts, the lede, the zone index, the theses
+    TheHero.vue        # the thesis, the facts and the lede
     ZoneSign.vue       # a zone's number, name, count, title and sub
     GameCabinet.vue    # a card: plate (og:image or pictogram), badge, copy, links
     TheFooter.vue      # the claims, the GitHub link, the audio switch, fine print
@@ -299,19 +300,17 @@ and append an item to a zone's `items` array:
 }
 ```
 
-No template changes are needed — the cards, counts, index and navigation update
-automatically. A `shot` or `showcase` card carries a `shot` path: the app's og:image,
-saved as WebP under `public/workshop/`, which fills the card's plate; any other card shows
-its pictogram there. `showcase` takes a whole row (an umbrella project with a `suite`);
-every other span is one card in the three-column grid. The `span` and `art` rules the
-catalog tests still enforce come from the neon design and keep the data consistent for
-`CabinetArt.vue`.
+No template changes are needed — the cards, counts and navigation update automatically.
+Every card carries a `shot` path: the app's og:image, saved as WebP under
+`public/workshop/` (the catalog test checks each one exists and is used once). Use
+`span: 'shot'` for a card in the three-column grid, or `span: 'showcase'` for an umbrella
+project that takes a whole row and lists its `suite`.
 
 Two optional fields cover an app that is not finished. Leave out `repo` and the card
 shows no source link; the catalog test lists every such app by domain, so add it there
 deliberately. Set `status: 'In development'` on a `shot` card and it moves into the
 zone's "In development" group, with that text set into the top-right corner of its
-picture. To add a Workshop tool, convert its og:image first:
+picture. To add any app, convert its og:image first:
 
 ```bash
 cwebp -q 82 -resize 1120 588 og.png -o public/workshop/new-tool.webp
