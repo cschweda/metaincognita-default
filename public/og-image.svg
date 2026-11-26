@@ -46,6 +46,6 @@
     <rect x="64" y="546" width="1072" height="1" fill="#2e2e2e"/>
 
     <!-- the footing -->
-    <text x="64" y="586" font-size="17" fill="#a3a3a3">27 open-source projects. Free. No sign-ups. No real money.</text>
+    <text x="64" y="586" font-size="17" fill="#a3a3a3">27 open-source projects. Free. No sign-ups.</text>
   </g>
 </svg>
