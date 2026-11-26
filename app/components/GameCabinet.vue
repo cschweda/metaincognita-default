@@ -25,8 +25,6 @@ const href = computed(() => `https://${props.item.domain}`)
         decoding="async"
       >
       <UIcon v-else :name="`i-lucide-${item.icon}`" class="glyph" aria-hidden="true" />
-      <!-- Real text, not decoration: the one place the card says so at a glance. -->
-      <span v-if="item.status" class="status">{{ item.status }}</span>
     </div>
 
     <div class="body">
@@ -103,19 +101,6 @@ const href = computed(() => `https://${props.item.domain}`)
   height: 100%;
   object-fit: cover;
 }
-/* not open yet: a plain label set into the plate's top-right corner, where the
-   old ribbon hung (Utenat's card art has that corner painted clear for it) */
-.status {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 8px 12px;
-  background: var(--color-ink);
-  color: var(--color-paper);
-  font-size: 13px;
-  font-weight: 700;
-}
-
 /* a pictogram, set in the plate's lower-left corner like a sign */
 .glyph {
   align-self: end;

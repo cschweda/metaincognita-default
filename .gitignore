@@ -30,6 +30,6 @@ Thumbs.db
 # superpowers brainstorm companion
 .superpowers/
 
-# raw audio sources — the compressed loops in public/audio/ are what ship.
+# raw audio sources from the retired floor-audio feature (nothing ships from here)
 # Regenerate them with the ffmpeg pipeline in README.md.
 audio/

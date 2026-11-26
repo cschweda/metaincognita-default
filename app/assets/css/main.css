@@ -72,12 +72,7 @@ body {
 /* sections clear the sticky header when jumped to */
 .zone { scroll-margin-top: 88px; }
 
-/* ---- motion: the sound switch's equaliser is the only animation left -------- */
-@keyframes eq {
-  0%, 100% { transform: scaleY(0.25); }
-  50% { transform: scaleY(1); }
-}
-
+/* ---- motion: the page has no animation; this keeps it that way for anyone who asks */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *,

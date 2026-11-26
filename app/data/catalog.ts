@@ -106,7 +106,7 @@ export const zones: Zone[] = [
     color: '#00d6ff',
     title: 'Tools I built and use.',
     titleAccent: 'Tools I built',
-    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, keeping an eye on the coffee, watching your DNS, and testing a site without IPv4 — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression, an accessibility checker for documents and a guide to the accessibility deadline. Fotobogen publishes your photographs on a site of your own, and Omsett converts files without sending them anywhere. Next on the bench: Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
+    sub: 'Software I wrote for my own use, and for work. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
       {
@@ -296,7 +296,7 @@ export const zones: Zone[] = [
         // red "In development" label where the ribbon hangs; the card copy has that
         // label painted out so the two do not collide.
         title: 'Utenat',
-        description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart. In development.',
+        description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart.',
         domain: 'utenat.com',
         icon: 'drama',
         accent: '#f2efe8',
@@ -315,7 +315,7 @@ export const zones: Zone[] = [
     nav: 'VogelTronics',
     color: '#ff4436',
     title: 'VogelTronics: A Fictional History.',
-    titleAccent: 'VogelTronics',
+    titleAccent: 'VogelTronics:',
     sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted. Gridiron plays now; the rest of the shelf is on its way.',
     unit: 'exhibit',
     items: [
@@ -526,6 +526,7 @@ export const zones: Zone[] = [
     nav: 'Retro Games',
     color: '#ff6a2b',
     title: 'Retro Games.',
+    titleAccent: 'Retro',
     sub: 'No edge here, nothing to beat — just games built for the joy of it. Starting with a slot car track from 1971; more on the way.',
     unit: 'game',
     items: [
