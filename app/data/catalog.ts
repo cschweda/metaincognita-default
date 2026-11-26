@@ -90,6 +90,260 @@ export interface Zone {
 
 export const zones: Zone[] = [
   {
+    id: 'workshop',
+    sign: 'The Workshop',
+    color: '#00d6ff',
+    title: 'Tools I build and use.',
+    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, keeping an eye on the coffee, watching your DNS, and testing a site without IPv4 — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression, an accessibility checker for documents and a guide to the accessibility deadline. Fotobogen publishes your photographs on a site of your own, and Omsett converts files without sending them anywhere. Next on the bench: Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
+    unit: 'tool',
+    items: [
+      {
+        title: 'Drafter',
+        description: 'Write screenplays and stage plays in plain-text Fountain and watch the formatted pages build as you type, or draft a novel in Markdown.',
+        domain: 'drafter.dev',
+        repo: 'https://github.com/cschweda/drafter',
+        icon: 'clapperboard',
+        accent: '#8fb8ff',
+        badge: 'Plain-text Fountain',
+        badgeNote: 'or classic enter and tab',
+        span: 'shot',
+        shot: '/workshop/drafter.webp',
+        category: 'DesignApplication'
+      },
+      {
+        title: 'Fugløy',
+        description: 'Take TRS-80 Model I and III programs apart: a disassembler whose output rebuilds the original byte for byte, a workbench that explains every line, and an emulator.',
+        domain: 'fugloy.dev',
+        repo: 'https://github.com/cschweda/fugloy',
+        icon: 'cpu',
+        accent: '#5fe3c9',
+        badge: 'Byte-exact round trip',
+        badgeNote: 'read faithfully',
+        span: 'shot',
+        shot: '/workshop/fugloy.webp',
+        category: 'DeveloperApplication'
+      },
+      {
+        title: 'OpenMantel',
+        description: 'A digital picture frame you host yourself: a small computer behind a monitor, and your photos on every screen in the house. No subscription, no one else’s cloud.',
+        domain: 'openmantel.com',
+        repo: 'https://github.com/cschweda/openmantel',
+        icon: 'image',
+        accent: '#ff8a5c',
+        badge: 'Self-hosted',
+        badgeNote: 'your photos, your server',
+        span: 'shot',
+        shot: '/workshop/openmantel.webp',
+        category: 'MultimediaApplication'
+      },
+      {
+        title: 'aiden-portal',
+        description: 'A dashboard for my Fellow Aiden coffee brewer: a live trace of every brew, profiles and schedules, a brew log and a descale tally. It runs on my own machine and is reachable only over Tailscale; the demo runs on invented data.',
+        domain: 'aiden-portal.netlify.app',
+        repo: 'https://github.com/cschweda/aiden-portal',
+        icon: 'coffee',
+        accent: '#fbbf24',
+        badge: 'Tailscale only',
+        badgeNote: 'no public address',
+        span: 'shot',
+        shot: '/workshop/aiden-portal.webp',
+        category: 'UtilitiesApplication'
+      },
+      {
+        title: 'ICJIA Markdown Editor 2.0',
+        description: 'Accessible markdown editor for ICJIA researchers. Write, preview, and export markdown documents.',
+        domain: 'markdown.icjia.cloud',
+        repo: 'https://github.com/ICJIA/icjia-markdown-editor-2026',
+        icon: 'file-pen-line',
+        accent: '#a98bff',
+        badge: 'Accessible editor',
+        badgeNote: 'write, preview, export',
+        span: 'shot',
+        shot: '/workshop/markdown-editor.webp',
+        category: 'DesignApplication'
+      },
+      {
+        title: 'Ipsumify',
+        description: 'Generate beautiful lorem ipsum placeholder text with markdown support, themed variants, and a free public API — no signup required.',
+        domain: 'ipsumify.com',
+        repo: 'https://github.com/ICJIA/ipsumify-next-2026',
+        icon: 'pilcrow',
+        accent: '#2ee6a8',
+        badge: 'Free public API',
+        badgeNote: 'no signup required',
+        span: 'shot',
+        shot: '/workshop/ipsumify.webp',
+        category: 'UtilitiesApplication'
+      },
+      {
+        title: 'Squish',
+        description: 'Privacy-focused image compression for writers and developers. Compress images instantly in your browser with real-time preview. No uploads required.',
+        domain: 'squish.icjia.app',
+        repo: 'https://github.com/ICJIA/icjia-squish-2026',
+        icon: 'shrink',
+        accent: '#8be36a',
+        badge: 'In your browser',
+        badgeNote: 'no uploads required',
+        span: 'shot',
+        shot: '/workshop/squish.webp',
+        category: 'MultimediaApplication'
+      },
+      {
+        title: 'ICJIA Accessibility Audit',
+        description: 'Free accessibility checker for PDF, Word, PowerPoint, and Excel: an instant WCAG 2.1 AA score with fix-it guidance for ADA Title II and Illinois IITAA.',
+        domain: 'audit.icjia.app',
+        repo: 'https://github.com/ICJIA/file-accessibility-audit',
+        icon: 'scan-search',
+        accent: '#19c9b4',
+        badge: 'Instant score',
+        badgeNote: 'with fix-it guidance',
+        span: 'shot',
+        shot: '/workshop/accessibility-audit.webp',
+        category: 'UtilitiesApplication'
+      },
+      {
+        // The ICJIA Accessibility Portal: a countdown to the ADA Title II deadline,
+        // with FAQs and guidance for Illinois state agencies. Sits beside the Audit.
+        title: 'ICJIA Accessibility Portal',
+        description: 'Countdown to the WCAG 2.1 AA deadline (April 26, 2027, extended from April 24, 2026), with resources, FAQs and guidance for Illinois state agencies on digital accessibility and ADA Title II.',
+        domain: 'accessibility.icjia.app',
+        repo: 'https://github.com/ICJIA/icjia-accessibility-portal',
+        icon: 'accessibility',
+        accent: '#a47bff',
+        badge: 'Deadline countdown',
+        badgeNote: 'FAQs and guidance',
+        span: 'shot',
+        shot: '/workshop/accessibility-portal.webp',
+        category: 'ReferenceApplication'
+      },
+      {
+        // An early pre-release: the one-shot `zoneblick check` command works; the
+        // daemon, history and web UI are still to come. Not flagged "In development".
+        title: 'zoneblick',
+        description: 'A self-hosted DNS zone watchdog, written in Rust. It asks every authoritative nameserver directly and checks the answers, so you know the moment your DNS drifts. An early release: the one-shot check command works today.',
+        domain: 'zoneblick.com',
+        repo: 'https://github.com/cschweda/zoneblick',
+        icon: 'radar',
+        accent: '#ff4a33',
+        badge: 'DNS zone watchdog',
+        badgeNote: 'self-hosted, in Rust',
+        span: 'shot',
+        shot: '/workshop/zoneblick.webp',
+        category: 'DeveloperApplication'
+      },
+      {
+        // An early build: `v6blick check` and `v6blick doctor` work; the whole-page
+        // test is designed and not built. No domain of its own, so the card links
+        // the project page on GitHub Pages. Not flagged "In development".
+        title: 'v6blick',
+        description: 'Does your site work for someone who has no IPv4? An IPv6 readiness test for websites, written in Rust. It connects over IPv4 and over IPv6 separately, compares the two, and says what breaks and how to fix it.',
+        domain: 'cschweda.github.io/v6blick',
+        repo: 'https://github.com/cschweda/v6blick',
+        icon: 'network',
+        accent: '#4fb3ff',
+        // The badge rule bans digits (no unsourced numbers), so "IPv6" goes in the note.
+        badge: 'Readiness test',
+        badgeNote: 'IPv4 against IPv6',
+        span: 'shot',
+        shot: '/workshop/v6blick.webp',
+        category: 'DeveloperApplication'
+      },
+      {
+        title: 'Fotobogen',
+        description: 'A publishing platform for photographs. Install it, upload your pictures, and publish them on a website of your own.',
+        domain: 'fotobogen.com',
+        repo: 'https://github.com/cschweda/fotobogen',
+        icon: 'images',
+        accent: '#ff3b30',
+        badge: 'Photo publishing',
+        badgeNote: 'free and open source',
+        span: 'shot',
+        shot: '/workshop/fotobogen.webp',
+        category: 'MultimediaApplication'
+      },
+      {
+        // Omsett is Norwegian for "to translate, to convert".
+        title: 'Omsett',
+        description: 'A free, open-source file converter that runs in your browser: images, audio, documents, data, archives, fonts, subtitles and common video. Drop a file, pick a format; nothing leaves your device.',
+        domain: 'omsett.com',
+        repo: 'https://github.com/cschweda/omsett',
+        icon: 'arrow-right-left',
+        accent: '#3d6dff',
+        badge: 'File converter',
+        badgeNote: 'nothing leaves your device',
+        span: 'shot',
+        shot: '/workshop/omsett.webp',
+        category: 'UtilitiesApplication'
+      },
+      // Cabinets flagged "In development" always go last in the zone, however many
+      // there are: a finished tool is added above this line, never below it. The page
+      // draws them as a group of their own, under an "In development" rule.
+      {
+        // No repo yet: in development, and utenat.com is a placeholder page
+        // announcing it. Add `repo` when there is one. The og:image prints its own
+        // red "In development" label where the ribbon hangs; the card copy has that
+        // label painted out so the two do not collide.
+        title: 'Utenat',
+        description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart. In development.',
+        domain: 'utenat.com',
+        icon: 'drama',
+        accent: '#f2efe8',
+        badge: 'Learn it by heart',
+        badgeNote: 'speeches and lines',
+        span: 'shot',
+        shot: '/workshop/utenat.webp',
+        status: 'In development',
+        category: 'EducationalApplication'
+      }
+    ]
+  },
+  {
+    id: 'vogeltronics',
+    sign: 'VogelTronics',
+    color: '#ff4436',
+    title: 'VogelTronics: A Fictional History',
+    sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted. Gridiron plays now; the rest of the shelf is on its way.',
+    unit: 'exhibit',
+    items: [
+      {
+        title: 'VogelTronics: The Whole Story',
+        description: 'The magazine-style corporate history — Elk Grove Village, 1961, to the crash of 1983, forever in the wrong place at the wrong time.',
+        domain: 'vogeltronics.com',
+        repo: 'https://github.com/cschweda/vogeltronics-history',
+        icon: 'factory',
+        accent: '#ff4436',
+        badge: 'Games that think!',
+        badgeNote: 'the whole sad story',
+        span: 'wide',
+        art: 'vogeltronics'
+      },
+      {
+        title: 'Rovacon Voice Bench',
+        description: 'The flagship’s voice chip, rebuilt — Votrax-class formant speech synthesis in the browser: type a phrase, hear 1980 arcade speech.',
+        domain: 'vogelvox.vogeltronics.com',
+        repo: 'https://github.com/cschweda/vogeltronics-vogel-vox',
+        icon: 'audio-waveform',
+        accent: '#f4efe6',
+        badge: 'Formant synthesis',
+        badgeNote: 'the voice that shouldn’t exist',
+        span: 'wide',
+        art: 'rovacon'
+      },
+      {
+        title: 'Gridiron',
+        description: 'The 1977 LED football handheld, rebuilt for solo play — one bright blip against five tacklers, four downs to move the chains, and a kick on fourth. Keyboard-first.',
+        domain: 'gridiron.vogeltronics.com',
+        repo: 'https://github.com/cschweda/vogeltronics-gridiron-i',
+        icon: 'gamepad-2',
+        accent: '#ff2a1a',
+        badge: 'Nine yards of LED',
+        badgeNote: 'it thinks two plays ahead',
+        span: 'wide',
+        art: 'gridiron'
+      }
+    ]
+  },
+  {
     id: 'pit',
     sign: 'The Pit',
     color: '#2fe58f',
@@ -202,187 +456,6 @@ export const zones: Zone[] = [
     ]
   },
   {
-    id: 'workshop',
-    sign: 'The Workshop',
-    color: '#00d6ff',
-    title: 'Tools I build and use.',
-    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, keeping an eye on the coffee, watching your DNS, and testing a site without IPv4 — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression and an accessibility checker for documents. Next on the bench: Fotobogen, for publishing photographs, and Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
-    unit: 'tool',
-    items: [
-      {
-        title: 'Drafter',
-        description: 'Write screenplays and stage plays in plain-text Fountain and watch the formatted pages build as you type, or draft a novel in Markdown.',
-        domain: 'drafter.dev',
-        repo: 'https://github.com/cschweda/drafter',
-        icon: 'clapperboard',
-        accent: '#8fb8ff',
-        badge: 'Plain-text Fountain',
-        badgeNote: 'or classic enter and tab',
-        span: 'shot',
-        shot: '/workshop/drafter.webp',
-        category: 'DesignApplication'
-      },
-      {
-        title: 'Fugløy',
-        description: 'Take TRS-80 Model I and III programs apart: a disassembler whose output rebuilds the original byte for byte, a workbench that explains every line, and an emulator.',
-        domain: 'fugloy.dev',
-        repo: 'https://github.com/cschweda/fugloy',
-        icon: 'cpu',
-        accent: '#5fe3c9',
-        badge: 'Byte-exact round trip',
-        badgeNote: 'read faithfully',
-        span: 'shot',
-        shot: '/workshop/fugloy.webp',
-        category: 'DeveloperApplication'
-      },
-      {
-        title: 'OpenMantel',
-        description: 'A digital picture frame you host yourself: a small computer behind a monitor, and your photos on every screen in the house. No subscription, no one else’s cloud.',
-        domain: 'openmantel.com',
-        repo: 'https://github.com/cschweda/openmantel',
-        icon: 'image',
-        accent: '#ff8a5c',
-        badge: 'Self-hosted',
-        badgeNote: 'your photos, your server',
-        span: 'shot',
-        shot: '/workshop/openmantel.webp',
-        category: 'MultimediaApplication'
-      },
-      {
-        title: 'aiden-portal',
-        description: 'A dashboard for my Fellow Aiden coffee brewer: a live trace of every brew, profiles and schedules, a brew log and a descale tally. It runs on my own machine and is reachable only over Tailscale; the demo runs on invented data.',
-        domain: 'aiden-portal.netlify.app',
-        repo: 'https://github.com/cschweda/aiden-portal',
-        icon: 'coffee',
-        accent: '#fbbf24',
-        badge: 'Tailscale only',
-        badgeNote: 'no public address',
-        span: 'shot',
-        shot: '/workshop/aiden-portal.webp',
-        category: 'UtilitiesApplication'
-      },
-      {
-        title: 'ICJIA Markdown Editor 2.0',
-        description: 'Accessible markdown editor for ICJIA researchers. Write, preview, and export markdown documents.',
-        domain: 'markdown.icjia.cloud',
-        repo: 'https://github.com/ICJIA/icjia-markdown-editor-2026',
-        icon: 'file-pen-line',
-        accent: '#a98bff',
-        badge: 'Accessible editor',
-        badgeNote: 'write, preview, export',
-        span: 'shot',
-        shot: '/workshop/markdown-editor.webp',
-        category: 'DesignApplication'
-      },
-      {
-        title: 'Ipsumify',
-        description: 'Generate beautiful lorem ipsum placeholder text with markdown support, themed variants, and a free public API — no signup required.',
-        domain: 'ipsumify.com',
-        repo: 'https://github.com/ICJIA/ipsumify-next-2026',
-        icon: 'pilcrow',
-        accent: '#2ee6a8',
-        badge: 'Free public API',
-        badgeNote: 'no signup required',
-        span: 'shot',
-        shot: '/workshop/ipsumify.webp',
-        category: 'UtilitiesApplication'
-      },
-      {
-        title: 'Squish',
-        description: 'Privacy-focused image compression for writers and developers. Compress images instantly in your browser with real-time preview. No uploads required.',
-        domain: 'squish.icjia.app',
-        repo: 'https://github.com/ICJIA/icjia-squish-2026',
-        icon: 'shrink',
-        accent: '#8be36a',
-        badge: 'In your browser',
-        badgeNote: 'no uploads required',
-        span: 'shot',
-        shot: '/workshop/squish.webp',
-        category: 'MultimediaApplication'
-      },
-      {
-        title: 'ICJIA Accessibility Audit',
-        description: 'Free accessibility checker for PDF, Word, PowerPoint, and Excel: an instant WCAG 2.1 AA score with fix-it guidance for ADA Title II and Illinois IITAA.',
-        domain: 'audit.icjia.app',
-        repo: 'https://github.com/ICJIA/file-accessibility-audit',
-        icon: 'scan-search',
-        accent: '#19c9b4',
-        badge: 'Instant score',
-        badgeNote: 'with fix-it guidance',
-        span: 'shot',
-        shot: '/workshop/accessibility-audit.webp',
-        category: 'UtilitiesApplication'
-      },
-      {
-        // An early pre-release: the one-shot `zoneblick check` command works; the
-        // daemon, history and web UI are still to come. Not flagged "In development".
-        title: 'zoneblick',
-        description: 'A self-hosted DNS zone watchdog, written in Rust. It asks every authoritative nameserver directly and checks the answers, so you know the moment your DNS drifts. An early release: the one-shot check command works today.',
-        domain: 'zoneblick.com',
-        repo: 'https://github.com/cschweda/zoneblick',
-        icon: 'radar',
-        accent: '#ff4a33',
-        badge: 'DNS zone watchdog',
-        badgeNote: 'self-hosted, in Rust',
-        span: 'shot',
-        shot: '/workshop/zoneblick.webp',
-        category: 'DeveloperApplication'
-      },
-      {
-        // An early build: `v6blick check` and `v6blick doctor` work; the whole-page
-        // test is designed and not built. No domain of its own, so the card links
-        // the project page on GitHub Pages. Not flagged "In development".
-        title: 'v6blick',
-        description: 'Does your site work for someone who has no IPv4? An IPv6 readiness test for websites, written in Rust. It connects over IPv4 and over IPv6 separately, compares the two, and says what breaks and how to fix it.',
-        domain: 'cschweda.github.io/v6blick',
-        repo: 'https://github.com/cschweda/v6blick',
-        icon: 'network',
-        accent: '#4fb3ff',
-        // The badge rule bans digits (no unsourced numbers), so "IPv6" goes in the note.
-        badge: 'Readiness test',
-        badgeNote: 'IPv4 against IPv6',
-        span: 'shot',
-        shot: '/workshop/v6blick.webp',
-        category: 'DeveloperApplication'
-      },
-      // Cabinets flagged "In development" always go last in the zone, however many
-      // there are: a finished tool is added above this line, never below it. The page
-      // draws them as a group of their own, under an "In development" rule.
-      {
-        // No repo yet: the app is planned but not started, and fotobogen.com is a
-        // one-page teaser. Add `repo` when there is one.
-        title: 'Fotobogen',
-        description: 'A publishing platform for photographs. Install it, upload your pictures, and publish them on a website of your own. In development.',
-        domain: 'fotobogen.com',
-        icon: 'images',
-        accent: '#ff3b30',
-        badge: 'Photo publishing',
-        badgeNote: 'free and open source',
-        span: 'shot',
-        shot: '/workshop/fotobogen.webp',
-        status: 'In development',
-        category: 'MultimediaApplication'
-      },
-      {
-        // No repo yet: in development, and utenat.com is a placeholder page
-        // announcing it. Add `repo` when there is one. The og:image prints its own
-        // red "In development" label where the ribbon hangs; the card copy has that
-        // label painted out so the two do not collide.
-        title: 'Utenat',
-        description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart. In development.',
-        domain: 'utenat.com',
-        icon: 'drama',
-        accent: '#f2efe8',
-        badge: 'Learn it by heart',
-        badgeNote: 'speeches and lines',
-        span: 'shot',
-        shot: '/workshop/utenat.webp',
-        status: 'In development',
-        category: 'EducationalApplication'
-      }
-    ]
-  },
-  {
     id: 'fiction',
     sign: 'Interactive Fiction',
     color: '#ffb627',
@@ -442,52 +515,6 @@ export const zones: Zone[] = [
         badgeNote: 'no house, just the track',
         span: 'banner',
         art: 'slotcar'
-      }
-    ]
-  },
-  {
-    id: 'vogeltronics',
-    sign: 'VogelTronics',
-    color: '#ff4436',
-    title: 'VogelTronics: A Fictional History',
-    sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted. Gridiron plays now; the rest of the shelf is on its way.',
-    unit: 'exhibit',
-    items: [
-      {
-        title: 'VogelTronics: The Whole Story',
-        description: 'The magazine-style corporate history — Elk Grove Village, 1961, to the crash of 1983, forever in the wrong place at the wrong time.',
-        domain: 'vogeltronics.com',
-        repo: 'https://github.com/cschweda/vogeltronics-history',
-        icon: 'factory',
-        accent: '#ff4436',
-        badge: 'Games that think!',
-        badgeNote: 'the whole sad story',
-        span: 'wide',
-        art: 'vogeltronics'
-      },
-      {
-        title: 'Rovacon Voice Bench',
-        description: 'The flagship’s voice chip, rebuilt — Votrax-class formant speech synthesis in the browser: type a phrase, hear 1980 arcade speech.',
-        domain: 'vogelvox.vogeltronics.com',
-        repo: 'https://github.com/cschweda/vogeltronics-vogel-vox',
-        icon: 'audio-waveform',
-        accent: '#f4efe6',
-        badge: 'Formant synthesis',
-        badgeNote: 'the voice that shouldn’t exist',
-        span: 'wide',
-        art: 'rovacon'
-      },
-      {
-        title: 'Gridiron',
-        description: 'The 1977 LED football handheld, rebuilt for solo play — one bright blip against five tacklers, four downs to move the chains, and a kick on fourth. Keyboard-first.',
-        domain: 'gridiron.vogeltronics.com',
-        repo: 'https://github.com/cschweda/vogeltronics-gridiron-i',
-        icon: 'gamepad-2',
-        accent: '#ff2a1a',
-        badge: 'Nine yards of LED',
-        badgeNote: 'it thinks two plays ahead',
-        span: 'wide',
-        art: 'gridiron'
       }
     ]
   }

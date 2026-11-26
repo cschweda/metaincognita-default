@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Presentational. The wordmark gets a polished-floor reflection beneath it —
-// the casino floor is still the first room you walk into.
+// the workshop is the first room you walk into, then VogelTronics, then the casino floor.
 </script>
 
 <template>
@@ -32,23 +32,23 @@
       class="reveal mt-5 max-w-2xl text-base leading-relaxed text-bone-300 sm:text-lg"
       style="animation-delay: 0.46s"
     >
-      Casino simulations that show their math. Tools for writing scripts, for taking
-      apart TRS-80 programs, for putting your photos on the wall, and for watching the
-      coffee brew, plus the everyday ones I wrote for work. frotz, Inc., for
-      writing and playing 1980s-style text adventures on the Z-machine. A 1971 slot car
-      track, and the reborn catalog of VogelTronics, out of Elk Grove Village, Illinois.
+      Tools for writing scripts, for taking apart TRS-80 programs, for putting your
+      photos on the wall, and for watching the coffee brew, plus the everyday ones I
+      wrote for work. The reborn catalog of VogelTronics, out of Elk Grove Village,
+      Illinois. Casino simulations that show their math. frotz, Inc., for writing and
+      playing 1980s-style text adventures on the Z-machine. And a 1971 slot car track.
     </p>
 
     <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 0.56s">
-      <a href="#pit" class="btn-gold">
-        The casino floor
+      <a href="#workshop" class="btn-gold">
+        The workshop
         <UIcon name="i-lucide-arrow-down" class="text-[0.95em]" aria-hidden="true" />
       </a>
-      <!-- named for their destinations: the signs and titles say the rest -->
-      <a href="#workshop" class="btn-ghost">The workshop</a>
+      <!-- named for their destinations, in floor order: the signs and titles say the rest -->
+      <a href="#vogeltronics" class="btn-ghost">VogelTronics games</a>
+      <a href="#pit" class="btn-ghost">The casino floor</a>
       <a href="#fiction" class="btn-ghost">Interactive fiction</a>
       <a href="#arcade" class="btn-ghost">Games for fun</a>
-      <a href="#vogeltronics" class="btn-ghost">VogelTronics games</a>
     </div>
 
     <ul class="reveal mt-9 flex flex-wrap items-center justify-center gap-2.5" style="animation-delay: 0.66s">

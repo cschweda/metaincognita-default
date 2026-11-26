@@ -32,19 +32,6 @@ development have no repository yet.
 
 ## The collection
 
-### Simulations — casino games
-
-| Simulation | Live | Source | What it is |
-| --- | --- | --- | --- |
-| No-Limit Hold’em | `holdem.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-holdem) | Texas Hold’em vs. intelligent bots, with live equity, outs, pot odds and ranges. |
-| Blackjack Trainer | `blackjack.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-blackjack) | Basic-strategy coaching and Hi-Lo card counting on official-rulebook rules. |
-| Roulette Trainer | `roulette.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-roulette) | A real forward-physics wheel, proven fair by simulation. |
-| Slots Simulator | `slots.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-slots) | Reel strips, virtual-reel weights and exact house edge across eight archetypes. |
-| Craps Simulator | `craps.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-craps) | Learn the line, the odds bets and where the edge hides. |
-| Video Poker Trainer | `videopoker.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-video-poker) | Optimal play, pay-table literacy and bankroll management. |
-| Flameout | `flameout.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-flameout) | A crash-game simulator: climb, cash out, then see why the house always wins. |
-| Pachinko Parlor | `pachinko.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-pachinko) | Ball-drop physics and payout pockets, with the odds laid bare. |
-
 ### The Workshop — tools
 
 | Tool | Live | Source | What it is |
@@ -57,18 +44,20 @@ development have no repository yet.
 | Ipsumify | `ipsumify.com` | [source](https://github.com/ICJIA/ipsumify-next-2026) | Lorem ipsum placeholder text with Markdown support, themed variants and a free public API. |
 | Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
 | ICJIA Accessibility Audit | `audit.icjia.app` | [source](https://github.com/ICJIA/file-accessibility-audit) | An accessibility checker for PDF, Word, PowerPoint and Excel: a WCAG 2.1 AA score with fix-it guidance. |
+| ICJIA Accessibility Portal | `accessibility.icjia.app` | [source](https://github.com/ICJIA/icjia-accessibility-portal) | A countdown to the WCAG 2.1 AA deadline for ADA Title II, with FAQs and guidance for Illinois state agencies. |
 | zoneblick | `zoneblick.com` | [source](https://github.com/cschweda/zoneblick) | A self-hosted DNS zone watchdog, written in Rust: it asks every authoritative nameserver directly and checks the answers, so you know when your DNS drifts. An early release. |
 | v6blick | `cschweda.github.io/v6blick` | [source](https://github.com/cschweda/v6blick) | An IPv6 readiness test for websites, written in Rust: it connects to a site over IPv4 and over IPv6 separately, compares the two, and says what breaks for a visitor without IPv4 and how to fix it. An early build, with no domain of its own, so the card links its GitHub Pages site. |
-| Fotobogen | `fotobogen.com` (teaser) | no repo yet | Free, open-source software for running your own photo website. **In development**; the card wears a ribbon saying so. |
-| Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**, with the same ribbon. |
+| Fotobogen | `fotobogen.com` | [source](https://github.com/cschweda/fotobogen) | Free, open-source software for running your own photo website: install it, upload your pictures, publish them at your own address. |
+| Omsett | `omsett.com` | [source](https://github.com/cschweda/omsett) | A free, open-source file converter that runs in the browser (images, audio, documents, data, archives, fonts, subtitles, common video), so your files never touch a server. |
+| Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**; the card wears a ribbon saying so. |
 
-The four ICJIA tools (the Markdown editor, Ipsumify, Squish and the Accessibility Audit)
+The five ICJIA tools (the Markdown editor, Ipsumify, Squish, the Accessibility Audit and the Accessibility Portal)
 were written for work at ICJIA, and for my own use; their source lives under the ICJIA
 GitHub organisation.
 
-Fotobogen and Utenat are **in development**. Each links to a placeholder page announcing
-it, has no source link because there is no repository yet, wears an "In development"
-ribbon across the corner of its picture, and keeps its bulb strip unlit. (Utenat's
+Utenat is **in development**. It links to a placeholder page announcing it, has no
+source link because there is no repository yet, wears an "In development" ribbon
+across the corner of its picture, and keeps its bulb strip unlit. (Utenat's
 og:image prints its own "In development" label in that corner; the copy in
 `public/workshop/` has it painted out so the ribbon does not collide with it.)
 
@@ -81,7 +70,39 @@ nothing else is needed.
 The Workshop's cabinets lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
 another origin's image). aiden-portal has no og:image of its own (it is not a public
-site), so its picture was made for this page. There are twelve tools, two to a row: ten live, then the two in development. Within each group every card is the same size: the tallest sets the height for the rest.
+site), so its picture was made for this page. There are fourteen tools, two to a row: thirteen live, then the one in development. Within each group every card is the same size: the tallest sets the height for the rest.
+
+### VogelTronics — A Fictional History
+
+Playable homages to **VogelTronics**, a completely fictional Illinois toy company
+(1961–1983) invented from scratch — founder, catalog, logos and all — so these
+recreations owe nothing to Hasbro, Mattel, Milton Bradley or anyone else's
+trademarks. The [corporate history](https://vogeltronics.com/) is the shared lore.
+**Gridiron** is the first playable cabinet; **Rovacon**, the flagship programmable rover,
+comes next.
+
+The section is titled **VogelTronics: A Fictional History**, so the page says plainly
+that the company is invented; the copy beneath the title reads straight, and the footer's
+fine print says which real trademarks are not used.
+
+| Exhibit | Live | Source | What it is |
+| --- | --- | --- | --- |
+| VogelTronics: The Whole Story | `vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-history) | The magazine-style corporate history, era by era, 1961 to the 1983 crash. |
+| Rovacon Voice Bench | `vogelvox.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-vogel-vox) | Votrax SC-01-class formant speech synthesis in TypeScript — type a phrase, hear 1980 arcade speech, export WAV. |
+| Gridiron | `gridiron.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-gridiron-i) | The 1977 LED football handheld, solo — one bright blip against five tacklers, four downs, a kick on fourth. Keyboard-first. |
+
+### Simulations — casino games
+
+| Simulation | Live | Source | What it is |
+| --- | --- | --- | --- |
+| No-Limit Hold’em | `holdem.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-holdem) | Texas Hold’em vs. intelligent bots, with live equity, outs, pot odds and ranges. |
+| Blackjack Trainer | `blackjack.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-blackjack) | Basic-strategy coaching and Hi-Lo card counting on official-rulebook rules. |
+| Roulette Trainer | `roulette.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-roulette) | A real forward-physics wheel, proven fair by simulation. |
+| Slots Simulator | `slots.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-slots) | Reel strips, virtual-reel weights and exact house edge across eight archetypes. |
+| Craps Simulator | `craps.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-craps) | Learn the line, the odds bets and where the edge hides. |
+| Video Poker Trainer | `videopoker.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-video-poker) | Optimal play, pay-table literacy and bankroll management. |
+| Flameout | `flameout.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-flameout) | A crash-game simulator: climb, cash out, then see why the house always wins. |
+| Pachinko Parlor | `pachinko.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-pachinko) | Ball-drop physics and payout pockets, with the odds laid bare. |
 
 ### Interactive Fiction — frotz, Inc.
 
@@ -110,25 +131,6 @@ suite list, not the floor.
 | Game | Live | Source | What it is |
 | --- | --- | --- | --- |
 | AFX Slot Car Simulator | `slotcar.netlify.app` | [source](https://github.com/cschweda/slotcarsim) | Photorealistic 1970s Aurora AFX HO slot cars — analog trigger throttle, real deslot physics, oval and figure-eight, race a fallible AI or practice solo. Open source. |
-
-### VogelTronics — A Fictional History
-
-Playable homages to **VogelTronics**, a completely fictional Illinois toy company
-(1961–1983) invented from scratch — founder, catalog, logos and all — so these
-recreations owe nothing to Hasbro, Mattel, Milton Bradley or anyone else's
-trademarks. The [corporate history](https://vogeltronics.com/) is the shared lore.
-**Gridiron** is the first playable cabinet; **Rovacon**, the flagship programmable rover,
-comes next.
-
-The section is titled **VogelTronics: A Fictional History**, so the page says plainly
-that the company is invented; the copy beneath the title reads straight, and the footer's
-fine print says which real trademarks are not used.
-
-| Exhibit | Live | Source | What it is |
-| --- | --- | --- | --- |
-| VogelTronics: The Whole Story | `vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-history) | The magazine-style corporate history, era by era, 1961 to the 1983 crash. |
-| Rovacon Voice Bench | `vogelvox.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-vogel-vox) | Votrax SC-01-class formant speech synthesis in TypeScript — type a phrase, hear 1980 arcade speech, export WAV. |
-| Gridiron | `gridiron.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-gridiron-i) | The 1977 LED football handheld, solo — one bright blip against five tacklers, four downs, a kick on fourth. Keyboard-first. |
 
 ## Tech stack
 

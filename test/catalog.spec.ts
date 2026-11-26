@@ -6,13 +6,13 @@ import { zones, allItems, type Span } from '~/data/catalog'
 const SPANS: Span[] = ['std', 'wide', 'feature', 'banner', 'shot', 'showcase']
 
 describe('catalog', () => {
-  it('has exactly six zones in floor order — the casino first', () => {
-    expect(zones.map(z => z.id)).toEqual(['pit', 'machines', 'workshop', 'fiction', 'arcade', 'vogeltronics'])
+  it('has exactly six zones in floor order — the workshop first, then VogelTronics', () => {
+    expect(zones.map(z => z.id)).toEqual(['workshop', 'vogeltronics', 'pit', 'machines', 'fiction', 'arcade'])
   })
 
-  it('carries all twenty-five apps', () => {
-    expect(allItems).toHaveLength(25)
-    expect(zones.map(z => z.items.length)).toEqual([4, 4, 12, 1, 1, 3])
+  it('carries all twenty-seven apps', () => {
+    expect(allItems).toHaveLength(27)
+    expect(zones.map(z => z.items.length)).toEqual([14, 3, 4, 4, 1, 1])
   })
 
   it('gives every item a complete, non-empty record', () => {
@@ -40,8 +40,8 @@ describe('catalog', () => {
     // Every cabinet links its source. A new app whose repo is not public yet may
     // ship without one (the link affordance just stays off) — but it must be
     // named here deliberately, never forgotten.
-    // Fotobogen and Utenat are in development: neither has a repository yet.
-    expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual(['fotobogen.com', 'utenat.com'])
+    // Utenat is in development: it has no repository yet.
+    expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual(['utenat.com'])
 
     const repos = allItems.map(i => i.repo).filter(Boolean)
     expect(new Set(repos).size).toBe(repos.length)
@@ -57,17 +57,18 @@ describe('catalog', () => {
   })
 
   it('lays out the mosaic so each zone fills its grid', () => {
-    const pit = zones[0]!.items.map(i => i.span)
-    const machines = zones[1]!.items.map(i => i.span)
+    const zone = (id: string) => zones.find(z => z.id === id)!.items.map(i => i.span)
+    const pit = zone('pit')
+    const machines = zone('machines')
     // DOM order matters — the grid placement rules in main.css assume it.
     expect(pit).toEqual(['feature', 'std', 'std', 'wide'])
     expect(machines).toEqual(['std', 'std', 'wide', 'feature'])
     // The Workshop runs its screenshots two to a row; Interactive Fiction one full-width
     // showcase; The Arcade a single full-width banner; VogelTronics its wides, two to a row.
-    expect(zones[2]!.items.map(i => i.span)).toEqual(Array(12).fill('shot'))
-    expect(zones[3]!.items.map(i => i.span)).toEqual(['showcase'])
-    expect(zones[4]!.items.map(i => i.span)).toEqual(['banner'])
-    expect(zones[5]!.items.map(i => i.span)).toEqual(['wide', 'wide', 'wide'])
+    expect(zone('workshop')).toEqual(Array(14).fill('shot'))
+    expect(zone('fiction')).toEqual(['showcase'])
+    expect(zone('arcade')).toEqual(['banner'])
+    expect(zone('vogeltronics')).toEqual(['wide', 'wide', 'wide'])
   })
 
   // Anything with slack to fill carries a scene; a std tile has no room for one, and a
@@ -105,7 +106,7 @@ describe('catalog', () => {
     for (const item of allItems) {
       if (item.status) expect(Boolean(item.shot), item.domain).toBe(true)
     }
-    expect(allItems.filter(i => i.status).map(i => [i.domain, i.status])).toEqual([['fotobogen.com', 'In development'], ['utenat.com', 'In development']])
+    expect(allItems.filter(i => i.status).map(i => [i.domain, i.status])).toEqual([['utenat.com', 'In development']])
   })
 
   // Standing rule: in-development cabinets sit at the bottom of their zone, however
