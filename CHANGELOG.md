@@ -5,6 +5,42 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-11-26
+
+### Changed
+- **A new look: Swiss, and dark.** The neon casino floor gives way to a twelve-column
+  grid, hairline rules and one grotesque (Helvetica Neue, then a self-hosted
+  Inter Tight). One accent, a muted signal green, used sparingly: "Given away." in
+  the opening, the lead words of each section title and the focus ring. Section
+  numbers are large white numerals. Every card, every og:image and
+  every line of copy carries over; only the presentation changes.
+- **Every card leads with its app's own og:image** — all 27, the casino tables and
+  machines, VogelTronics and the slot car included (they had drawn neon scenes before).
+  Badge and caption, title, description, live address and source link follow. Three to a row on a wide screen, two on a tablet, one on a phone.
+- **Top navigation**: a sticky bar with the six zones, numbered 01 to 06: Workshop,
+  VogelTronics, Casino Table Games, Casino Machines, Interactive Fiction, Retro Games.
+  Below 1200px it folds into a Menu button (closes on Escape or on a link).
+- Zone names follow the navigation: The Pit is now **Casino Table Games**, The Machines
+  **Casino Machines**, The Arcade **Retro Games**.
+- The opening sets the thesis large, with the facts and the lede beside it. The top
+  navigation is the index to the six zones.
+- In-development tools stay full cards, in their own group under an "In development"
+  label: the one place the page says so (Utenat's description no longer repeats it).
+- Each section title sets its lead words in the accent green.
+- Section anchors read as the section names (`#casino-table-games`, `#casino-machines`,
+  `#interactive-fiction`, `#retro-games`); the old `#pit`, `#machines`, `#fiction` and
+  `#arcade` still land on the right section.
+- The Workshop's intro is cut to one line; the footer's GitHub link goes to the
+  repositories (the fixed status bar is gone).
+- **New og:image** for metaincognita.com in the same Swiss system.
+
+### Removed
+- The neon decoration: room glow, film grain, bulb strips, the scrolling ticker and the
+  fixed status bar (its GitHub link moved into the footer).
+- **Floor audio**: the casino-ambience switch, its composable and the loops in
+  `public/audio/`. The page makes no sound.
+  `CabinetArt.vue` and the catalog's per-card accents are kept, and tested, but not drawn.
+
 ## [2.16.0] - 2026-11-26
 
 ### Added

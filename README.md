@@ -26,9 +26,28 @@ trademarks.
 
 This repository is *only* the landing page. Each project below is its own deployment and
 its own repository; the page simply links out to them. Most live under
-[`github.com/cschweda`](https://github.com/cschweda); four tools written for work live
-under [`github.com/ICJIA`](https://github.com/ICJIA), and two that are still in
-development have no repository yet.
+[`github.com/cschweda`](https://github.com/cschweda); five tools written for work live
+under [`github.com/ICJIA`](https://github.com/ICJIA), and one that is still in
+development has no repository yet.
+
+The page runs in floor order: **The Workshop**, **VogelTronics**, **Casino Table Games**,
+**Casino Machines**, **Interactive Fiction** and **Retro Games**. The top navigation
+numbers them 01 to 06 and folds into a menu on narrow screens.
+
+Each section has a readable link, for sharing:
+
+| Section | Link |
+| --- | --- |
+| The Workshop | `metaincognita.com/#workshop` |
+| VogelTronics | `metaincognita.com/#vogeltronics` |
+| Casino Table Games | `metaincognita.com/#casino-table-games` |
+| Casino Machines | `metaincognita.com/#casino-machines` |
+| Interactive Fiction | `metaincognita.com/#interactive-fiction` |
+| Retro Games | `metaincognita.com/#retro-games` |
+
+The old anchors from the casino-floor design (`#pit`, `#machines`, `#fiction`,
+`#arcade`) still work: the page swaps them for the new ones on load
+(`LEGACY_ANCHORS` in `app/data/catalog.ts`).
 
 ## The collection
 
@@ -49,28 +68,29 @@ development have no repository yet.
 | v6blick | `cschweda.github.io/v6blick` | [source](https://github.com/cschweda/v6blick) | An IPv6 readiness test for websites, written in Rust: it connects to a site over IPv4 and over IPv6 separately, compares the two, and says what breaks for a visitor without IPv4 and how to fix it. An early build, with no domain of its own, so the card links its GitHub Pages site. |
 | Fotobogen | `fotobogen.com` | [source](https://github.com/cschweda/fotobogen) | Free, open-source software for running your own photo website: install it, upload your pictures, publish them at your own address. |
 | Omsett | `omsett.com` | [source](https://github.com/cschweda/omsett) | A free, open-source file converter that runs in the browser (images, audio, documents, data, archives, fonts, subtitles, common video), so your files never touch a server. |
-| Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**; the card wears a ribbon saying so. |
+| Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**; its card sits under an "In development" label. |
 
 The five ICJIA tools (the Markdown editor, Ipsumify, Squish, the Accessibility Audit and the Accessibility Portal)
 were written for work at ICJIA, and for my own use; their source lives under the ICJIA
 GitHub organisation.
 
 Utenat is **in development**. It links to a placeholder page announcing it, has no
-source link because there is no repository yet, wears an "In development" ribbon
-across the corner of its picture, and keeps its bulb strip unlit. (Utenat's
-og:image prints its own "In development" label in that corner; the copy in
-`public/workshop/` has it painted out so the ribbon does not collide with it.)
+source link because there is no repository yet, and its card sits in a group of its
+own under an "In development" label: the one place the page says so. (Utenat's
+og:image prints its own "In development" label in a corner; the copy in
+`public/workshop/` has it painted out, so the page does not say it twice.)
 
 **In-development tools always go at the bottom of The Workshop**, however many there
 are: a finished tool is added above them, never below. A test holds the catalog to it.
 The page draws them as a group of their own, set apart from the live tools under a
-hairline rule labelled "In development". Any cabinet with a `status` joins that group;
+hairline rule labelled "In development". Any card with a `status` joins that group;
 nothing else is needed.
 
-The Workshop's cabinets lead with each app's own og:image, copied into
+The Workshop's cards lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
 another origin's image). aiden-portal has no og:image of its own (it is not a public
-site), so its picture was made for this page. There are fourteen tools, two to a row: thirteen live, then the one in development. Within each group every card is the same size: the tallest sets the height for the rest.
+site), so its picture was made for this page. There are fourteen tools, three to a row
+on a wide screen: thirteen live, then the one in development.
 
 ### VogelTronics — A Fictional History
 
@@ -91,18 +111,23 @@ fine print says which real trademarks are not used.
 | Rovacon Voice Bench | `vogelvox.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-vogel-vox) | Votrax SC-01-class formant speech synthesis in TypeScript — type a phrase, hear 1980 arcade speech, export WAV. |
 | Gridiron | `gridiron.vogeltronics.com` | [source](https://github.com/cschweda/vogeltronics-gridiron-i) | The 1977 LED football handheld, solo — one bright blip against five tacklers, four downs, a kick on fourth. Keyboard-first. |
 
-### Simulations — casino games
+### Casino Table Games — simulations
 
 | Simulation | Live | Source | What it is |
 | --- | --- | --- | --- |
 | No-Limit Hold’em | `holdem.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-holdem) | Texas Hold’em vs. intelligent bots, with live equity, outs, pot odds and ranges. |
 | Blackjack Trainer | `blackjack.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-blackjack) | Basic-strategy coaching and Hi-Lo card counting on official-rulebook rules. |
-| Roulette Trainer | `roulette.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-roulette) | A real forward-physics wheel, proven fair by simulation. |
-| Slots Simulator | `slots.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-slots) | Reel strips, virtual-reel weights and exact house edge across eight archetypes. |
 | Craps Simulator | `craps.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-craps) | Learn the line, the odds bets and where the edge hides. |
+| Roulette Trainer | `roulette.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-roulette) | A real forward-physics wheel, proven fair by simulation. |
+
+### Casino Machines — simulations
+
+| Simulation | Live | Source | What it is |
+| --- | --- | --- | --- |
+| Slots Simulator | `slots.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-slots) | Reel strips, virtual-reel weights and exact house edge across eight archetypes. |
 | Video Poker Trainer | `videopoker.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-video-poker) | Optimal play, pay-table literacy and bankroll management. |
-| Flameout | `flameout.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-flameout) | A crash-game simulator: climb, cash out, then see why the house always wins. |
 | Pachinko Parlor | `pachinko.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-pachinko) | Ball-drop physics and payout pockets, with the odds laid bare. |
+| Flameout | `flameout.metaincognita.com` | [source](https://github.com/cschweda/metaincognita-flameout) | A crash-game simulator: climb, cash out, then see why the house always wins. |
 
 ### Interactive Fiction — frotz, Inc.
 
@@ -110,7 +135,7 @@ Infocom wrote its 1980s text adventures for the **Z-machine**, an imaginary comp
 one story file could run on every home computer of the day: you type commands and the game
 answers in prose. **[frotz, Inc.](https://frotzinc.com)** is the umbrella for the Z-machine
 tools — one project with many tools, so it gets a zone of its own and a single full-width
-*showcase* cabinet (its og:image beside the copy, with the suite listed).
+*showcase* card (its og:image beside the copy, with the suite listed).
 
 | Project | Live | Source | What it is |
 | --- | --- | --- | --- |
@@ -123,119 +148,76 @@ The suite today:
 - **frotzlens** ([source](https://github.com/cschweda/frotzlens)) — a story-file inspector: header, object tree, dictionary, grammar, strings and cross-referenced disassembly.
 
 Still to come: a debugger (frotztrace), a release packager (frotzpack), a linter
-(frotzlint) and a regression tester (frotzcheck). They join the frotz, Inc. cabinet's
+(frotzlint) and a regression tester (frotzcheck). They join the frotz, Inc. card's
 suite list, not the floor.
 
-### The Arcade — just for fun
+### Retro Games — just for fun
 
 | Game | Live | Source | What it is |
 | --- | --- | --- | --- |
 | AFX Slot Car Simulator | `slotcar.netlify.app` | [source](https://github.com/cschweda/slotcarsim) | Photorealistic 1970s Aurora AFX HO slot cars — analog trigger throttle, real deslot physics, oval and figure-eight, race a fallible AI or practice solo. Open source. |
 
+## Design
+
+Swiss, and dark (v3.0.0; it replaced the neon casino-floor design).
+
+- **Grid:** twelve columns, 24px gutters, 1440px maximum width with 64px margins
+  (`.wrap` and `.g12` in `main.css`). Cards run three to a row on a wide screen, two on a
+  tablet, one on a phone; the frotz, Inc. showcase takes a whole row.
+- **Type:** one grotesque. **Helvetica Neue** where the system has it, then
+  **Inter Tight** (self-hosted by `@nuxt/fonts`, the closest free match), then Arial.
+- **Colour:** an ink ground (`#111111`), paper-white headings, two greys for body text
+  and captions, hairline rules, and **one accent, a muted signal green (`#5aa67d`)**,
+  used sparingly: "Given away." in the opening, the lead words of each section title
+  ("Tools I built", "VogelTronics:", "Casino Table Games", "Casino Machines",
+  "Interactive Fiction", "Retro": a zone's optional `titleAccent`), and the focus ring.
+  All tokens live in the `@theme` block of `app/assets/css/main.css`.
+- **Cards:** every card leads with its app's own og:image, copied into
+  `public/workshop/` as WebP (the CSP is `img-src 'self'`). A card without one would
+  show its lucide pictogram instead; none does today. Under the picture: the badge and its caption, the title, the description, then the live address
+  and the source link. The whole card is one click target (the live link stretches
+  over it); the source link sits above it.
+- **Navigation:** a sticky top bar with the six zones, numbered. Below 1200px wide it
+  folds into a **Menu** button (`aria-expanded`, closes on Escape or on a link).
+- **Accessibility:** WCAG 2.1 AA. Running text is at least 7.4:1 against the ground and
+  the accent is 6.5:1; every interactive target is at least 44px; one visible focus
+  ring everywhere; no animation at all, and smooth scrolling stops
+  under `prefers-reduced-motion`.
+
+The neon design's line-art scenes (`CabinetArt.vue`) and the catalog's per-card
+`accent` colours are not drawn by this design; both are kept (the scenes still tested)
+for reuse.
+
 ## Tech stack
 
 - **[Nuxt 4](https://nuxt.com)** with the `app/` directory structure, prerendered to static HTML (SSG)
 - **[Nuxt UI 4](https://ui.nuxt.com)** + **Tailwind CSS v4**
-- Self-hosted fonts via `@nuxt/fonts` — **Sora** (geometric, infographic-style display + body) and **Geist Mono** (technical labels)
+- Self-hosted fonts via `@nuxt/fonts`: **Inter Tight**, behind Helvetica Neue in the stack
 - Lucide icons (`@iconify-json/lucide`, bundled at build — no runtime Iconify calls)
 - [Plausible](https://plausible.io) analytics (`@nuxtjs/plausible`)
 - **pnpm** · **Node 22**
-
-## Floor audio
-
-The landing page can play an ambient casino loop. **It is off on every page load,
-without exception, and nothing is remembered.** A landing page does not get to make
-noise at someone who never asked for it.
-
-Sound is turned on only by the switch in the status bar. Reload, revisit, or come back
-tomorrow and you are back to silence. There is deliberately **no persisted preference**:
-if we stored an "on" choice, a reload would leave the switch reading *on* over a silent
-page (browsers won't start audio without a gesture), and one stray click would bring the
-noise back unannounced. Nothing stored means nothing to be surprised by.
-
-Nothing is downloaded until the switch is actually flipped — `preload="none"`, and the
-`<audio>` element isn't even constructed until then — so first paint is byte-for-byte
-identical whether a visitor ever turns sound on or not.
-
-`play()` is never called outside a user-gesture handler. Browsers reject audible autoplay
-anyway, but it is also a WCAG 1.4.2 (Audio Control) failure and a dark pattern besides.
-The switch **is** the gesture.
-
-The equaliser bars on the switch read from whether the floor is *actually audible*, not
-from the setting — so the control can never claim to be playing over a silent page.
-
-**Shipped assets** (in `public/audio/`):
-
-| File | Codec | Size |
-|---|---|---|
-| `casino-floor.webm` | Opus 40k stereo | 451 KB |
-| `casino-floor.m4a` | AAC 48k mono | 563 KB |
-
-Both are a seamless 93.944s loop.
-
-### Regenerating them
-
-The raw source is a freesound_community upload via Pixabay
-(Pixabay Content License — commercial use, no attribution required; credited here
-anyway). It is 98s, stereo, 24 kHz, 160 kbps, and has a **mean volume of −32.5 dB
-with peaks at 0.0 dB** — a quiet crowd bed with full-scale transients buried in it.
-Untreated it is either inaudible or it spikes, so it must be compressed before it can
-work as a background loop.
-
-Normalise **first**, then loop, so the crossfade blends already-levelled audio:
-
-```bash
-SRC=audio/freesound_community-bruit-2-casino-56939.mp3
-
-# 1. high-pass the sub-60Hz rumble, compress, normalise → mean −21.8 dB, peak −1.2 dB
-ffmpeg -i "$SRC" -af "highpass=f=60,loudnorm=I=-18:TP=-1.5:LRA=7" -ar 24000 -ac 2 norm.wav
-
-# 2. seamless loop: crossfade the tail into the head. D=97.944, X=4 → L=93.944
-ffmpeg -i norm.wav -filter_complex "\
-[0:a]atrim=0:4,asetpts=N/SR/TB[head];\
-[0:a]atrim=4:93.944,asetpts=N/SR/TB[body];\
-[0:a]atrim=93.944:97.944,asetpts=N/SR/TB[tail];\
-[tail][head]acrossfade=d=4:c1=tri:c2=tri[xf];\
-[xf][body]concat=n=2:v=0:a=1[out]" -map "[out]" -ar 24000 -ac 2 loop.wav
-
-# 3. encode
-ffmpeg -i loop.wav -c:a libopus -b:a 40k -vbr on -application audio -ac 2 \
-  public/audio/casino-floor.webm
-ffmpeg -i loop.wav -c:a aac -b:a 48k -ac 1 -ar 24000 -movflags +faststart \
-  public/audio/casino-floor.m4a
-```
-
-### Credits
-
-Ambient casino beds by the **freesound_community** on
-[Pixabay](https://pixabay.com/sound-effects/).
 
 ## Project structure
 
 ```
 app/
-  app.vue              # UApp wrapper + global backdrop + grain + status bar
-  app.config.ts        # Nuxt UI theme (gold primary, warm neutrals)
-  assets/css/main.css  # design tokens, palette, grain, reveal animations
+  app.vue              # UApp wrapper + the sticky header
+  app.config.ts        # Nuxt UI theme (green primary, neutral greys)
+  assets/css/main.css  # design tokens, the 12-column grid, focus ring
   components/
-    GameCabinet.vue    # the neon game cabinet (chasing bulb, glow, badge)
-    CabinetArt.vue     # bespoke line-art scenes for the roomy cabinets, accent-tinted
-    TheBackdrop.vue    # magenta/cyan/violet room glow over graph paper
-    TheHero.vue        # wordmark, tagline, CTAs, "not gambling" chips
-    TheStatusBar.vue   # fixed open-source / GitHub status bar + audio switch
-    SoundSwitch.vue    # the floor-audio toggle, used inside TheStatusBar
-    TheTicker.vue      # the LED marquee
-    TheFooter.vue
-    ZoneSign.vue       # the neon zone sign
-  composables/
-    useFloorAudio.ts   # audio preference + playback control
+    TheHeader.vue      # wordmark + numbered zone nav; folds into a Menu button
+    TheHero.vue        # the thesis, the facts and the lede
+    ZoneSign.vue       # a zone's number, name, count, title and sub
+    GameCabinet.vue    # a card: plate (og:image or pictogram), badge, copy, links
+    TheFooter.vue      # the claims, the GitHub link, fine print
+    CabinetArt.vue     # line-art scenes from the neon design; not drawn in v3
   data/catalog.ts      # zone-shaped data (zones, allItems)
   utils/
+    countLabel.ts      # "14 tools", "1 suite"
     jsonLd.ts          # JSON-LD structured data builder
   pages/index.vue      # composes hero + zones + footer
 public/
-  audio/               # seamless casino-floor loops (WebM + M4A)
-  og-image.png         # branded social share card (rendered from og-image.svg)
+  og-image.png         # Swiss social share card (rendered from og-image.svg)
   workshop/            # the Workshop apps' og:images, as WebP card art
   apple-touch-icon.png # 180×180, full-bleed — iOS masks its own corners
   favicon.svg
@@ -253,28 +235,25 @@ and append an item to a zone's `items` array:
   title: 'New Game',
   description: 'One plain line about what it teaches.',
   domain: 'new-game.metaincognita.com', // any bare hostname (the slot car lives on netlify.app); the live-link label
-  repo: 'https://github.com/cschweda/new-game', // the cabinet's "source" link (omit only while there is no public repo)
-  icon: 'dice-6',                        // any lucide name -> i-lucide-dice-6
-  accent: '#e0a92e',                     // hex driving the glow, bulbs, ring + icon tint
-  badge: 'True odds',                    // the gold chip: the method, never a number
-  badgeNote: 'one quiet caption',        // the caption beneath it
-  span: 'std'                            // footprint on the zone's mosaic grid
+  repo: 'https://github.com/cschweda/new-game', // the card's "Source" link (omit only while there is no public repo)
+  icon: 'dice-6',                        // any lucide name -> i-lucide-dice-6; the plate's pictogram
+  accent: '#e0a92e',                     // kept in the data; not drawn by the Swiss design
+  badge: 'True odds',                    // the card's label: the method, never a number
+  badgeNote: 'one quiet caption',        // the caption beside it
+  span: 'std'                            // see below
 }
 ```
 
-No template changes are needed — the cards, counts and grid update automatically. One
-rule of the floor: a roomy span (`wide`, `feature`, `banner`) carries a bespoke
-`CabinetArt` scene named by an `art` key — every stroke inherits the cabinet's accent,
-so a new scene needs no colour decisions — and falls back to a watermark glyph until one
-is drawn. A `std` cabinet has no room and carries neither. A `shot` cabinet (The
-Workshop) carries a `shot` path instead: the app's og:image, saved as WebP under
-`public/workshop/`. The tests enforce all of it.
+No template changes are needed — the cards, counts and navigation update automatically.
+Every card carries a `shot` path: the app's og:image, saved as WebP under
+`public/workshop/` (the catalog test checks each one exists and is used once). Use
+`span: 'shot'` for a card in the three-column grid, or `span: 'showcase'` for an umbrella
+project that takes a whole row and lists its `suite`.
 
 Two optional fields cover an app that is not finished. Leave out `repo` and the card
 shows no source link; the catalog test lists every such app by domain, so add it there
-deliberately. Set `status: 'In development'` on a `shot` cabinet and the card hangs that
-text as a ribbon across the top-right corner of its picture and switches off its bulb
-strip. To add a Workshop tool, convert its og:image first:
+deliberately. Set `status: 'In development'` on a `shot` card and it moves into the
+zone's "In development" group, which says so once, in its label. To add any app, convert its og:image first:
 
 ```bash
 cwebp -q 82 -resize 1120 588 og.png -o public/workshop/new-tool.webp
@@ -323,9 +302,9 @@ Measured against a gzip + immutable-cache server matching Netlify's behaviour:
 
 **Lighthouse desktop:** Performance 100 · Accessibility 100 · Best Practices 100 · SEO 100
 
-**Lighthouse mobile:** Performance 97 · Accessibility 100
+**Lighthouse mobile:** Performance 100 · Accessibility 100 · Best Practices 100 · SEO 100
 
-**axe-core:** 0 violations (desktop and mobile)
+**axe-core:** 0 violations at WCAG 2.1 AA (desktop and mobile); every text element passes contrast
 
 ## License
 

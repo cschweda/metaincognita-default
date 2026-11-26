@@ -1,156 +1,59 @@
 <script setup lang="ts">
-// Presentational. The wordmark gets a polished-floor reflection beneath it —
-// the workshop is the first room you walk into, then VogelTronics, then the casino floor.
+import { zones, allItems } from '~/data/catalog'
+
+// The opening: the thesis set large, then the facts and a short account of what is here.
 </script>
 
 <template>
-  <section class="relative flex min-h-[74vh] flex-col items-center justify-center px-6 pt-24 pb-10 text-center">
-    <div class="reveal flex items-center gap-4" style="animation-delay: 0.05s">
-      <span class="hidden h-px w-10 bg-gradient-to-r from-transparent to-cyan-400/60 sm:block" />
-      <span class="eyebrow">a collection · all open source</span>
-      <span class="hidden h-px w-10 bg-gradient-to-l from-transparent to-cyan-400/60 sm:block" />
+  <section class="wrap" aria-labelledby="hero-h">
+    <div class="g12 hero">
+      <h1 id="hero-h" class="col-span-12 h1">
+        Built out of curiosity.<br><span class="signal">Given away.</span>
+      </h1>
+
+      <ul class="col-span-12 md:col-span-4 lg:col-span-3 facts">
+        <li>A collection · all open source</li>
+        <li>{{ allItems.length }} projects in {{ zones.length }} sections</li>
+        <li>Free</li>
+        <li>No sign-ups</li>
+        <li>No real money</li>
+      </ul>
+
+      <p class="col-span-12 md:col-start-6 md:col-span-7 lg:col-start-7 lg:col-span-6 lede">
+        Tools for writing scripts, for taking apart TRS-80 programs, for putting your
+        photos on the wall, and for watching the coffee brew, plus the everyday ones I
+        wrote for work. The reborn catalog of VogelTronics, out of Elk Grove Village,
+        Illinois. Casino simulations that show their math. frotz, Inc., for writing and
+        playing 1980s-style text adventures on the Z-machine. And a 1971 slot car track.
+      </p>
     </div>
-
-    <h1 class="wordmark font-display reveal mt-7" style="animation-delay: 0.12s">
-      <span class="text-neon-cyan">meta</span><span class="i text-neon-magenta">incognita</span>
-    </h1>
-
-    <div class="wordmark reflect-wrap reveal" aria-hidden="true" style="animation-delay: 0.12s">
-      <div class="reflect">
-        <span class="rm">meta</span><span class="ri">incognita</span>
-      </div>
-    </div>
-
-    <p
-      class="font-display reveal mt-7 text-[clamp(1.3rem,3vw,2.1rem)] font-normal leading-snug tracking-tight text-bone-100"
-      style="animation-delay: 0.36s"
-    >
-      Built out of curiosity. Given away.
-    </p>
-
-    <p
-      class="reveal mt-5 max-w-2xl text-base leading-relaxed text-bone-300 sm:text-lg"
-      style="animation-delay: 0.46s"
-    >
-      Tools for writing scripts, for taking apart TRS-80 programs, for putting your
-      photos on the wall, and for watching the coffee brew, plus the everyday ones I
-      wrote for work. The reborn catalog of VogelTronics, out of Elk Grove Village,
-      Illinois. Casino simulations that show their math. frotz, Inc., for writing and
-      playing 1980s-style text adventures on the Z-machine. And a 1971 slot car track.
-    </p>
-
-    <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 0.56s">
-      <a href="#workshop" class="btn-gold">
-        The workshop
-        <UIcon name="i-lucide-arrow-down" class="text-[0.95em]" aria-hidden="true" />
-      </a>
-      <!-- named for their destinations, in floor order: the signs and titles say the rest -->
-      <a href="#vogeltronics" class="btn-ghost">VogelTronics games</a>
-      <a href="#pit" class="btn-ghost">The casino floor</a>
-      <a href="#fiction" class="btn-ghost">Interactive fiction</a>
-      <a href="#arcade" class="btn-ghost">Retro games</a>
-    </div>
-
-    <ul class="reveal mt-9 flex flex-wrap items-center justify-center gap-2.5" style="animation-delay: 0.66s">
-      <li class="chip">Free</li>
-      <li class="chip">No sign-ups</li>
-      <li class="chip">No real money</li>
-      <li class="chip chip-gold">
-        <UIcon name="i-lucide-git-fork" class="text-[0.9em]" aria-hidden="true" />
-        Open source
-      </li>
-    </ul>
   </section>
 </template>
 
 <style scoped>
-.wordmark {
-  font-size: clamp(2.6rem, 10vw, 7.4rem);
-  font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.045em;
-  overflow-wrap: anywhere;
-}
+.hero { padding-top: clamp(64px, 9vw, 128px); }
 
-.wordmark .i { animation: flick 6s infinite; }
-
-/* the polished floor: the wrapper is animated and clipped; the inner does the
-   flip, so no keyframe can ever overwrite the mirror. */
-.reflect-wrap {
-  margin-top: -0.1em;
-  height: 0.55em;
-  overflow: hidden;
-  pointer-events: none;
-  user-select: none;
-}
-.reflect {
-  opacity: 0.22;
-  filter: blur(3px);
-  transform: scaleY(-1);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 42%, #000 100%);
-  mask-image: linear-gradient(to bottom, transparent 42%, #000 100%);
-}
-.reflect .rm { color: var(--color-cyan-300); }
-.reflect .ri { color: var(--color-magenta-300); }
-
-.btn-gold,
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 999px;
-  padding: 0.85rem 1.7rem;
-  font-size: 0.93rem;
+.h1 {
+  margin: 0;
+  font-size: clamp(52px, 9.4vw, 140px);
   font-weight: 700;
-  transition:
-    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
-    border-color 0.35s ease,
-    color 0.35s ease;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+.signal { color: var(--color-signal); }
+
+.facts {
+  margin-top: clamp(40px, 5vw, 72px);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-mute);
 }
 
-.btn-gold {
-  color: #180f00;
-  background: linear-gradient(180deg, #ffe3a0, #ffb92e 55%, #e79608);
-  box-shadow:
-    0 0 24px rgba(255, 185, 46, 0.55),
-    0 0 60px rgba(255, 140, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
-}
-.btn-gold:hover { transform: translateY(-2px); }
-
-.btn-ghost {
-  color: #d8f7ff;
-  background: transparent;
-  border: 1px solid color-mix(in srgb, var(--color-cyan-400) 55%, transparent);
-  box-shadow: 0 0 14px rgba(0, 214, 255, 0.28), inset 0 0 14px rgba(0, 214, 255, 0.1);
-}
-.btn-ghost:hover { transform: translateY(-2px); color: #fff; }
-
-.btn-gold:focus-visible,
-.btn-ghost:focus-visible {
-  outline: 2px solid var(--color-cyan-400);
-  outline-offset: 3px;
+.lede {
+  margin-top: clamp(24px, 5vw, 72px);
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.45;
+  color: var(--color-body);
 }
 
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.42rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  background: rgba(255, 255, 255, 0.03);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-bone-300);
-}
-
-.chip-gold {
-  border-color: color-mix(in srgb, var(--color-gold-400) 50%, transparent);
-  background: color-mix(in srgb, var(--color-gold-400) 8%, transparent);
-  color: var(--color-gold-200);
-  box-shadow: 0 0 14px rgba(255, 185, 46, 0.2);
-}
 </style>

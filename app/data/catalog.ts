@@ -8,8 +8,10 @@ export type Span = 'std' | 'wide' | 'feature' | 'banner' | 'shot' | 'showcase'
 
 /**
  * Selects a cabinet's bespoke line-art scene. See CabinetArt.vue.
+ * The Swiss layout (v3) does not draw the scenes: a card without an og:image shows
+ * its lucide pictogram instead. The scenes stay in CabinetArt.vue, tested, for reuse.
  * `pao` currently has no cabinet: The Mind is off the floor while its zone is
- * rethought, and the scene waits in CabinetArt.vue for its return.
+ * rethought.
  */
 export type ArtKey = 'blackjack' | 'holdem' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar' | 'vogeltronics' | 'rovacon' | 'gridiron'
 
@@ -75,13 +77,21 @@ export interface CatalogItem {
 }
 
 export interface Zone {
-  /** Scroll anchor and grid modifier (`.floor-<id>`). */
-  id: 'pit' | 'machines' | 'workshop' | 'fiction' | 'arcade' | 'vogeltronics'
-  /** Text inside the neon tube sign. */
+  /**
+   * The section's scroll anchor (metaincognita.com/#<id>), so it is a link people are
+   * given: it reads as the section's name. Renamed anchors stay reachable through
+   * LEGACY_ANCHORS below.
+   */
+  id: 'workshop' | 'vogeltronics' | 'casino-table-games' | 'casino-machines' | 'interactive-fiction' | 'retro-games'
+  /** The zone's name, shown above its title and in the page index. */
   sign: string
+  /** Its label in the top navigation. */
+  nav: string
   /** Zone neon colour. */
   color: string
   title: string
+  /** Optional: the part of `title` set in the accent colour. */
+  titleAccent?: string
   sub: string
   /** Singular noun; ZoneSign pluralises it by count. */
   unit: string
@@ -92,9 +102,11 @@ export const zones: Zone[] = [
   {
     id: 'workshop',
     sign: 'The Workshop',
+    nav: 'Workshop',
     color: '#00d6ff',
-    title: 'Tools I build and use.',
-    sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, keeping an eye on the coffee, watching your DNS, and testing a site without IPv4 — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression, an accessibility checker for documents and a guide to the accessibility deadline. Fotobogen publishes your photographs on a site of your own, and Omsett converts files without sending them anywhere. Next on the bench: Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
+    title: 'Tools I built and use.',
+    titleAccent: 'Tools I built',
+    sub: 'Software I wrote for my own use, and for work. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
       {
@@ -284,7 +296,7 @@ export const zones: Zone[] = [
         // red "In development" label where the ribbon hangs; the card copy has that
         // label painted out so the two do not collide.
         title: 'Utenat',
-        description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart. In development.',
+        description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart.',
         domain: 'utenat.com',
         icon: 'drama',
         accent: '#f2efe8',
@@ -300,9 +312,11 @@ export const zones: Zone[] = [
   {
     id: 'vogeltronics',
     sign: 'VogelTronics',
+    nav: 'VogelTronics',
     color: '#ff4436',
-    title: 'VogelTronics: A Fictional History',
-    sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted. Gridiron plays now; the rest of the shelf is on its way.',
+    title: 'VogelTronics: A Fictional History.',
+    titleAccent: 'VogelTronics:',
+    sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted.',
     unit: 'exhibit',
     items: [
       {
@@ -314,8 +328,8 @@ export const zones: Zone[] = [
         accent: '#ff4436',
         badge: 'Games that think!',
         badgeNote: 'the whole sad story',
-        span: 'wide',
-        art: 'vogeltronics'
+        span: 'shot',
+        shot: '/workshop/vogel-history.webp'
       },
       {
         title: 'Rovacon Voice Bench',
@@ -326,8 +340,8 @@ export const zones: Zone[] = [
         accent: '#f4efe6',
         badge: 'Formant synthesis',
         badgeNote: 'the voice that shouldn’t exist',
-        span: 'wide',
-        art: 'rovacon'
+        span: 'shot',
+        shot: '/workshop/vogelvox.webp'
       },
       {
         title: 'Gridiron',
@@ -338,17 +352,19 @@ export const zones: Zone[] = [
         accent: '#ff2a1a',
         badge: 'Nine yards of LED',
         badgeNote: 'it thinks two plays ahead',
-        span: 'wide',
-        art: 'gridiron'
+        span: 'shot',
+        shot: '/workshop/gridiron.webp'
       }
     ]
   },
   {
-    id: 'pit',
-    sign: 'The Pit',
+    id: 'casino-table-games',
+    sign: 'Casino Table Games',
+    nav: 'Casino Table Games',
     color: '#2fe58f',
-    title: 'Table Games rebuilt as open-source simulations.',
-    sub: 'Table games rebuilt as open-source simulations — true odds, basic strategy, and the exact house edge, all out in the open. No money, no sign-up.',
+    title: 'Casino Table Games rebuilt as open-source simulations.',
+    titleAccent: 'Casino Table Games',
+    sub: 'True odds, basic strategy and the exact house edge, all out in the open. No money, no sign-ups.',
     unit: 'table',
     items: [
       {
@@ -360,8 +376,8 @@ export const zones: Zone[] = [
         accent: '#8a8cff',
         badge: 'Live equity',
         badgeNote: 'odds as you play',
-        span: 'feature',
-        art: 'holdem'
+        span: 'shot',
+        shot: '/workshop/holdem.webp'
       },
       {
         title: 'Blackjack Trainer',
@@ -372,7 +388,8 @@ export const zones: Zone[] = [
         accent: '#2fe58f',
         badge: 'Basic strategy',
         badgeNote: 'plus the hi-lo count',
-        span: 'std'
+        span: 'shot',
+        shot: '/workshop/blackjack.webp'
       },
       {
         title: 'Craps Simulator',
@@ -383,7 +400,8 @@ export const zones: Zone[] = [
         accent: '#35baff',
         badge: 'True odds',
         badgeNote: 'the zero-edge bet',
-        span: 'std'
+        span: 'shot',
+        shot: '/workshop/craps.webp'
       },
       {
         title: 'Roulette Trainer',
@@ -394,18 +412,20 @@ export const zones: Zone[] = [
         accent: '#ff4d63',
         badge: 'Real physics',
         badgeNote: 'no rigging required',
-        span: 'wide',
-        art: 'roulette'
+        span: 'shot',
+        shot: '/workshop/roulette.webp'
       }
     ]
   },
   {
-    id: 'machines',
-    sign: 'The Machines',
+    id: 'casino-machines',
+    sign: 'Casino Machines',
+    nav: 'Casino Machines',
     color: '#ff1ba6',
-    title: 'Open Source Casino machines.',
+    title: 'Casino Machines rebuilt as open-source simulations.',
+    titleAccent: 'Casino Machines',
     sub: 'Reels, pins and multipliers. The loudest machines on any floor — and the ones that take the most. Here is exactly how.',
-    unit: 'cabinet',
+    unit: 'machine',
     items: [
       {
         title: 'Slots Simulator',
@@ -416,7 +436,8 @@ export const zones: Zone[] = [
         accent: '#ffb62e',
         badge: 'Exact odds',
         badgeNote: 'every reel weight',
-        span: 'std'
+        span: 'shot',
+        shot: '/workshop/slots.webp'
       },
       {
         title: 'Video Poker Trainer',
@@ -427,7 +448,8 @@ export const zones: Zone[] = [
         accent: '#c46bff',
         badge: 'Optimal play',
         badgeNote: 'ranked by expected value',
-        span: 'std'
+        span: 'shot',
+        shot: '/workshop/videopoker.webp'
       },
       {
         title: 'Pachinko Parlor',
@@ -438,8 +460,8 @@ export const zones: Zone[] = [
         accent: '#ff5bb0',
         badge: 'Ball physics',
         badgeNote: 'the house sets the pins',
-        span: 'wide',
-        art: 'pachinko'
+        span: 'shot',
+        shot: '/workshop/pachinko.webp'
       },
       {
         title: 'Flameout',
@@ -450,16 +472,18 @@ export const zones: Zone[] = [
         accent: '#ff7a3d',
         badge: 'The crash curve',
         badgeNote: 'cash out or burn',
-        span: 'feature',
-        art: 'flameout'
+        span: 'shot',
+        shot: '/workshop/flameout.webp'
       }
     ]
   },
   {
-    id: 'fiction',
+    id: 'interactive-fiction',
     sign: 'Interactive Fiction',
+    nav: 'Interactive Fiction',
     color: '#ffb627',
     title: 'Interactive Fiction Tools.',
+    titleAccent: 'Interactive Fiction',
     sub: 'In 1979 Infocom wrote its adventures for an imaginary computer, the Z-machine, so one story file could run on every home computer of the day: you type GO NORTH or OPEN MAILBOX, and the game answers in prose. The format outlived the company, and people still write for it. frotz, Inc. is the umbrella for my Z-machine tools, which run in the browser and are open source.',
     unit: 'suite',
     items: [
@@ -497,10 +521,12 @@ export const zones: Zone[] = [
     ]
   },
   {
-    id: 'arcade',
-    sign: 'The Arcade',
+    id: 'retro-games',
+    sign: 'Retro Games',
+    nav: 'Retro Games',
     color: '#ff6a2b',
     title: 'Retro Games.',
+    titleAccent: 'Retro',
     sub: 'No edge here, nothing to beat — just games built for the joy of it. Starting with a slot car track from 1971; more on the way.',
     unit: 'game',
     items: [
@@ -513,12 +539,24 @@ export const zones: Zone[] = [
         accent: '#ff6a2b',
         badge: 'Analog throttle',
         badgeNote: 'no house, just the track',
-        span: 'banner',
-        art: 'slotcar'
+        span: 'shot',
+        shot: '/workshop/slotcar.webp'
       }
     ]
   }
 ]
+
+/**
+ * Anchors the sections used to have, from the casino-floor design, mapped to the ones
+ * they have now. Links already given out (metaincognita.com/#pit) still land on the
+ * right section: the page swaps the old anchor for the new one on load.
+ */
+export const LEGACY_ANCHORS: Record<string, Zone['id']> = {
+  pit: 'casino-table-games',
+  machines: 'casino-machines',
+  fiction: 'interactive-fiction',
+  arcade: 'retro-games'
+}
 
 /** Every item on the floor, in floor order. Drives the JSON-LD ItemList. */
 export const allItems: CatalogItem[] = zones.flatMap(z => z.items)

@@ -1,9 +1,9 @@
 export default defineAppConfig({
   ui: {
-    // gold-leaning primary + warm neutrals to match the neon-palace theme
+    // the signal green and plain greys of the Swiss theme
     colors: {
-      primary: 'amber',
-      neutral: 'stone'
+      primary: 'green',
+      neutral: 'neutral'
     }
   }
 })
