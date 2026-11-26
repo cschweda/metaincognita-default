@@ -101,6 +101,7 @@ export const zones: Zone[] = [
     nav: 'Workshop',
     color: '#00d6ff',
     title: 'Tools I built and use.',
+    titleAccent: 'Tools I built',
     sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, keeping an eye on the coffee, watching your DNS, and testing a site without IPv4 — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression, an accessibility checker for documents and a guide to the accessibility deadline. Fotobogen publishes your photographs on a site of your own, and Omsett converts files without sending them anywhere. Next on the bench: Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
