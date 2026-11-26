@@ -34,6 +34,21 @@ The page runs in floor order: **The Workshop**, **VogelTronics**, **Casino Table
 **Casino Machines**, **Interactive Fiction** and **Retro Games**. The top navigation
 numbers them 01 to 06 and folds into a menu on narrow screens.
 
+Each section has a readable link, for sharing:
+
+| Section | Link |
+| --- | --- |
+| The Workshop | `metaincognita.com/#workshop` |
+| VogelTronics | `metaincognita.com/#vogeltronics` |
+| Casino Table Games | `metaincognita.com/#casino-table-games` |
+| Casino Machines | `metaincognita.com/#casino-machines` |
+| Interactive Fiction | `metaincognita.com/#interactive-fiction` |
+| Retro Games | `metaincognita.com/#retro-games` |
+
+The old anchors from the casino-floor design (`#pit`, `#machines`, `#fiction`,
+`#arcade`) still work: the page swaps them for the new ones on load
+(`LEGACY_ANCHORS` in `app/data/catalog.ts`).
+
 ## The collection
 
 ### The Workshop — tools
