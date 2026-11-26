@@ -56,34 +56,23 @@ describe('catalog', () => {
     }
   })
 
-  it('lays out the mosaic so each zone fills its grid', () => {
-    const zone = (id: string) => zones.find(z => z.id === id)!.items.map(i => i.span)
-    const pit = zone('pit')
-    const machines = zone('machines')
-    // DOM order matters — the grid placement rules in main.css assume it.
-    expect(pit).toEqual(['feature', 'std', 'std', 'wide'])
-    expect(machines).toEqual(['std', 'std', 'wide', 'feature'])
-    // The Workshop runs its screenshots two to a row; Interactive Fiction one full-width
-    // showcase; The Arcade a single full-width banner; VogelTronics its wides, two to a row.
-    expect(zone('workshop')).toEqual(Array(14).fill('shot'))
-    expect(zone('fiction')).toEqual(['showcase'])
-    expect(zone('arcade')).toEqual(['banner'])
-    expect(zone('vogeltronics')).toEqual(['wide', 'wide', 'wide'])
-  })
-
-  // Anything with slack to fill carries a scene; a std tile has no room for one, and a
-  // shot tile is filled by its screenshot instead.
-  it('gives every roomy cabinet a scene, and no std or shot one', () => {
+  // Every card leads with its app's own og:image. The frotz, Inc. umbrella is the one
+  // showcase (a whole row, with its suite); everything else is a shot in the grid.
+  it('gives every app a picture card, with one showcase for the umbrella project', () => {
+    expect(allItems.filter(i => i.span === 'showcase').map(i => i.domain)).toEqual(['frotzinc.com'])
     for (const item of allItems) {
-      const roomy = item.span !== 'std' && item.span !== 'shot' && item.span !== 'showcase'
-      expect(Boolean(item.art), `${item.domain} (${item.span})`).toBe(roomy)
+      expect(['shot', 'showcase'], item.domain).toContain(item.span)
+      // a scene is drawn only where there is no picture, and now there always is one
+      expect(item.art, item.domain).toBeUndefined()
     }
   })
 
   // The CSP is img-src 'self': a shot must be a local file, never the app's own URL.
-  it('gives every shot cabinet a same-origin screenshot that exists', () => {
+  it('gives every card a same-origin og:image that exists, each its own', () => {
+    const shots = allItems.map(i => i.shot)
+    expect(new Set(shots).size).toBe(shots.length)
     for (const item of allItems) {
-      expect(Boolean(item.shot), item.domain).toBe(item.span === 'shot' || item.span === 'showcase')
+      expect(Boolean(item.shot), item.domain).toBe(true)
       if (item.shot) {
         expect(item.shot, item.domain).toMatch(/^\/workshop\/[a-z0-9-]+\.webp$/)
         expect(existsSync(resolve(__dirname, '../public', item.shot.slice(1))), item.domain).toBe(true)

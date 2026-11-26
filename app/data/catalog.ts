@@ -320,8 +320,8 @@ export const zones: Zone[] = [
         accent: '#ff4436',
         badge: 'Games that think!',
         badgeNote: 'the whole sad story',
-        span: 'wide',
-        art: 'vogeltronics'
+        span: 'shot',
+        shot: '/workshop/vogel-history.webp'
       },
       {
         title: 'Rovacon Voice Bench',
@@ -332,8 +332,8 @@ export const zones: Zone[] = [
         accent: '#f4efe6',
         badge: 'Formant synthesis',
         badgeNote: 'the voice that shouldn’t exist',
-        span: 'wide',
-        art: 'rovacon'
+        span: 'shot',
+        shot: '/workshop/vogelvox.webp'
       },
       {
         title: 'Gridiron',
@@ -344,8 +344,8 @@ export const zones: Zone[] = [
         accent: '#ff2a1a',
         badge: 'Nine yards of LED',
         badgeNote: 'it thinks two plays ahead',
-        span: 'wide',
-        art: 'gridiron'
+        span: 'shot',
+        shot: '/workshop/gridiron.webp'
       }
     ]
   },
@@ -367,8 +367,8 @@ export const zones: Zone[] = [
         accent: '#8a8cff',
         badge: 'Live equity',
         badgeNote: 'odds as you play',
-        span: 'feature',
-        art: 'holdem'
+        span: 'shot',
+        shot: '/workshop/holdem.webp'
       },
       {
         title: 'Blackjack Trainer',
@@ -379,7 +379,8 @@ export const zones: Zone[] = [
         accent: '#2fe58f',
         badge: 'Basic strategy',
         badgeNote: 'plus the hi-lo count',
-        span: 'std'
+        span: 'shot',
+        shot: '/workshop/blackjack.webp'
       },
       {
         title: 'Craps Simulator',
@@ -390,7 +391,8 @@ export const zones: Zone[] = [
         accent: '#35baff',
         badge: 'True odds',
         badgeNote: 'the zero-edge bet',
-        span: 'std'
+        span: 'shot',
+        shot: '/workshop/craps.webp'
       },
       {
         title: 'Roulette Trainer',
@@ -401,8 +403,8 @@ export const zones: Zone[] = [
         accent: '#ff4d63',
         badge: 'Real physics',
         badgeNote: 'no rigging required',
-        span: 'wide',
-        art: 'roulette'
+        span: 'shot',
+        shot: '/workshop/roulette.webp'
       }
     ]
   },
@@ -424,7 +426,8 @@ export const zones: Zone[] = [
         accent: '#ffb62e',
         badge: 'Exact odds',
         badgeNote: 'every reel weight',
-        span: 'std'
+        span: 'shot',
+        shot: '/workshop/slots.webp'
       },
       {
         title: 'Video Poker Trainer',
@@ -435,7 +438,8 @@ export const zones: Zone[] = [
         accent: '#c46bff',
         badge: 'Optimal play',
         badgeNote: 'ranked by expected value',
-        span: 'std'
+        span: 'shot',
+        shot: '/workshop/videopoker.webp'
       },
       {
         title: 'Pachinko Parlor',
@@ -446,8 +450,8 @@ export const zones: Zone[] = [
         accent: '#ff5bb0',
         badge: 'Ball physics',
         badgeNote: 'the house sets the pins',
-        span: 'wide',
-        art: 'pachinko'
+        span: 'shot',
+        shot: '/workshop/pachinko.webp'
       },
       {
         title: 'Flameout',
@@ -458,8 +462,8 @@ export const zones: Zone[] = [
         accent: '#ff7a3d',
         badge: 'The crash curve',
         badgeNote: 'cash out or burn',
-        span: 'feature',
-        art: 'flameout'
+        span: 'shot',
+        shot: '/workshop/flameout.webp'
       }
     ]
   },
@@ -523,8 +527,8 @@ export const zones: Zone[] = [
         accent: '#ff6a2b',
         badge: 'Analog throttle',
         badgeNote: 'no house, just the track',
-        span: 'banner',
-        art: 'slotcar'
+        span: 'shot',
+        shot: '/workshop/slotcar.webp'
       }
     ]
   }
