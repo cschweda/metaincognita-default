@@ -459,7 +459,7 @@ export const zones: Zone[] = [
     id: 'fiction',
     sign: 'Interactive Fiction',
     color: '#ffb627',
-    title: 'Games you play by typing.',
+    title: 'Interactive Fiction Tools.',
     sub: 'In 1979 Infocom wrote its adventures for an imaginary computer, the Z-machine, so one story file could run on every home computer of the day: you type GO NORTH or OPEN MAILBOX, and the game answers in prose. The format outlived the company, and people still write for it. frotz, Inc. is the umbrella for my Z-machine tools, which run in the browser and are open source.',
     unit: 'suite',
     items: [
