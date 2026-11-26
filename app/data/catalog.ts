@@ -316,7 +316,7 @@ export const zones: Zone[] = [
     color: '#ff4436',
     title: 'VogelTronics: A Fictional History.',
     titleAccent: 'VogelTronics:',
-    sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted. Gridiron plays now; the rest of the shelf is on its way.',
+    sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted.',
     unit: 'exhibit',
     items: [
       {
