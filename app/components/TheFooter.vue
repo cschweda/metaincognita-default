@@ -5,7 +5,7 @@ const year = new Date().getFullYear()
 <template>
   <footer class="wrap foot">
     <div class="g12 top">
-      <p class="col-span-12 md:col-span-6 claim">All open source. No sign-ups. Always free. No real money, ever.</p>
+      <p class="col-span-12 md:col-span-6 claim">All open source. No sign-ups. Always free.</p>
       <div class="col-span-12 md:col-span-6 actions">
         <a
           class="gh"
