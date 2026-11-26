@@ -48,7 +48,7 @@
       <a href="#vogeltronics" class="btn-ghost">VogelTronics games</a>
       <a href="#pit" class="btn-ghost">The casino floor</a>
       <a href="#fiction" class="btn-ghost">Interactive fiction</a>
-      <a href="#arcade" class="btn-ghost">Games for fun</a>
+      <a href="#arcade" class="btn-ghost">Retro games</a>
     </div>
 
     <ul class="reveal mt-9 flex flex-wrap items-center justify-center gap-2.5" style="animation-delay: 0.66s">

@@ -500,7 +500,7 @@ export const zones: Zone[] = [
     id: 'arcade',
     sign: 'The Arcade',
     color: '#ff6a2b',
-    title: 'Games for fun.',
+    title: 'Retro Games.',
     sub: 'No edge here, nothing to beat — just games built for the joy of it. Starting with a slot car track from 1971; more on the way.',
     unit: 'game',
     items: [
