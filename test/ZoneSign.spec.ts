@@ -30,6 +30,19 @@ describe('ZoneSign', () => {
     expect(w.find('.count').text()).toBe('4 tables')
   })
 
+  it('sets the accented part of the title in the signal colour, keeping the text whole', async () => {
+    const w = await mountSuspended(ZoneSign, {
+      props: { ...base, title: 'VogelTronics: A Fictional History', titleAccent: 'VogelTronics' }
+    })
+    expect(w.find('h2').text()).toBe('VogelTronics: A Fictional History')
+    expect(w.find('h2 .signal').text()).toBe('VogelTronics')
+  })
+
+  it('draws no accent when none is set', async () => {
+    const w = await mountSuspended(ZoneSign, { props: base })
+    expect(w.find('h2 .signal').exists()).toBe(false)
+  })
+
   it('keeps a count of one singular', async () => {
     const w = await mountSuspended(ZoneSign, { props: { ...base, count: 1, unit: 'suite' } })
     expect(w.find('.count').text()).toBe('1 suite')

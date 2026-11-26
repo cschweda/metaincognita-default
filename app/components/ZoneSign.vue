@@ -6,6 +6,8 @@ const props = defineProps<{
   headingId?: string
   sign: string
   title: string
+  /** The part of the title set in the accent colour, if any. */
+  titleAccent?: string
   sub: string
   count: number
   unit: string
@@ -13,6 +15,15 @@ const props = defineProps<{
 
 const number = computed(() => String(props.index).padStart(2, '0'))
 const count = computed(() => countLabel(props.count, props.unit))
+
+// The title in three runs: before the accented part, the part itself, after it.
+// No accent (or one the title does not contain) leaves the title as one plain run.
+const runs = computed(() => {
+  const i = props.titleAccent ? props.title.indexOf(props.titleAccent) : -1
+  if (i < 0) return { before: props.title, accent: '', after: '' }
+  const end = i + props.titleAccent!.length
+  return { before: props.title.slice(0, i), accent: props.titleAccent!, after: props.title.slice(end) }
+})
 </script>
 
 <template>
@@ -23,7 +34,7 @@ const count = computed(() => countLabel(props.count, props.unit))
       <p class="count">{{ count }}</p>
     </div>
     <div class="col-span-12 md:col-start-4 md:col-span-9">
-      <h2 :id="headingId" class="zone-title">{{ title }}</h2>
+      <h2 :id="headingId" class="zone-title">{{ runs.before }}<span v-if="runs.accent" class="signal">{{ runs.accent }}</span>{{ runs.after }}</h2>
       <p class="zone-sub">{{ sub }}</p>
     </div>
   </header>
@@ -48,6 +59,8 @@ const count = computed(() => countLabel(props.count, props.unit))
   letter-spacing: -0.035em;
   color: var(--color-paper);
 }
+
+.signal { color: var(--color-signal); }
 
 .zone-sub {
   margin-top: 28px;
