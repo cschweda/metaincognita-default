@@ -11,7 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **A new look: Swiss, and dark.** The neon casino floor gives way to a twelve-column
   grid, hairline rules and one grotesque (Helvetica Neue, then a self-hosted
   Inter Tight). One accent, a muted signal green, used sparingly: "Given away." in
-  the opening, the section numbers and the focus ring. Every card, every og:image and
+  the opening, the lead words of each section title and the focus ring. Section
+  numbers are large white numerals. Every card, every og:image and
   every line of copy carries over; only the presentation changes.
 - **Every card leads with its app's own og:image** — all 27, the casino tables and
   machines, VogelTronics and the slot car included (they had drawn neon scenes before).
