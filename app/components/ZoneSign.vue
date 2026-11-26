@@ -55,7 +55,7 @@ const runs = computed(() => {
   font-weight: 700;
   line-height: 0.8;
   letter-spacing: -0.06em;
-  color: var(--color-signal);
+  color: var(--color-paper);
   font-variant-numeric: tabular-nums;
 }
 .sign {
