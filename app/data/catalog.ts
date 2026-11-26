@@ -106,7 +106,7 @@ export const zones: Zone[] = [
     color: '#00d6ff',
     title: 'Tools I built and use.',
     titleAccent: 'Tools I built',
-    sub: 'Software I wrote for my own use, and for work. Free, open source, no sign-ups, and your files stay yours.',
+    sub: 'Software I wrote for my own use and for work. Free, open source, no sign-ups, and your files stay yours.',
     unit: 'tool',
     items: [
       {
