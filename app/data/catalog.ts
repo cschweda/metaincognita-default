@@ -77,8 +77,12 @@ export interface CatalogItem {
 }
 
 export interface Zone {
-  /** Scroll anchor and grid modifier (`.floor-<id>`). */
-  id: 'pit' | 'machines' | 'workshop' | 'fiction' | 'arcade' | 'vogeltronics'
+  /**
+   * The section's scroll anchor (metaincognita.com/#<id>), so it is a link people are
+   * given: it reads as the section's name. Renamed anchors stay reachable through
+   * LEGACY_ANCHORS below.
+   */
+  id: 'workshop' | 'vogeltronics' | 'casino-table-games' | 'casino-machines' | 'interactive-fiction' | 'retro-games'
   /** The zone's name, shown above its title and in the page index. */
   sign: string
   /** Its label in the top navigation. */
@@ -354,7 +358,7 @@ export const zones: Zone[] = [
     ]
   },
   {
-    id: 'pit',
+    id: 'casino-table-games',
     sign: 'Casino Table Games',
     nav: 'Casino Table Games',
     color: '#2fe58f',
@@ -414,7 +418,7 @@ export const zones: Zone[] = [
     ]
   },
   {
-    id: 'machines',
+    id: 'casino-machines',
     sign: 'Casino Machines',
     nav: 'Casino Machines',
     color: '#ff1ba6',
@@ -474,7 +478,7 @@ export const zones: Zone[] = [
     ]
   },
   {
-    id: 'fiction',
+    id: 'interactive-fiction',
     sign: 'Interactive Fiction',
     nav: 'Interactive Fiction',
     color: '#ffb627',
@@ -517,7 +521,7 @@ export const zones: Zone[] = [
     ]
   },
   {
-    id: 'arcade',
+    id: 'retro-games',
     sign: 'Retro Games',
     nav: 'Retro Games',
     color: '#ff6a2b',
@@ -540,6 +544,18 @@ export const zones: Zone[] = [
     ]
   }
 ]
+
+/**
+ * Anchors the sections used to have, from the casino-floor design, mapped to the ones
+ * they have now. Links already given out (metaincognita.com/#pit) still land on the
+ * right section: the page swaps the old anchor for the new one on load.
+ */
+export const LEGACY_ANCHORS: Record<string, Zone['id']> = {
+  pit: 'casino-table-games',
+  machines: 'casino-machines',
+  fiction: 'interactive-fiction',
+  arcade: 'retro-games'
+}
 
 /** Every item on the floor, in floor order. Drives the JSON-LD ItemList. */
 export const allItems: CatalogItem[] = zones.flatMap(z => z.items)

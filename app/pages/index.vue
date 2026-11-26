@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { zones, allItems } from '~/data/catalog'
+import { zones, allItems, LEGACY_ANCHORS } from '~/data/catalog'
 import { buildJsonLd } from '~/utils/jsonLd'
 
 // A zone's finished cards, then the ones flagged with a status ("In development").
@@ -23,7 +23,16 @@ useHead({
 // Pageviews are recorded here rather than automatically (autoPageviews is off in
 // nuxt.config.ts), so unknown URLs that land on the 404 page are never counted.
 const { $plausible } = useNuxtApp()
-onMounted(() => $plausible?.trackPageview())
+onMounted(() => {
+  // An old anchor (#pit, #machines, #fiction, #arcade) from a link given out before the
+  // sections were renamed: swap in the new one, without adding a history entry, and go there.
+  const renamed = LEGACY_ANCHORS[window.location.hash.slice(1)]
+  if (renamed) {
+    history.replaceState(null, '', `#${renamed}`)
+    document.getElementById(renamed)?.scrollIntoView()
+  }
+  $plausible?.trackPageview()
+})
 </script>
 
 <template>

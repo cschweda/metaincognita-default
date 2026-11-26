@@ -1,13 +1,25 @@
 import { describe, it, expect } from 'vitest'
 import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { zones, allItems, type Span } from '~/data/catalog'
+import { zones, allItems, LEGACY_ANCHORS, type Span } from '~/data/catalog'
 
 const SPANS: Span[] = ['std', 'wide', 'feature', 'banner', 'shot', 'showcase']
 
 describe('catalog', () => {
   it('has exactly six zones in floor order — the workshop first, then VogelTronics', () => {
-    expect(zones.map(z => z.id)).toEqual(['workshop', 'vogeltronics', 'pit', 'machines', 'fiction', 'arcade'])
+    expect(zones.map(z => z.id)).toEqual(['workshop', 'vogeltronics', 'casino-table-games', 'casino-machines', 'interactive-fiction', 'retro-games'])
+  })
+
+  // A section's anchor is a link people are given, so it reads as the section's name:
+  // lower case, words joined by hyphens.
+  it('names every anchor after its section, and keeps the old anchors pointing home', () => {
+    for (const z of zones) {
+      expect(z.id, z.sign).toMatch(/^[a-z]+(-[a-z]+)*$/)
+      expect(z.sign.toLowerCase().replace(/^the /, '').replace(/ /g, '-'), z.id).toBe(z.id)
+    }
+    for (const target of Object.values(LEGACY_ANCHORS)) {
+      expect(zones.map(z => z.id)).toContain(target)
+    }
   })
 
   it('carries all twenty-seven apps', () => {

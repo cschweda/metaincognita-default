@@ -44,7 +44,7 @@ describe('index page', () => {
   it('draws no rule in a zone with nothing in development', async () => {
     const w = await mountSuspended(IndexPage)
     expect(w.findAll('.bench')).toHaveLength(1)
-    expect(w.find('#pit .bench').exists()).toBe(false)
+    expect(w.find('#casino-table-games .bench').exists()).toBe(false)
   })
 
   it('opens with the thesis, "Given away." in the signal colour', async () => {
