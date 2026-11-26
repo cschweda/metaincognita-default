@@ -154,7 +154,7 @@ Swiss, and dark (v3.0.0; it replaced the neon casino-floor design).
 - **Colour:** an ink ground (`#111111`), paper-white headings, two greys for body text
   and captions, hairline rules, and **one accent, a muted signal green (`#5aa67d`)**,
   used sparingly: "Given away." in the opening, "Tools I built", "VogelTronics", "Casino Table Games",
-  "Casino machines" and "Interactive Fiction" in their section titles (a zone's optional `titleAccent`), and the focus ring.
+  "Casino Machines" and "Interactive Fiction" in their section titles (a zone's optional `titleAccent`), and the focus ring.
   All tokens live in the `@theme` block of `app/assets/css/main.css`.
 - **Cards:** every card leads with its app's own og:image, copied into
   `public/workshop/` as WebP (the CSP is `img-src 'self'`). A card without one would

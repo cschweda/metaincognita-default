@@ -9,7 +9,7 @@ const year = new Date().getFullYear()
       <div class="col-span-12 md:col-span-6 actions">
         <a
           class="gh"
-          href="https://github.com/cschweda"
+          href="https://github.com/cschweda?tab=repositories"
           target="_blank"
           rel="noopener noreferrer"
         >All the code on GitHub <span aria-hidden="true">↗</span><span class="sr-only"> — opens in a new tab</span></a>

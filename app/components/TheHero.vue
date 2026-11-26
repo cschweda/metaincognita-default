@@ -13,7 +13,7 @@ import { zones, allItems } from '~/data/catalog'
 
       <ul class="col-span-12 md:col-span-4 lg:col-span-3 facts">
         <li>A collection · all open source</li>
-        <li>{{ allItems.length }} projects in {{ zones.length }} rooms</li>
+        <li>{{ allItems.length }} projects in {{ zones.length }} sections</li>
         <li>Free</li>
         <li>No sign-ups</li>
         <li>No real money</li>
