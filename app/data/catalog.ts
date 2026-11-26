@@ -8,8 +8,10 @@ export type Span = 'std' | 'wide' | 'feature' | 'banner' | 'shot' | 'showcase'
 
 /**
  * Selects a cabinet's bespoke line-art scene. See CabinetArt.vue.
+ * The Swiss layout (v3) does not draw the scenes: a card without an og:image shows
+ * its lucide pictogram instead. The scenes stay in CabinetArt.vue, tested, for reuse.
  * `pao` currently has no cabinet: The Mind is off the floor while its zone is
- * rethought, and the scene waits in CabinetArt.vue for its return.
+ * rethought.
  */
 export type ArtKey = 'blackjack' | 'holdem' | 'flameout' | 'roulette' | 'pachinko' | 'pao' | 'slotcar' | 'vogeltronics' | 'rovacon' | 'gridiron'
 
@@ -77,8 +79,10 @@ export interface CatalogItem {
 export interface Zone {
   /** Scroll anchor and grid modifier (`.floor-<id>`). */
   id: 'pit' | 'machines' | 'workshop' | 'fiction' | 'arcade' | 'vogeltronics'
-  /** Text inside the neon tube sign. */
+  /** The zone's name, shown above its title and in the page index. */
   sign: string
+  /** Its label in the top navigation. */
+  nav: string
   /** Zone neon colour. */
   color: string
   title: string
@@ -92,6 +96,7 @@ export const zones: Zone[] = [
   {
     id: 'workshop',
     sign: 'The Workshop',
+    nav: 'Workshop',
     color: '#00d6ff',
     title: 'Tools I build and use.',
     sub: 'Software for writing scripts and stories, taking old machines apart, putting photos on the wall, keeping an eye on the coffee, watching your DNS, and testing a site without IPv4 — plus the everyday tools I wrote for work: a Markdown editor, placeholder text, image compression, an accessibility checker for documents and a guide to the accessibility deadline. Fotobogen publishes your photographs on a site of your own, and Omsett converts files without sending them anywhere. Next on the bench: Utenat, for learning lines by heart. Free, open source, no sign-ups, and your files stay yours.',
@@ -300,6 +305,7 @@ export const zones: Zone[] = [
   {
     id: 'vogeltronics',
     sign: 'VogelTronics',
+    nav: 'VogelTronics',
     color: '#ff4436',
     title: 'VogelTronics: A Fictional History',
     sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted. Gridiron plays now; the rest of the shelf is on its way.',
@@ -345,7 +351,8 @@ export const zones: Zone[] = [
   },
   {
     id: 'pit',
-    sign: 'The Pit',
+    sign: 'Casino Table Games',
+    nav: 'Casino Table Games',
     color: '#2fe58f',
     title: 'Table Games rebuilt as open-source simulations.',
     sub: 'Table games rebuilt as open-source simulations — true odds, basic strategy, and the exact house edge, all out in the open. No money, no sign-up.',
@@ -401,11 +408,12 @@ export const zones: Zone[] = [
   },
   {
     id: 'machines',
-    sign: 'The Machines',
+    sign: 'Casino Machines',
+    nav: 'Casino Machines',
     color: '#ff1ba6',
     title: 'Open Source Casino machines.',
     sub: 'Reels, pins and multipliers. The loudest machines on any floor — and the ones that take the most. Here is exactly how.',
-    unit: 'cabinet',
+    unit: 'machine',
     items: [
       {
         title: 'Slots Simulator',
@@ -458,6 +466,7 @@ export const zones: Zone[] = [
   {
     id: 'fiction',
     sign: 'Interactive Fiction',
+    nav: 'Interactive Fiction',
     color: '#ffb627',
     title: 'Interactive Fiction Tools.',
     sub: 'In 1979 Infocom wrote its adventures for an imaginary computer, the Z-machine, so one story file could run on every home computer of the day: you type GO NORTH or OPEN MAILBOX, and the game answers in prose. The format outlived the company, and people still write for it. frotz, Inc. is the umbrella for my Z-machine tools, which run in the browser and are open source.',
@@ -498,7 +507,8 @@ export const zones: Zone[] = [
   },
   {
     id: 'arcade',
-    sign: 'The Arcade',
+    sign: 'Retro Games',
+    nav: 'Retro Games',
     color: '#ff6a2b',
     title: 'Retro Games.',
     sub: 'No edge here, nothing to beat — just games built for the joy of it. Starting with a slot car track from 1971; more on the way.',

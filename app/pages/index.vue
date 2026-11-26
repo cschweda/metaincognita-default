@@ -2,19 +2,19 @@
 import { zones, allItems } from '~/data/catalog'
 import { buildJsonLd } from '~/utils/jsonLd'
 
-// Fallback stagger for browsers without view timelines, where the cabinets still
-// reveal at load. With `animation-timeline: view()` the delay is neutralised and
-// viewport-entry order does the staggering instead — see .reveal-view in main.css.
-const cabDelay = (i: number) => `${(i * 0.06).toFixed(2)}s`
-
-// A zone's finished cabinets, then the ones flagged with a status ("In development").
-// The catalog already keeps flagged cabinets last (a test holds it to that); here they
-// become a group of their own, set a little apart under a labelled rule.
-const floors = zones.map(zone => ({
+// A zone's finished cards, then the ones flagged with a status ("In development").
+// The catalog already keeps flagged cards last (a test holds it to that); here they
+// become a group of their own under the grid, set apart by a labelled rule.
+const floors = zones.map((zone, i) => ({
   zone,
-  open: zone.items.filter(i => !i.status),
-  pending: zone.items.filter(i => i.status)
+  index: i + 1,
+  open: zone.items.filter(item => !item.status),
+  pending: zone.items.filter(item => item.status)
 }))
+
+// Three to a row on a wide screen, two on a tablet, one on a phone. The showcase
+// (an umbrella project with a suite to list) takes the whole row.
+const span = (s: string) => s === 'showcase' ? 'col-span-12' : 'col-span-12 md:col-span-6 lg:col-span-4'
 
 useHead({
   script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(buildJsonLd(allItems)) }]
@@ -28,32 +28,31 @@ onMounted(() => $plausible?.trackPageview())
 
 <template>
   <div>
-    <TheHero />
-    <TheTicker />
+    <main>
+      <TheHero />
 
-    <main class="relative z-10 mx-auto max-w-[1180px] px-6">
       <section
-        v-for="{ zone, open, pending } in floors"
+        v-for="{ zone, index, open, pending } in floors"
         :id="zone.id"
         :key="zone.id"
-        class="scroll-mt-16 pt-16 pb-6 sm:pt-20"
+        class="zone wrap"
+        :aria-labelledby="`${zone.id}-h`"
       >
         <ZoneSign
-          class="reveal-view"
+          :heading-id="`${zone.id}-h`"
+          :index="index"
           :sign="zone.sign"
-          :color="zone.color"
           :title="zone.title"
           :sub="zone.sub"
           :count="zone.items.length"
           :unit="zone.unit"
         />
 
-        <div v-if="open.length" class="floor" :class="`floor-${zone.id}`">
+        <div v-if="open.length" class="g12 floor">
           <GameCabinet
-            v-for="(item, i) in open"
+            v-for="item in open"
             :key="item.domain"
-            class="reveal-view"
-            :style="{ animationDelay: cabDelay(i) }"
+            :class="span(item.span)"
             :item="item"
           />
         </div>
@@ -65,17 +64,13 @@ onMounted(() => $plausible?.trackPageview())
           class="bench"
           role="group"
           :aria-labelledby="`${zone.id}-pending`"
-          :style="{ '--zc': zone.color }"
         >
-          <p :id="`${zone.id}-pending`" class="bench-rule reveal-view">
-            <span>{{ pending[0]!.status }}</span>
-          </p>
-          <div class="floor floor-pending" :class="`floor-${zone.id}`">
+          <p :id="`${zone.id}-pending`" class="bench-label">{{ pending[0]!.status }}</p>
+          <div class="g12 floor floor-pending">
             <GameCabinet
-              v-for="(item, i) in pending"
+              v-for="item in pending"
               :key="item.domain"
-              class="reveal-view"
-              :style="{ animationDelay: cabDelay(i) }"
+              :class="span(item.span)"
               :item="item"
             />
           </div>
@@ -86,3 +81,20 @@ onMounted(() => $plausible?.trackPageview())
     <TheFooter />
   </div>
 </template>
+
+<style scoped>
+.zone { margin-top: clamp(96px, 11vw, 160px); }
+
+.floor {
+  margin-top: 72px;
+  row-gap: 64px;
+}
+
+.bench {
+  margin-top: 96px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-rule);
+}
+.bench-label { font-size: 15px; font-weight: 700; color: var(--color-mute); }
+.floor-pending { margin-top: 32px; }
+</style>

@@ -3,47 +3,71 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <footer class="relative z-10 mt-24 border-t border-white/[0.08] px-6 py-14">
-    <div class="mx-auto flex max-w-[1180px] flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-      <div>
-        <a href="#top" class="font-display foot-wm">
-          <span class="m">meta</span><span class="i">incognita</span>
-        </a>
-        <!-- three short lines, stacked: the column is narrow, and a run-on line broke mid-phrase -->
-        <p class="eyebrow mt-3 flex flex-col gap-1">
-          <span>All open source</span>
-          <span>No sign-ups</span>
-          <span>Always free</span>
-        </p>
+  <footer class="wrap foot">
+    <div class="g12 top">
+      <p class="col-span-12 md:col-span-6 claim">All open source. No sign-ups. Always free. No real money, ever.</p>
+      <div class="col-span-12 md:col-span-6 actions">
+        <a
+          class="gh"
+          href="https://github.com/cschweda?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+        >All the code on GitHub <span aria-hidden="true">↗</span><span class="sr-only"> — opens in a new tab</span></a>
+        <SoundSwitch />
       </div>
+    </div>
 
-      <div class="font-mono text-xs leading-relaxed text-bone-500 sm:text-right">
-        <p>No real money, ever.</p>
-        <p class="mt-1.5">© {{ year }} metaincognita</p>
-        <p class="mt-1.5">In the works, one way or another, since a video poker game I wrote on a TRS-80 Model III — sometime in the 1980s, in BASIC.</p>
-        <!--
-          The frame-break. It moved off the hero so the VogelTronics copy can be read
-          straight, but it does not get to disappear: the homages point at real products,
-          so exactly one plain statement has to live somewhere a visitor can reach.
-          Smallest type, last line — the same place the Owner's Manual puts it.
-        -->
-        <p class="mt-4 text-[0.62rem] leading-snug text-bone-600">VogelTronics, its catalog and its history are an original invention, created for a set of retro-toy homage projects. No Hasbro, Mattel, Milton Bradley, Parker Brothers or Fidelity trademarks, logos or trade dress are used.</p>
-      </div>
+    <div class="g12 small">
+      <p class="col-span-12 md:col-span-6">
+        © {{ year }} metaincognita. In the works, one way or another, since a video poker
+        game I wrote on a TRS-80 Model III — sometime in the 1980s, in BASIC.
+      </p>
+      <!--
+        The frame-break. The VogelTronics homages point at real products, so exactly
+        one plain statement has to live somewhere a visitor can reach. Smallest type,
+        last line — the same place the Owner's Manual puts it.
+      -->
+      <p class="col-span-12 md:col-span-6">
+        VogelTronics, its catalog and its history are an original invention, created for a
+        set of retro-toy homage projects. No Hasbro, Mattel, Milton Bradley, Parker Brothers
+        or Fidelity trademarks, logos or trade dress are used.
+      </p>
     </div>
   </footer>
 </template>
 
 <style scoped>
-.foot-wm {
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+.foot {
+  margin-top: clamp(96px, 11vw, 160px);
+  padding-bottom: 48px;
 }
-.foot-wm .m { color: #f2fbff; text-shadow: 0 0 10px rgba(0, 214, 255, 0.7); }
-.foot-wm .i { color: #ffe4f6; text-shadow: 0 0 10px rgba(255, 27, 166, 0.75); }
-.foot-wm:focus-visible {
-  outline: 2px solid var(--color-cyan-400);
-  outline-offset: 3px;
-  border-radius: 4px;
+.top {
+  border-top: 1px solid var(--color-paper);
+  padding-top: 20px;
+  row-gap: 16px;
+  align-items: center;
+}
+.claim { font-size: 15px; font-weight: 700; }
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+}
+@media (min-width: 768px) { .actions { justify-content: flex-end; } }
+.gh {
+  display: inline-block;
+  padding: 12px 0;
+  font-size: 15px;
+  color: var(--color-paper);
+}
+.gh:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.small {
+  margin-top: 32px;
+  row-gap: 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-mute);
 }
 </style>

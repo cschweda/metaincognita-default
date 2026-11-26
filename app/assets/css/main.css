@@ -2,46 +2,25 @@
 @import "@nuxt/ui";
 
 /* ----------------------------------------------------------------------------
-   metaincognita — neon palace
-   Violet-black canvas · cyan architecture · magenta energy · gold money.
-   Loud eyes, quiet voice: the design screams, the copy stays mathematical.
-   Type: Sora (display + body) · Geist Mono (labels). No new fonts.
+   metaincognita — Swiss, dark
+   A 12-column grid, hairline rules, one grotesque, and a single signal colour
+   used sparingly: the section numbers, "Given away." and the focus ring.
+   Type: Helvetica Neue where the system has it; Inter Tight (self-hosted by
+   @nuxt/fonts) everywhere else — the closest free grotesque.
 ---------------------------------------------------------------------------- */
 @theme static {
-  --font-sans: "Sora", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-sans: "Helvetica Neue", Helvetica, "Inter Tight", Arial, ui-sans-serif, system-ui, sans-serif;
 
-  /* ink — the dark, tinted violet */
-  --color-ink-950: #06050c;
-  --color-ink-900: #0a0813;
-  --color-ink-850: #0d0b17;
-  --color-ink-800: #131020;
-  --color-ink-700: #1c1830;
+  /* ground and ink */
+  --color-ink: #111111;      /* the page */
+  --color-plate: #1a1a1a;    /* picture plates */
+  --color-rule: #2e2e2e;     /* hairlines */
+  --color-paper: #f2f2f0;    /* headings, strong rules */
+  --color-body: #c9c9c6;     /* running text — 11.3:1 on ink */
+  --color-mute: #a3a3a3;     /* labels and captions — 7.4:1 on ink */
 
-  /* cyan — the architecture: zone signs, structural rules, ghost CTA */
-  --color-cyan-300: #7fe9ff;
-  --color-cyan-400: #00d6ff;
-  --color-cyan-500: #00a8cc;
-
-  /* magenta — the energy: the wordmark, The Machines */
-  --color-magenta-300: #ff8ad8;
-  --color-magenta-400: #ff1ba6;
-  --color-magenta-500: #cc1585;
-
-  /* gold — the money: ticker, badges, primary CTA */
-  --color-gold-100: #ffe9a8;
-  --color-gold-200: #ffd98a;
-  --color-gold-300: #ffcf4d;
-  --color-gold-400: #ffb92e;
-  --color-gold-500: #e59a10;
-  --color-gold-600: #b8790a;
-
-  /* bone — the type, cooled to sit under neon */
-  --color-bone-100: #eef1fa;
-  --color-bone-300: #b9c0d4;
-  /* 5.29:1 even against the hero's worst-case magenta wash — the mono captions
-     (badge sub-labels, domains, counts) run as small as 0.66rem, so headroom matters. */
-  --color-bone-500: #949db5;
+  /* the one accent: a muted signal green, flat like the ICJIA sites' accents — 6.5:1 on ink */
+  --color-signal: #5aa67d;
 }
 
 :root {
@@ -54,231 +33,58 @@ html {
 }
 
 body {
-  background-color: var(--color-ink-950);
-  color: var(--color-bone-100);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv01";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(255, 27, 166, 0.32);
-  color: #fff;
+  background: var(--color-signal);
+  color: var(--color-ink);
 }
 
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--color-ink-950); }
-::-webkit-scrollbar-thumb {
-  background: var(--color-ink-700);
-  border-radius: 999px;
-  border: 2px solid var(--color-ink-950);
-}
-::-webkit-scrollbar-thumb:hover { background: var(--color-gold-500); }
-
-/* ---- type helpers ---------------------------------------------------------- */
-.font-display {
-  font-family: var(--font-sans);
-  letter-spacing: -0.015em;
+/* one focus ring for the whole page: the signal colour, never removed */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
 }
 
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--color-cyan-400);
-  text-shadow: 0 0 12px rgba(0, 214, 255, 0.7);
-}
-
-/* the two neon inks, as text */
-.text-neon-cyan {
-  color: #f2fbff;
-  text-shadow: 0 0 4px #fff, 0 0 14px #7fe9ff, 0 0 40px #00d6ff, 0 0 90px rgba(0, 150, 255, 0.75);
-}
-.text-neon-magenta {
-  color: #ffe4f6;
-  text-shadow: 0 0 4px #fff, 0 0 14px #ff8ad8, 0 0 42px #ff1ba6, 0 0 96px rgba(255, 0, 127, 0.7);
-}
-
-/* ---- the mosaic ------------------------------------------------------------
-   Parent-driven grid placement. GameCabinet supplies `.cab` + `.cab-<span>`;
-   the zone supplies `.floor-<id>`. The feature tile mirrors between zones so
-   the eye never settles.
+/* ---- the grid --------------------------------------------------------------
+   .wrap is the measure (1440 max, 64px margins on a wide screen); .g12 is the
+   twelve-column grid inside it, 24px gutters. Children span tracks with the
+   Tailwind col-span utilities.
 ---------------------------------------------------------------------------- */
-.floor {
-  margin-top: 2.2rem;
+.wrap {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4.4vw, 64px);
+  box-sizing: border-box;
+}
+.g12 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-.floor-pit .cab-feature { grid-column: span 2; grid-row: span 2; }
-.floor-pit .cab-wide { grid-column: span 2; }
-.floor-machines .cab-feature { grid-column: 3 / span 2; grid-row: 1 / span 2; }
-.floor-machines .cab-wide { grid-column: 1 / span 2; }
-.floor-workshop .cab-shot { grid-column: span 2; }
-/* every workshop card is the same size: equal rows, so the tallest card (the longest
-   description) sets the height for all of them, at every breakpoint */
-.floor-workshop { grid-auto-rows: 1fr; }
-.floor-fiction .cab-showcase { grid-column: span 4; }
-.floor-arcade .cab-banner { grid-column: span 4; }
-/* Cabinets that are not open yet (flagged with a status) stand apart from the live
-   ones: more air than a row gap, and a labelled hairline in the zone's colour. */
-.bench { margin-top: 2.75rem; }
-.bench-rule {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-bone-500);
-}
-.bench-rule::before,
-.bench-rule::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  min-width: 2rem;
-}
-.bench-rule::before { background: linear-gradient(270deg, color-mix(in srgb, var(--zc) 45%, transparent), transparent); }
-.bench-rule::after { background: linear-gradient(90deg, color-mix(in srgb, var(--zc) 45%, transparent), transparent); }
-.floor-pending { margin-top: 1.25rem; }
-/* VogelTronics runs two wides shoulder to shoulder — one row, red beside cream */
-.floor-vogeltronics .cab-wide { grid-column: span 2; }
-
-@media (max-width: 980px) {
-  .floor { grid-template-columns: repeat(2, 1fr); }
-  /* the workshop's cards each span both columns here, so they run one to a row */
-  .floor-pit .cab-feature,
-  .floor-machines .cab-feature,
-  .floor-pit .cab-wide,
-  .floor-machines .cab-wide,
-  .floor-vogeltronics .cab-wide,
-  .floor-fiction .cab-showcase,
-  .floor-arcade .cab-banner {
-    grid-column: span 2;
-    grid-row: auto;
-  }
-}
-@media (max-width: 620px) {
-  .floor,
-  .floor-workshop { grid-template-columns: 1fr; }
-  .floor-fiction .cab-showcase,
-  .floor-pit .cab-feature,
-  .floor-machines .cab-feature,
-  .floor-pit .cab-wide,
-  .floor-machines .cab-wide,
-  .floor-vogeltronics .cab-wide,
-  .floor-arcade .cab-banner {
-    grid-column: span 1;
-  }
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
 }
 
-/* ---- atmosphere: film grain ------------------------------------------------ */
-.grain::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.045;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+/* sections clear the sticky header when jumped to */
+.zone { scroll-margin-top: 88px; }
 
-/* ---- motion — opacity and transform only, so it all stays on the compositor - */
-@keyframes reveal {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.reveal,
-.reveal-view {
-  /* `backwards`, not `forwards`. A forwards-filled animation's end keyframe becomes an
-     animation-origin declaration, which outranks EVERY normal author rule at any
-     specificity — it silently killed .reflect's scaleY(-1) and every cabinet's :hover lift.
-     `backwards` covers the delay, then hands control back to the authored values. */
-  animation: reveal 0.9s cubic-bezier(0.22, 0.68, 0.18, 1) backwards;
-}
-
-/* Scroll-triggered reveals. A load-time reveal below the fold finishes unwatched — by
-   the time anyone scrolls to The Machines, its entrance has already happened. Where the
-   browser can drive the same keyframes off viewport entry, do that; anywhere else
-   `.reveal-view` is exactly `.reveal` and behaves as it always did. The hero keeps plain
-   `.reveal` on purpose: its load-time stagger IS its entrance. */
-@supports (animation-timeline: view()) {
-  .reveal-view {
-    animation-timeline: view();
-    /* done by 40% of entry — settled before it's read, never scrubbing mid-screen */
-    animation-range: entry 0% entry 40%;
-    /* The inline cabinet stagger is a load-time idea; on a view timeline, entry order
-       IS the stagger. `!important` because the fallback delay is set inline. */
-    animation-delay: 0s !important;
-    /* fill stays `backwards` — the `forwards` trap above applies to view timelines too */
-  }
-}
-
-/* the ticker tape: the tape holds two copies of the list, so -50% loops seamlessly */
-@keyframes tape {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* the bulb chase: a 1Hz alternation, far below WCAG 2.3.1's three-flashes threshold */
-@keyframes chase {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0.3; }
-}
-
-@keyframes breathe {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.86; }
-}
-
-@keyframes flick {
-  0%, 95%, 100% { opacity: 1; }
-  96% { opacity: 0.5; }
-  97% { opacity: 1; }
-  98% { opacity: 0.72; }
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
+/* ---- motion: the sound switch's equaliser is the only animation left -------- */
 @keyframes eq {
   0%, 100% { transform: scaleY(0.25); }
   50% { transform: scaleY(1); }
 }
 
-@keyframes livepulse {
-  0% { transform: scale(1); opacity: 0.5; }
-  70%, 100% { transform: scale(2.6); opacity: 0; }
-}
-
-/* A view timeline never advances in print (or any non-scrolling rendering), which
-   would leave every below-fold reveal at opacity 0 — blank paper. Show everything. */
-@media print {
-  .reveal,
-  .reveal-view { animation: none; }
-}
-
-/* ---- the one place motion is switched off ---------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { animation: none; opacity: 1; }
   *,
   *::before,
   *::after {
-    /* `animation: none` (not the 0.01ms idiom) is deliberate: 0.01ms would run
-       each animation once and land on its END keyframe, which for `chase` is
-       opacity 0.3 — dark bulbs. `none` reverts to the static value instead. */
     animation: none !important;
     /* 0.01ms rather than `none` so any transitionend listener still fires. */
     transition-duration: 0.01ms !important;
   }
-  /* bulbs stop chasing but stay lit — the cabinet must not look broken */
-  .cab::before { opacity: 1 !important; }
-  /* the pulse ring collapses to nothing; the dot's static glow carries it */
-  .live-dot::after { opacity: 0 !important; }
 }

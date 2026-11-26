@@ -4,63 +4,19 @@ import type { CatalogItem } from '~/data/catalog'
 const props = defineProps<{ item: CatalogItem }>()
 
 const href = computed(() => `https://${props.item.domain}`)
-
-// Every span but `std` has room to fill — on a std cabinet either would just crowd
-// the copy. Where a bespoke scene exists it supersedes the watermark glyph, which
-// stays as the fallback for a roomy cabinet that has not been drawn yet.
-// A `shot` or `showcase` cabinet is filled by its picture instead, so it takes neither.
-const isShot = computed(() => props.item.span === 'shot' || props.item.span === 'showcase')
-const hasRoom = computed(() => props.item.span !== 'std' && !isShot.value)
-const hasMark = computed(() => hasRoom.value && !props.item.art)
-
-// Cursor-following glow. Skipped for users who prefer reduced motion.
-let allowSpotlight = true
-onMounted(() => {
-  allowSpotlight = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-})
-function onMove(e: MouseEvent) {
-  if (!allowSpotlight) return
-  const el = e.currentTarget as HTMLElement
-  const r = el.getBoundingClientRect()
-  el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`)
-  el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`)
-}
 </script>
 
 <template>
-  <!-- An article, not one big anchor: the cabinet carries TWO links (play + source),
+  <!-- An article, not one big anchor: the card carries TWO links (play + source),
        and nested anchors are invalid HTML. The live link stretches itself over the
-       whole tile via ::after, so the card still plays like a single button; the
-       source link floats above that overlay on its own z-index. -->
-  <article
-    class="cab"
-    :class="[`cab-${item.span}`, { 'cab-unlit': item.status }]"
-    :style="{ '--ac': item.accent }"
-    @mousemove="onMove"
-  >
-    <span class="spotlight" aria-hidden="true" />
-    <CabinetArt v-if="hasRoom && item.art" :art="item.art" />
-    <UIcon
-      v-if="hasMark"
-      :name="`i-lucide-${item.icon}`"
-      class="mark"
-      aria-hidden="true"
-    />
-
-    <div class="cab-top">
-      <span class="ico">
-        <UIcon :name="`i-lucide-${item.icon}`" aria-hidden="true" />
-      </span>
-      <span class="badge">
-        <b>{{ item.badge }}</b>
-        <span>{{ item.badgeNote }}</span>
-      </span>
-    </div>
-
-    <!-- The app's own og:image. Decorative: it restates the title and description the
-         card already gives as live text, so it stays out of the accessibility tree. -->
-    <div v-if="isShot && item.shot" class="shot">
+       whole card via ::after, so the card still clicks like one target; the source
+       link sits above that overlay on its own z-index. -->
+  <article class="cab" :class="[`cab-${item.span}`, { 'cab-pending': item.status }]">
+    <!-- The plate: the app's own og:image where it has one, else its pictogram.
+         Decorative either way: the card says everything as live text. -->
+    <div class="plate">
       <img
+        v-if="item.shot"
         :src="item.shot"
         alt=""
         width="1120"
@@ -68,58 +24,54 @@ function onMove(e: MouseEvent) {
         loading="lazy"
         decoding="async"
       >
-      <!-- Real text, not decoration: it is the one place the card says so at a glance. -->
-      <span v-if="item.status" class="ribbon">{{ item.status }}</span>
+      <UIcon v-else :name="`i-lucide-${item.icon}`" class="glyph" aria-hidden="true" />
+      <!-- Real text, not decoration: the one place the card says so at a glance. -->
+      <span v-if="item.status" class="status">{{ item.status }}</span>
     </div>
 
-    <h3 class="cab-title">{{ item.title }}</h3>
-    <p class="cab-desc">{{ item.description }}</p>
+    <div class="body">
+      <p class="label"><span class="badge">{{ item.badge }}</span> · {{ item.badgeNote }}</p>
+      <h3 class="cab-title">{{ item.title }}</h3>
+      <p class="cab-desc">{{ item.description }}</p>
 
-    <!-- An umbrella project's tools. The card itself plays the umbrella site; each
-         tool carries only its own source link, raised above the card's overlay. -->
-    <ul v-if="item.suite?.length" class="suite">
-      <li v-for="tool in item.suite" :key="tool.name">
-        <span class="suite-head">
-          <b>{{ tool.name }}</b>
-          <a
-            v-if="tool.repo"
-            class="src"
-            :href="tool.repo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <UIcon name="i-lucide-github" aria-hidden="true" />
-            <span>source</span>
-            <span class="sr-only">code for {{ tool.name }} on GitHub — opens in a new tab</span>
-          </a>
-        </span>
-        <span>{{ tool.note }}</span>
-      </li>
-    </ul>
-    <p v-if="item.suiteMore" class="suite-more">{{ item.suiteMore }}</p>
+      <!-- An umbrella project's tools. The card itself opens the umbrella site; each
+           tool carries only its own source link, raised above the card's overlay. -->
+      <ul v-if="item.suite?.length" class="suite">
+        <li v-for="tool in item.suite" :key="tool.name">
+          <span class="suite-head">
+            <b>{{ tool.name }}</b>
+            <a
+              v-if="tool.repo"
+              class="src"
+              :href="tool.repo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Source<span class="sr-only"> code for {{ tool.name }} on GitHub — opens in a new tab</span></a>
+          </span>
+          <span>{{ tool.note }}</span>
+        </li>
+      </ul>
+      <p v-if="item.suiteMore" class="suite-more">{{ item.suiteMore }}</p>
 
-    <div class="dom">
-      <a
-        class="live"
-        :href="href"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="truncate">{{ item.domain }}</span>
-        <UIcon name="i-lucide-arrow-up-right" class="arrow shrink-0" aria-hidden="true" />
-        <span class="sr-only">{{ item.title }} — opens in a new tab</span>
-      </a>
-      <a
-        v-if="item.repo"
-        class="src"
-        :href="item.repo"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <UIcon name="i-lucide-github" aria-hidden="true" />
-        <span>source</span>
-        <span class="sr-only">code for {{ item.title }} on GitHub — opens in a new tab</span>
-      </a>
+      <p class="dom">
+        <a
+          class="live"
+          :href="href"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="truncate">{{ item.domain }}</span>
+          <span aria-hidden="true">↗</span>
+          <span class="sr-only">{{ item.title }} — opens in a new tab</span>
+        </a>
+        <a
+          v-if="item.repo"
+          class="src"
+          :href="item.repo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Source<span class="sr-only"> code for {{ item.title }} on GitHub — opens in a new tab</span></a>
+      </p>
     </div>
   </article>
 </template>
@@ -129,183 +81,98 @@ function onMove(e: MouseEvent) {
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  isolation: isolate;
-  min-height: 15rem;
-  padding: 1.6rem 1.4rem 1.3rem;
-  border-radius: 14px;
-  border: 1px solid color-mix(in srgb, var(--ac) 26%, rgba(255, 255, 255, 0.09));
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--ac) 9%, transparent), rgba(0, 0, 0, 0.3) 52%),
-    var(--color-ink-850);
-  /* static — a shadow that never animates costs one paint, not one per frame */
-  box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--ac) 40%, transparent),
-    0 26px 60px -28px color-mix(in srgb, var(--ac) 85%, transparent);
-  transition:
-    transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
-    border-color 0.4s ease;
 }
 
-.cab:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--ac) 60%, transparent);
-}
-
-/* The live link IS the card, so its focus ring belongs on the card — drawn via
-   :has() because the ring must outline the tile, not the little domain row. */
+/* The live link is the card, so its focus ring outlines the card. */
 .live:focus-visible { outline: none; }
 .cab:has(.live:focus-visible) {
-  outline: 2px solid color-mix(in srgb, var(--ac) 85%, transparent);
-  outline-offset: 3px;
-}
-.src:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--ac) 85%, transparent);
-  outline-offset: 2px;
+  outline: 2px solid var(--color-signal);
+  outline-offset: 6px;
 }
 
-/* the bulb strip — the one dose of kitsch. 1Hz, well under WCAG 2.3.1. */
-.cab::before {
-  content: "";
+.plate {
+  position: relative;
+  display: grid;
+  aspect-ratio: 1120 / 588;
+  overflow: hidden;
+  background: var(--color-plate);
+}
+.plate img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* not open yet: a plain label set into the plate's top-right corner, where the
+   old ribbon hung (Utenat's card art has that corner painted clear for it) */
+.status {
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
-  height: 10px;
-  background-image: radial-gradient(
-    circle,
-    #fffbe8 0 1.6px,
-    color-mix(in srgb, var(--ac) 85%, transparent) 1.6px 2.6px,
-    transparent 3px
-  );
-  background-size: 14px 10px;
-  background-repeat: repeat-x;
-  filter: drop-shadow(0 0 4px var(--ac));
-  animation: chase 1.1s steps(1) infinite;
-}
-.cab:nth-child(even)::before { animation-delay: 0.55s; }
-/* A cabinet flagged with a status is not open yet: its bulbs, and the hairline
-   under them, stay off. */
-.cab-unlit::before,
-.cab-unlit::after { content: none; }
-
-/* chrome hairline under the bulbs */
-.cab::after {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 8%;
-  right: 8%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
-}
-
-.spotlight {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  background: radial-gradient(
-    320px circle at var(--mx, 50%) var(--my, 50%),
-    color-mix(in srgb, var(--ac) 24%, transparent),
-    transparent 60%
-  );
-}
-.cab:hover .spotlight { opacity: 1; }
-
-.cab-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.ico {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 11px;
-  font-size: 1.5rem;
-  color: #fff;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--ac) 45%, transparent),
-    color-mix(in srgb, var(--ac) 14%, transparent)
-  );
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--ac) 70%, transparent),
-    0 0 22px color-mix(in srgb, var(--ac) 55%, transparent);
-}
-
-.badge { flex: none; text-align: right; max-width: 12rem; }
-.badge b {
-  display: inline-block;
-  /* the chip is a physical label — never let it break across two lines */
-  white-space: nowrap;
-  font-family: var(--font-mono);
+  padding: 8px 12px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: 13px;
   font-weight: 700;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #170f02;
-  background: linear-gradient(180deg, #ffe9a8, #ffb92e 60%, #e59a10);
-  padding: 0.28rem 0.55rem;
-  border-radius: 4px;
-  box-shadow: 0 0 16px rgba(255, 185, 46, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.75);
 }
-.badge span {
-  display: block;
-  margin-top: 0.4rem;
-  font-family: var(--font-mono);
-  /* the caption tier's floor: nothing on the page renders below 0.66rem */
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-bone-500);
+
+/* a pictogram, set in the plate's lower-left corner like a sign */
+.glyph {
+  align-self: end;
+  margin: 0 0 24px 24px;
+  font-size: clamp(64px, 6vw, 96px);
+  color: var(--color-mute);
 }
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.label {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--color-mute);
+}
+.badge { color: var(--color-paper); font-weight: 700; }
 
 .cab-title {
-  margin-top: 1.2rem;
-  font-size: 1.25rem;
+  margin-top: 6px;
+  font-size: 26px;
   font-weight: 700;
+  line-height: 1.1;
   letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: var(--color-bone-100);
+  color: var(--color-paper);
 }
+.cab:hover .cab-title { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+
 .cab-desc {
-  margin-top: 0.6rem;
+  margin-top: 10px;
   flex: 1;
-  font-size: 0.86rem;
-  line-height: 1.55;
-  color: var(--color-bone-300);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-body);
 }
 
 .dom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-  margin-top: 1.2rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid color-mix(in srgb, var(--ac) 20%, rgba(255, 255, 255, 0.06));
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--color-bone-500);
-  transition: color 0.4s ease;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-rule);
+  font-size: 14px;
 }
-.cab:hover .dom { color: color-mix(in srgb, var(--ac) 65%, var(--color-bone-300)); }
 
 .live {
   display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
+  gap: 6px;
   min-width: 0;
+  color: var(--color-paper);
 }
-/* the stretch: one pseudo-element makes the whole cabinet this link's hit area */
+/* the stretch: one pseudo-element makes the whole card this link's hit area */
 .live::after {
   content: "";
   position: absolute;
@@ -316,163 +183,51 @@ function onMove(e: MouseEvent) {
 .src {
   position: relative;
   z-index: 2; /* above the live link's overlay, or it could never be clicked */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
   flex: none;
-  /* the visual stays a quiet caption; the padding buys a real tap target */
-  padding: 0.4rem 0.5rem;
-  margin: -0.4rem -0.5rem;
-  border-radius: 6px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: color 0.4s ease;
+  /* a quiet caption, with padding that buys a real tap target */
+  padding: 12px 8px;
+  margin: -12px -8px;
+  color: var(--color-mute);
 }
-.src:hover { color: color-mix(in srgb, var(--ac) 70%, #fff); }
+.src:hover { color: var(--color-paper); text-decoration: underline; text-underline-offset: 4px; }
 
-.arrow { font-size: 0.95rem; transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.cab:hover .arrow { transform: translate(3px, -3px); }
-
-/* the feature cabinet — bigger type, and a watermark of its own glyph.
-   It spans two grid rows, so with our short one-line copy it has slack to spare.
-   Rather than let the description stretch and leave a dead gap above the domain,
-   sink the whole text block to the floor: emblem up top, information at the base,
-   and the negative space in the middle where the watermark can own it. */
-.cab-feature { min-height: 22rem; padding: 2rem 1.8rem 1.5rem; }
-.cab-feature .ico { width: 4rem; height: 4rem; font-size: 2.1rem; border-radius: 14px; }
-.cab-feature .cab-title { margin-top: auto; padding-top: 2rem; font-size: 1.85rem; }
-.cab-feature .cab-desc { margin-top: 0.8rem; flex: none; font-size: 0.95rem; max-width: 32rem; }
-.cab-feature .badge b { font-size: 0.8rem; padding: 0.34rem 0.7rem; }
-
-/* The watermark bleeds off the right edge into the space the sunken text block
-   opens up — it fills the void rather than hiding behind the copy. */
-.mark {
-  position: absolute;
-  right: -2.5rem;
-  top: 2.5rem;
-  z-index: -1;
-  font-size: 14rem;
-  line-height: 1;
-  color: color-mix(in srgb, var(--ac) 14%, transparent);
-  pointer-events: none;
-}
-
-/* the banner is short and wide — keep its glyph tucked to the right, not overhead */
-.cab-banner { min-height: 11rem; }
-.cab-banner .mark { top: auto; bottom: -3rem; right: 1.5rem; font-size: 11rem; }
-
-/* The banner spans the whole floor, so an uncapped copy box runs ~1100px — a measure
-   no one should read, and one that reaches right across the art on the right-hand side.
-   Cap it at the art's edge. (`.cab-feature .cab-desc` is capped for the same reason.) */
-.cab-banner .cab-title,
-.cab-banner .cab-desc { max-width: 44rem; }
-
-/* The wide reads like a short banner: copy capped left, scene owning the right.
-   Same reasoning, same mechanism — measured so the fade in CabinetArt.vue clears it. */
-.cab-wide .cab-title,
-.cab-wide .cab-desc { max-width: 21rem; }
-
-/* The Workshop's tile: the app's og:image, set in a screen bezel lit by the accent.
-   The images bring their own palettes; the bezel and glow are what tie the four
-   to the floor. */
-.shot {
-  position: relative;
-  margin-top: 1.1rem;
-  aspect-ratio: 1200 / 630;
-  overflow: hidden;
-  border-radius: 8px;
-  border: 1px solid color-mix(in srgb, var(--ac) 45%, transparent);
-  background: var(--color-ink-950);
-  box-shadow: 0 0 28px -6px color-mix(in srgb, var(--ac) 55%, transparent);
-}
-.shot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.cab:hover .shot img { transform: scale(1.025); }
-
-/* A status ribbon, hung from the picture's top edge to its right edge. The band is
-   centred on a point in from the corner and turned 45 degrees; the bezel's
-   overflow clips its ends flush with both edges. */
-.ribbon {
-  position: absolute;
-  top: 2.6rem;
-  right: 2.6rem;
-  width: 16rem;
-  transform: translate(50%, -50%) rotate(45deg);
-  padding: 0.38rem 0;
-  text-align: center;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #170f02;
-  background: linear-gradient(180deg, #ffe9a8, #ffb92e 60%, #e59a10);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  pointer-events: none;
-}
-.cab-shot .cab-title { margin-top: 1.1rem; }
-
-/* The showcase: one umbrella project across the whole floor. The picture holds the
-   left column, the copy and its suite list the right; below a tablet it stacks like
-   any shot. */
-.cab-showcase { padding: 1.8rem 1.8rem 1.4rem; }
-@media (min-width: 981px) {
+/* The showcase: one umbrella project across the whole row. The picture holds seven
+   columns, the copy and its suite the other five; below a laptop it stacks. */
+@media (min-width: 1024px) {
   .cab-showcase {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    column-gap: 2rem;
-    align-content: start;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    align-items: start;
   }
-  .cab-showcase > :not(.shot, .spotlight) { grid-column: 2; }
-  .cab-showcase > .shot { grid-column: 1; grid-row: 1 / span 6; margin-top: 0.5rem; align-self: start; }
-  .cab-showcase .cab-desc { flex: none; }
+  .cab-showcase .plate { grid-column: 1 / span 7; }
+  .cab-showcase .body { grid-column: 8 / span 5; }
+  .cab-showcase .label { margin-top: 0; }
 }
-.cab-showcase .cab-title { margin-top: 1.1rem; font-size: 1.6rem; }
-.cab-showcase .cab-desc { font-size: 0.92rem; }
+.cab-showcase .cab-title { font-size: clamp(32px, 3vw, 44px); letter-spacing: -0.03em; }
 
 .suite {
-  margin-top: 1rem;
-  display: grid;
-  gap: 0.7rem;
+  margin-top: 20px;
+  border-top: 1px solid var(--color-rule);
 }
 .suite li {
-  padding-left: 0.85rem;
-  border-left: 2px solid color-mix(in srgb, var(--ac) 55%, transparent);
-  font-size: 0.84rem;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-rule);
+  font-size: 15px;
   line-height: 1.5;
-  color: var(--color-bone-300);
+  color: var(--color-body);
 }
 .suite-head {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
 }
-.suite-head .src {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  color: var(--color-bone-300);
-}
-.suite b {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: color-mix(in srgb, var(--ac) 80%, #fff);
-}
+.suite b { color: var(--color-paper); }
+.suite-head .src { font-size: 14px; }
 .suite-more {
-  margin-top: 0.9rem;
-  font-size: 0.8rem;
-  font-style: italic;
-  color: var(--color-bone-300);
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--color-mute);
 }
-
-/* watermark fallback for a wide that has no scene yet — tucked right, like the banner */
-.cab-wide .mark { top: auto; bottom: -2.5rem; right: 0.5rem; font-size: 10rem; }
 </style>
