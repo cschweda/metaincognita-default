@@ -15,8 +15,10 @@ const item: CatalogItem = {
   span: 'feature'
 }
 
+const shot = { ...item, span: 'shot' as const, shot: '/workshop/drafter.webp' }
+
 describe('GameCabinet', () => {
-  // Two links per cabinet means the cabinet itself cannot be an anchor —
+  // Two links per card means the card itself cannot be an anchor —
   // nested anchors are invalid HTML and split by the parser.
   it('is an article carrying two real links: play and source', async () => {
     const w = await mountSuspended(GameCabinet, { props: { item } })
@@ -41,12 +43,12 @@ describe('GameCabinet', () => {
     expect(src.attributes('href')).toBe('https://github.com/cschweda/metaincognita-blackjack')
     expect(src.attributes('target')).toBe('_blank')
     expect(src.attributes('rel')).toBe('noopener noreferrer')
-    // twelve cabinets, twelve "source" links — the hidden text keeps each unique
-    expect(src.text()).toContain('source')
+    // the visible word starts the accessible name (WCAG 2.5.3), and the hidden
+    // text keeps each of the many "Source" links unique
+    expect(src.text()).toMatch(/^Source/)
     expect(src.find('.sr-only').text()).toContain('Blackjack Trainer')
   })
 
-  // The one private repo (hold'em) gets no dead link — the affordance just stays off.
   it('shows no source link when the item has no public repo', async () => {
     const { repo: _repo, ...rest } = item
     const w = await mountSuspended(GameCabinet, { props: { item: rest } })
@@ -54,109 +56,54 @@ describe('GameCabinet', () => {
     expect(w.findAll('a')).toHaveLength(1)
   })
 
-  it('carries its span class so the mosaic can place it', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item } })
-    expect(w.find('.cab').classes()).toContain('cab-feature')
-
-    const std = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'std' } } })
-    expect(std.find('.cab').classes()).toContain('cab-std')
-  })
-
-  it('publishes its accent as the --ac custom property', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item } })
-    expect(w.find('.cab').attributes('style')).toContain('--ac: #2fe58f')
+  it('carries its span class, so a showcase can lay itself out across the row', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'showcase' } } })
+    expect(w.find('.cab').classes()).toContain('cab-showcase')
   })
 
   it('shows the badge and its caption', async () => {
     const w = await mountSuspended(GameCabinet, { props: { item } })
-    expect(w.text()).toContain('Basic strategy')
-    expect(w.text()).toContain('plus the hi-lo count')
+    expect(w.find('.label').text()).toContain('Basic strategy')
+    expect(w.find('.label').text()).toContain('plus the hi-lo count')
   })
 
-  it('titles the cabinet with an h3, under the zone h2', async () => {
+  it('titles the card with an h3, under the zone h2', async () => {
     const w = await mountSuspended(GameCabinet, { props: { item } })
     expect(w.find('h3').text()).toBe('Blackjack Trainer')
   })
 
-  // The watermark only belongs on tiles big enough to carry it.
-  it('renders the watermark glyph on a feature cabinet', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item } })
-    expect(w.find('.mark').exists()).toBe(true)
-  })
-
-  // A bespoke scene supersedes the watermark. Both at once would stack an oversized
-  // glyph on top of the artwork drawn to replace it.
-  it('swaps the watermark for the bespoke scene when the item has one', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, art: 'blackjack' } } })
-    expect(w.find('.art').exists()).toBe(true)
-    expect(w.find('.mark').exists()).toBe(false)
-  })
-
-  it('keeps the watermark on a big cabinet that has no scene yet', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item } })
-    expect(w.find('.art').exists()).toBe(false)
-    expect(w.find('.mark').exists()).toBe(true)
-  })
-
-  // `art` is only ever set on the roomy spans, but nothing in the type stops a std item
-  // carrying one — and a scene on a std tile would bury the copy.
-  it('never draws a scene on a std cabinet, even if one is set', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'std', art: 'blackjack' } } })
-    expect(w.find('.art').exists()).toBe(false)
-  })
-
-  it('renders the watermark glyph on a banner cabinet', async () => {
-    const b = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'banner' } } })
-    expect(b.find('.mark').exists()).toBe(true)
-  })
-
-  // A wide has a dead half to fill — it takes a scene like the big spans do,
-  // and falls back to the watermark until one is drawn.
-  it('draws the scene on a wide cabinet, superseding its watermark', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'wide', art: 'roulette' } } })
-    expect(w.find('.art').exists()).toBe(true)
-    expect(w.find('.mark').exists()).toBe(false)
-  })
-
-  it('keeps the watermark on a wide cabinet that has no scene yet', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'wide' } } })
-    expect(w.find('.mark').exists()).toBe(true)
-  })
-
-  // The Workshop's tile leads with the app's own og:image — decorative, because the
-  // card already says everything it says as live text.
-  it('renders a shot cabinet with its screenshot and no scene or watermark', async () => {
-    const w = await mountSuspended(GameCabinet, {
-      props: { item: { ...item, span: 'shot', shot: '/workshop/drafter.webp', art: 'blackjack' } }
-    })
-    const img = w.find('.shot img')
+  // The plate leads with the app's own og:image — decorative, because the card
+  // already says everything it says as live text.
+  it('fills the plate with the og:image when the item has one', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item: shot } })
+    const img = w.find('.plate img')
     expect(img.attributes('src')).toBe('/workshop/drafter.webp')
     expect(img.attributes('alt')).toBe('')
     expect(img.attributes('width')).toBeTruthy()
     expect(img.attributes('height')).toBeTruthy()
-    expect(w.find('.art').exists()).toBe(false)
-    expect(w.find('.mark').exists()).toBe(false)
-    expect(w.findAll('a')).toHaveLength(2)
+    expect(w.find('.glyph').exists()).toBe(false)
   })
 
-  it('hangs a status ribbon on the picture only when the item has a status', async () => {
-    const shot = { ...item, span: 'shot' as const, shot: '/workshop/drafter.webp' }
+  it('sets its pictogram in the plate when there is no og:image', async () => {
+    const w = await mountSuspended(GameCabinet, { props: { item } })
+    expect(w.find('.plate img').exists()).toBe(false)
+    expect(w.find('.plate .glyph').exists()).toBe(true)
+  })
+
+  it('labels the plate only when the item has a status', async () => {
     const plain = await mountSuspended(GameCabinet, { props: { item: shot } })
-    expect(plain.find('.ribbon').exists()).toBe(false)
+    expect(plain.find('.status').exists()).toBe(false)
+    expect(plain.find('.cab').classes()).not.toContain('cab-pending')
+
     const flagged = await mountSuspended(GameCabinet, { props: { item: { ...shot, status: 'In development' } } })
-    expect(flagged.find('.shot .ribbon').text()).toBe('In development')
-    // not open yet, so the bulb strip stays dark
-    expect(plain.find('.cab').classes()).not.toContain('cab-unlit')
-    expect(flagged.find('.cab').classes()).toContain('cab-unlit')
+    expect(flagged.find('.plate .status').text()).toBe('In development')
+    expect(flagged.find('.cab').classes()).toContain('cab-pending')
   })
 
-  it('draws no screenshot on a cabinet that is not a shot', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, shot: '/workshop/drafter.webp' } } })
-    expect(w.find('.shot').exists()).toBe(false)
-  })
-
-  it('does NOT render the watermark on a std cabinet — it would crowd the copy', async () => {
-    const w = await mountSuspended(GameCabinet, { props: { item: { ...item, span: 'std' } } })
-    expect(w.find('.mark').exists()).toBe(false)
+  it('lists an umbrella project\'s suite, each tool with its own source link', async () => {
+    const suite = [{ name: 'frotzsmith', note: 'A browser IDE.', repo: 'https://github.com/cschweda/frotzsmith' }]
+    const w = await mountSuspended(GameCabinet, { props: { item: { ...shot, span: 'showcase', suite } } })
+    expect(w.find('.suite b').text()).toBe('frotzsmith')
+    expect(w.find('.suite a.src').attributes('href')).toBe('https://github.com/cschweda/frotzsmith')
   })
 })
