@@ -418,7 +418,7 @@ export const zones: Zone[] = [
     sign: 'Casino Machines',
     nav: 'Casino Machines',
     color: '#ff1ba6',
-    title: 'Open Source Casino machines.',
+    title: 'Casino machines rebuilt as open-source simulations.',
     titleAccent: 'Casino machines',
     sub: 'Reels, pins and multipliers. The loudest machines on any floor — and the ones that take the most. Here is exactly how.',
     unit: 'machine',
