@@ -16,7 +16,6 @@ import { zones, allItems } from '~/data/catalog'
         <li>{{ allItems.length }} projects in {{ zones.length }} sections</li>
         <li>Free</li>
         <li>No sign-ups</li>
-        <li>No real money</li>
       </ul>
 
       <p class="col-span-12 md:col-start-6 md:col-span-7 lg:col-start-7 lg:col-span-6 lede">
