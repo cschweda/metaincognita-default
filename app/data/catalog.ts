@@ -357,8 +357,8 @@ export const zones: Zone[] = [
     sign: 'Casino Table Games',
     nav: 'Casino Table Games',
     color: '#2fe58f',
-    title: 'Table Games rebuilt as open-source simulations.',
-    titleAccent: 'Table Games',
+    title: 'Casino Table Games rebuilt as open-source simulations.',
+    titleAccent: 'Casino Table Games',
     sub: 'Table games rebuilt as open-source simulations — true odds, basic strategy, and the exact house edge, all out in the open. No money, no sign-up.',
     unit: 'table',
     items: [
