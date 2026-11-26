@@ -310,7 +310,7 @@ export const zones: Zone[] = [
     sign: 'VogelTronics',
     nav: 'VogelTronics',
     color: '#ff4436',
-    title: 'VogelTronics: A Fictional History',
+    title: 'VogelTronics: A Fictional History.',
     titleAccent: 'VogelTronics',
     sub: 'Elk Grove Village, Illinois, 1961 to 1983 — twenty-three years of chasing American childhood and never quite catching it, then one loud swerve into electronics at the end. Every toy here is rebuilt from the ground up: no trademarks borrowed, nothing lifted. Gridiron plays now; the rest of the shelf is on its way.',
     unit: 'exhibit',
@@ -360,7 +360,7 @@ export const zones: Zone[] = [
     color: '#2fe58f',
     title: 'Casino Table Games rebuilt as open-source simulations.',
     titleAccent: 'Casino Table Games',
-    sub: 'Table games rebuilt as open-source simulations — true odds, basic strategy, and the exact house edge, all out in the open. No money, no sign-up.',
+    sub: 'True odds, basic strategy and the exact house edge, all out in the open. No money, no sign-ups.',
     unit: 'table',
     items: [
       {
@@ -418,8 +418,8 @@ export const zones: Zone[] = [
     sign: 'Casino Machines',
     nav: 'Casino Machines',
     color: '#ff1ba6',
-    title: 'Casino machines rebuilt as open-source simulations.',
-    titleAccent: 'Casino machines',
+    title: 'Casino Machines rebuilt as open-source simulations.',
+    titleAccent: 'Casino Machines',
     sub: 'Reels, pins and multipliers. The loudest machines on any floor — and the ones that take the most. Here is exactly how.',
     unit: 'machine',
     items: [
