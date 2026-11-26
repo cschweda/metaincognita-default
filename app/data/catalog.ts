@@ -347,7 +347,7 @@ export const zones: Zone[] = [
     id: 'pit',
     sign: 'The Pit',
     color: '#2fe58f',
-    title: 'Play the house at its own game.',
+    title: 'Table Games rebuilt as open-source simulations.',
     sub: 'Table games rebuilt as open-source simulations — true odds, basic strategy, and the exact house edge, all out in the open. No money, no sign-up.',
     unit: 'table',
     items: [
@@ -403,7 +403,7 @@ export const zones: Zone[] = [
     id: 'machines',
     sign: 'The Machines',
     color: '#ff1ba6',
-    title: 'Where the edge hides in plain sight.',
+    title: 'Open Source Casino machines.',
     sub: 'Reels, pins and multipliers. The loudest machines on any floor — and the ones that take the most. Here is exactly how.',
     unit: 'cabinet',
     items: [
@@ -459,7 +459,7 @@ export const zones: Zone[] = [
     id: 'fiction',
     sign: 'Interactive Fiction',
     color: '#ffb627',
-    title: 'Games you play by typing.',
+    title: 'Interactive Fiction Tools.',
     sub: 'In 1979 Infocom wrote its adventures for an imaginary computer, the Z-machine, so one story file could run on every home computer of the day: you type GO NORTH or OPEN MAILBOX, and the game answers in prose. The format outlived the company, and people still write for it. frotz, Inc. is the umbrella for my Z-machine tools, which run in the browser and are open source.',
     unit: 'suite',
     items: [
@@ -500,7 +500,7 @@ export const zones: Zone[] = [
     id: 'arcade',
     sign: 'The Arcade',
     color: '#ff6a2b',
-    title: 'Games for fun.',
+    title: 'Retro Games.',
     sub: 'No edge here, nothing to beat — just games built for the joy of it. Starting with a slot car track from 1971; more on the way.',
     unit: 'game',
     items: [
