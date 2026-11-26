@@ -20,7 +20,7 @@ import { zones, allItems } from '~/data/catalog'
 
       <p class="col-span-12 md:col-start-6 md:col-span-7 lg:col-start-7 lg:col-span-6 lede">
         Tools for writing scripts, for taking apart TRS-80 programs, for putting your
-        photos on the wall, and for watching the coffee brew, plus the everyday ones I
+        photos on the wall, and for watching the coffee brew, plus the everyday apps I
         wrote for work. The reborn catalog of VogelTronics, out of Elk Grove Village,
         Illinois. Casino simulations that show their math. frotz, Inc., for writing and
         playing 1980s-style text adventures on the Z-machine. And a 1971 slot car track.
