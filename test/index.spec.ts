@@ -13,13 +13,13 @@ describe('index page', () => {
     expect(bench.attributes('role')).toBe('group')
     expect(bench.attributes('aria-labelledby')).toBe('workshop-pending')
     expect(bench.find('#workshop-pending').text()).toBe('In development')
-    expect(bench.findAll('.cab-title').map(t => t.text())).toEqual(['Fotobogen', 'Utenat'])
+    expect(bench.findAll('.cab-title').map(t => t.text())).toEqual(['Utenat'])
     expect(bench.findAll('.cab').every(c => c.classes('cab-unlit'))).toBe(true)
 
     const live = workshop.find('.floor:not(.floor-pending)')
-    expect(live.findAll('.cab')).toHaveLength(10)
+    expect(live.findAll('.cab')).toHaveLength(13)
     expect(live.findAll('.cab-unlit')).toHaveLength(0)
-    expect(live.findAll('.cab-title').map(t => t.text()).slice(-2)).toEqual(['zoneblick', 'v6blick'])
+    expect(live.findAll('.cab-title').map(t => t.text()).slice(-2)).toEqual(['Fotobogen', 'Omsett'])
   })
 
   it('draws no rule in a zone with nothing in development', async () => {

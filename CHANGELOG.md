@@ -5,6 +5,26 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.16.0] - 2026-11-26
+
+### Added
+- **Omsett** joins The Workshop: a free, open-source file converter that runs in the
+  browser, so your files never leave your device. Card art is its own og:image.
+- **ICJIA Accessibility Portal** (`accessibility.icjia.app`) joins The Workshop beside the
+  Accessibility Audit: a countdown to the WCAG 2.1 AA deadline, with FAQs and guidance
+  for Illinois state agencies. Card art is its own og:image.
+
+### Changed
+- **Fotobogen** leaves the "In development" group: it is live, with a public repository,
+  so the card loses its ribbon, lights its bulbs and links its source. Its card art is
+  refreshed from the current og:image.
+- The ICJIA Accessibility Audit's card art is refreshed from its current og:image.
+- **New floor order**: The Workshop now opens the page, VogelTronics follows it, and the
+  casino floor, the machines, Interactive Fiction and The Arcade come after. The hero's
+  copy and buttons follow the same order, with The Workshop as the lead button.
+- Zone copy, site description, JSON-LD and README mention the new tools. The Workshop
+  holds fourteen tools: thirteen live, then Utenat in development.
+
 ## [2.15.0] - 2026-11-14
 
 ### Added
