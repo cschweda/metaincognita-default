@@ -347,7 +347,7 @@ export const zones: Zone[] = [
     id: 'pit',
     sign: 'The Pit',
     color: '#2fe58f',
-    title: 'Play the house at its own game.',
+    title: 'Table Games rebuilt as open-source simulations.',
     sub: 'Table games rebuilt as open-source simulations — true odds, basic strategy, and the exact house edge, all out in the open. No money, no sign-up.',
     unit: 'table',
     items: [
