@@ -43,6 +43,7 @@ onMounted(() => $plausible?.trackPageview())
           :index="index"
           :sign="zone.sign"
           :title="zone.title"
+          :title-accent="zone.titleAccent"
           :sub="zone.sub"
           :count="zone.items.length"
           :unit="zone.unit"

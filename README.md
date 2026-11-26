@@ -153,7 +153,8 @@ Swiss, and dark (v3.0.0; it replaced the neon casino-floor design).
   **Inter Tight** (self-hosted by `@nuxt/fonts`, the closest free match), then Arial.
 - **Colour:** an ink ground (`#111111`), paper-white headings, two greys for body text
   and captions, hairline rules, and **one accent, a muted signal green (`#5aa67d`)**,
-  used sparingly: "Given away." in the opening, the section numbers, and the focus ring.
+  used sparingly: "Given away." in the opening, "VogelTronics" in its section title
+  (a zone's optional `titleAccent`), the section numbers, and the focus ring.
   All tokens live in the `@theme` block of `app/assets/css/main.css`.
 - **Cards:** every card leads with its app's own og:image, copied into
   `public/workshop/` as WebP (the CSP is `img-src 'self'`). A card without one would
