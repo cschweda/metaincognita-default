@@ -25,14 +25,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The opening sets the thesis large, with the facts and the lede beside it. The top
   navigation is the index to the six zones.
 - In-development tools stay full cards, in their own group under an "In development"
-  rule, with the status set into the corner of the picture.
-- The footer carries the GitHub link and the floor-audio switch (the fixed status bar
-  is gone).
+  label: the one place the page says so (Utenat's description no longer repeats it).
+- Each section title sets its lead words in the accent green.
+- Section anchors read as the section names (`#casino-table-games`, `#casino-machines`,
+  `#interactive-fiction`, `#retro-games`); the old `#pit`, `#machines`, `#fiction` and
+  `#arcade` still land on the right section.
+- The Workshop's intro is cut to one line; the footer's GitHub link goes to the
+  repositories (the fixed status bar is gone).
 - **New og:image** for metaincognita.com in the same Swiss system.
 
 ### Removed
 - The neon decoration: room glow, film grain, bulb strips, the scrolling ticker and the
-  fixed status bar (its GitHub link and floor-audio switch moved into the footer).
+  fixed status bar (its GitHub link moved into the footer).
+- **Floor audio**: the casino-ambience switch, its composable and the loops in
+  `public/audio/`. The page makes no sound.
   `CabinetArt.vue` and the catalog's per-card accents are kept, and tested, but not drawn.
 
 ## [2.16.0] - 2026-11-26

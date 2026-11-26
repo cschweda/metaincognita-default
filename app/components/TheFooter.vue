@@ -13,7 +13,6 @@ const year = new Date().getFullYear()
           target="_blank"
           rel="noopener noreferrer"
         >All the code on GitHub <span aria-hidden="true">↗</span><span class="sr-only"> — opens in a new tab</span></a>
-        <SoundSwitch />
       </div>
     </div>
 

@@ -90,14 +90,15 @@ describe('GameCabinet', () => {
     expect(w.find('.plate .glyph').exists()).toBe(true)
   })
 
-  it('labels the plate only when the item has a status', async () => {
+  // A card that is not open yet says so once, in its group's label (index.vue), not again
+  // on its picture; the card only carries the class that marks it.
+  it('marks a card with a status, without labelling its picture', async () => {
     const plain = await mountSuspended(GameCabinet, { props: { item: shot } })
-    expect(plain.find('.status').exists()).toBe(false)
     expect(plain.find('.cab').classes()).not.toContain('cab-pending')
 
     const flagged = await mountSuspended(GameCabinet, { props: { item: { ...shot, status: 'In development' } } })
-    expect(flagged.find('.plate .status').text()).toBe('In development')
     expect(flagged.find('.cab').classes()).toContain('cab-pending')
+    expect(flagged.text()).not.toContain('In development')
   })
 
   it('lists an umbrella project\'s suite, each tool with its own source link', async () => {
