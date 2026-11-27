@@ -36,9 +36,9 @@ describe('index page', () => {
     expect(bench.findAll('.cab').every(c => c.classes('cab-pending'))).toBe(true)
 
     const live = workshop.find('.floor:not(.floor-pending)')
-    expect(live.findAll('.cab')).toHaveLength(13)
+    expect(live.findAll('.cab')).toHaveLength(15)
     expect(live.findAll('.cab-pending')).toHaveLength(0)
-    expect(live.findAll('.cab-title').map(t => t.text()).slice(-2)).toEqual(['Fotobogen', 'Omsett'])
+    expect(live.findAll('.cab-title').map(t => t.text()).slice(-2)).toEqual(['MetaPeek', 'W1913'])
   })
 
   it('draws no rule in a zone with nothing in development', async () => {

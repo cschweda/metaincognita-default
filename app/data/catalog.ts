@@ -287,6 +287,33 @@ export const zones: Zone[] = [
         shot: '/workshop/omsett.webp',
         category: 'UtilitiesApplication'
       },
+      {
+        title: 'MetaPeek',
+        description: 'Inspect, preview and fix a page’s HTML meta tags and Open Graph markup, and see how a link will look when it is shared on seven social platforms. Free, open source, no login.',
+        domain: 'metapeek.icjia.app',
+        repo: 'https://github.com/ICJIA/icjia-metapeek',
+        icon: 'tags',
+        accent: '#3b82f6',
+        badge: 'Share previews',
+        badgeNote: 'inspect, preview, fix',
+        span: 'shot',
+        shot: '/workshop/metapeek.webp',
+        category: 'DeveloperApplication'
+      },
+      {
+        // The badge rule bans digits, so the year stays in the title and description.
+        title: 'W1913',
+        description: 'Webster’s Revised Unabridged Dictionary of 1913, read the way a writer reads it: more than a hundred thousand words, parsed from the public-domain text.',
+        domain: 'w1913.com',
+        repo: 'https://github.com/cschweda/w1913',
+        icon: 'book-a',
+        accent: '#ff3b30',
+        badge: 'A writer’s dictionary',
+        badgeNote: 'public domain',
+        span: 'shot',
+        shot: '/workshop/w1913.webp',
+        category: 'ReferenceApplication'
+      },
       // Cabinets flagged "In development" always go last in the zone, however many
       // there are: a finished tool is added above this line, never below it. The page
       // draws them as a group of their own, under an "In development" rule.

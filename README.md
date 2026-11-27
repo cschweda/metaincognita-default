@@ -68,9 +68,11 @@ The old anchors from the casino-floor design (`#pit`, `#machines`, `#fiction`,
 | v6blick | `cschweda.github.io/v6blick` | [source](https://github.com/cschweda/v6blick) | An IPv6 readiness test for websites, written in Rust: it connects to a site over IPv4 and over IPv6 separately, compares the two, and says what breaks for a visitor without IPv4 and how to fix it. An early build, with no domain of its own, so the card links its GitHub Pages site. |
 | Fotobogen | `fotobogen.com` | [source](https://github.com/cschweda/fotobogen) | Free, open-source software for running your own photo website: install it, upload your pictures, publish them at your own address. |
 | Omsett | `omsett.com` | [source](https://github.com/cschweda/omsett) | A free, open-source file converter that runs in the browser (images, audio, documents, data, archives, fonts, subtitles, common video), so your files never touch a server. |
+| MetaPeek | `metapeek.icjia.app` | [source](https://github.com/ICJIA/icjia-metapeek) | Inspect, preview and fix a page's HTML meta tags and Open Graph markup, with share previews for seven social platforms. |
+| W1913 | `w1913.com` | [source](https://github.com/cschweda/w1913) | Webster's Revised Unabridged Dictionary (1913), parsed from the public-domain text and read the way a writer reads it. |
 | Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**; its card sits under an "In development" label. |
 
-The five ICJIA tools (the Markdown editor, Ipsumify, Squish, the Accessibility Audit and the Accessibility Portal)
+The six ICJIA tools (the Markdown editor, Ipsumify, Squish, the Accessibility Audit, the Accessibility Portal and MetaPeek)
 were written for work at ICJIA, and for my own use; their source lives under the ICJIA
 GitHub organisation.
 
@@ -89,8 +91,8 @@ nothing else is needed.
 The Workshop's cards lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
 another origin's image). aiden-portal has no og:image of its own (it is not a public
-site), so its picture was made for this page. There are fourteen tools, three to a row
-on a wide screen: thirteen live, then the one in development.
+site), so its picture was made for this page. There are sixteen tools, three to a row
+on a wide screen: fifteen live, then the one in development.
 
 ### VogelTronics — A Fictional History
 
