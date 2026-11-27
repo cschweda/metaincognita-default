@@ -110,45 +110,6 @@ export const zones: Zone[] = [
     unit: 'tool',
     items: [
       {
-        title: 'Drafter',
-        description: 'Write screenplays and stage plays in plain-text Fountain and watch the formatted pages build as you type, or draft a novel in Markdown.',
-        domain: 'drafter.dev',
-        repo: 'https://github.com/cschweda/drafter',
-        icon: 'clapperboard',
-        accent: '#8fb8ff',
-        badge: 'Plain-text Fountain',
-        badgeNote: 'or classic enter and tab',
-        span: 'shot',
-        shot: '/workshop/drafter.webp',
-        category: 'DesignApplication'
-      },
-      {
-        title: 'Fugløy',
-        description: 'Take TRS-80 Model I and III programs apart: a disassembler whose output rebuilds the original byte for byte, a workbench that explains every line, and an emulator.',
-        domain: 'fugloy.dev',
-        repo: 'https://github.com/cschweda/fugloy',
-        icon: 'cpu',
-        accent: '#5fe3c9',
-        badge: 'Byte-exact round trip',
-        badgeNote: 'read faithfully',
-        span: 'shot',
-        shot: '/workshop/fugloy.webp',
-        category: 'DeveloperApplication'
-      },
-      {
-        title: 'OpenMantel',
-        description: 'A digital picture frame you host yourself: a small computer behind a monitor, and your photos on every screen in the house. No subscription, no one else’s cloud.',
-        domain: 'openmantel.com',
-        repo: 'https://github.com/cschweda/openmantel',
-        icon: 'image',
-        accent: '#ff8a5c',
-        badge: 'Self-hosted',
-        badgeNote: 'your photos, your server',
-        span: 'shot',
-        shot: '/workshop/openmantel.webp',
-        category: 'MultimediaApplication'
-      },
-      {
         title: 'aiden-portal',
         description: 'A dashboard for my Fellow Aiden coffee brewer: a live trace of every brew, profiles and schedules, a brew log and a descale tally. It runs on my own machine and is reachable only over Tailscale; the demo runs on invented data.',
         domain: 'aiden-portal.netlify.app',
@@ -162,43 +123,43 @@ export const zones: Zone[] = [
         category: 'UtilitiesApplication'
       },
       {
-        title: 'ICJIA Markdown Editor 2.0',
-        description: 'Accessible markdown editor for ICJIA researchers. Write, preview, and export markdown documents.',
-        domain: 'markdown.icjia.cloud',
-        repo: 'https://github.com/ICJIA/icjia-markdown-editor-2026',
-        icon: 'file-pen-line',
-        accent: '#a98bff',
-        badge: 'Accessible editor',
-        badgeNote: 'write, preview, export',
+        title: 'Drafter',
+        description: 'Write screenplays and stage plays in plain-text Fountain and watch the formatted pages build as you type, or draft a novel in Markdown.',
+        domain: 'drafter.dev',
+        repo: 'https://github.com/cschweda/drafter',
+        icon: 'clapperboard',
+        accent: '#8fb8ff',
+        badge: 'Plain-text Fountain',
+        badgeNote: 'or classic enter and tab',
         span: 'shot',
-        shot: '/workshop/markdown-editor.webp',
+        shot: '/workshop/drafter.webp',
         category: 'DesignApplication'
       },
       {
-        title: 'Ipsumify',
-        description: 'Generate beautiful lorem ipsum placeholder text with markdown support, themed variants, and a free public API — no signup required.',
-        domain: 'ipsumify.com',
-        repo: 'https://github.com/ICJIA/ipsumify-next-2026',
-        icon: 'pilcrow',
-        accent: '#2ee6a8',
-        badge: 'Free public API',
-        badgeNote: 'no signup required',
+        title: 'Fotobogen',
+        description: 'A publishing platform for photographs. Install it, upload your pictures, and publish them on a website of your own.',
+        domain: 'fotobogen.com',
+        repo: 'https://github.com/cschweda/fotobogen',
+        icon: 'images',
+        accent: '#ff3b30',
+        badge: 'Photo publishing',
+        badgeNote: 'free and open source',
         span: 'shot',
-        shot: '/workshop/ipsumify.webp',
-        category: 'UtilitiesApplication'
+        shot: '/workshop/fotobogen.webp',
+        category: 'MultimediaApplication'
       },
       {
-        title: 'Squish',
-        description: 'Privacy-focused image compression for writers and developers. Compress images instantly in your browser with real-time preview. No uploads required.',
-        domain: 'squish.icjia.app',
-        repo: 'https://github.com/ICJIA/icjia-squish-2026',
-        icon: 'shrink',
-        accent: '#8be36a',
-        badge: 'In your browser',
-        badgeNote: 'no uploads required',
+        title: 'Fugløy',
+        description: 'Take TRS-80 Model I and III programs apart: a disassembler whose output rebuilds the original byte for byte, a workbench that explains every line, and an emulator.',
+        domain: 'fugloy.dev',
+        repo: 'https://github.com/cschweda/fugloy',
+        icon: 'cpu',
+        accent: '#5fe3c9',
+        badge: 'Byte-exact round trip',
+        badgeNote: 'read faithfully',
         span: 'shot',
-        shot: '/workshop/squish.webp',
-        category: 'MultimediaApplication'
+        shot: '/workshop/fugloy.webp',
+        category: 'DeveloperApplication'
       },
       {
         title: 'ICJIA Accessibility Audit',
@@ -229,19 +190,83 @@ export const zones: Zone[] = [
         category: 'ReferenceApplication'
       },
       {
-        // An early pre-release: the one-shot `zoneblick check` command works; the
-        // daemon, history and web UI are still to come. Not flagged "In development".
-        title: 'zoneblick',
-        description: 'A self-hosted DNS zone watchdog, written in Rust. It asks every authoritative nameserver directly and checks the answers, so you know the moment your DNS drifts. An early release: the one-shot check command works today.',
-        domain: 'zoneblick.com',
-        repo: 'https://github.com/cschweda/zoneblick',
-        icon: 'radar',
-        accent: '#ff4a33',
-        badge: 'DNS zone watchdog',
-        badgeNote: 'self-hosted, in Rust',
+        title: 'ICJIA Markdown Editor 2.0',
+        description: 'Accessible markdown editor for ICJIA researchers. Write, preview, and export markdown documents.',
+        domain: 'markdown.icjia.cloud',
+        repo: 'https://github.com/ICJIA/icjia-markdown-editor-2026',
+        icon: 'file-pen-line',
+        accent: '#a98bff',
+        badge: 'Accessible editor',
+        badgeNote: 'write, preview, export',
         span: 'shot',
-        shot: '/workshop/zoneblick.webp',
+        shot: '/workshop/markdown-editor.webp',
+        category: 'DesignApplication'
+      },
+      {
+        title: 'Ipsumify',
+        description: 'Generate beautiful lorem ipsum placeholder text with markdown support, themed variants, and a free public API — no signup required.',
+        domain: 'ipsumify.com',
+        repo: 'https://github.com/ICJIA/ipsumify-next-2026',
+        icon: 'pilcrow',
+        accent: '#2ee6a8',
+        badge: 'Free public API',
+        badgeNote: 'no signup required',
+        span: 'shot',
+        shot: '/workshop/ipsumify.webp',
+        category: 'UtilitiesApplication'
+      },
+      {
+        title: 'MetaPeek',
+        description: 'Inspect, preview and fix a page’s HTML meta tags and Open Graph markup, and see how a link will look when it is shared on seven social platforms. Free, open source, no login.',
+        domain: 'metapeek.icjia.app',
+        repo: 'https://github.com/ICJIA/icjia-metapeek',
+        icon: 'tags',
+        accent: '#3b82f6',
+        badge: 'Share previews',
+        badgeNote: 'inspect, preview, fix',
+        span: 'shot',
+        shot: '/workshop/metapeek.webp',
         category: 'DeveloperApplication'
+      },
+      {
+        // Omsett is Norwegian for "to translate, to convert".
+        title: 'Omsett',
+        description: 'A free, open-source file converter that runs in your browser: images, audio, documents, data, archives, fonts, subtitles and common video. Drop a file, pick a format; nothing leaves your device.',
+        domain: 'omsett.com',
+        repo: 'https://github.com/cschweda/omsett',
+        icon: 'arrow-right-left',
+        accent: '#3d6dff',
+        badge: 'File converter',
+        badgeNote: 'nothing leaves your device',
+        span: 'shot',
+        shot: '/workshop/omsett.webp',
+        category: 'UtilitiesApplication'
+      },
+      {
+        title: 'OpenMantel',
+        description: 'A digital picture frame you host yourself: a small computer behind a monitor, and your photos on every screen in the house. No subscription, no one else’s cloud.',
+        domain: 'openmantel.com',
+        repo: 'https://github.com/cschweda/openmantel',
+        icon: 'image',
+        accent: '#ff8a5c',
+        badge: 'Self-hosted',
+        badgeNote: 'your photos, your server',
+        span: 'shot',
+        shot: '/workshop/openmantel.webp',
+        category: 'MultimediaApplication'
+      },
+      {
+        title: 'Squish',
+        description: 'Privacy-focused image compression for writers and developers. Compress images instantly in your browser with real-time preview. No uploads required.',
+        domain: 'squish.icjia.app',
+        repo: 'https://github.com/ICJIA/icjia-squish-2026',
+        icon: 'shrink',
+        accent: '#8be36a',
+        badge: 'In your browser',
+        badgeNote: 'no uploads required',
+        span: 'shot',
+        shot: '/workshop/squish.webp',
+        category: 'MultimediaApplication'
       },
       {
         // An early build: `v6blick check` and `v6blick doctor` work; the whole-page
@@ -261,46 +286,6 @@ export const zones: Zone[] = [
         category: 'DeveloperApplication'
       },
       {
-        title: 'Fotobogen',
-        description: 'A publishing platform for photographs. Install it, upload your pictures, and publish them on a website of your own.',
-        domain: 'fotobogen.com',
-        repo: 'https://github.com/cschweda/fotobogen',
-        icon: 'images',
-        accent: '#ff3b30',
-        badge: 'Photo publishing',
-        badgeNote: 'free and open source',
-        span: 'shot',
-        shot: '/workshop/fotobogen.webp',
-        category: 'MultimediaApplication'
-      },
-      {
-        // Omsett is Norwegian for "to translate, to convert".
-        title: 'Omsett',
-        description: 'A free, open-source file converter that runs in your browser: images, audio, documents, data, archives, fonts, subtitles and common video. Drop a file, pick a format; nothing leaves your device.',
-        domain: 'omsett.com',
-        repo: 'https://github.com/cschweda/omsett',
-        icon: 'arrow-right-left',
-        accent: '#3d6dff',
-        badge: 'File converter',
-        badgeNote: 'nothing leaves your device',
-        span: 'shot',
-        shot: '/workshop/omsett.webp',
-        category: 'UtilitiesApplication'
-      },
-      {
-        title: 'MetaPeek',
-        description: 'Inspect, preview and fix a page’s HTML meta tags and Open Graph markup, and see how a link will look when it is shared on seven social platforms. Free, open source, no login.',
-        domain: 'metapeek.icjia.app',
-        repo: 'https://github.com/ICJIA/icjia-metapeek',
-        icon: 'tags',
-        accent: '#3b82f6',
-        badge: 'Share previews',
-        badgeNote: 'inspect, preview, fix',
-        span: 'shot',
-        shot: '/workshop/metapeek.webp',
-        category: 'DeveloperApplication'
-      },
-      {
         // The badge rule bans digits, so the year stays in the title and description.
         title: 'W1913',
         description: 'Webster’s Revised Unabridged Dictionary of 1913, read the way a writer reads it: more than a hundred thousand words, parsed from the public-domain text.',
@@ -314,8 +299,25 @@ export const zones: Zone[] = [
         shot: '/workshop/w1913.webp',
         category: 'ReferenceApplication'
       },
-      // Cabinets flagged "In development" always go last in the zone, however many
-      // there are: a finished tool is added above this line, never below it. The page
+      {
+        // An early pre-release: the one-shot `zoneblick check` command works; the
+        // daemon, history and web UI are still to come. Not flagged "In development".
+        title: 'zoneblick',
+        description: 'A self-hosted DNS zone watchdog, written in Rust. It asks every authoritative nameserver directly and checks the answers, so you know the moment your DNS drifts. An early release: the one-shot check command works today.',
+        domain: 'zoneblick.com',
+        repo: 'https://github.com/cschweda/zoneblick',
+        icon: 'radar',
+        accent: '#ff4a33',
+        badge: 'DNS zone watchdog',
+        badgeNote: 'self-hosted, in Rust',
+        span: 'shot',
+        shot: '/workshop/zoneblick.webp',
+        category: 'DeveloperApplication'
+      },
+      // Finished tools above this line run A to Z by title (case and accents aside;
+      // a test holds the order). Cabinets flagged "In development" always go last in
+      // the zone, however many there are: a finished tool is added above this line,
+      // never below it. The page
       // draws them as a group of their own, under an "In development" rule.
       {
         // No repo yet: in development, and utenat.com is a placeholder page

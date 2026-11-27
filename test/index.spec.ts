@@ -38,7 +38,7 @@ describe('index page', () => {
     const live = workshop.find('.floor:not(.floor-pending)')
     expect(live.findAll('.cab')).toHaveLength(15)
     expect(live.findAll('.cab-pending')).toHaveLength(0)
-    expect(live.findAll('.cab-title').map(t => t.text()).slice(-2)).toEqual(['MetaPeek', 'W1913'])
+    expect(live.findAll('.cab-title').map(t => t.text()).slice(-2)).toEqual(['W1913', 'zoneblick'])
   })
 
   // The Workshop runs two to a row. A card alone on its last row keeps one column.
