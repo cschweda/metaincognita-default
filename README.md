@@ -55,21 +55,21 @@ The old anchors from the casino-floor design (`#pit`, `#machines`, `#fiction`,
 
 | Tool | Live | Source | What it is |
 | --- | --- | --- | --- |
-| Drafter | `drafter.dev` | [source](https://github.com/cschweda/drafter) | Screenplays and stage plays in plain-text Fountain, with the formatted pages building as you type; novels in Markdown. |
-| Fugløy | `fugloy.dev` | [source](https://github.com/cschweda/fugloy) | A TRS-80 Model I/III reverse-engineering toolkit: byte-exact disassembler, explaining workbench, emulator. |
-| OpenMantel | `openmantel.com` | [source](https://github.com/cschweda/openmantel) | A self-hosted digital picture frame for every screen in the house. |
 | aiden-portal | `aiden-portal.netlify.app` (demo) | [source](https://github.com/cschweda/aiden-portal) | A dashboard for a Fellow Aiden coffee brewer — live brew trace, profiles, schedules, brew log, descale tally — reachable only over Tailscale. The link is the demo, on invented data. |
-| ICJIA Markdown Editor 2.0 | `markdown.icjia.cloud` | [source](https://github.com/ICJIA/icjia-markdown-editor-2026) | An accessible Markdown editor for ICJIA researchers: write, preview and export. |
-| Ipsumify | `ipsumify.com` | [source](https://github.com/ICJIA/ipsumify-next-2026) | Lorem ipsum placeholder text with Markdown support, themed variants and a free public API. |
-| Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
+| Drafter | `drafter.dev` | [source](https://github.com/cschweda/drafter) | Screenplays and stage plays in plain-text Fountain, with the formatted pages building as you type; novels in Markdown. |
+| Fotobogen | `fotobogen.com` | [source](https://github.com/cschweda/fotobogen) | Free, open-source software for running your own photo website: install it, upload your pictures, publish them at your own address. |
+| Fugløy | `fugloy.dev` | [source](https://github.com/cschweda/fugloy) | A TRS-80 Model I/III reverse-engineering toolkit: byte-exact disassembler, explaining workbench, emulator. |
 | ICJIA Accessibility Audit | `audit.icjia.app` | [source](https://github.com/ICJIA/file-accessibility-audit) | An accessibility checker for PDF, Word, PowerPoint and Excel: a WCAG 2.1 AA score with fix-it guidance. |
 | ICJIA Accessibility Portal | `accessibility.icjia.app` | [source](https://github.com/ICJIA/icjia-accessibility-portal) | A countdown to the WCAG 2.1 AA deadline for ADA Title II, with FAQs and guidance for Illinois state agencies. |
-| zoneblick | `zoneblick.com` | [source](https://github.com/cschweda/zoneblick) | A self-hosted DNS zone watchdog, written in Rust: it asks every authoritative nameserver directly and checks the answers, so you know when your DNS drifts. An early release. |
-| v6blick | `cschweda.github.io/v6blick` | [source](https://github.com/cschweda/v6blick) | An IPv6 readiness test for websites, written in Rust: it connects to a site over IPv4 and over IPv6 separately, compares the two, and says what breaks for a visitor without IPv4 and how to fix it. An early build, with no domain of its own, so the card links its GitHub Pages site. |
-| Fotobogen | `fotobogen.com` | [source](https://github.com/cschweda/fotobogen) | Free, open-source software for running your own photo website: install it, upload your pictures, publish them at your own address. |
-| Omsett | `omsett.com` | [source](https://github.com/cschweda/omsett) | A free, open-source file converter that runs in the browser (images, audio, documents, data, archives, fonts, subtitles, common video), so your files never touch a server. |
+| ICJIA Markdown Editor 2.0 | `markdown.icjia.cloud` | [source](https://github.com/ICJIA/icjia-markdown-editor-2026) | An accessible Markdown editor for ICJIA researchers: write, preview and export. |
+| Ipsumify | `ipsumify.com` | [source](https://github.com/ICJIA/ipsumify-next-2026) | Lorem ipsum placeholder text with Markdown support, themed variants and a free public API. |
 | MetaPeek | `metapeek.icjia.app` | [source](https://github.com/ICJIA/icjia-metapeek) | Inspect, preview and fix a page's HTML meta tags and Open Graph markup, with share previews for seven social platforms. |
+| Omsett | `omsett.com` | [source](https://github.com/cschweda/omsett) | A free, open-source file converter that runs in the browser (images, audio, documents, data, archives, fonts, subtitles, common video), so your files never touch a server. |
+| OpenMantel | `openmantel.com` | [source](https://github.com/cschweda/openmantel) | A self-hosted digital picture frame for every screen in the house. |
+| Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
+| v6blick | `cschweda.github.io/v6blick` | [source](https://github.com/cschweda/v6blick) | An IPv6 readiness test for websites, written in Rust: it connects to a site over IPv4 and over IPv6 separately, compares the two, and says what breaks for a visitor without IPv4 and how to fix it. An early build, with no domain of its own, so the card links its GitHub Pages site. |
 | W1913 | `w1913.com` | [source](https://github.com/cschweda/w1913) | Webster's Revised Unabridged Dictionary (1913), parsed from the public-domain text and read the way a writer reads it. |
+| zoneblick | `zoneblick.com` | [source](https://github.com/cschweda/zoneblick) | A self-hosted DNS zone watchdog, written in Rust: it asks every authoritative nameserver directly and checks the answers, so you know when your DNS drifts. An early release. |
 | Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**; its card sits under an "In development" label. |
 
 The six ICJIA tools (the Markdown editor, Ipsumify, Squish, the Accessibility Audit, the Accessibility Portal and MetaPeek)
@@ -82,7 +82,8 @@ own under an "In development" label: the one place the page says so. (Utenat's
 og:image prints its own "In development" label in a corner; the copy in
 `public/workshop/` has it painted out, so the page does not say it twice.)
 
-**In-development tools always go at the bottom of The Workshop**, however many there
+The Workshop's finished tools run **in alphabetical order by name** (case and
+accents aside), and a test holds the catalog to it. **In-development tools always go at the bottom of The Workshop**, however many there
 are: a finished tool is added above them, never below. A test holds the catalog to it.
 The page draws them as a group of their own, set apart from the live tools under a
 hairline rule labelled "In development". Any card with a `status` joins that group;
