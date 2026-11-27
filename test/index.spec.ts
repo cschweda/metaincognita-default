@@ -41,18 +41,12 @@ describe('index page', () => {
     expect(live.findAll('.cab-title').map(t => t.text()).slice(-2)).toEqual(['MetaPeek', 'W1913'])
   })
 
-  // The Workshop runs two to a row; a card alone on its last row takes both columns.
-  it('lays The Workshop out two to a row, a lone last card across both', async () => {
+  // The Workshop runs two to a row. A card alone on its last row keeps one column.
+  it('lays The Workshop out two to a row, never stretching a lone card', async () => {
     const w = await mountSuspended(IndexPage)
-    const live = w.findAll('#workshop .floor:not(.floor-pending) .cab')
-    expect(live.slice(0, -1).every(c => c.classes('md:col-span-6') && !c.classes('lg:col-span-4'))).toBe(true)
-    // Fifteen live tools: the fifteenth sits alone, so it takes the whole row.
-    expect(live).toHaveLength(15)
-    expect(live.at(-1)!.classes('md:col-span-6')).toBe(false)
-    // Utenat is the only card in development: it takes the whole row too.
-    const bench = w.findAll('#workshop .floor-pending .cab')
-    expect(bench).toHaveLength(1)
-    expect(bench[0]!.classes('md:col-span-6')).toBe(false)
+    const cards = w.findAll('#workshop .cab')
+    expect(cards).toHaveLength(16)
+    expect(cards.every(c => c.classes('md:col-span-6') && !c.classes('lg:col-span-4'))).toBe(true)
     expect(w.find('#casino-table-games .cab').classes('lg:col-span-4')).toBe(true)
   })
 

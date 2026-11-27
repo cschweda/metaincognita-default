@@ -14,12 +14,11 @@ const floors = zones.map((zone, i) => ({
 
 // Three to a row on a wide screen, two on a tablet, one on a phone. The showcase
 // (an umbrella project with a suite to list) takes the whole row. The Workshop runs
-// two to a row from the tablet up, and a card left alone on its last row (an odd
-// count, or a group of one) takes both columns.
-const span = (zoneId: string, s: string, i: number, n: number) => {
+// two to a row from the tablet up. A card left alone on its last row keeps its one
+// column and leaves the other empty: stretched across both, it reads as huge.
+const span = (zoneId: string, s: string) => {
   if (s === 'showcase') return 'col-span-12'
-  if (zoneId !== 'workshop') return 'col-span-12 md:col-span-6 lg:col-span-4'
-  return i === n - 1 && n % 2 === 1 ? 'col-span-12' : 'col-span-12 md:col-span-6'
+  return zoneId === 'workshop' ? 'col-span-12 md:col-span-6' : 'col-span-12 md:col-span-6 lg:col-span-4'
 }
 
 useHead({
@@ -66,9 +65,9 @@ onMounted(() => {
 
         <div v-if="open.length" class="g12 floor">
           <GameCabinet
-            v-for="(item, i) in open"
+            v-for="item in open"
             :key="item.domain"
-            :class="span(zone.id, item.span, i, open.length)"
+            :class="span(zone.id, item.span)"
             :item="item"
           />
         </div>
@@ -84,9 +83,9 @@ onMounted(() => {
           <p :id="`${zone.id}-pending`" class="bench-label">{{ pending[0]!.status }}</p>
           <div class="g12 floor floor-pending">
             <GameCabinet
-              v-for="(item, i) in pending"
+              v-for="item in pending"
               :key="item.domain"
-              :class="span(zone.id, item.span, i, pending.length)"
+              :class="span(zone.id, item.span)"
               :item="item"
             />
           </div>
