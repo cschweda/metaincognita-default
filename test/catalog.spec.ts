@@ -120,6 +120,12 @@ describe('catalog', () => {
     }
   })
 
+  it('runs The Workshop\'s finished tools in alphabetical order', () => {
+    const fold = (t: string) => t.replace(/ø/g, 'o').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    const titles = zones.find(z => z.id === 'workshop')!.items.filter(i => !i.status).map(i => i.title)
+    expect(titles).toEqual([...titles].sort((a, b) => fold(a).localeCompare(fold(b))))
+  })
+
   it('uses unique domains', () => {
     const domains = allItems.map(i => i.domain)
     expect(new Set(domains).size).toBe(domains.length)
