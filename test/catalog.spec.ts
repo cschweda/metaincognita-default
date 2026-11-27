@@ -22,9 +22,9 @@ describe('catalog', () => {
     }
   })
 
-  it('carries all twenty-seven apps', () => {
-    expect(allItems).toHaveLength(27)
-    expect(zones.map(z => z.items.length)).toEqual([14, 3, 4, 4, 1, 1])
+  it('carries all twenty-nine apps', () => {
+    expect(allItems).toHaveLength(29)
+    expect(zones.map(z => z.items.length)).toEqual([16, 3, 4, 4, 1, 1])
   })
 
   it('gives every item a complete, non-empty record', () => {
