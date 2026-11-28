@@ -67,20 +67,14 @@ The old anchors from the casino-floor design (`#pit`, `#machines`, `#fiction`,
 | Omsett | `omsett.com` | [source](https://github.com/cschweda/omsett) | A free, open-source file converter that runs in the browser (images, audio, documents, data, archives, fonts, subtitles, common video), so your files never touch a server. |
 | OpenMantel | `openmantel.com` | [source](https://github.com/cschweda/openmantel) | A self-hosted digital picture frame for every screen in the house. |
 | Squish | `squish.icjia.app` | [source](https://github.com/ICJIA/icjia-squish-2026) | Image compression in the browser, with a real-time preview and no uploads. |
+| Utenat | `utenat.com` | [source](https://github.com/cschweda/utenat) | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. |
 | v6blick | `cschweda.github.io/v6blick` | [source](https://github.com/cschweda/v6blick) | An IPv6 readiness test for websites, written in Rust: it connects to a site over IPv4 and over IPv6 separately, compares the two, and says what breaks for a visitor without IPv4 and how to fix it. An early build, with no domain of its own, so the card links its GitHub Pages site. |
 | W1913 | `w1913.com` | [source](https://github.com/cschweda/w1913) | Webster's Revised Unabridged Dictionary (1913), parsed from the public-domain text and read the way a writer reads it. |
 | zoneblick | `zoneblick.com` | [source](https://github.com/cschweda/zoneblick) | A self-hosted DNS zone watchdog, written in Rust: it asks every authoritative nameserver directly and checks the answers, so you know when your DNS drifts. An early release. |
-| Utenat | `utenat.com` (placeholder) | no repo yet | Free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, a part in a scene. **In development**; its card sits under an "In development" label. |
 
 The six ICJIA tools (the Markdown editor, Ipsumify, Squish, the Accessibility Audit, the Accessibility Portal and MetaPeek)
 were written for work at ICJIA, and for my own use; their source lives under the ICJIA
 GitHub organisation.
-
-Utenat is **in development**. It links to a placeholder page announcing it, has no
-source link because there is no repository yet, and its card sits in a group of its
-own under an "In development" label: the one place the page says so. (Utenat's
-og:image prints its own "In development" label in a corner; the copy in
-`public/workshop/` has it painted out, so the page does not say it twice.)
 
 The Workshop's finished tools run **in alphabetical order by name** (case and
 accents aside), and a test holds the catalog to it. **In-development tools always go at the bottom of The Workshop**, however many there
@@ -92,8 +86,8 @@ nothing else is needed.
 The Workshop's cards lead with each app's own og:image, copied into
 `public/workshop/` as WebP (the CSP is `img-src 'self'`, so the cards never load
 another origin's image). aiden-portal has no og:image of its own (it is not a public
-site), so its picture was made for this page. There are sixteen tools, three to a row
-on a wide screen: fifteen live, then the one in development.
+site), so its picture was made for this page. There are sixteen tools, all live, three to a row
+on a wide screen.
 
 ### VogelTronics — A Fictional History
 
