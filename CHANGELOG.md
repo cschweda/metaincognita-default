@@ -5,6 +5,14 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- **Utenat is out of development.** It joins the finished tools in The Workshop, in
+  alphabetical order, links its source (`github.com/cschweda/utenat`), and leads with
+  its new og:image. The Workshop has no "In development" group for now; the group
+  comes back by itself when a card next carries a `status`.
+
 ## [3.0.0] - 2026-11-26
 
 ### Changed

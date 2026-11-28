@@ -23,22 +23,16 @@ describe('index page', () => {
   })
 
   // Finished tools and in-development ones are separate groups: the flagged cards
-  // sit in their own grid, under a rule that names the group.
-  it('sets the in-development cards apart from the live ones', async () => {
+  // sit in their own grid, under a rule that names the group. With nothing in
+  // development, The Workshop draws no such group at all.
+  it('puts every Workshop tool in the one live group', async () => {
     const w = await mountSuspended(IndexPage)
     const workshop = w.find('#workshop')
 
-    const bench = workshop.find('.bench')
-    expect(bench.attributes('role')).toBe('group')
-    expect(bench.attributes('aria-labelledby')).toBe('workshop-pending')
-    expect(bench.find('#workshop-pending').text()).toBe('In development')
-    expect(bench.findAll('.cab-title').map(t => t.text())).toEqual(['Utenat'])
-    expect(bench.findAll('.cab').every(c => c.classes('cab-pending'))).toBe(true)
-
     const live = workshop.find('.floor:not(.floor-pending)')
-    expect(live.findAll('.cab')).toHaveLength(15)
+    expect(live.findAll('.cab')).toHaveLength(16)
     expect(live.findAll('.cab-pending')).toHaveLength(0)
-    expect(live.findAll('.cab-title').map(t => t.text()).slice(-2)).toEqual(['W1913', 'zoneblick'])
+    expect(live.findAll('.cab-title').map(t => t.text()).slice(-4)).toEqual(['Utenat', 'v6blick', 'W1913', 'zoneblick'])
   })
 
   // The Workshop runs two to a row. A card alone on its last row keeps one column.
@@ -52,8 +46,7 @@ describe('index page', () => {
 
   it('draws no rule in a zone with nothing in development', async () => {
     const w = await mountSuspended(IndexPage)
-    expect(w.findAll('.bench')).toHaveLength(1)
-    expect(w.find('#casino-table-games .bench').exists()).toBe(false)
+    expect(w.findAll('.bench')).toHaveLength(0)
   })
 
   it('opens with the thesis, "Given away." in the signal colour', async () => {

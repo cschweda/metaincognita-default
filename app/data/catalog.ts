@@ -269,6 +269,19 @@ export const zones: Zone[] = [
         category: 'MultimediaApplication'
       },
       {
+        title: 'Utenat',
+        description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart.',
+        domain: 'utenat.com',
+        repo: 'https://github.com/cschweda/utenat',
+        icon: 'drama',
+        accent: '#f2efe8',
+        badge: 'Learn it by heart',
+        badgeNote: 'speeches and lines',
+        span: 'shot',
+        shot: '/workshop/utenat.webp',
+        category: 'EducationalApplication'
+      },
+      {
         // An early build: `v6blick check` and `v6blick doctor` work; the whole-page
         // test is designed and not built. No domain of its own, so the card links
         // the project page on GitHub Pages. Not flagged "In development".
@@ -319,23 +332,6 @@ export const zones: Zone[] = [
       // the zone, however many there are: a finished tool is added above this line,
       // never below it. The page
       // draws them as a group of their own, under an "In development" rule.
-      {
-        // No repo yet: in development, and utenat.com is a placeholder page
-        // announcing it. Add `repo` when there is one. The og:image prints its own
-        // red "In development" label where the ribbon hangs; the card copy has that
-        // label painted out so the two do not collide.
-        title: 'Utenat',
-        description: 'Utenat is free, open-source software for memorizing anything you need to say aloud: a monologue, a speech, a poem, or your part in a scene. The name is Norwegian for by heart.',
-        domain: 'utenat.com',
-        icon: 'drama',
-        accent: '#f2efe8',
-        badge: 'Learn it by heart',
-        badgeNote: 'speeches and lines',
-        span: 'shot',
-        shot: '/workshop/utenat.webp',
-        status: 'In development',
-        category: 'EducationalApplication'
-      }
     ]
   },
   {
