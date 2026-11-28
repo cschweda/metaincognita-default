@@ -52,8 +52,7 @@ describe('catalog', () => {
     // Every cabinet links its source. A new app whose repo is not public yet may
     // ship without one (the link affordance just stays off) — but it must be
     // named here deliberately, never forgotten.
-    // Utenat is in development: it has no repository yet.
-    expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual(['utenat.com'])
+    expect(allItems.filter(i => !i.repo).map(i => i.domain)).toEqual([])
 
     const repos = allItems.map(i => i.repo).filter(Boolean)
     expect(new Set(repos).size).toBe(repos.length)
@@ -107,7 +106,7 @@ describe('catalog', () => {
     for (const item of allItems) {
       if (item.status) expect(Boolean(item.shot), item.domain).toBe(true)
     }
-    expect(allItems.filter(i => i.status).map(i => [i.domain, i.status])).toEqual([['utenat.com', 'In development']])
+    expect(allItems.filter(i => i.status).map(i => [i.domain, i.status])).toEqual([])
   })
 
   // Standing rule: in-development cabinets sit at the bottom of their zone, however
